@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "247241669912",
+    "project_id": "amca-36bb9",
+    "storage_bucket": "amca-36bb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247241669912:android:2608e73feb1a7947ab326d",
+        "android_client_info": {
+          "package_name": "com.example.amca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247241669912-2eeged6smr9neqq6sulu48kqj8bundso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADApEUtA3cl4DVUEva31E7b5nwNWsFE6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247241669912-2eeged6smr9neqq6sulu48kqj8bundso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
