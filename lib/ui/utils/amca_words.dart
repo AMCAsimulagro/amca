@@ -90,6 +90,7 @@ class AmcaWords {
   static const String value = 'Valor';
   static const String yourAccountHasBeenCreated = 'Tu cuenta ha sido creada';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
+  static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
   static const String yourTransitoryFarmingHasBeenUpdated = 'Tu cultivo transitorio ha sido actualizado';
   static const String youHaveNotCreatedFarmingYet = 'Aún no has creado ningun cultivo';
 

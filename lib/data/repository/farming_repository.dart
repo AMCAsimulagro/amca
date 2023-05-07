@@ -11,6 +11,8 @@ abstract class FarmingRepository {
   Future<TransitoryFarming> createTransitoryFarming(TransitoryFarming transitoryFarming);
 
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid);
+
+  Future<void> deleteTransitoryFarming(String id);
 }
 
 class FarmingRepositoryAdapter extends FarmingRepository {
@@ -34,5 +36,10 @@ class FarmingRepositoryAdapter extends FarmingRepository {
   @override
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid) {
    return _api.getFarmingHistoryByUid(uid);
+  }
+
+  @override
+  Future<void> deleteTransitoryFarming(String id) {
+    return _api.deleteTransitoryFarming(id);
   }
 }

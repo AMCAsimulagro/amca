@@ -35,4 +35,12 @@ class CreateTransitoryFarmingVM extends ChangeNotifier {
         cropTypes.firstWhere((element) => element.tipo == cropSelected).cultivo;
     notifyListeners();
   }
+
+  Future<void> deleteTransitoryFarming(String id) async {
+    try {
+      return await farmingRepository.deleteTransitoryFarming(id);
+    } catch (e) {
+      return;
+    }
+  }
 }
