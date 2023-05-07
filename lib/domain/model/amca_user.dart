@@ -16,6 +16,7 @@ class AmcaUser with _$AmcaUser {
     required String town,
     required String email,
     String? uid,
+    @Default(false) bool? isAdmin,
   }) = _AmcaUser;
 
   factory AmcaUser.fromJson(Map<String, Object?> json) =>
@@ -34,6 +35,8 @@ class AmcaUser with _$AmcaUser {
       state: data?['state'],
       town: data?['town'],
       email: data?['email'],
+      uid: data?['uid'],
+      isAdmin: data?['isAdmin'],
     );
   }
 }

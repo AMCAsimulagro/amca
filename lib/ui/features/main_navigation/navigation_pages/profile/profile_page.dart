@@ -1,4 +1,5 @@
 import 'package:amca/ui/features/login/login_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_history_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -10,7 +11,7 @@ class ProfilePage extends StatelessWidget {
   static ChangeNotifierProvider<ProfileVM> create({Key? key}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => ProfileVM(),
+        create: (context) => ProfileVM()..init(),
         child: const ProfilePage._(),
       );
 
@@ -18,36 +19,78 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Expanded(
-          child: Center(
-            child: Text(AmcaWords.profile),
-          ),
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.logout,
-            color: AmcaPalette.lightGreen,
-          ),
-          title: const Text(
-            AmcaWords.logOut,
-            style: TextStyle(
-              color: AmcaPalette.lightGreen,
+    return Consumer<ProfileVM>(builder: (context, vm, _) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Text(
+                  '${AmcaWords.welcome} ${vm.currentUser?.names ?? ' '}',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                if (vm.currentUser?.isAdmin ?? false)
+                Text(
+                  AmcaWords.youAreAdmin,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ),
           ),
-          onTap: () async {
-            final vm = Provider.of<ProfileVM>(context,listen: false);
-            vm.signOut().then((value) {
-              NavigationHelper.pushAndRemoveUntil(
-                LoginPage.create(),
-                context,
-              );
-            });
-          },
-        )
-      ],
-    );
+          const Divider(
+            height: 1,
+          ),
+          Expanded(
+            child: ListView(
+              physics: const ClampingScrollPhysics(),
+              children: [
+                if (vm.currentUser?.isAdmin ?? false)
+                  ListTile(
+                    leading: const Icon(
+                      Icons.list,
+                      color: Colors.black,
+                    ),
+                    title: const Text(
+                      AmcaWords.seeAllFarms,
+                    ),
+                    onTap: () async {
+                      final vm = Provider.of<ProfileVM>(context, listen: false);
+                      vm.signOut().then((value) {
+                        NavigationHelper.push(
+                          AllFarmingHistoryPage.create(),
+                          context,
+                        );
+                      });
+                    },
+                  ),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.logout,
+              color: AmcaPalette.lightGreen,
+            ),
+            title: const Text(
+              AmcaWords.logOut,
+              style: TextStyle(
+                color: AmcaPalette.lightGreen,
+              ),
+            ),
+            onTap: () async {
+              final vm = Provider.of<ProfileVM>(context, listen: false);
+              vm.signOut().then((value) {
+                NavigationHelper.pushAndRemoveUntil(
+                  LoginPage.create(),
+                  context,
+                );
+              });
+            },
+          )
+        ],
+      );
+    });
   }
 }
