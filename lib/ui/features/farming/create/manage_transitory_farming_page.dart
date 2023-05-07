@@ -259,7 +259,16 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
         },
       ),
       bottomNavigationBar: SafeArea(
-        child: Padding(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            boxShadow: const <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 5,
+              ),
+            ],
+          ),
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -277,7 +286,9 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                 AmcaButton(
                   text: AmcaWords.delete,
                   type: AmcaButtonType.destroy,
-                  onPressed: () {},
+                  onPressed: () {
+                    deleteTransitoryFarming(widget.transitoryFarming!.id!);
+                  },
                 ),
             ],
           ),
@@ -319,6 +330,28 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
           isEditMode
               ? AmcaWords.yourTransitoryFarmingHasBeenUpdated
               : AmcaWords.yourTransitoryFarmingHasBeenCreated,
+        );
+        Navigator.pop(context);
+      });
+    } catch (_) {}
+  }
+
+  Future<void> deleteTransitoryFarming(String id) async {
+    final createTransitoryVm = Provider.of<CreateTransitoryFarmingVM>(
+      context,
+      listen: false,
+    );
+    try {
+      await CallsWithDialogs.call(context, () async {
+        await createTransitoryVm.deleteTransitoryFarming(id);
+        final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
+          context,
+          listen: false,
+        );
+        await farmingHistoryVM.init();
+        await Dialogs.showSuccessDialogWithMessage(
+          context,
+          AmcaWords.yourTransitoryFarmingHasBeenDeleted
         );
         Navigator.pop(context);
       });
