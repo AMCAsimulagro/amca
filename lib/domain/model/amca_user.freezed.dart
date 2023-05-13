@@ -35,6 +35,8 @@ mixin _$AmcaUser {
   set email(String value) => throw _privateConstructorUsedError;
   String? get uid => throw _privateConstructorUsedError;
   set uid(String? value) => throw _privateConstructorUsedError;
+  bool? get isAdmin => throw _privateConstructorUsedError;
+  set isAdmin(bool? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +57,8 @@ abstract class $AmcaUserCopyWith<$Res> {
       String state,
       String town,
       String email,
-      String? uid});
+      String? uid,
+      bool? isAdmin});
 }
 
 /// @nodoc
@@ -79,6 +82,7 @@ class _$AmcaUserCopyWithImpl<$Res, $Val extends AmcaUser>
     Object? town = null,
     Object? email = null,
     Object? uid = freezed,
+    Object? isAdmin = freezed,
   }) {
     return _then(_value.copyWith(
       names: null == names
@@ -113,6 +117,10 @@ class _$AmcaUserCopyWithImpl<$Res, $Val extends AmcaUser>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
+      isAdmin: freezed == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -132,7 +140,8 @@ abstract class _$$_AmcaUserCopyWith<$Res> implements $AmcaUserCopyWith<$Res> {
       String state,
       String town,
       String email,
-      String? uid});
+      String? uid,
+      bool? isAdmin});
 }
 
 /// @nodoc
@@ -154,6 +163,7 @@ class __$$_AmcaUserCopyWithImpl<$Res>
     Object? town = null,
     Object? email = null,
     Object? uid = freezed,
+    Object? isAdmin = freezed,
   }) {
     return _then(_$_AmcaUser(
       names: null == names
@@ -188,6 +198,10 @@ class __$$_AmcaUserCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
+      isAdmin: freezed == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -203,7 +217,8 @@ class _$_AmcaUser implements _AmcaUser {
       required this.state,
       required this.town,
       required this.email,
-      this.uid});
+      this.uid,
+      this.isAdmin = false});
 
   factory _$_AmcaUser.fromJson(Map<String, dynamic> json) =>
       _$$_AmcaUserFromJson(json);
@@ -224,10 +239,13 @@ class _$_AmcaUser implements _AmcaUser {
   String email;
   @override
   String? uid;
+  @override
+  @JsonKey()
+  bool? isAdmin;
 
   @override
   String toString() {
-    return 'AmcaUser(names: $names, firstLastName: $firstLastName, secondLastName: $secondLastName, identification: $identification, state: $state, town: $town, email: $email, uid: $uid)';
+    return 'AmcaUser(names: $names, firstLastName: $firstLastName, secondLastName: $secondLastName, identification: $identification, state: $state, town: $town, email: $email, uid: $uid, isAdmin: $isAdmin)';
   }
 
   @JsonKey(ignore: true)
@@ -253,7 +271,8 @@ abstract class _AmcaUser implements AmcaUser {
       required String state,
       required String town,
       required String email,
-      String? uid}) = _$_AmcaUser;
+      String? uid,
+      bool? isAdmin}) = _$_AmcaUser;
 
   factory _AmcaUser.fromJson(Map<String, dynamic> json) = _$_AmcaUser.fromJson;
 
@@ -280,6 +299,9 @@ abstract class _AmcaUser implements AmcaUser {
   @override
   String? get uid;
   set uid(String? value);
+  @override
+  bool? get isAdmin;
+  set isAdmin(bool? value);
   @override
   @JsonKey(ignore: true)
   _$$_AmcaUserCopyWith<_$_AmcaUser> get copyWith =>

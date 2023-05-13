@@ -1,9 +1,11 @@
 import 'package:amca/data/api/firebase_collections.dart';
+import 'package:amca/data/local_storage/shared_preferences_keys.dart';
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:amca/domain/model/app_exception.dart';
 import 'package:amca/ui/utils/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LoginApi {
   Future<UserCredential> createUserWithEmailAndPassword(
@@ -19,11 +21,14 @@ abstract class LoginApi {
   Future<bool> isLogged();
 
   Future<void> signOut();
+
+  Future<AmcaUser> getUserCurrentlyLogged();
 }
 
 class LoginApiAdapter extends LoginApi {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseDb = FirebaseFirestore.instance;
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   @override
   Future<UserCredential> createUserWithEmailAndPassword(
@@ -53,7 +58,6 @@ class LoginApiAdapter extends LoginApi {
   Future<UserCredential> signInWithIdentificationAndPassword(
       String identification, String password) async {
     try {
-
       final collection = await _firebaseDb
           .collection(FirebaseCollections.users)
           .doc(identification)
@@ -65,6 +69,10 @@ class LoginApiAdapter extends LoginApi {
       final user = collection.data();
       var result = await _firebaseAuth.signInWithEmailAndPassword(
           email: user?.email ?? 'amca@test.com', password: password);
+      final SharedPreferences prefs = await _prefs;
+      await prefs.setString(
+          SharedPreferencesKey.currentlyUserLoggedIdentification,
+          identification);
       return result;
     } on FirebaseAuthException catch (e) {
       throw AppException(
@@ -114,5 +122,32 @@ class LoginApiAdapter extends LoginApi {
   @override
   Future<void> signOut() {
     return _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<AmcaUser> getUserCurrentlyLogged() async {
+    try {
+      final SharedPreferences prefs = await _prefs;
+      final collection = await _firebaseDb
+          .collection(FirebaseCollections.users)
+          .doc(prefs.getString(
+              SharedPreferencesKey.currentlyUserLoggedIdentification))
+          .withConverter(
+            fromFirestore: AmcaUser.fromFirestore,
+            toFirestore: (model, _) => model.toJson(),
+          )
+          .get();
+      final user = collection.data();
+      return Future.value(user);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
   }
 }

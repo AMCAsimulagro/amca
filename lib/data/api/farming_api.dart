@@ -17,6 +17,7 @@ abstract class FarmingApi {
       TransitoryFarming transitoryFarming);
 
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid);
+  Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
   Future<void> deleteTransitoryFarming(String id);
 }
@@ -119,6 +120,30 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+
+  @override
+  Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin() async {
+    try {
+      final collection = await _firebaseDb
+          .collection(FirebaseCollections.farming)
+          .get();
+      final data = collection.docs
+          .map((doc) => TransitoryFarming.fromJson(doc.data()))
+          .toList()
+        ..sort((a, b) => a.createDate.compareTo(b.createDate));
+      return data;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
   @override
   Future<void> deleteTransitoryFarming(String id) async {
     try {
@@ -135,4 +160,5 @@ class FarmingApiAdapter extends FarmingApi {
       );
     }
   }
+
 }

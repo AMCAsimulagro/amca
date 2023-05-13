@@ -15,10 +15,11 @@ abstract class LoginRepository {
   Future<bool> isLogged();
 
   Future<void> signOut();
+
+  Future<AmcaUser> getUserCurrentlyLogged();
 }
 
 class LoginRepositoryAdapter extends LoginRepository {
-
   final LoginApi _api = locator<LoginApi>();
 
   @override
@@ -46,5 +47,10 @@ class LoginRepositoryAdapter extends LoginRepository {
   @override
   Future<void> signOut() {
     return _api.signOut();
+  }
+
+  @override
+  Future<AmcaUser> getUserCurrentlyLogged() {
+    return _api.getUserCurrentlyLogged();
   }
 }

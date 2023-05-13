@@ -1,11 +1,13 @@
 class AmcaWords {
   static const String addInformation = 'Añadir información';
+  static const String allFarms = 'Todos los cultivos';
   static const String accept = 'Aceptar';
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
   static const String comment = 'Comentario';
   static const String createFarming = 'Crear cultivo';
   static const String crop = 'Cultivo';
+  static const String cropsHaveNotBeenCreatedYet = 'No se ha creado ningun cultivo hasta el momento';
   static const String cropType = 'Tipo de cultivo';
   static const String date = 'Fecha';
   static const String delete = 'Eliminar';
@@ -77,6 +79,7 @@ class AmcaWords {
       'Por favor, repita la contraseña';
   static const String profile = 'Perfil';
   static const String state = 'Departamento';
+  static const String seeAllFarms = 'Ver todos los cultivos';
   static const String secondName = 'Segundo nombre';
   static const String secondLastName = 'Segundo Apellido';
   static const String sownType = 'Tipo de sembrado';
@@ -88,6 +91,8 @@ class AmcaWords {
   static const String units = 'Unidades';
   static const String update = 'Actualizar';
   static const String value = 'Valor';
+  static const String welcome = 'Bienvenido';
+  static const String youAreAdmin = '¡Eres Administrador!';
   static const String yourAccountHasBeenCreated = 'Tu cuenta ha sido creada';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
   static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
@@ -106,5 +111,5 @@ class AmcaWords {
   static const String weakPassword =
       'Tu contraseña es muy débil, te recomendamos poner una contraseña más segura';
   static const String yourEmailOrPasswordIsIncorrect =
-      'Tu correo electrónico o contraseña son incorrectos';
+      'Tu cédula ciudadana o contraseña son incorrectos';
 }
