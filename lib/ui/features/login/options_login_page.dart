@@ -46,8 +46,6 @@ class OptionsLoginPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   AmcaButton(
-                      text: 'Ingresar como Administrador', onPressed: () {}),
-                  AmcaButton(
                     text: 'Ingresar como Usuario',
                     onPressed: () {
                       Navigator.push<void>(

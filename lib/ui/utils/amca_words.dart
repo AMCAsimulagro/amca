@@ -111,5 +111,5 @@ class AmcaWords {
   static const String weakPassword =
       'Tu contraseña es muy débil, te recomendamos poner una contraseña más segura';
   static const String yourEmailOrPasswordIsIncorrect =
-      'Tu correo electrónico o contraseña son incorrectos';
+      'Tu cédula ciudadana o contraseña son incorrectos';
 }
