@@ -20,6 +20,10 @@ _$_TransitoryFarming _$$_TransitoryFarmingFromJson(Map<String, dynamic> json) =>
       value: json['value'] as String,
       uidOwner: json['uidOwner'] as String?,
       comment: json['comment'] as String?,
+      costsAndExpenses: (json['costsAndExpenses'] as List<dynamic>?)
+              ?.map((e) => CostAndExpense.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_TransitoryFarmingToJson(
@@ -37,4 +41,5 @@ Map<String, dynamic> _$$_TransitoryFarmingToJson(
       'value': instance.value,
       'uidOwner': instance.uidOwner,
       'comment': instance.comment,
+      'costsAndExpenses': instance.costsAndExpenses,
     };

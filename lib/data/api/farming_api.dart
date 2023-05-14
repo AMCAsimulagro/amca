@@ -1,5 +1,6 @@
 import 'package:amca/data/api/firebase_collections.dart';
 import 'package:amca/domain/model/app_exception.dart';
+import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/crop_types.dart';
 import 'package:amca/domain/model/spawn.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
@@ -20,6 +21,10 @@ abstract class FarmingApi {
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
   Future<void> deleteTransitoryFarming(String id);
+
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarming();
+
+  Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);
 }
 
 class FarmingApiAdapter extends FarmingApi {
@@ -161,4 +166,29 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+  @override
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarming() {
+    // TODO: implement getCostsAndExpensesByFarming
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<TransitoryFarming> getTransitoryFarmingById(String farmingId) async {
+    try {
+      final data = await _firebaseDb
+          .collection(FirebaseCollections.farming)
+          .doc(farmingId)
+          .get();
+      return TransitoryFarming.fromJson(data.data()!);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
 }

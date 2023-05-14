@@ -5,15 +5,22 @@ class AmcaWords {
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
   static const String comment = 'Comentario';
+  static const String createCostAndExpense = 'Crear costo y gasto';
   static const String createFarming = 'Crear cultivo';
   static const String crop = 'Cultivo';
   static const String cropsHaveNotBeenCreatedYet = 'No se ha creado ningun cultivo hasta el momento';
+  static const String costsAndExpensesHaveBeenCreated = 'No se ha creado costos y gastos hasta el momento para este cultivo';
   static const String cropType = 'Tipo de cultivo';
+  static const String cost = 'Costos';
+  static const String costsAndExpenses = 'Costos y gastos';
   static const String date = 'Fecha';
+  static const String description = 'Descripción';
   static const String delete = 'Eliminar';
   static const String differentPasswords = 'Las contraseñas no coinciden';
   static const String doNotHaveAnAccount =
       '¿No tienes cuenta?, Registrate aquí';
+  static const String expense = 'Gasto';
+  static const String editCostAndExpense = 'Editar Costo y Gasto';
   static const String editFarming = 'Editar cultivo';
   static const String email = 'Correo electrónico';
   static const String farming = 'Cultivos';
@@ -34,9 +41,12 @@ class AmcaWords {
   static const String loading = 'Cargando';
   static const String register = 'Registrarse';
   static const String repeatPassword = 'Repetir contraseña';
+  static const String other = 'Otro';
   static const String password = 'Contraseña';
   static const String partName = 'Nombre del lote';
   static const String permanent = 'Permanente';
+  static const String product = 'Producto';
+  static const String productOrService = 'Producto o Servicio';
   static const String pleaseAddDate = 'Por favor, ingrese una fecha';
   static const String pleaseAddName = 'Por favor, ingrese su nombre';
   static const String pleaseAddValidName =
@@ -65,6 +75,10 @@ class AmcaWords {
       'Por favor, seleccione un cultivo';
   static const String pleaseSelectFormat =
       'Por favor, seleccione un formato';
+  static const String pleaseSelectProductOrService =
+      'Por favor, seleccione un producto o servicio';
+  static const String pleaseSelectADescription =
+      'Por favor, seleccione una descripción';
   static const String pleaseSelectSownType =
       'Por favor, seleccione un tipo de sembrado';
   static const String pleaseSelectCropType =
@@ -78,8 +92,12 @@ class AmcaWords {
   static const String pleaseAddRepeatPassword =
       'Por favor, repita la contraseña';
   static const String profile = 'Perfil';
+  static const String salaries = 'Salarios';
   static const String state = 'Departamento';
+  static const String service = 'Servicio';
   static const String seeAllFarms = 'Ver todos los cultivos';
+  static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
+  static const String seeProductions = 'Ver Producción del lote';
   static const String secondName = 'Segundo nombre';
   static const String secondLastName = 'Segundo Apellido';
   static const String sownType = 'Tipo de sembrado';
@@ -90,6 +108,7 @@ class AmcaWords {
   static const String typeOfExploitation = 'Tipo de explotación';
   static const String units = 'Unidades';
   static const String update = 'Actualizar';
+  static const String variable = 'Variable';
   static const String value = 'Valor';
   static const String welcome = 'Bienvenido';
   static const String youAreAdmin = '¡Eres Administrador!';
