@@ -1,5 +1,6 @@
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
+import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/description.dart';
 import 'package:amca/domain/model/product_or_service.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
@@ -29,6 +30,16 @@ class ManageCostExpenseVM extends ChangeNotifier {
     } finally {
       notifyListeners();
       isLoading = false;
+    }
+  }
+
+  Future<CostAndExpense?> addCostAndExpenseToFarming(
+      CostAndExpense costAndExpense) async {
+    try {
+      return await farmingRepository.createCastExpense(costAndExpense,
+          farming: transitoryFarming!);
+    } catch (e) {
+      return null;
     }
   }
 

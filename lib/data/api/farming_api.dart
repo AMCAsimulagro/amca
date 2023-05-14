@@ -18,6 +18,7 @@ abstract class FarmingApi {
       TransitoryFarming transitoryFarming);
 
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid);
+
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
   Future<void> deleteTransitoryFarming(String id);
@@ -25,6 +26,11 @@ abstract class FarmingApi {
   Future<List<CostAndExpense>> getCostsAndExpensesByFarming();
 
   Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);
+
+  Future<CostAndExpense?> createCastExpense(
+    CostAndExpense costAndExpense, {
+    required TransitoryFarming farming,
+  });
 }
 
 class FarmingApiAdapter extends FarmingApi {
@@ -83,6 +89,7 @@ class FarmingApiAdapter extends FarmingApi {
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
         id: transitoryId,
       );
+
       await _firebaseDb
           .collection(FirebaseCollections.farming)
           .doc(transitoryId)
@@ -125,13 +132,11 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
-
   @override
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin() async {
     try {
-      final collection = await _firebaseDb
-          .collection(FirebaseCollections.farming)
-          .get();
+      final collection =
+          await _firebaseDb.collection(FirebaseCollections.farming).get();
       final data = collection.docs
           .map((doc) => TransitoryFarming.fromJson(doc.data()))
           .toList()
@@ -153,7 +158,9 @@ class FarmingApiAdapter extends FarmingApi {
   Future<void> deleteTransitoryFarming(String id) async {
     try {
       return await _firebaseDb
-          .collection(FirebaseCollections.farming).doc(id).delete();
+          .collection(FirebaseCollections.farming)
+          .doc(id)
+          .delete();
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,
@@ -180,6 +187,44 @@ class FarmingApiAdapter extends FarmingApi {
           .doc(farmingId)
           .get();
       return TransitoryFarming.fromJson(data.data()!);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<CostAndExpense?> createCastExpense(
+    CostAndExpense costAndExpense, {
+    required TransitoryFarming farming,
+  }) async {
+    try {
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpense.uidOwner = _firebaseAuth.currentUser?.uid ?? '';
+      final costAndExpenseId = costAndExpense.id ?? const Uuid().v4();
+      final costAndExpenseToUpload = costAndExpense.copyWith(
+        id: costAndExpenseId,
+      );
+      int index =
+          costAndExpenseList.indexWhere((obj) => obj.id == costAndExpenseId);
+      if (index != -1) {
+        costAndExpenseList
+            .replaceRange(index, index + 1, [costAndExpenseToUpload]);
+      } else {
+        costAndExpenseList.add(costAndExpenseToUpload);
+      }
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createTransitoryFarming(farmingToUpload);
+      return costAndExpenseToUpload;
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,

@@ -7,7 +7,7 @@ part 'transitory_farming.freezed.dart';
 
 part 'transitory_farming.g.dart';
 
-@freezed
+@unfreezed
 class TransitoryFarming with _$TransitoryFarming {
   factory TransitoryFarming({
     String? id,
@@ -22,7 +22,7 @@ class TransitoryFarming with _$TransitoryFarming {
     required String value,
     String? uidOwner,
     String? comment,
-    @Default([]) List<CostAndExpense>? costsAndExpenses,
+    List<CostAndExpense>? costsAndExpenses,
   }) = _TransitoryFarming;
 
   factory TransitoryFarming.fromJson(Map<String, Object?> json) =>

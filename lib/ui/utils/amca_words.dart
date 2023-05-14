@@ -59,6 +59,8 @@ class AmcaWords {
       'Por favor, ingrese cédula ciudadana';
   static const String pleaseAddAmountSown =
       'Por favor, ingrese la cantidad sembrada';
+  static const String pleaseAddQuantity =
+      'Por favor, ingrese la cantidad';
   static const String pleaseAddValue =
       'Por favor, ingrese el valor';
   static const String pleaseSownArea =
@@ -110,9 +112,12 @@ class AmcaWords {
   static const String update = 'Actualizar';
   static const String variable = 'Variable';
   static const String value = 'Valor';
+  static const String quantity = 'Cantidad';
   static const String welcome = 'Bienvenido';
   static const String youAreAdmin = '¡Eres Administrador!';
   static const String yourAccountHasBeenCreated = 'Tu cuenta ha sido creada';
+  static const String yourCostOrExpenseHaveBeenCreated = 'Tu costo o gasto ha sido creado';
+  static const String yourCostOrExpenseHaveBeenUpdated = 'Tu costo o gasto ha sido actualizado';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
   static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
   static const String yourTransitoryFarmingHasBeenUpdated = 'Tu cultivo transitorio ha sido actualizado';

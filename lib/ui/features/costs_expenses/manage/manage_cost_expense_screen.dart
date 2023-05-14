@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
 import 'package:amca/ui/features/costs_expenses/manage/manage_cast_expense_vm.dart';
 import 'package:amca/ui/features/costs_expenses/manage/product_service_data.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/calls_with_dialog.dart';
+import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_date_picker_field.dart';
 import 'package:amca/ui/widgets/amca_select_form_field.dart';
@@ -161,6 +165,23 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
                       height: 12,
                     ),
                   AmcaTextFormField(
+                    textEditingController: _quantityController,
+                    textInputType: TextInputType.number,
+                    labelText: AmcaWords.quantity,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return AmcaWords.pleaseAddQuantity;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  AmcaTextFormField(
                     textEditingController: _priceController,
                     textInputType: TextInputType.number,
                     labelText: AmcaWords.value,
@@ -245,36 +266,44 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
   }
 
   Future<void> createCostAndExpense() async {
-    /*final createTransitoryVm = Provider.of<ManageCostExpenseVM>(
+    final createTransitoryVm = Provider.of<ManageCostExpenseVM>(
       context,
       listen: false,
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final costAndExpense = CostAndExpense(
       createDate: date,
-      partName: _partNameController.text,
+      partName: createTransitoryVm.transitoryFarming?.partName,
       price: _priceController.text,
       comment: _commentController.text,
       id: isEditMode ? widget.costAndExpense!.id : null,
+      transitoryFarmingId: createTransitoryVm.farmingId,
+      description: createTransitoryVm.descriptionSelected!,
+      quantity: _quantityController.text,
+      productOrService:
+          createTransitoryVm.productOrServiceSelected?.productOrServiceName ??
+              '',
     );
     try {
       await CallsWithDialogs.call(context, () async {
         final result =
-        await createTransitoryVm.createCostAndExpense(costAndExpense);
-       */ /* final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
+            await createTransitoryVm.addCostAndExpenseToFarming(costAndExpense);
+        final costExpensesList = Provider.of<CostsExpensesListVM>(
           context,
           listen: false,
-        );*/ /*
-        await farmingHistoryVM.init();
+        );
+        await costExpensesList.init();
         await Dialogs.showSuccessDialogWithMessage(
           context,
           isEditMode
-              ? AmcaWords.yourTransitoryFarmingHasBeenUpdated
-              : AmcaWords.yourTransitoryFarmingHasBeenCreated,
+              ? AmcaWords.yourCostOrExpenseHaveBeenUpdated
+              : AmcaWords.yourCostOrExpenseHaveBeenCreated,
         );
         Navigator.pop(context);
       });
-    } catch (_) {}*/
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future<void> deleteTransitoryFarming(String id) async {

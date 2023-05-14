@@ -9,7 +9,8 @@ abstract class FarmingRepository {
 
   Future<List<String>> getSown();
 
-  Future<TransitoryFarming> createTransitoryFarming(TransitoryFarming transitoryFarming);
+  Future<TransitoryFarming> createTransitoryFarming(
+      TransitoryFarming transitoryFarming);
 
   Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);
 
@@ -20,6 +21,11 @@ abstract class FarmingRepository {
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
   Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId);
+
+  Future<CostAndExpense?> createCastExpense(
+    CostAndExpense costAndExpense, {
+    required TransitoryFarming farming,
+  });
 }
 
 class FarmingRepositoryAdapter extends FarmingRepository {
@@ -36,13 +42,14 @@ class FarmingRepositoryAdapter extends FarmingRepository {
   }
 
   @override
-  Future<TransitoryFarming> createTransitoryFarming(TransitoryFarming transitoryFarming) {
+  Future<TransitoryFarming> createTransitoryFarming(
+      TransitoryFarming transitoryFarming) {
     return _api.createTransitoryFarming(transitoryFarming);
   }
 
   @override
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid) {
-   return _api.getFarmingHistoryByUid(uid);
+    return _api.getFarmingHistoryByUid(uid);
   }
 
   @override
@@ -63,5 +70,13 @@ class FarmingRepositoryAdapter extends FarmingRepository {
   @override
   Future<TransitoryFarming> getTransitoryFarmingById(String farmingId) {
     return _api.getTransitoryFarmingById(farmingId);
+  }
+
+  @override
+  Future<CostAndExpense?> createCastExpense(
+    CostAndExpense costAndExpense, {
+    required TransitoryFarming farming,
+  }) {
+    return _api.createCastExpense(costAndExpense, farming: farming);
   }
 }

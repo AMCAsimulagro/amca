@@ -20,10 +20,8 @@ CostAndExpense _$CostAndExpenseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CostAndExpense {
-  String get uidOwner => throw _privateConstructorUsedError;
-  set uidOwner(String value) => throw _privateConstructorUsedError;
-  String? get farmingName => throw _privateConstructorUsedError;
-  set farmingName(String? value) => throw _privateConstructorUsedError;
+  String? get uidOwner => throw _privateConstructorUsedError;
+  set uidOwner(String? value) => throw _privateConstructorUsedError;
   String? get partName => throw _privateConstructorUsedError;
   set partName(String? value) => throw _privateConstructorUsedError;
   String get transitoryFarmingId => throw _privateConstructorUsedError;
@@ -34,10 +32,6 @@ mixin _$CostAndExpense {
   set productOrService(String value) => throw _privateConstructorUsedError;
   Description get description => throw _privateConstructorUsedError;
   set description(Description value) => throw _privateConstructorUsedError;
-  String get costOrExpense => throw _privateConstructorUsedError;
-  set costOrExpense(String value) => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
   String get quantity => throw _privateConstructorUsedError;
   set quantity(String value) => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
@@ -46,8 +40,6 @@ mixin _$CostAndExpense {
   set comment(String value) => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
-  bool? get isAdmin => throw _privateConstructorUsedError;
-  set isAdmin(bool? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,20 +54,18 @@ abstract class $CostAndExpenseCopyWith<$Res> {
       _$CostAndExpenseCopyWithImpl<$Res, CostAndExpense>;
   @useResult
   $Res call(
-      {String uidOwner,
-      String? farmingName,
+      {String? uidOwner,
       String? partName,
       String transitoryFarmingId,
       DateTime createDate,
       String productOrService,
       Description description,
-      String costOrExpense,
-      String type,
       String quantity,
       String price,
       String comment,
-      String? id,
-      bool? isAdmin});
+      String? id});
+
+  $DescriptionCopyWith<$Res> get description;
 }
 
 /// @nodoc
@@ -91,29 +81,21 @@ class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uidOwner = null,
-    Object? farmingName = freezed,
+    Object? uidOwner = freezed,
     Object? partName = freezed,
     Object? transitoryFarmingId = null,
     Object? createDate = null,
     Object? productOrService = null,
-    Object? description = freezed,
-    Object? costOrExpense = null,
-    Object? type = null,
+    Object? description = null,
     Object? quantity = null,
     Object? price = null,
     Object? comment = null,
     Object? id = freezed,
-    Object? isAdmin = freezed,
   }) {
     return _then(_value.copyWith(
-      uidOwner: null == uidOwner
+      uidOwner: freezed == uidOwner
           ? _value.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
-              as String,
-      farmingName: freezed == farmingName
-          ? _value.farmingName
-          : farmingName // ignore: cast_nullable_to_non_nullable
               as String?,
       partName: freezed == partName
           ? _value.partName
@@ -131,18 +113,10 @@ class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
           ? _value.productOrService
           : productOrService // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as Description,
-      costOrExpense: null == costOrExpense
-          ? _value.costOrExpense
-          : costOrExpense // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -159,11 +133,15 @@ class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAdmin: freezed == isAdmin
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DescriptionCopyWith<$Res> get description {
+    return $DescriptionCopyWith<$Res>(_value.description, (value) {
+      return _then(_value.copyWith(description: value) as $Val);
+    });
   }
 }
 
@@ -176,20 +154,19 @@ abstract class _$$_CostAndExpenseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String uidOwner,
-      String? farmingName,
+      {String? uidOwner,
       String? partName,
       String transitoryFarmingId,
       DateTime createDate,
       String productOrService,
       Description description,
-      String costOrExpense,
-      String type,
       String quantity,
       String price,
       String comment,
-      String? id,
-      bool? isAdmin});
+      String? id});
+
+  @override
+  $DescriptionCopyWith<$Res> get description;
 }
 
 /// @nodoc
@@ -203,29 +180,21 @@ class __$$_CostAndExpenseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uidOwner = null,
-    Object? farmingName = freezed,
+    Object? uidOwner = freezed,
     Object? partName = freezed,
     Object? transitoryFarmingId = null,
     Object? createDate = null,
     Object? productOrService = null,
-    Object? description = freezed,
-    Object? costOrExpense = null,
-    Object? type = null,
+    Object? description = null,
     Object? quantity = null,
     Object? price = null,
     Object? comment = null,
     Object? id = freezed,
-    Object? isAdmin = freezed,
   }) {
     return _then(_$_CostAndExpense(
-      uidOwner: null == uidOwner
+      uidOwner: freezed == uidOwner
           ? _value.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
-              as String,
-      farmingName: freezed == farmingName
-          ? _value.farmingName
-          : farmingName // ignore: cast_nullable_to_non_nullable
               as String?,
       partName: freezed == partName
           ? _value.partName
@@ -243,18 +212,10 @@ class __$$_CostAndExpenseCopyWithImpl<$Res>
           ? _value.productOrService
           : productOrService // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as Description,
-      costOrExpense: null == costOrExpense
-          ? _value.costOrExpense
-          : costOrExpense // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -271,10 +232,6 @@ class __$$_CostAndExpenseCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAdmin: freezed == isAdmin
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -283,28 +240,22 @@ class __$$_CostAndExpenseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CostAndExpense implements _CostAndExpense {
   _$_CostAndExpense(
-      {required this.uidOwner,
-      this.farmingName,
+      {this.uidOwner,
       this.partName,
       required this.transitoryFarmingId,
       required this.createDate,
       required this.productOrService,
       required this.description,
-      required this.costOrExpense,
-      required this.type,
       required this.quantity,
       required this.price,
       required this.comment,
-      this.id,
-      this.isAdmin = false});
+      this.id});
 
   factory _$_CostAndExpense.fromJson(Map<String, dynamic> json) =>
       _$$_CostAndExpenseFromJson(json);
 
   @override
-  String uidOwner;
-  @override
-  String? farmingName;
+  String? uidOwner;
   @override
   String? partName;
   @override
@@ -316,10 +267,6 @@ class _$_CostAndExpense implements _CostAndExpense {
   @override
   Description description;
   @override
-  String costOrExpense;
-  @override
-  String type;
-  @override
   String quantity;
   @override
   String price;
@@ -327,13 +274,10 @@ class _$_CostAndExpense implements _CostAndExpense {
   String comment;
   @override
   String? id;
-  @override
-  @JsonKey()
-  bool? isAdmin;
 
   @override
   String toString() {
-    return 'CostAndExpense(uidOwner: $uidOwner, farmingName: $farmingName, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, productOrService: $productOrService, description: $description, costOrExpense: $costOrExpense, type: $type, quantity: $quantity, price: $price, comment: $comment, id: $id, isAdmin: $isAdmin)';
+    return 'CostAndExpense(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, productOrService: $productOrService, description: $description, quantity: $quantity, price: $price, comment: $comment, id: $id)';
   }
 
   @JsonKey(ignore: true)
@@ -352,30 +296,23 @@ class _$_CostAndExpense implements _CostAndExpense {
 
 abstract class _CostAndExpense implements CostAndExpense {
   factory _CostAndExpense(
-      {required String uidOwner,
-      String? farmingName,
+      {String? uidOwner,
       String? partName,
       required String transitoryFarmingId,
       required DateTime createDate,
       required String productOrService,
       required Description description,
-      required String costOrExpense,
-      required String type,
       required String quantity,
       required String price,
       required String comment,
-      String? id,
-      bool? isAdmin}) = _$_CostAndExpense;
+      String? id}) = _$_CostAndExpense;
 
   factory _CostAndExpense.fromJson(Map<String, dynamic> json) =
       _$_CostAndExpense.fromJson;
 
   @override
-  String get uidOwner;
-  set uidOwner(String value);
-  @override
-  String? get farmingName;
-  set farmingName(String? value);
+  String? get uidOwner;
+  set uidOwner(String? value);
   @override
   String? get partName;
   set partName(String? value);
@@ -392,12 +329,6 @@ abstract class _CostAndExpense implements CostAndExpense {
   Description get description;
   set description(Description value);
   @override
-  String get costOrExpense;
-  set costOrExpense(String value);
-  @override
-  String get type;
-  set type(String value);
-  @override
   String get quantity;
   set quantity(String value);
   @override
@@ -409,9 +340,6 @@ abstract class _CostAndExpense implements CostAndExpense {
   @override
   String? get id;
   set id(String? value);
-  @override
-  bool? get isAdmin;
-  set isAdmin(bool? value);
   @override
   @JsonKey(ignore: true)
   _$$_CostAndExpenseCopyWith<_$_CostAndExpense> get copyWith =>

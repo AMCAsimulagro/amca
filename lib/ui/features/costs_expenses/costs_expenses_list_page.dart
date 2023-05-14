@@ -12,7 +12,7 @@ class CostsExpensesListPage extends StatelessWidget {
           {Key? key, required String farmingId}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => CostsExpensesListVM(farmingId)..init(),
+        create: (context) => CostsExpensesListVM(farmingId: farmingId)..init(),
         child: CostsExpensesListPage._(
           key: key,
         ),
@@ -49,10 +49,19 @@ class CostsExpensesListPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final costAndExpenseItem = vm.costsAndExpenses[index];
                   return ListTile(
-                    title: Text(costAndExpenseItem.partName ?? ''),
-                    subtitle: Text(
-                      DateFormat('yyyy-MM-dd')
-                          .format(costAndExpenseItem.createDate),
+                    title: Text(
+                        '${costAndExpenseItem.productOrService} - ${costAndExpenseItem.description.description}'),
+                    subtitle: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                              '${costAndExpenseItem.description.costOrExpense}: \$${costAndExpenseItem.price}'),
+                        ),
+                        Text(
+                          DateFormat('yyyy-MM-dd')
+                              .format(costAndExpenseItem.createDate),
+                        ),
+                      ],
                     ),
                     onTap: () {
                       /*Navigator.push(
@@ -91,8 +100,8 @@ class CostsExpensesListPage extends StatelessWidget {
                         MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
                               ManageCostExpenseScreen.create(
-                                farmingId: vm.farmingId,
-                              ),
+                            farmingId: vm.farmingId!,
+                          ),
                         ),
                       );
                     },
@@ -103,6 +112,39 @@ class CostsExpensesListPage extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: validateIfEmpty(context)
+          ? FloatingActionButton(
+              tooltip: 'Agregar costo o gasto',
+              onPressed: () {
+                final costExpensesList = Provider.of<CostsExpensesListVM>(
+                  context,
+                  listen: false,
+                );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) =>
+                        ManageCostExpenseScreen.create(
+                      farmingId: costExpensesList.farmingId!,
+                    ),
+                  ),
+                );
+              },
+              backgroundColor: AmcaPalette.lightGreen,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            )
+          : null,
     );
+  }
+
+  bool validateIfEmpty(BuildContext context) {
+    final vm = Provider.of<CostsExpensesListVM>(
+      context,
+      listen: true,
+    );
+    return vm.costsAndExpenses.isNotEmpty;
   }
 }
