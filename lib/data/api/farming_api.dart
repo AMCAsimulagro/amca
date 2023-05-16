@@ -31,6 +31,9 @@ abstract class FarmingApi {
     CostAndExpense costAndExpense, {
     required TransitoryFarming farming,
   });
+
+  Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
+      {required TransitoryFarming farming});
 }
 
 class FarmingApiAdapter extends FarmingApi {
@@ -225,6 +228,31 @@ class FarmingApiAdapter extends FarmingApi {
       );
       await createTransitoryFarming(farmingToUpload);
       return costAndExpenseToUpload;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
+      {required TransitoryFarming farming}) async {
+    try {
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpenseList.removeWhere((element) => element.id == costAndExpenseId);
+
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createTransitoryFarming(farmingToUpload);
+      return null;
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,

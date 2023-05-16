@@ -104,7 +104,7 @@ class Dialogs {
     bool mounted = true,
   }) {
     if (!mounted) return;
-    Navigator.of(context).pop();
+    Navigator.pop(context,true);
   }
 }
 

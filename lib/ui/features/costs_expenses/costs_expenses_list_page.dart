@@ -64,15 +64,22 @@ class CostsExpensesListPage extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      /*Navigator.push(
+                      Navigator.push(
                         context,
-                        MaterialPageRoute<void>(
+                        MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              ManageTransitoryFarming.create(
-                                transitoryFarming: farmingItem,
-                              ),
+                              ManageCostExpenseScreen.create(
+                            farmingId: vm.farmingId!,
+                            costAndExpense: costAndExpenseItem,
+                          ),
                         ),
-                      );*/
+                      ).then(
+                        (value) async {
+                          if (value != null && (value as bool)) {
+                            await vm.init();
+                          }
+                        },
+                      );
                     },
                   );
                 },

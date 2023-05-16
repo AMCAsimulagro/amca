@@ -27,6 +27,7 @@ class ManageCostExpenseScreen extends StatefulWidget {
         create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
         child: ManageCostExpenseScreen._(
           key: key,
+          costAndExpense: costAndExpense,
         ),
       );
 
@@ -266,33 +267,27 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
   }
 
   Future<void> createCostAndExpense() async {
-    final createTransitoryVm = Provider.of<ManageCostExpenseVM>(
+    final manageVM = Provider.of<ManageCostExpenseVM>(
       context,
       listen: false,
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final costAndExpense = CostAndExpense(
       createDate: date,
-      partName: createTransitoryVm.transitoryFarming?.partName,
+      partName: manageVM.transitoryFarming?.partName,
       price: _priceController.text,
       comment: _commentController.text,
       id: isEditMode ? widget.costAndExpense!.id : null,
-      transitoryFarmingId: createTransitoryVm.farmingId,
-      description: createTransitoryVm.descriptionSelected!,
+      transitoryFarmingId: manageVM.farmingId,
+      description: manageVM.descriptionSelected!,
       quantity: _quantityController.text,
       productOrService:
-          createTransitoryVm.productOrServiceSelected?.productOrServiceName ??
+          manageVM.productOrServiceSelected?.productOrServiceName ??
               '',
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        final result =
-            await createTransitoryVm.addCostAndExpenseToFarming(costAndExpense);
-        final costExpensesList = Provider.of<CostsExpensesListVM>(
-          context,
-          listen: false,
-        );
-        await costExpensesList.init();
+        await manageVM.addCostAndExpenseToFarming(costAndExpense);
         await Dialogs.showSuccessDialogWithMessage(
           context,
           isEditMode
@@ -307,30 +302,38 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
   }
 
   Future<void> deleteTransitoryFarming(String id) async {
-    /*final createTransitoryVm = Provider.of<ManageCostExpenseVM>(
+    final manageVM = Provider.of<ManageCostExpenseVM>(
       context,
       listen: false,
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await createTransitoryVm.deleteCostAndExpense(id);
-        final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
-          context,
-          listen: false,
-        );
-        await farmingHistoryVM.init();
+        await manageVM.deleteCostAndExpense(id);
         await Dialogs.showSuccessDialogWithMessage(
             context, AmcaWords.yourTransitoryFarmingHasBeenDeleted);
         Navigator.pop(context);
       });
-    } catch (_) {}*/
+    } catch (_) {}
   }
 
   void _preloadData() {
     if (isEditMode) {
+      final manageCostVM = Provider.of<ManageCostExpenseVM>(
+        context,
+        listen: false,
+      );
       final preloadCostAndExpense = widget.costAndExpense;
       _priceController.text = preloadCostAndExpense?.price ?? '';
       _commentController.text = preloadCostAndExpense?.comment ?? '';
+      _quantityController.text = preloadCostAndExpense?.quantity ?? '';
+      _productOrServiceController.text =
+          preloadCostAndExpense?.productOrService ?? '';
+      manageCostVM.setProductOrServiceSelected(_productOrServiceController.text,
+          updateScreen: false);
+      _descriptionController.text =
+          preloadCostAndExpense?.description.description ?? '';
+      manageCostVM.setDescriptionSelected(_descriptionController.text,
+          updateScreen: false);
       createdDate = DateFormat('yyyy-MM-dd')
           .format(preloadCostAndExpense?.createDate ?? DateTime.now());
     }

@@ -26,6 +26,9 @@ abstract class FarmingRepository {
     CostAndExpense costAndExpense, {
     required TransitoryFarming farming,
   });
+
+  Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
+      {required TransitoryFarming farming});
 }
 
 class FarmingRepositoryAdapter extends FarmingRepository {
@@ -78,5 +81,10 @@ class FarmingRepositoryAdapter extends FarmingRepository {
     required TransitoryFarming farming,
   }) {
     return _api.createCastExpense(costAndExpense, farming: farming);
+  }
+
+  @override
+  Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId, {required TransitoryFarming farming}) {
+    return _api.deleteCostAndExpense(costAndExpenseId, farming: farming);
   }
 }

@@ -43,15 +43,28 @@ class ManageCostExpenseVM extends ChangeNotifier {
     }
   }
 
-  void setProductOrServiceSelected(String name) {
+  void setProductOrServiceSelected(String name, {bool updateScreen = true}) {
     productOrServiceSelected = ProductServiceData.productServiceList
         .firstWhere((element) => name == element.productOrServiceName);
-    notifyListeners();
+    if (updateScreen) {
+      notifyListeners();
+    }
   }
 
-  void setDescriptionSelected(String name) {
+  void setDescriptionSelected(String name, {bool updateScreen = true}) {
     descriptionSelected = productOrServiceSelected?.description
         .firstWhere((element) => name == element.description);
-    notifyListeners();
+    if (updateScreen) {
+      notifyListeners();
+    }
+  }
+
+  Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId) async {
+    try {
+      return await farmingRepository.deleteCostAndExpense(costAndExpenseId,
+          farming: transitoryFarming!);
+    } catch (e) {
+      return null;
+    }
   }
 }
