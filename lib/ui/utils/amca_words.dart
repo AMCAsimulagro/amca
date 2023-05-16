@@ -136,4 +136,6 @@ class AmcaWords {
       'Tu contraseña es muy débil, te recomendamos poner una contraseña más segura';
   static const String yourEmailOrPasswordIsIncorrect =
       'Tu cédula ciudadana o contraseña son incorrectos';
+  static const String thisIdentificationNumberIsAlreadyInUse =
+      'La cédula ciudadana ya esta actualmente registrada';
 }

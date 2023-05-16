@@ -34,6 +34,13 @@ class LoginApiAdapter extends LoginApi {
   Future<UserCredential> createUserWithEmailAndPassword(
       AmcaUser user, String password) async {
     try {
+      var collectionRef = _firebaseDb.collection(FirebaseCollections.users);
+      final userDb = await collectionRef.doc(user.identification).get();
+      if (userDb.exists) {
+        throw FirebaseAuthException(
+            message: 'This document is already in use',
+            code: 'already_exist_identification');
+      }
       var result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: user.email, password: password);
       user.uid = result.user?.uid ?? user.identification;
