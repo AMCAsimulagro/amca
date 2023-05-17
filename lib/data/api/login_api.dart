@@ -23,6 +23,8 @@ abstract class LoginApi {
   Future<void> signOut();
 
   Future<AmcaUser> getUserCurrentlyLogged();
+
+  Future<void> recoverPassword(String email);
 }
 
 class LoginApiAdapter extends LoginApi {
@@ -146,6 +148,23 @@ class LoginApiAdapter extends LoginApi {
           .get();
       final user = collection.data();
       return Future.value(user);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<void> recoverPassword(String email) async {
+    try {
+      return await _firebaseAuth
+          .sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,

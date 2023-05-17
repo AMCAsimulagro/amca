@@ -19,6 +19,7 @@ class AmcaWords {
   static const String differentPasswords = 'Las contraseñas no coinciden';
   static const String doNotHaveAnAccount =
       '¿No tienes cuenta?, Registrate aquí';
+  static const String emailHasBeenSentToRecoverYourPassword = 'Se te ha enviado un correo electrónico para recuperar tu contraseña';
   static const String expense = 'Gasto';
   static const String editCostAndExpense = 'Editar Costo y Gasto';
   static const String editFarming = 'Editar cultivo';
@@ -39,6 +40,8 @@ class AmcaWords {
   static const String logIn = 'Ingresar';
   static const String logOut = 'Cerrar sesión';
   static const String loading = 'Cargando';
+  static const String recoverPassword = 'Recuperar contraseña';
+  static const String recoverPasswordSummary = 'Te enviaremos un link a tu correo electrónico para recuperar tu contraseña';
   static const String register = 'Registrarse';
   static const String repeatPassword = 'Repetir contraseña';
   static const String other = 'Otro';

@@ -5,6 +5,7 @@ import 'package:amca/ui/utils/assets.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/extensions/string_extensions.dart';
+import 'package:amca/ui/widgets/amca_back_button.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_select_form_field.dart';
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
@@ -58,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const _BackButton(),
+                    const AmcaBackButton(),
                     Text(
                       AmcaWords.fillAllFields,
                       textAlign: TextAlign.center,
@@ -290,26 +291,3 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-class _BackButton extends StatelessWidget {
-  const _BackButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      width: double.infinity,
-      height: 50,
-      child: IconButton(
-        icon: const Icon(
-          Icons.arrow_back,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
-}
