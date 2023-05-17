@@ -32,10 +32,10 @@ class ProfilePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 if (vm.currentUser?.isAdmin ?? false)
-                Text(
-                  AmcaWords.youAreAdmin,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                  Text(
+                    AmcaWords.youAreAdmin,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
               ],
             ),
           ),
@@ -65,6 +65,61 @@ class ProfilePage extends StatelessWidget {
                       });
                     },
                   ),
+                if(vm.currentUser?.isAdmin ?? false)
+                  const Divider(
+                    height: 1,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Tus datos: ',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.identifier}:',
+                      ),
+                      Text(
+                        vm.currentUser?.identification ?? '',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.email}:',
+                      ),
+                      Text(
+                        vm.currentUser?.email ?? '',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.state}:',
+                      ),
+                      Text(
+                        vm.currentUser?.state ?? '',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.town}:',
+                      ),
+                      Text(
+                        vm.currentUser?.town ?? '',
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
