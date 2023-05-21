@@ -2,6 +2,7 @@ import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/farming/create/create_transitory_farming_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
+import 'package:amca/ui/features/production/manage_production_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -281,8 +282,21 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                         ),
                         Expanded(
                           child: AmcaButton(
-                            text: AmcaWords.seeProductions,
-                            onPressed: () {},
+                            text: widget.transitoryFarming?.production != null
+                                ? AmcaWords.seeProduction
+                                : AmcaWords.createProduction,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      ManageProductionPage.create(
+                                    farmingId:
+                                        widget.transitoryFarming?.id ?? '',
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ],

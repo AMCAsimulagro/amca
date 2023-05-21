@@ -26,11 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           lazy: true,
-          create: (context) => FarmingHistoryVM()..init(),
-        ),
-        ChangeNotifierProvider(
-          lazy: true,
-          create: (context) => CostsExpensesListVM(),
+          create: (context) => FarmingHistoryVM(),
         ),
       ],
       child: Listener(

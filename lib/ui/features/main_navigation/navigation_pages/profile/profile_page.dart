@@ -78,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        'Tus datos: ',
+                        '${AmcaWords.yourInformation}: ',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(

@@ -1,15 +1,17 @@
 class AmcaWords {
   static const String addInformation = 'Añadir información';
+  static const String addPartProduction = 'Agregar una producción del lote';
   static const String allFarms = 'Todos los cultivos';
   static const String accept = 'Aceptar';
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
   static const String comment = 'Comentario';
   static const String createCostAndExpense = 'Crear costo y gasto';
+  static const String createProduction = 'Crear Producción';
   static const String createFarming = 'Crear cultivo';
   static const String crop = 'Cultivo';
   static const String cropsHaveNotBeenCreatedYet = 'No se ha creado ningun cultivo hasta el momento';
-  static const String costsAndExpensesHaveBeenCreated = 'No se ha creado costos y gastos hasta el momento para este cultivo';
+  static const String costsAndExpensesHaveNotBeenCreated = 'No se ha creado costos y gastos hasta el momento para este cultivo';
   static const String cropType = 'Tipo de cultivo';
   static const String cost = 'Costos';
   static const String costsAndExpenses = 'Costos y gastos';
@@ -23,6 +25,7 @@ class AmcaWords {
   static const String expense = 'Gasto';
   static const String editCostAndExpense = 'Editar Costo y Gasto';
   static const String editFarming = 'Editar cultivo';
+  static const String editProduction= 'Editar producción';
   static const String email = 'Correo electrónico';
   static const String farming = 'Cultivos';
   static const String farmingType = 'Tipo de cultivo';
@@ -47,6 +50,8 @@ class AmcaWords {
   static const String other = 'Otro';
   static const String password = 'Contraseña';
   static const String partName = 'Nombre del lote';
+  static const String partProduction = 'Producción del lote';
+  static const String partProductionHasNotBeenCreated = 'No se ha creado alguna producción de un lote hasta el momento para este cultivo';
   static const String permanent = 'Permanente';
   static const String product = 'Producto';
   static const String productOrService = 'Producto o Servicio';
@@ -82,6 +87,8 @@ class AmcaWords {
       'Por favor, seleccione un formato';
   static const String pleaseSelectProductOrService =
       'Por favor, seleccione un producto o servicio';
+  static const String pleaseSelectAUnitMeasurement =
+      'Por favor, seleccione una unidad de medida';
   static const String pleaseSelectADescription =
       'Por favor, seleccione una descripción';
   static const String pleaseSelectSownType =
@@ -96,13 +103,14 @@ class AmcaWords {
   static const String pleaseWritePassword = 'Por favor, escribe tu contraseña';
   static const String pleaseAddRepeatPassword =
       'Por favor, repita la contraseña';
+  static const String production = 'Producción';
   static const String profile = 'Perfil';
   static const String salaries = 'Salarios';
   static const String state = 'Departamento';
   static const String service = 'Servicio';
   static const String seeAllFarms = 'Ver todos los cultivos';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
-  static const String seeProductions = 'Ver Producción del lote';
+  static const String seeProduction = 'Ver Producción del lote';
   static const String secondName = 'Segundo nombre';
   static const String secondLastName = 'Segundo Apellido';
   static const String sownType = 'Tipo de sembrado';
@@ -112,6 +120,7 @@ class AmcaWords {
   static const String town = 'Municipio';
   static const String typeOfExploitation = 'Tipo de explotación';
   static const String units = 'Unidades';
+  static const String unitOfMeasurement = 'Unidad de medida';
   static const String update = 'Actualizar';
   static const String variable = 'Variable';
   static const String value = 'Valor';
@@ -121,10 +130,13 @@ class AmcaWords {
   static const String yourAccountHasBeenCreated = 'Tu cuenta ha sido creada';
   static const String yourCostOrExpenseHaveBeenCreated = 'Tu costo o gasto ha sido creado';
   static const String yourCostOrExpenseHaveBeenUpdated = 'Tu costo o gasto ha sido actualizado';
+  static const String yourProductionHasBeenCreated = 'Tu producción ha sido creada';
+  static const String yourProductionHasBeenUpdated = 'Tu producción ha sido actualizada';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
   static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
   static const String yourTransitoryFarmingHasBeenUpdated = 'Tu cultivo transitorio ha sido actualizado';
   static const String youHaveNotCreatedFarmingYet = 'Aún no has creado ningun cultivo';
+  static const String yourInformation = 'Tus datos';
 
   ///FIREBASE CODE ERRORS
   static const String enterAValidEmail =

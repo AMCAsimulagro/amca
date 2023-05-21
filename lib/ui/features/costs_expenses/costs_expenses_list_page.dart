@@ -1,5 +1,5 @@
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
-import 'package:amca/ui/features/costs_expenses/manage/manage_cost_expense_screen.dart';
+import 'package:amca/ui/features/costs_expenses/manage/manage_cost_expense_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
@@ -68,7 +68,7 @@ class CostsExpensesListPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              ManageCostExpenseScreen.create(
+                              ManageCostExpensePage.create(
                             farmingId: vm.farmingId!,
                             costAndExpense: costAndExpenseItem,
                           ),
@@ -93,20 +93,20 @@ class CostsExpensesListPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    AmcaWords.costsAndExpensesHaveBeenCreated,
+                    AmcaWords.costsAndExpensesHaveNotBeenCreated,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   AmcaButton(
-                    text: AmcaWords.seeProductions,
+                    text: AmcaWords.seeProduction,
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute<void>(
+                        MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              ManageCostExpenseScreen.create(
+                              ManageCostExpensePage.create(
                             farmingId: vm.farmingId!,
                           ),
                         ),
@@ -129,12 +129,18 @@ class CostsExpensesListPage extends StatelessWidget {
                 );
                 Navigator.push(
                   context,
-                  MaterialPageRoute<void>(
+                  MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        ManageCostExpenseScreen.create(
+                        ManageCostExpensePage.create(
                       farmingId: costExpensesList.farmingId!,
                     ),
                   ),
+                ).then(
+                      (value) async {
+                    if (value != null && (value as bool)) {
+                      await costExpensesList.init();
+                    }
+                  },
                 );
               },
               backgroundColor: AmcaPalette.lightGreen,

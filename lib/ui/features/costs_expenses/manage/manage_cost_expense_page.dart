@@ -1,13 +1,13 @@
 import 'dart:developer';
 
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
 import 'package:amca/ui/features/costs_expenses/manage/manage_cast_expense_vm.dart';
 import 'package:amca/ui/features/costs_expenses/manage/product_service_data.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
+import 'package:amca/ui/utils/extensions/string_extensions.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_date_picker_field.dart';
 import 'package:amca/ui/widgets/amca_select_form_field.dart';
@@ -17,7 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class ManageCostExpenseScreen extends StatefulWidget {
+class ManageCostExpensePage extends StatefulWidget {
   static ChangeNotifierProvider<ManageCostExpenseVM> create(
           {Key? key,
           CostAndExpense? costAndExpense,
@@ -25,13 +25,13 @@ class ManageCostExpenseScreen extends StatefulWidget {
       ChangeNotifierProvider(
         lazy: false,
         create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
-        child: ManageCostExpenseScreen._(
+        child: ManageCostExpensePage._(
           key: key,
           costAndExpense: costAndExpense,
         ),
       );
 
-  const ManageCostExpenseScreen._({
+  const ManageCostExpensePage._({
     super.key,
     this.costAndExpense,
   });
@@ -39,11 +39,10 @@ class ManageCostExpenseScreen extends StatefulWidget {
   final CostAndExpense? costAndExpense;
 
   @override
-  State<ManageCostExpenseScreen> createState() =>
-      _ManageCostExpenseScreenState();
+  State<ManageCostExpensePage> createState() => _ManageCostExpensePageState();
 }
 
-class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
+class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   late final bool isEditMode;
   final _formKey = GlobalKey<FormState>();
   final _productOrServiceController = TextEditingController();
@@ -88,14 +87,14 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Cultivo: ${vm.transitoryFarming?.crop ?? ''}',
+                    'Lote: ${vm.transitoryFarming?.partName ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   Text(
-                    'Lote: ${vm.transitoryFarming?.partName ?? ''}',
+                    'Cultivo: ${vm.transitoryFarming?.crop ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
@@ -191,7 +190,8 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
                     ],
                     onChanged: (value) {
-                      value = _formatNumber(value.replaceAll(',', ''));
+                      value = (value.replaceAll(',', ''))
+                          .formatNumberToColombianPesos();
                       _priceController.value = TextEditingValue(
                         text: value,
                         selection:
@@ -282,8 +282,7 @@ class _ManageCostExpenseScreenState extends State<ManageCostExpenseScreen> {
       description: manageVM.descriptionSelected!,
       quantity: _quantityController.text,
       productOrService:
-          manageVM.productOrServiceSelected?.productOrServiceName ??
-              '',
+          manageVM.productOrServiceSelected?.productOrServiceName ?? '',
     );
     try {
       await CallsWithDialogs.call(context, () async {

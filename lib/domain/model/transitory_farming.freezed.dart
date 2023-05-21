@@ -48,6 +48,8 @@ mixin _$TransitoryFarming {
       throw _privateConstructorUsedError;
   set costsAndExpenses(List<CostAndExpense>? value) =>
       throw _privateConstructorUsedError;
+  Production? get production => throw _privateConstructorUsedError;
+  set production(Production? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +76,10 @@ abstract class $TransitoryFarmingCopyWith<$Res> {
       String value,
       String? uidOwner,
       String? comment,
-      List<CostAndExpense>? costsAndExpenses});
+      List<CostAndExpense>? costsAndExpenses,
+      Production? production});
+
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
@@ -103,6 +108,7 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? costsAndExpenses = freezed,
+    Object? production = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -157,7 +163,23 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
           ? _value.costsAndExpenses
           : costsAndExpenses // ignore: cast_nullable_to_non_nullable
               as List<CostAndExpense>?,
+      production: freezed == production
+          ? _value.production
+          : production // ignore: cast_nullable_to_non_nullable
+              as Production?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_value.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_value.production!, (value) {
+      return _then(_value.copyWith(production: value) as $Val);
+    });
   }
 }
 
@@ -182,7 +204,11 @@ abstract class _$$_TransitoryFarmingCopyWith<$Res>
       String value,
       String? uidOwner,
       String? comment,
-      List<CostAndExpense>? costsAndExpenses});
+      List<CostAndExpense>? costsAndExpenses,
+      Production? production});
+
+  @override
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
@@ -209,6 +235,7 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? costsAndExpenses = freezed,
+    Object? production = freezed,
   }) {
     return _then(_$_TransitoryFarming(
       id: freezed == id
@@ -263,6 +290,10 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
           ? _value.costsAndExpenses
           : costsAndExpenses // ignore: cast_nullable_to_non_nullable
               as List<CostAndExpense>?,
+      production: freezed == production
+          ? _value.production
+          : production // ignore: cast_nullable_to_non_nullable
+              as Production?,
     ));
   }
 }
@@ -283,7 +314,8 @@ class _$_TransitoryFarming implements _TransitoryFarming {
       required this.value,
       this.uidOwner,
       this.comment,
-      this.costsAndExpenses});
+      this.costsAndExpenses,
+      this.production});
 
   factory _$_TransitoryFarming.fromJson(Map<String, dynamic> json) =>
       _$$_TransitoryFarmingFromJson(json);
@@ -314,10 +346,12 @@ class _$_TransitoryFarming implements _TransitoryFarming {
   String? comment;
   @override
   List<CostAndExpense>? costsAndExpenses;
+  @override
+  Production? production;
 
   @override
   String toString() {
-    return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses)';
+    return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @JsonKey(ignore: true)
@@ -349,7 +383,8 @@ abstract class _TransitoryFarming implements TransitoryFarming {
       required String value,
       String? uidOwner,
       String? comment,
-      List<CostAndExpense>? costsAndExpenses}) = _$_TransitoryFarming;
+      List<CostAndExpense>? costsAndExpenses,
+      Production? production}) = _$_TransitoryFarming;
 
   factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =
       _$_TransitoryFarming.fromJson;
@@ -393,6 +428,9 @@ abstract class _TransitoryFarming implements TransitoryFarming {
   @override
   List<CostAndExpense>? get costsAndExpenses;
   set costsAndExpenses(List<CostAndExpense>? value);
+  @override
+  Production? get production;
+  set production(Production? value);
   @override
   @JsonKey(ignore: true)
   _$$_TransitoryFarmingCopyWith<_$_TransitoryFarming> get copyWith =>
