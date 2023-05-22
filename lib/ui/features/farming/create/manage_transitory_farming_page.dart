@@ -282,20 +282,31 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                         ),
                         Expanded(
                           child: AmcaButton(
-                            text: widget.transitoryFarming?.production != null
-                                ? AmcaWords.seeProduction
-                                : AmcaWords.createProduction,
+                            text: widget.transitoryFarming?.production == null
+                                ? AmcaWords.createProduction
+                                : AmcaWords.seeProduction,
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute<void>(
+                                MaterialPageRoute<bool>(
                                   builder: (BuildContext context) =>
                                       ManageProductionPage.create(
                                     farmingId:
                                         widget.transitoryFarming?.id ?? '',
+                                    production:
+                                        widget.transitoryFarming?.production,
                                   ),
                                 ),
-                              );
+                              ).then((value) async {
+                                if (value ?? false) {
+                                  final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
+                                    context,
+                                    listen: false,
+                                  );
+                                  await farmingHistoryVM.init();
+                                  Navigator.pop(context);
+                                }
+                              });
                             },
                           ),
                         ),

@@ -4,6 +4,7 @@ import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/production.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:uuid/uuid.dart';
 
 class ManageProductionVM extends ChangeNotifier {
   ManageProductionVM({this.farmingId});
@@ -32,24 +33,43 @@ class ManageProductionVM extends ChangeNotifier {
   Future<TransitoryFarming?> createProduction(Production production) async {
     isLoading = true;
     try {
-      final totalCostAndExpenses = _calculateTotalCostAndExpense();
-     /* transitoryFarming =
-          await farmingRepository.getTransitoryFarmingById(farmingId!);*/
+      final totalCostAndExpenses = transitoryFarming?.calculateTotalCostAndExpense();
+      final totalValueProduction =
+          int.parse((production.price.replaceAll(',', ''))) -
+              totalCostAndExpenses!;
+      final productionToUpdate = production.copyWith(
+        totalValue: totalValueProduction.toString(),
+        id: production.id ?? const Uuid().v4(),
+        uidOwner: transitoryFarming?.uidOwner,
+      );
+      transitoryFarming = transitoryFarming?.copyWith(
+        production: productionToUpdate,
+      );
+      final result =
+          await farmingRepository.createTransitoryFarming(transitoryFarming!);
+      return transitoryFarming;
     } catch (e) {
+      return null;
     } finally {
       notifyListeners();
       isLoading = false;
     }
   }
 
-  int _calculateTotalCostAndExpense() {
-    int totalCostAndExpense = 0;
-    if ((transitoryFarming?.costsAndExpenses ?? []).isNotEmpty) {
-      totalCostAndExpense = transitoryFarming?.costsAndExpenses?.map((e) {
-        final price =  int.parse(e.price.replaceAll(',', ''));
-        return price;
-      }).reduce((value, element) => value + element) ?? 0;
+  Future<TransitoryFarming?> deleteProduction() async {
+    isLoading = true;
+    try {
+      transitoryFarming = transitoryFarming?.copyWith(
+        production: null,
+      );
+      final result =
+          await farmingRepository.createTransitoryFarming(transitoryFarming!);
+      return result;
+    } catch (e) {
+      return null;
+    } finally {
+      notifyListeners();
+      isLoading = false;
     }
-    return totalCostAndExpense;
   }
 }

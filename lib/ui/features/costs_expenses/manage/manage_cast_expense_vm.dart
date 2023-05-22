@@ -36,6 +36,19 @@ class ManageCostExpenseVM extends ChangeNotifier {
   Future<CostAndExpense?> addCostAndExpenseToFarming(
       CostAndExpense costAndExpense) async {
     try {
+      if (transitoryFarming?.production != null) {
+        final totalCostAndExpenses =
+            transitoryFarming?.calculateTotalCostAndExpense();
+        final totalValueProduction = int.parse(
+                (transitoryFarming?.production?.price.replaceAll(',', '')) ??
+                    '0') -
+            totalCostAndExpenses!;
+        transitoryFarming = transitoryFarming?.copyWith(
+          production: transitoryFarming?.production?.copyWith(
+            totalValue: totalValueProduction.toString(),
+          ),
+        );
+      }
       return await farmingRepository.createCastExpense(costAndExpense,
           farming: transitoryFarming!);
     } catch (e) {

@@ -46,8 +46,7 @@ class ManageProductionPage extends StatefulWidget {
 class _ManageProductionPageState extends State<ManageProductionPage> {
   late final bool isEditMode;
   final _formKey = GlobalKey<FormState>();
-  final _productOrServiceController = TextEditingController();
-  final _descriptionController = TextEditingController();
+  final _unitOfMeasureController = TextEditingController();
   final _quantityController = TextEditingController();
   final _priceController = TextEditingController();
   String createdDate = '';
@@ -55,7 +54,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   @override
   void initState() {
     isEditMode = widget.production != null;
-    //_preloadData();
+    _preloadData();
     super.initState();
   }
 
@@ -69,6 +68,11 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
       ),
       body: Consumer<ManageProductionVM>(
         builder: (context, vm, _) {
+          if (vm.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -95,6 +99,29 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                   const SizedBox(
                     height: 12,
                   ),
+                  if (isEditMode)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Total Costos y Gastos del cultivo: \$${vm.transitoryFarming?.calculateTotalCostAndExpense().toString().formatNumberToColombianPesos() ?? ''}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                          'Ganancia del cultivo: \$${vm.transitoryFarming?.production?.totalValue?.formatNumberToColombianPesos() ?? ''}',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: _getEarningsColors(vm),
+                                  ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                      ],
+                    ),
                   AmcaDatePickerField(
                     labelText: AmcaWords.date,
                     initialDate: createdDate,
@@ -113,7 +140,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                   ),
                   AmcaSelectFormField(
                     labelText: AmcaWords.unitOfMeasurement,
-                    textEditingController: _productOrServiceController,
+                    textEditingController: _unitOfMeasureController,
                     options: Constants.unitOfMeasurement,
                     validator: (farming) {
                       if (farming != null && farming.isEmpty) {
@@ -121,15 +148,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                       }
                       return null;
                     },
-                    optionSelected: (optionSelected) {
-                      /*  if (optionSelected !=
-                          (vm.productOrServiceSelected?.productOrServiceName ??
-                              '')) {
-                        _descriptionController.clear();
-                        vm.descriptionSelected = null;
-                      }
-                      vm.setProductOrServiceSelected(optionSelected);*/
-                    },
+                    optionSelected: (optionSelected) {},
                   ),
                   const SizedBox(
                     height: 12,
@@ -214,7 +233,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                   text: AmcaWords.delete,
                   type: AmcaButtonType.destroy,
                   onPressed: () {
-                    //  deleteTransitoryFarming(widget.costAndExpense!.id!);
+                    deleteProduction();
                   },
                 ),
             ],
@@ -245,7 +264,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
       id: isEditMode ? widget.production!.id : null,
       transitoryFarmingId: manageVM.farmingId ?? '',
       quantity: _quantityController.text,
-      unitOfMeasurement: '',
+      unitOfMeasurement: _unitOfMeasureController.text,
     );
     try {
       await CallsWithDialogs.call(context, () async {
@@ -261,5 +280,43 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  Future<void> deleteProduction() async {
+    final manageVM = Provider.of<ManageProductionVM>(
+      context,
+      listen: false,
+    );
+    try {
+      await CallsWithDialogs.call(context, () async {
+        await manageVM.deleteProduction();
+        await Dialogs.showSuccessDialogWithMessage(
+          context,
+          AmcaWords.yourProductionHasBeenDeleted,
+        );
+        Navigator.pop(context);
+      });
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  void _preloadData() {
+    if (isEditMode) {
+      final preloadProduction = widget.production;
+      createdDate = DateFormat('yyyy-MM-dd')
+          .format(preloadProduction?.createDate ?? DateTime.now());
+      _unitOfMeasureController.text =
+          preloadProduction?.unitOfMeasurement ?? '';
+      _quantityController.text = preloadProduction?.quantity ?? '';
+      _priceController.text = preloadProduction?.price ?? '';
+    }
+  }
+
+  Color _getEarningsColors(ManageProductionVM vm) {
+    final value = int.parse(
+        vm.transitoryFarming?.production?.totalValue?.replaceAll(',', '') ??
+            '0');
+    return value < 0 ? Colors.red : AmcaPalette.lightGreen;
   }
 }

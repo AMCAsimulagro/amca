@@ -1,7 +1,9 @@
 class AmcaWords {
+  static const String adminOptions = 'Opciones de administrador';
   static const String addInformation = 'Añadir información';
   static const String addPartProduction = 'Agregar una producción del lote';
   static const String allFarms = 'Todos los cultivos';
+  static const String allUsers = 'Todos los usuarios';
   static const String accept = 'Aceptar';
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
@@ -109,6 +111,7 @@ class AmcaWords {
   static const String state = 'Departamento';
   static const String service = 'Servicio';
   static const String seeAllFarms = 'Ver todos los cultivos';
+  static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
   static const String seeProduction = 'Ver Producción del lote';
   static const String secondName = 'Segundo nombre';
@@ -132,6 +135,7 @@ class AmcaWords {
   static const String yourCostOrExpenseHaveBeenUpdated = 'Tu costo o gasto ha sido actualizado';
   static const String yourProductionHasBeenCreated = 'Tu producción ha sido creada';
   static const String yourProductionHasBeenUpdated = 'Tu producción ha sido actualizada';
+  static const String yourProductionHasBeenDeleted = 'Tu producción ha sido eliminada';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
   static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
   static const String yourTransitoryFarmingHasBeenUpdated = 'Tu cultivo transitorio ha sido actualizado';

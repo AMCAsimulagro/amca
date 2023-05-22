@@ -300,7 +300,7 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TransitoryFarming implements _TransitoryFarming {
+class _$_TransitoryFarming extends _TransitoryFarming {
   _$_TransitoryFarming(
       {this.id,
       required this.createDate,
@@ -315,7 +315,8 @@ class _$_TransitoryFarming implements _TransitoryFarming {
       this.uidOwner,
       this.comment,
       this.costsAndExpenses,
-      this.production});
+      this.production})
+      : super._();
 
   factory _$_TransitoryFarming.fromJson(Map<String, dynamic> json) =>
       _$$_TransitoryFarmingFromJson(json);
@@ -369,7 +370,7 @@ class _$_TransitoryFarming implements _TransitoryFarming {
   }
 }
 
-abstract class _TransitoryFarming implements TransitoryFarming {
+abstract class _TransitoryFarming extends TransitoryFarming {
   factory _TransitoryFarming(
       {String? id,
       required DateTime createDate,
@@ -385,6 +386,7 @@ abstract class _TransitoryFarming implements TransitoryFarming {
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
       Production? production}) = _$_TransitoryFarming;
+  _TransitoryFarming._() : super._();
 
   factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =
       _$_TransitoryFarming.fromJson;
