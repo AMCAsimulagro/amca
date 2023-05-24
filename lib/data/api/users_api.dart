@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class UsersApi {
   Future<List<AmcaUser>> getAllUsers();
+
+  Future<AmcaUser> manageAdminUser(AmcaUser user);
 }
 
 class UsersApiAdapter extends UsersApi {
@@ -17,10 +19,29 @@ class UsersApiAdapter extends UsersApi {
     try {
       final collection =
           await _firebaseDb.collection(FirebaseCollections.users).get();
-      final data = collection.docs
-          .map((doc) => AmcaUser.fromJson(doc.data()))
-          .toList();
+      final data =
+          collection.docs.map((doc) => AmcaUser.fromJson(doc.data())).toList();
       return data;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<AmcaUser> manageAdminUser(AmcaUser user) async {
+    try {
+      await _firebaseDb
+          .collection(FirebaseCollections.users)
+          .doc(user.identification)
+          .set(user.toJson());
+      return user;
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,

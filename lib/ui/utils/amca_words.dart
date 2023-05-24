@@ -7,6 +7,7 @@ class AmcaWords {
   static const String accept = 'Aceptar';
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
+  static const String cancel = 'Cancelar';
   static const String comment = 'Comentario';
   static const String createCostAndExpense = 'Crear costo y gasto';
   static const String createProduction = 'Crear Producción';
@@ -138,6 +139,7 @@ class AmcaWords {
   static const String yourProductionHasBeenDeleted = 'Tu producción ha sido eliminada';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
   static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
+  static const String theUserHasBeenUpdated = 'El usuario ha sido actualizado';
   static const String yourTransitoryFarmingHasBeenUpdated = 'Tu cultivo transitorio ha sido actualizado';
   static const String youHaveNotCreatedFarmingYet = 'Aún no has creado ningun cultivo';
   static const String yourInformation = 'Tus datos';

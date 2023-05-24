@@ -99,12 +99,78 @@ class Dialogs {
     );
   }
 
+  static Future<void> showSuccessDialogWithOptions(
+    BuildContext context,
+    String message, {
+    String? button1,
+    String? button2,
+    required Function() onTap,
+  }) async {
+    return await showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (_) {
+        return _Dialog(
+          content: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          button2 ?? AmcaWords.cancel,
+                          style: const TextStyle(
+                            color: AmcaPalette.lightGreen,
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        onTap();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          button1 ?? AmcaWords.accept,
+                          style: const TextStyle(
+                            color: AmcaPalette.lightGreen,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   static void close(
     BuildContext context, {
     bool mounted = true,
   }) {
     if (!mounted) return;
-    Navigator.pop(context,true);
+    Navigator.pop(context, true);
   }
 }
 

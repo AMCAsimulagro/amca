@@ -5,6 +5,7 @@ import 'package:amca/domain/model/amca_user.dart';
 
 abstract class UsersRepository {
   Future<List<AmcaUser>> getAllUsers();
+  Future<AmcaUser> manageAdminUser(AmcaUser user);
 }
 
 class UsersRepositoryAdapter extends UsersRepository {
@@ -13,5 +14,10 @@ class UsersRepositoryAdapter extends UsersRepository {
   @override
   Future<List<AmcaUser>> getAllUsers() {
     return _api.getAllUsers();
+  }
+
+  @override
+  Future<AmcaUser> manageAdminUser(AmcaUser user) {
+    return _api.manageAdminUser(user);
   }
 }
