@@ -110,6 +110,12 @@ class CostsExpensesListPage extends StatelessWidget {
                             farmingId: vm.farmingId!,
                           ),
                         ),
+                      ).then(
+                            (value) async {
+                          if (value != null && (value as bool)) {
+                            await vm.init();
+                          }
+                        },
                       );
                     },
                   ),
@@ -121,7 +127,7 @@ class CostsExpensesListPage extends StatelessWidget {
       ),
       floatingActionButton: validateIfEmpty(context)
           ? FloatingActionButton(
-              tooltip: 'Agregar costo o gasto',
+              tooltip: AmcaWords.addCostOrExpense,
               onPressed: () {
                 final costExpensesList = Provider.of<CostsExpensesListVM>(
                   context,

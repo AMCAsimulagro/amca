@@ -2,11 +2,14 @@ class AmcaWords {
   static const String adminOptions = 'Opciones de administrador';
   static const String addInformation = 'Añadir información';
   static const String addPartProduction = 'Agregar una producción del lote';
+  static const String addCostOrExpense = 'Agregar Costo o Gasto';
   static const String allFarms = 'Todos los cultivos';
   static const String allUsers = 'Todos los usuarios';
   static const String accept = 'Aceptar';
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
+  static const String areYouSureToDeleteThisCostOrExpense = '¿Desea eliminar este costo o gasto?';
+  static const String areYouSureToDeleteThisTransitoryFarming = '¿Desea eliminar este cultivo?';
   static const String cancel = 'Cancelar';
   static const String comment = 'Comentario';
   static const String createCostAndExpense = 'Crear costo y gasto';
@@ -134,6 +137,7 @@ class AmcaWords {
   static const String yourAccountHasBeenCreated = 'Tu cuenta ha sido creada';
   static const String yourCostOrExpenseHaveBeenCreated = 'Tu costo o gasto ha sido creado';
   static const String yourCostOrExpenseHaveBeenUpdated = 'Tu costo o gasto ha sido actualizado';
+  static const String yourCostOrExpenseHaveBeenDeleted = 'Tu costo o gasto ha sido eliminado';
   static const String yourProductionHasBeenCreated = 'Tu producción ha sido creada';
   static const String yourProductionHasBeenUpdated = 'Tu producción ha sido actualizada';
   static const String yourProductionHasBeenDeleted = 'Tu producción ha sido eliminada';

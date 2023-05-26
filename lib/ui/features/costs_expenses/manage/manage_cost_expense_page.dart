@@ -256,7 +256,10 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
                   text: AmcaWords.delete,
                   type: AmcaButtonType.destroy,
                   onPressed: () {
-                    deleteTransitoryFarming(widget.costAndExpense!.id!);
+                    showOptionDialog(
+                      widget.costAndExpense!.id!,
+                      context,
+                    );
                   },
                 ),
             ],
@@ -300,7 +303,15 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     }
   }
 
-  Future<void> deleteTransitoryFarming(String id) async {
+  Future<void> showOptionDialog(String id, BuildContext context) async {
+    await Dialogs.showSuccessDialogWithOptions(
+        context, AmcaWords.areYouSureToDeleteThisCostOrExpense,
+        onTap: () async {
+      await deleteCostOrExpense(id);
+    });
+  }
+
+  Future<void> deleteCostOrExpense(String id) async {
     final manageVM = Provider.of<ManageCostExpenseVM>(
       context,
       listen: false,
@@ -309,7 +320,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
       await CallsWithDialogs.call(context, () async {
         await manageVM.deleteCostAndExpense(id);
         await Dialogs.showSuccessDialogWithMessage(
-            context, AmcaWords.yourTransitoryFarmingHasBeenDeleted);
+            context, AmcaWords.yourCostOrExpenseHaveBeenDeleted);
         Navigator.pop(context);
       });
     } catch (_) {}

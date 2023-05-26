@@ -7,6 +7,7 @@ import 'package:amca/ui/theme/color_schemes.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -44,11 +49,6 @@ class MyApp extends StatelessWidget {
               backgroundColor: AmcaPalette.lightGreen,
               foregroundColor: Colors.white, //here you can give the text color
             ),
-          ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            colorScheme: darkColorScheme,
-            fontFamily: 'Arial Rounded MT Bold',
           ),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,

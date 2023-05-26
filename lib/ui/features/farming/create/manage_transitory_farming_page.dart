@@ -299,7 +299,8 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                                 ),
                               ).then((value) async {
                                 if (value ?? false) {
-                                  final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
+                                  final farmingHistoryVM =
+                                      Provider.of<FarmingHistoryVM>(
                                     context,
                                     listen: false,
                                   );
@@ -347,7 +348,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                   text: AmcaWords.delete,
                   type: AmcaButtonType.destroy,
                   onPressed: () {
-                    deleteTransitoryFarming(widget.transitoryFarming!.id!);
+                    showOptionDialog(widget.transitoryFarming!.id!,context);
                   },
                 ),
             ],
@@ -414,6 +415,14 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
         Navigator.pop(context);
       });
     } catch (_) {}
+  }
+
+  Future<void> showOptionDialog(String id, BuildContext context) async {
+    await Dialogs.showSuccessDialogWithOptions(
+        context, AmcaWords.areYouSureToDeleteThisTransitoryFarming,
+        onTap: () async {
+      await deleteTransitoryFarming(id);
+    });
   }
 
   void _preloadData() {
