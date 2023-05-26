@@ -1,6 +1,7 @@
 import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/farming/create/create_transitory_farming_vm.dart';
+import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/features/production/manage_production_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
@@ -385,14 +386,22 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
           context,
           listen: false,
         );
-        await farmingHistoryVM.init();
-        await Dialogs.showSuccessDialogWithMessage(
+
+
+        Dialogs.showSuccessDialogWithMessage(
           context,
           isEditMode
               ? AmcaWords.yourTransitoryFarmingHasBeenUpdated
               : AmcaWords.yourTransitoryFarmingHasBeenCreated,
-        );
-        Navigator.pop(context);
+        ).then((value) {
+          final mainNavigationVM = Provider.of<MainNavigationVM>(
+            context,
+            listen: false,
+          );
+          mainNavigationVM.changePage(1);
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        });
+
       });
     } catch (_) {}
   }

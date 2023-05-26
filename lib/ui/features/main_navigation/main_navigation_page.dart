@@ -1,20 +1,22 @@
+import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/models/navigation_selection.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/home/home_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_page.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({Key? key}) : super(key: key);
 
   @override
   State<MainNavigationPage> createState() => _MainNavigationPageState();
+
 }
 
 class _MainNavigationPageState extends State<MainNavigationPage> {
   late List<Widget> _pages;
-  late int _selectedPage;
   String? pageTitle;
 
   final List<NavigationDestination> _items = [
@@ -35,11 +37,10 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   @override
   void initState() {
     super.initState();
-    _selectedPage = 0;
 
     _pages = [
       const HomePage(),
-      const SizedBox.shrink(),
+      const FarmingHistoryPage(),
       const SizedBox.shrink(),
       const SizedBox.shrink(),
     ];
@@ -47,24 +48,25 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final vm = context.watch<MainNavigationVM>();
     return Scaffold(
       appBar: AppBar(
         title: Text(pageTitle ?? AmcaWords.typeOfExploitation),
       ),
       body: IndexedStack(
-        index: _selectedPage,
+        index: vm.currentPage,
         children: _pages,
       ),
       bottomNavigationBar: NavigationBar(
         destinations: _items,
-        selectedIndex: _selectedPage,
+        selectedIndex: vm.currentPage,
         onDestinationSelected: (index) {
           setState(
             () {
               if (_pages[index] is SizedBox) {
                 _pages[index] = pagesToBuild[index]!.page;
               }
-              _selectedPage = index;
+              vm.currentPage = index;
               pageTitle = pagesToBuild[index]!.title;
             },
           );

@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
             children: [
               Expanded(
                 child: CardOption(
-                  imagePath: Assets.farming,
+                  imagePath: Assets.agricola,
                   text: AmcaWords.agricultural,
                   onTap: () {
                     NavigationHelper.push(
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               ),
               const Expanded(
                 child: CardOption(
-                  imagePath: Assets.zrCorp,
+                  imagePath: Assets.pecuaria,
                   text: AmcaWords.livestock,
                 ),
               ),

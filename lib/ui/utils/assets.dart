@@ -1,6 +1,8 @@
 class Assets {
   static const background = 'assets/images/background.png';
   static const farming = 'assets/images/farming.png';
+  static const agricola = 'assets/images/agricola.jpeg';
+  static const pecuaria = 'assets/images/pecuaria.jpeg';
   static const logo = 'assets/images/logo.png';
   static const splashBackground = 'assets/images/splash_background.png';
   static const splashLogo = 'assets/images/splash_logo.png';
