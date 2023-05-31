@@ -33,7 +33,6 @@ class OptionFarmingPage extends StatelessWidget {
                   },
                 ),
               ),
-
             ],
           ),
         ),

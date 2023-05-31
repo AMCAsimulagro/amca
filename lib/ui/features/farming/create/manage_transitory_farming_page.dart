@@ -153,7 +153,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                   AmcaTextFormField(
                     textEditingController: _sownAreaController,
                     textInputType: TextInputType.number,
-                    labelText: AmcaWords.sownArea,
+                    labelText: '${AmcaWords.sownArea} (m²)',
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
                     ],

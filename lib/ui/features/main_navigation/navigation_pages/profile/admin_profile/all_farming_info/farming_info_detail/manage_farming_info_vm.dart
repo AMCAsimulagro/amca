@@ -27,6 +27,18 @@ class ManageFarmingInfoVM extends ChangeNotifier {
     return false;
   }
 
+  bool cropAlreadyExist(
+      List<CropTypes> allCropTypes, String value, CropTypes currentCropType) {
+    final auxList = [...allCropTypes];
+    auxList.removeWhere((element) => element.tipo == currentCropType.tipo);
+    for (var crop in auxList) {
+      if (crop.tipo.toLowerCase().trim() == value.toLowerCase().trim()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   void replaceValue(String firstValue, String cultivo) {
     final index = crops.indexOf(firstValue);
     crops[index] = cultivo;
@@ -44,7 +56,7 @@ class ManageFarmingInfoVM extends ChangeNotifier {
     }
   }
 
-  Future<void> deleteCropType(CropTypes? cropType) async{
+  Future<void> deleteCropType(CropTypes? cropType) async {
     isLoading = true;
     try {
       await farmingRepository.deleteCropType(cropType!);

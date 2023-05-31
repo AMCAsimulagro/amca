@@ -51,7 +51,9 @@ class AllFarmingInfoPage extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
                               ManageFarmingInfoPage.create(
-                                  cropType: farmingInfo),
+                            cropType: farmingInfo,
+                            allCropTypes: vm.farmingInfo,
+                          ),
                         ),
                       ).then(
                         (value) async {
@@ -79,7 +81,9 @@ class AllFarmingInfoPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => ManageFarmingInfoPage.create(),
+              builder: (BuildContext context) => ManageFarmingInfoPage.create(
+                allCropTypes: allFarmingInfoVM.farmingInfo,
+              ),
             ),
           ).then(
             (value) async {

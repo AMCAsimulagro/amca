@@ -15,6 +15,7 @@ class ManageFarmingInfoPage extends StatefulWidget {
   static ChangeNotifierProvider<ManageFarmingInfoVM> create({
     Key? key,
     CropTypes? cropType,
+    required List<CropTypes> allCropTypes,
   }) =>
       ChangeNotifierProvider(
         lazy: false,
@@ -22,15 +23,18 @@ class ManageFarmingInfoPage extends StatefulWidget {
         child: ManageFarmingInfoPage._(
           key: key,
           cropType: cropType,
+          allCropTypes: allCropTypes,
         ),
       );
 
   const ManageFarmingInfoPage._({
     super.key,
     required this.cropType,
+    required this.allCropTypes,
   });
 
   final CropTypes? cropType;
+  final List<CropTypes> allCropTypes;
 
   @override
   State<ManageFarmingInfoPage> createState() => _ManageFarmingInfoPageState();
@@ -82,6 +86,11 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
                       if (value != null && value.isEmpty) {
                         return AmcaWords.pleaseAddCropType;
                       }
+                      if (isEditMode &&
+                          vm.cropAlreadyExist(widget.allCropTypes, value ?? '',
+                              widget.cropType!)) {
+                        return 'Este tipo de cultivo ya existe';
+                      }
                       return null;
                     },
                   ),
@@ -94,8 +103,7 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
                   Column(
                     children: vm.crops
                         .map(
-                          (e) =>
-                          ListTile(
+                          (e) => ListTile(
                             title: Text(e),
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -112,8 +120,8 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
                                         context,
                                         '¿Deseas eliminar este cultivo?',
                                         onTap: () {
-                                          vm.deleteCrop(e);
-                                        });
+                                      vm.deleteCrop(e);
+                                    });
                                   },
                                   child: const Padding(
                                     padding: EdgeInsets.all(8.0),
@@ -132,7 +140,7 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
                               );
                             },
                           ),
-                    )
+                        )
                         .toList(),
                   )
                 ],
@@ -157,9 +165,7 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
       bottomNavigationBar: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            color: Theme
-                .of(context)
-                .scaffoldBackgroundColor,
+            color: Theme.of(context).scaffoldBackgroundColor,
             boxShadow: const <BoxShadow>[
               BoxShadow(
                 color: Colors.grey,
@@ -186,11 +192,10 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
                   type: AmcaButtonType.destroy,
                   onPressed: () {
                     Dialogs.showSuccessDialogWithOptions(
-                        context,
-                        '¿Deseas eliminar este tipo de cultivo?',
+                        context, '¿Deseas eliminar este tipo de cultivo?',
                         onTap: () async {
-                          await deleteCropType();
-                        });
+                      await deleteCropType();
+                    });
                   },
                 ),
             ],
@@ -200,7 +205,8 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
     );
   }
 
-  void _showCropDialog(BuildContext context, {
+  void _showCropDialog(
+    BuildContext context, {
     String? value,
     bool isEdit = false,
   }) {
@@ -238,7 +244,7 @@ class _ManageFarmingInfoPageState extends State<ManageFarmingInfoPage> {
     );
     try {
       await CallsWithDialogs.call(context, () async {
-         await manageVM.deleteCropType(widget.cropType);
+        await manageVM.deleteCropType(widget.cropType);
         await Dialogs.showSuccessDialogWithMessage(
           context,
           AmcaWords.yourCropTypeHasBeenDeleted,
