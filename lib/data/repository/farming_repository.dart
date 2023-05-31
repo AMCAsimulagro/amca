@@ -29,6 +29,10 @@ abstract class FarmingRepository {
 
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
       {required TransitoryFarming farming});
+
+  Future<CropTypes?> createCropType(CropTypes cropTypes);
+
+  Future<CropTypes?> deleteCropType(CropTypes cropTypes);
 }
 
 class FarmingRepositoryAdapter extends FarmingRepository {
@@ -86,5 +90,15 @@ class FarmingRepositoryAdapter extends FarmingRepository {
   @override
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId, {required TransitoryFarming farming}) {
     return _api.deleteCostAndExpense(costAndExpenseId, farming: farming);
+  }
+
+  @override
+  Future<CropTypes?> createCropType(CropTypes cropTypes) {
+    return _api.createCropType(cropTypes);
+  }
+
+  @override
+  Future<CropTypes?> deleteCropType(CropTypes cropTypes) {
+    return _api.deleteCropType(cropTypes);
   }
 }

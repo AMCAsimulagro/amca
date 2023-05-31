@@ -34,6 +34,10 @@ abstract class FarmingApi {
 
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
       {required TransitoryFarming farming});
+
+  Future<CropTypes?> createCropType(CropTypes cropTypes);
+
+  Future<CropTypes?> deleteCropType(CropTypes cropTypes);
 }
 
 class FarmingApiAdapter extends FarmingApi {
@@ -245,7 +249,8 @@ class FarmingApiAdapter extends FarmingApi {
       {required TransitoryFarming farming}) async {
     try {
       var costAndExpenseList = farming.costsAndExpenses ?? [];
-      costAndExpenseList.removeWhere((element) => element.id == costAndExpenseId);
+      costAndExpenseList
+          .removeWhere((element) => element.id == costAndExpenseId);
 
       final farmingToUpload = farming.copyWith(
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
@@ -253,6 +258,50 @@ class FarmingApiAdapter extends FarmingApi {
       );
       await createTransitoryFarming(farmingToUpload);
       return null;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<CropTypes?> createCropType(CropTypes cropTypes) async {
+    try {
+      final cropId = cropTypes.id ?? const Uuid().v4();
+      final cropTypeToUpload = cropTypes.copyWith(
+        id: cropId,
+      );
+      await _firebaseDb
+          .collection(FirebaseCollections.farmingInfo)
+          .doc(cropId)
+          .set(cropTypeToUpload.toJson());
+      return cropTypeToUpload;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<CropTypes?> deleteCropType(CropTypes cropTypes) async {
+    try {
+      await _firebaseDb
+          .collection(FirebaseCollections.farmingInfo)
+          .doc(cropTypes.id)
+          .delete();
+      return cropTypes;
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,

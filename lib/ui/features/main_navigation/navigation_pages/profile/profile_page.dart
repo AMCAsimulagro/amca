@@ -1,5 +1,6 @@
 import 'package:amca/ui/features/login/login_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming/all_farming_history_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/all_farming_info_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_users/all_users_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
@@ -176,6 +177,21 @@ class _AdminOptions extends StatelessWidget {
           onTap: () async {
             NavigationHelper.push(
               AllUsersPage.create(),
+              context,
+            );
+          },
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.local_fire_department_sharp,
+            color: Colors.black,
+          ),
+          title: const Text(
+            AmcaWords.addInformation,
+          ),
+          onTap: () async {
+            NavigationHelper.push(
+              AllFarmingInfoPage.create(),
               context,
             );
           },

@@ -22,6 +22,7 @@ CropTypes _$CropTypesFromJson(Map<String, dynamic> json) {
 mixin _$CropTypes {
   List<String> get cultivo => throw _privateConstructorUsedError;
   String get tipo => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $CropTypesCopyWith<$Res> {
   factory $CropTypesCopyWith(CropTypes value, $Res Function(CropTypes) then) =
       _$CropTypesCopyWithImpl<$Res, CropTypes>;
   @useResult
-  $Res call({List<String> cultivo, String tipo});
+  $Res call({List<String> cultivo, String tipo, String? id});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$CropTypesCopyWithImpl<$Res, $Val extends CropTypes>
   $Res call({
     Object? cultivo = null,
     Object? tipo = null,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       cultivo: null == cultivo
@@ -62,6 +64,10 @@ class _$CropTypesCopyWithImpl<$Res, $Val extends CropTypes>
           ? _value.tipo
           : tipo // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -73,7 +79,7 @@ abstract class _$$_CropTypesCopyWith<$Res> implements $CropTypesCopyWith<$Res> {
       __$$_CropTypesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> cultivo, String tipo});
+  $Res call({List<String> cultivo, String tipo, String? id});
 }
 
 /// @nodoc
@@ -89,6 +95,7 @@ class __$$_CropTypesCopyWithImpl<$Res>
   $Res call({
     Object? cultivo = null,
     Object? tipo = null,
+    Object? id = freezed,
   }) {
     return _then(_$_CropTypes(
       cultivo: null == cultivo
@@ -99,6 +106,10 @@ class __$$_CropTypesCopyWithImpl<$Res>
           ? _value.tipo
           : tipo // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -106,7 +117,8 @@ class __$$_CropTypesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CropTypes implements _CropTypes {
-  _$_CropTypes({required final List<String> cultivo, required this.tipo})
+  _$_CropTypes(
+      {required final List<String> cultivo, required this.tipo, this.id})
       : _cultivo = cultivo;
 
   factory _$_CropTypes.fromJson(Map<String, dynamic> json) =>
@@ -122,10 +134,12 @@ class _$_CropTypes implements _CropTypes {
 
   @override
   final String tipo;
+  @override
+  final String? id;
 
   @override
   String toString() {
-    return 'CropTypes(cultivo: $cultivo, tipo: $tipo)';
+    return 'CropTypes(cultivo: $cultivo, tipo: $tipo, id: $id)';
   }
 
   @override
@@ -134,13 +148,14 @@ class _$_CropTypes implements _CropTypes {
         (other.runtimeType == runtimeType &&
             other is _$_CropTypes &&
             const DeepCollectionEquality().equals(other._cultivo, _cultivo) &&
-            (identical(other.tipo, tipo) || other.tipo == tipo));
+            (identical(other.tipo, tipo) || other.tipo == tipo) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_cultivo), tipo);
+      runtimeType, const DeepCollectionEquality().hash(_cultivo), tipo, id);
 
   @JsonKey(ignore: true)
   @override
@@ -159,7 +174,8 @@ class _$_CropTypes implements _CropTypes {
 abstract class _CropTypes implements CropTypes {
   factory _CropTypes(
       {required final List<String> cultivo,
-      required final String tipo}) = _$_CropTypes;
+      required final String tipo,
+      final String? id}) = _$_CropTypes;
 
   factory _CropTypes.fromJson(Map<String, dynamic> json) =
       _$_CropTypes.fromJson;
@@ -168,6 +184,8 @@ abstract class _CropTypes implements CropTypes {
   List<String> get cultivo;
   @override
   String get tipo;
+  @override
+  String? get id;
   @override
   @JsonKey(ignore: true)
   _$$_CropTypesCopyWith<_$_CropTypes> get copyWith =>

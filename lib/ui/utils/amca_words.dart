@@ -3,6 +3,8 @@ class AmcaWords {
   static const String addInformation = 'Añadir información';
   static const String addPartProduction = 'Agregar una producción del lote';
   static const String addCostOrExpense = 'Agregar Costo o Gasto';
+  static const String addCropType = 'Agregar tipo de cultivo';
+  static const String addCrop = 'Agregar cultivo';
   static const String allFarms = 'Todos los cultivos';
   static const String allUsers = 'Todos los usuarios';
   static const String accept = 'Aceptar';
@@ -13,12 +15,14 @@ class AmcaWords {
   static const String cancel = 'Cancelar';
   static const String comment = 'Comentario';
   static const String createCostAndExpense = 'Crear costo y gasto';
+  static const String createCropType = 'Crear tipo de cultivo';
   static const String createProduction = 'Crear Producción';
   static const String createFarming = 'Crear cultivo';
   static const String crop = 'Cultivo';
   static const String cropsHaveNotBeenCreatedYet = 'No se ha creado ningun cultivo hasta el momento';
   static const String costsAndExpensesHaveNotBeenCreated = 'No se ha creado costos y gastos hasta el momento para este cultivo';
   static const String cropType = 'Tipo de cultivo';
+  static const String cropTypes = 'Tipos de cultivo';
   static const String cost = 'Costos';
   static const String costsAndExpenses = 'Costos y gastos';
   static const String date = 'Fecha';
@@ -30,6 +34,7 @@ class AmcaWords {
   static const String emailHasBeenSentToRecoverYourPassword = 'Se te ha enviado un correo electrónico para recuperar tu contraseña';
   static const String expense = 'Gasto';
   static const String editCostAndExpense = 'Editar Costo y Gasto';
+  static const String editCropType= 'Editar tipo de cultivo';
   static const String editFarming = 'Editar cultivo';
   static const String editProduction= 'Editar producción';
   static const String email = 'Correo electrónico';
@@ -77,6 +82,8 @@ class AmcaWords {
       'Por favor, ingrese la cantidad';
   static const String pleaseAddValue =
       'Por favor, ingrese el valor';
+  static const String pleaseAddCropType =
+      'Por favor, ingrese el nombre del cultivo';
   static const String pleaseSownArea =
       'Por favor, ingrese el área sembrada';
   static const String pleasePartName =
@@ -141,6 +148,9 @@ class AmcaWords {
   static const String yourProductionHasBeenCreated = 'Tu producción ha sido creada';
   static const String yourProductionHasBeenUpdated = 'Tu producción ha sido actualizada';
   static const String yourProductionHasBeenDeleted = 'Tu producción ha sido eliminada';
+  static const String yourCropTypeHasBeenCreated = 'Tu tipo de cultivo ha sido creado';
+  static const String yourCropTypeHasBeenUpdated = 'Tu tipo de cultivo ha sido actualizado';
+  static const String yourCropTypeHasBeenDeleted= 'Tu tipo de cultivo ha sido eliminado';
   static const String yourTransitoryFarmingHasBeenCreated = 'Tu cultivo transitorio ha sido creado';
   static const String yourTransitoryFarmingHasBeenDeleted = 'Tu cultivo transitorio ha sido eliminado';
   static const String theUserHasBeenUpdated = 'El usuario ha sido actualizado';
