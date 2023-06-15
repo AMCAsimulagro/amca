@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.amca">
    <application
-        android:label="amca"
+        android:label="AMCA"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

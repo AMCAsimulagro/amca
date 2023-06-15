@@ -1,6 +1,9 @@
 import 'package:amca/domain/model/transitory_farming.dart';
+import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/farming/create/create_transitory_farming_vm.dart';
+import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
+import 'package:amca/ui/features/production/manage_production_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -150,7 +153,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                   AmcaTextFormField(
                     textEditingController: _sownAreaController,
                     textInputType: TextInputType.number,
-                    labelText: AmcaWords.sownArea,
+                    labelText: '${AmcaWords.sownArea} (m²)',
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
                     ],
@@ -252,6 +255,65 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                       return null;
                     },
                   ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  if (isEditMode)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AmcaButton(
+                            text: AmcaWords.seeCostsAndExpenses,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      CostsExpensesListPage.create(
+                                    farmingId:
+                                        widget.transitoryFarming?.id ?? '',
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: AmcaButton(
+                            text: widget.transitoryFarming?.production == null
+                                ? AmcaWords.createProduction
+                                : AmcaWords.seeProduction,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<bool>(
+                                  builder: (BuildContext context) =>
+                                      ManageProductionPage.create(
+                                    farmingId:
+                                        widget.transitoryFarming?.id ?? '',
+                                    production:
+                                        widget.transitoryFarming?.production,
+                                  ),
+                                ),
+                              ).then((value) async {
+                                if (value ?? false) {
+                                  final farmingHistoryVM =
+                                      Provider.of<FarmingHistoryVM>(
+                                    context,
+                                    listen: false,
+                                  );
+                                  await farmingHistoryVM.init();
+                                  Navigator.pop(context);
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    )
                 ],
               ),
             ),
@@ -287,7 +349,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                   text: AmcaWords.delete,
                   type: AmcaButtonType.destroy,
                   onPressed: () {
-                    deleteTransitoryFarming(widget.transitoryFarming!.id!);
+                    showOptionDialog(widget.transitoryFarming!.id!, context);
                   },
                 ),
             ],
@@ -324,14 +386,21 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
           context,
           listen: false,
         );
-        await farmingHistoryVM.init();
-        await Dialogs.showSuccessDialogWithMessage(
+
+        Dialogs.showSuccessDialogWithMessage(
           context,
           isEditMode
               ? AmcaWords.yourTransitoryFarmingHasBeenUpdated
               : AmcaWords.yourTransitoryFarmingHasBeenCreated,
-        );
-        Navigator.pop(context);
+        ).then((value) {
+          final mainNavigationVM = Provider.of<MainNavigationVM>(
+            context,
+            listen: false,
+          );
+          mainNavigationVM.changePage(1);
+          farmingHistoryVM.init();
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        });
       });
     } catch (_) {}
   }
@@ -350,12 +419,18 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
         );
         await farmingHistoryVM.init();
         await Dialogs.showSuccessDialogWithMessage(
-          context,
-          AmcaWords.yourTransitoryFarmingHasBeenDeleted
-        );
+            context, AmcaWords.yourTransitoryFarmingHasBeenDeleted);
         Navigator.pop(context);
       });
     } catch (_) {}
+  }
+
+  Future<void> showOptionDialog(String id, BuildContext context) async {
+    await Dialogs.showSuccessDialogWithOptions(
+        context, AmcaWords.areYouSureToDeleteThisTransitoryFarming,
+        onTap: () async {
+      await deleteTransitoryFarming(id);
+    });
   }
 
   void _preloadData() {

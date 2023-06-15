@@ -9,6 +9,7 @@ class CropTypes with _$CropTypes {
   factory CropTypes({
     required List<String> cultivo,
     required String tipo,
+    String? id,
   }) = _CropTypes;
 
   factory CropTypes.fromJson(Map<String, Object?> json) =>

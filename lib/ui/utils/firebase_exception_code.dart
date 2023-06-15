@@ -7,6 +7,7 @@ class ApiExceptionsCode {
       'user-disabled': AmcaWords.operationNotAllowed,
       'user-not-found': AmcaWords.yourEmailOrPasswordIsIncorrect,
       'wrong-password': AmcaWords.yourEmailOrPasswordIsIncorrect,
+      'already_exist_identification': AmcaWords.thisIdentificationNumberIsAlreadyInUse,
       ///REGISTER_ERRORS
       'email-already-in-use': AmcaWords.emailAlreadyInUse,
       'invalid-email': AmcaWords.enterAValidEmail,

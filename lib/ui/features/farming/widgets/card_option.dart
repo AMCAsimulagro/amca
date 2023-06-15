@@ -22,12 +22,12 @@ class CardOption extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             surfaceTintColor: Colors.white,
             color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
               child: Image(
                 image: AssetImage(imagePath),
                 height: 220,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
             ),
           ),

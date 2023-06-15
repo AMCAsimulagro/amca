@@ -1,6 +1,8 @@
 import 'package:amca/domain/model/app_exception.dart';
+import 'package:amca/ui/features/login/forgot_password/forgot_password_page.dart';
 import 'package:amca/ui/features/login/login_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_page.dart';
+import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/register/register_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -114,19 +116,25 @@ class LoginPage extends StatelessWidget {
                       const SizedBox(
                         height: 4,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              AmcaWords.forgotPassword,
-                              style: TextStyle(
-                                color: Colors.black,
+                      InkWell(
+                        onTap: (){
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => ForgotPasswordPage.create()));
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                AmcaWords.forgotPassword,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       AmcaButton(
                         text: AmcaWords.logIn,
@@ -158,6 +166,11 @@ class LoginPage extends StatelessWidget {
       await CallsWithDialogs.call(context, () async {
         await vm.doLogin();
       });
+      final mainNavigationVM = Provider.of<MainNavigationVM>(
+        context,
+        listen: false,
+      );
+      mainNavigationVM.changePage(0);
       NavigationHelper.pushAndRemoveUntil(const MainNavigationPage(), context);
     } catch (_) {}
   }

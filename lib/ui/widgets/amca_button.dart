@@ -24,10 +24,14 @@ class AmcaButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: _getButtonStyle(),
-      child: Text(
-        text ?? '',
-        style: const TextStyle(
-          color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2),
+        child: Text(
+          text ?? '',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );

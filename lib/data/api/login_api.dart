@@ -23,6 +23,8 @@ abstract class LoginApi {
   Future<void> signOut();
 
   Future<AmcaUser> getUserCurrentlyLogged();
+
+  Future<void> recoverPassword(String email);
 }
 
 class LoginApiAdapter extends LoginApi {
@@ -34,6 +36,13 @@ class LoginApiAdapter extends LoginApi {
   Future<UserCredential> createUserWithEmailAndPassword(
       AmcaUser user, String password) async {
     try {
+      var collectionRef = _firebaseDb.collection(FirebaseCollections.users);
+      final userDb = await collectionRef.doc(user.identification).get();
+      if (userDb.exists) {
+        throw FirebaseAuthException(
+            message: 'This document is already in use',
+            code: 'already_exist_identification');
+      }
       var result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: user.email, password: password);
       user.uid = result.user?.uid ?? user.identification;
@@ -139,6 +148,23 @@ class LoginApiAdapter extends LoginApi {
           .get();
       final user = collection.data();
       return Future.value(user);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<void> recoverPassword(String email) async {
+    try {
+      return await _firebaseAuth
+          .sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,

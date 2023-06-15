@@ -33,11 +33,6 @@ class OptionFarmingPage extends StatelessWidget {
                   },
                 ),
               ),
-              const Expanded(
-                child: AmcaContainerButton(
-                  text: AmcaWords.addInformation,
-                ),
-              ),
             ],
           ),
         ),

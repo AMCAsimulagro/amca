@@ -5,10 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class FarmingHistoryPage extends StatelessWidget {
+class FarmingHistoryPage extends StatefulWidget {
   const FarmingHistoryPage({
     super.key,
   });
+
+  @override
+  State<FarmingHistoryPage> createState() => _FarmingHistoryPageState();
+}
+
+class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
+  @override
+  void initState() {
+    Provider.of<FarmingHistoryVM>(
+      context,
+      listen: false,
+    ).init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +53,17 @@ class FarmingHistoryPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
+                      MaterialPageRoute<bool>(
                         builder: (BuildContext context) =>
                             ManageTransitoryFarming.create(
                           transitoryFarming: farmingItem,
                         ),
                       ),
-                    );
+                    ).then((value) async {
+                      if (value != null && value) {
+                        await vm.init();
+                      }
+                    });
                   },
                 );
               },

@@ -21,17 +21,35 @@ TransitoryFarming _$TransitoryFarmingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransitoryFarming {
   String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
   DateTime get createDate => throw _privateConstructorUsedError;
+  set createDate(DateTime value) => throw _privateConstructorUsedError;
   String get partName => throw _privateConstructorUsedError;
+  set partName(String value) => throw _privateConstructorUsedError;
   String get cropType => throw _privateConstructorUsedError;
+  set cropType(String value) => throw _privateConstructorUsedError;
   String get crop => throw _privateConstructorUsedError;
+  set crop(String value) => throw _privateConstructorUsedError;
   String get sownArea => throw _privateConstructorUsedError;
+  set sownArea(String value) => throw _privateConstructorUsedError;
   String get sownType => throw _privateConstructorUsedError;
+  set sownType(String value) => throw _privateConstructorUsedError;
   String get format => throw _privateConstructorUsedError;
+  set format(String value) => throw _privateConstructorUsedError;
   String get amountSown => throw _privateConstructorUsedError;
+  set amountSown(String value) => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
+  set value(String value) => throw _privateConstructorUsedError;
   String? get uidOwner => throw _privateConstructorUsedError;
+  set uidOwner(String? value) => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
+  set comment(String? value) => throw _privateConstructorUsedError;
+  List<CostAndExpense>? get costsAndExpenses =>
+      throw _privateConstructorUsedError;
+  set costsAndExpenses(List<CostAndExpense>? value) =>
+      throw _privateConstructorUsedError;
+  Production? get production => throw _privateConstructorUsedError;
+  set production(Production? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +75,11 @@ abstract class $TransitoryFarmingCopyWith<$Res> {
       String amountSown,
       String value,
       String? uidOwner,
-      String? comment});
+      String? comment,
+      List<CostAndExpense>? costsAndExpenses,
+      Production? production});
+
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
@@ -85,6 +107,8 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
     Object? value = null,
     Object? uidOwner = freezed,
     Object? comment = freezed,
+    Object? costsAndExpenses = freezed,
+    Object? production = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -135,7 +159,27 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
+      costsAndExpenses: freezed == costsAndExpenses
+          ? _value.costsAndExpenses
+          : costsAndExpenses // ignore: cast_nullable_to_non_nullable
+              as List<CostAndExpense>?,
+      production: freezed == production
+          ? _value.production
+          : production // ignore: cast_nullable_to_non_nullable
+              as Production?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_value.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_value.production!, (value) {
+      return _then(_value.copyWith(production: value) as $Val);
+    });
   }
 }
 
@@ -159,7 +203,12 @@ abstract class _$$_TransitoryFarmingCopyWith<$Res>
       String amountSown,
       String value,
       String? uidOwner,
-      String? comment});
+      String? comment,
+      List<CostAndExpense>? costsAndExpenses,
+      Production? production});
+
+  @override
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
@@ -185,6 +234,8 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
     Object? value = null,
     Object? uidOwner = freezed,
     Object? comment = freezed,
+    Object? costsAndExpenses = freezed,
+    Object? production = freezed,
   }) {
     return _then(_$_TransitoryFarming(
       id: freezed == id
@@ -235,13 +286,21 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
+      costsAndExpenses: freezed == costsAndExpenses
+          ? _value.costsAndExpenses
+          : costsAndExpenses // ignore: cast_nullable_to_non_nullable
+              as List<CostAndExpense>?,
+      production: freezed == production
+          ? _value.production
+          : production // ignore: cast_nullable_to_non_nullable
+              as Production?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_TransitoryFarming implements _TransitoryFarming {
+class _$_TransitoryFarming extends _TransitoryFarming {
   _$_TransitoryFarming(
       {this.id,
       required this.createDate,
@@ -254,83 +313,47 @@ class _$_TransitoryFarming implements _TransitoryFarming {
       required this.amountSown,
       required this.value,
       this.uidOwner,
-      this.comment});
+      this.comment,
+      this.costsAndExpenses,
+      this.production})
+      : super._();
 
   factory _$_TransitoryFarming.fromJson(Map<String, dynamic> json) =>
       _$$_TransitoryFarmingFromJson(json);
 
   @override
-  final String? id;
+  String? id;
   @override
-  final DateTime createDate;
+  DateTime createDate;
   @override
-  final String partName;
+  String partName;
   @override
-  final String cropType;
+  String cropType;
   @override
-  final String crop;
+  String crop;
   @override
-  final String sownArea;
+  String sownArea;
   @override
-  final String sownType;
+  String sownType;
   @override
-  final String format;
+  String format;
   @override
-  final String amountSown;
+  String amountSown;
   @override
-  final String value;
+  String value;
   @override
-  final String? uidOwner;
+  String? uidOwner;
   @override
-  final String? comment;
+  String? comment;
+  @override
+  List<CostAndExpense>? costsAndExpenses;
+  @override
+  Production? production;
 
   @override
   String toString() {
-    return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment)';
+    return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_TransitoryFarming &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.createDate, createDate) ||
-                other.createDate == createDate) &&
-            (identical(other.partName, partName) ||
-                other.partName == partName) &&
-            (identical(other.cropType, cropType) ||
-                other.cropType == cropType) &&
-            (identical(other.crop, crop) || other.crop == crop) &&
-            (identical(other.sownArea, sownArea) ||
-                other.sownArea == sownArea) &&
-            (identical(other.sownType, sownType) ||
-                other.sownType == sownType) &&
-            (identical(other.format, format) || other.format == format) &&
-            (identical(other.amountSown, amountSown) ||
-                other.amountSown == amountSown) &&
-            (identical(other.value, value) || other.value == value) &&
-            (identical(other.uidOwner, uidOwner) ||
-                other.uidOwner == uidOwner) &&
-            (identical(other.comment, comment) || other.comment == comment));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      createDate,
-      partName,
-      cropType,
-      crop,
-      sownArea,
-      sownType,
-      format,
-      amountSown,
-      value,
-      uidOwner,
-      comment);
 
   @JsonKey(ignore: true)
   @override
@@ -347,48 +370,69 @@ class _$_TransitoryFarming implements _TransitoryFarming {
   }
 }
 
-abstract class _TransitoryFarming implements TransitoryFarming {
+abstract class _TransitoryFarming extends TransitoryFarming {
   factory _TransitoryFarming(
-      {final String? id,
-      required final DateTime createDate,
-      required final String partName,
-      required final String cropType,
-      required final String crop,
-      required final String sownArea,
-      required final String sownType,
-      required final String format,
-      required final String amountSown,
-      required final String value,
-      final String? uidOwner,
-      final String? comment}) = _$_TransitoryFarming;
+      {String? id,
+      required DateTime createDate,
+      required String partName,
+      required String cropType,
+      required String crop,
+      required String sownArea,
+      required String sownType,
+      required String format,
+      required String amountSown,
+      required String value,
+      String? uidOwner,
+      String? comment,
+      List<CostAndExpense>? costsAndExpenses,
+      Production? production}) = _$_TransitoryFarming;
+  _TransitoryFarming._() : super._();
 
   factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =
       _$_TransitoryFarming.fromJson;
 
   @override
   String? get id;
+  set id(String? value);
   @override
   DateTime get createDate;
+  set createDate(DateTime value);
   @override
   String get partName;
+  set partName(String value);
   @override
   String get cropType;
+  set cropType(String value);
   @override
   String get crop;
+  set crop(String value);
   @override
   String get sownArea;
+  set sownArea(String value);
   @override
   String get sownType;
+  set sownType(String value);
   @override
   String get format;
+  set format(String value);
   @override
   String get amountSown;
+  set amountSown(String value);
   @override
   String get value;
+  set value(String value);
   @override
   String? get uidOwner;
+  set uidOwner(String? value);
   @override
   String? get comment;
+  set comment(String? value);
+  @override
+  List<CostAndExpense>? get costsAndExpenses;
+  set costsAndExpenses(List<CostAndExpense>? value);
+  @override
+  Production? get production;
+  set production(Production? value);
   @override
   @JsonKey(ignore: true)
   _$$_TransitoryFarmingCopyWith<_$_TransitoryFarming> get copyWith =>

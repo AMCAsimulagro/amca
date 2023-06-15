@@ -1,5 +1,7 @@
 import 'package:amca/ui/features/login/login_page.dart';
-import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_history_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming/all_farming_history_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/all_farming_info_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_users/all_users_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -32,10 +34,10 @@ class ProfilePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 if (vm.currentUser?.isAdmin ?? false)
-                Text(
-                  AmcaWords.youAreAdmin,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                  Text(
+                    AmcaWords.youAreAdmin,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
               ],
             ),
           ),
@@ -46,25 +48,62 @@ class ProfilePage extends StatelessWidget {
             child: ListView(
               physics: const ClampingScrollPhysics(),
               children: [
+                if (vm.currentUser?.isAdmin ?? false) const _AdminOptions(),
                 if (vm.currentUser?.isAdmin ?? false)
-                  ListTile(
-                    leading: const Icon(
-                      Icons.list,
-                      color: Colors.black,
-                    ),
-                    title: const Text(
-                      AmcaWords.seeAllFarms,
-                    ),
-                    onTap: () async {
-                      final vm = Provider.of<ProfileVM>(context, listen: false);
-                      vm.signOut().then((value) {
-                        NavigationHelper.push(
-                          AllFarmingHistoryPage.create(),
-                          context,
-                        );
-                      });
-                    },
+                  const Divider(
+                    height: 1,
                   ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        '${AmcaWords.yourInformation}: ',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.identifier}:',
+                      ),
+                      Text(
+                        vm.currentUser?.identification ?? '',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.email}:',
+                      ),
+                      Text(
+                        vm.currentUser?.email ?? '',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.state}:',
+                      ),
+                      Text(
+                        vm.currentUser?.state ?? '',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '${AmcaWords.town}:',
+                      ),
+                      Text(
+                        vm.currentUser?.town ?? '',
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -92,5 +131,72 @@ class ProfilePage extends StatelessWidget {
         ],
       );
     });
+  }
+}
+
+class _AdminOptions extends StatelessWidget {
+  const _AdminOptions({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(top: 8),
+          child: Text(
+            '${AmcaWords.adminOptions}: ',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.list,
+            color: Colors.black,
+          ),
+          title: const Text(
+            AmcaWords.seeAllFarms,
+          ),
+          onTap: () async {
+            NavigationHelper.push(
+              AllFarmingHistoryPage.create(),
+              context,
+            );
+          },
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.people,
+            color: Colors.black,
+          ),
+          title: const Text(
+            AmcaWords.seeAllUsers,
+          ),
+          onTap: () async {
+            NavigationHelper.push(
+              AllUsersPage.create(),
+              context,
+            );
+          },
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.local_fire_department_sharp,
+            color: Colors.black,
+          ),
+          title: const Text(
+            AmcaWords.addInformation,
+          ),
+          onTap: () async {
+            NavigationHelper.push(
+              AllFarmingInfoPage.create(),
+              context,
+            );
+          },
+        ),
+      ],
+    );
   }
 }
