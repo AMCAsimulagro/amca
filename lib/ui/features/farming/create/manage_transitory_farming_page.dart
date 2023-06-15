@@ -349,7 +349,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                   text: AmcaWords.delete,
                   type: AmcaButtonType.destroy,
                   onPressed: () {
-                    showOptionDialog(widget.transitoryFarming!.id!,context);
+                    showOptionDialog(widget.transitoryFarming!.id!, context);
                   },
                 ),
             ],
@@ -387,7 +387,6 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
           listen: false,
         );
 
-
         Dialogs.showSuccessDialogWithMessage(
           context,
           isEditMode
@@ -399,9 +398,9 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
             listen: false,
           );
           mainNavigationVM.changePage(1);
+          farmingHistoryVM.init();
           Navigator.of(context).popUntil((route) => route.isFirst);
         });
-
       });
     } catch (_) {}
   }

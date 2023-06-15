@@ -17,7 +17,7 @@ class FarmingHistoryPage extends StatefulWidget {
 class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
   @override
   void initState() {
-   Provider.of<FarmingHistoryVM>(
+    Provider.of<FarmingHistoryVM>(
       context,
       listen: false,
     ).init();
@@ -53,13 +53,17 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
+                      MaterialPageRoute<bool>(
                         builder: (BuildContext context) =>
                             ManageTransitoryFarming.create(
                           transitoryFarming: farmingItem,
                         ),
                       ),
-                    );
+                    ).then((value) async {
+                      if (value != null && value) {
+                        await vm.init();
+                      }
+                    });
                   },
                 );
               },

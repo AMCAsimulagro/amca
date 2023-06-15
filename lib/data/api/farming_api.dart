@@ -125,7 +125,7 @@ class FarmingApiAdapter extends FarmingApi {
       final data = collection.docs
           .map((doc) => TransitoryFarming.fromJson(doc.data()))
           .toList()
-        ..sort((a, b) => a.createDate.compareTo(b.createDate));
+        ..sort((a, b) => b.createDate.compareTo(a.createDate));
       return data;
     } on FirebaseAuthException catch (e) {
       throw AppException(
