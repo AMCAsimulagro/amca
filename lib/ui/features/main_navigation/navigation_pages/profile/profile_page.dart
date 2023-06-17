@@ -5,6 +5,8 @@ import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/calls_with_dialog.dart';
+import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +56,9 @@ class ProfilePage extends StatelessWidget {
                     height: 1,
                   ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
+                    bottom: 50,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -106,6 +110,32 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            title: const Text(
+              AmcaWords.deleteAccount,
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+            onTap: () async {
+              final vm = Provider.of<ProfileVM>(context, listen: false);
+
+              Dialogs.showSuccessDialogWithOptions(context,
+                  'Tu información personal sera eliminado permanentemente junto a tu acceso. ¿Estas seguro de eliminar tu cuenta?, ',
+                  onTap: () async {
+                    Dialogs.showLoading(context);
+                    await vm.deleteAccount();
+                    NavigationHelper.pushAndRemoveUntil(
+                      LoginPage.create(),
+                      context,
+                    );
+              });
+            },
           ),
           ListTile(
             leading: const Icon(

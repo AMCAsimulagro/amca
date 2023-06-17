@@ -19,6 +19,8 @@ abstract class LoginRepository {
   Future<AmcaUser> getUserCurrentlyLogged();
 
   Future<void> recoverPassword(String email);
+
+  Future<void> deleteAccount();
 }
 
 class LoginRepositoryAdapter extends LoginRepository {
@@ -59,5 +61,10 @@ class LoginRepositoryAdapter extends LoginRepository {
   @override
   Future<void> recoverPassword(String email) {
     return _api.recoverPassword(email);
+  }
+
+  @override
+  Future<void> deleteAccount() {
+    return _api.deleteAccount();
   }
 }

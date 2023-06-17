@@ -19,4 +19,7 @@ class ProfileVM extends ChangeNotifier {
   Future<void> signOut() {
     return loginRepository.signOut();
   }
+  Future<void> deleteAccount() {
+    return loginRepository.deleteAccount();
+  }
 }

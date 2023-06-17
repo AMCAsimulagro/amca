@@ -28,6 +28,7 @@ class AmcaWords {
   static const String date = 'Fecha';
   static const String description = 'Descripción';
   static const String delete = 'Eliminar';
+  static const String deleteAccount = 'Eliminar cuenta';
   static const String differentPasswords = 'Las contraseñas no coinciden';
   static const String doNotHaveAnAccount =
       '¿No tienes cuenta?, Registrate aquí';

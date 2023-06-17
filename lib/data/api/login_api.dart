@@ -25,6 +25,8 @@ abstract class LoginApi {
   Future<AmcaUser> getUserCurrentlyLogged();
 
   Future<void> recoverPassword(String email);
+
+  Future<void> deleteAccount();
 }
 
 class LoginApiAdapter extends LoginApi {
@@ -165,6 +167,27 @@ class LoginApiAdapter extends LoginApi {
     try {
       return await _firebaseAuth
           .sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    try {
+      final SharedPreferences prefs = await _prefs;
+      final identification = prefs.getString(
+          SharedPreferencesKey.currentlyUserLoggedIdentification);
+      var collectionRef = _firebaseDb.collection(FirebaseCollections.users);
+      final userDb = await collectionRef.doc(identification).delete();
+      return await _firebaseAuth.currentUser?.delete();
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,
