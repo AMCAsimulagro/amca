@@ -1,4 +1,4 @@
-package com.example.amca
+package com.simlagro.amca
 
 import io.flutter.embedding.android.FlutterActivity
 

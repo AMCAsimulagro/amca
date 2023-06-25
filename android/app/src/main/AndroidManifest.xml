@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.amca">
+    package="com.simlagro.amca">
    <application
         android:label="AMCA"
         android:name="${applicationName}"
