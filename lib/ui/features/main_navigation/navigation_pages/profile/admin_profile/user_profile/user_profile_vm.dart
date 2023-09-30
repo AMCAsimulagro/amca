@@ -4,24 +4,17 @@ import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:flutter/cupertino.dart';
 
-class AllUsersVM extends ChangeNotifier {
+class UserProfileVM extends ChangeNotifier {
   final UsersRepository usersRepository = locator<UsersRepository>();
   final LoginRepository loginRepository = locator<LoginRepository>();
-  List<AmcaUser> amcaUsers = [];
+  AmcaUser? userSelected;
+  bool isLoading = false;
 
-  bool isLoading = true;
-
-  Future<void> init() async {
-    isLoading = true;
-    notifyListeners();
+  Future<void> init(AmcaUser userSelected) async {
     try {
-      final currentUser = await loginRepository.getUserCurrentlyLogged();
-      amcaUsers = await usersRepository.getAllUsers()
-        ..removeWhere(
-            (element) => element.identification == currentUser.identification);
+      this.userSelected = userSelected;
     } catch (e) {
     } finally {
-      isLoading = false;
       notifyListeners();
     }
   }

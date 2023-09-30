@@ -51,6 +51,7 @@ class AmcaWords {
   static const String kG = 'Kg';
   static const String myFarming = 'Mis cultivos';
   static const String names = 'Nombres';
+  static const String name = 'Nombre';
   static const String livestock = 'Pecuario';
   static const String logIn = 'Ingresar';
   static const String logOut = 'Cerrar sesión';
@@ -136,6 +137,7 @@ class AmcaWords {
   static const String typeOfExploitation = 'Tipo de explotación';
   static const String units = 'Unidades';
   static const String unitOfMeasurement = 'Unidad de medida';
+  static const String userInfo = 'Información del usuario';
   static const String update = 'Actualizar';
   static const String variable = 'Variable';
   static const String value = 'Valor';
