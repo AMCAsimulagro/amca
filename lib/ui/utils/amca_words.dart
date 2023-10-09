@@ -8,6 +8,7 @@ class AmcaWords {
   static const String allFarms = 'Todos los cultivos';
   static const String allUsers = 'Todos los usuarios';
   static const String accept = 'Aceptar';
+  static const String acceptPolicies = 'Acepto la política y tratamiento de datos';
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
   static const String areYouSureToDeleteThisCostOrExpense = '¿Desea eliminar este costo o gasto?';
@@ -25,6 +26,7 @@ class AmcaWords {
   static const String cropTypes = 'Tipos de cultivo';
   static const String cost = 'Costos';
   static const String costsAndExpenses = 'Costos y gastos';
+  static const String dataPolicy = 'Política de datos';
   static const String date = 'Fecha';
   static const String description = 'Descripción';
   static const String delete = 'Eliminar';
@@ -51,6 +53,7 @@ class AmcaWords {
   static const String kG = 'Kg';
   static const String myFarming = 'Mis cultivos';
   static const String names = 'Nombres';
+  static const String name = 'Nombre';
   static const String livestock = 'Pecuario';
   static const String logIn = 'Ingresar';
   static const String logOut = 'Cerrar sesión';
@@ -119,6 +122,7 @@ class AmcaWords {
       'Por favor, repita la contraseña';
   static const String production = 'Producción';
   static const String profile = 'Perfil';
+  static const String policyUrl = 'https://docs.google.com/document/d/1XpIdjxEirXKEYzuyAPxT4xqlwUiiymTLpLilAT3puIA/edit';
   static const String salaries = 'Salarios';
   static const String state = 'Departamento';
   static const String service = 'Servicio';
@@ -136,6 +140,7 @@ class AmcaWords {
   static const String typeOfExploitation = 'Tipo de explotación';
   static const String units = 'Unidades';
   static const String unitOfMeasurement = 'Unidad de medida';
+  static const String userInfo = 'Información del usuario';
   static const String update = 'Actualizar';
   static const String variable = 'Variable';
   static const String value = 'Valor';
@@ -158,6 +163,7 @@ class AmcaWords {
   static const String yourTransitoryFarmingHasBeenUpdated = 'Tu cultivo transitorio ha sido actualizado';
   static const String youHaveNotCreatedFarmingYet = 'Aún no has creado ningun cultivo';
   static const String yourInformation = 'Tus datos';
+  static const String youShouldAcceptPolicies = 'Debes aceptar la política de datos para crear un usuario';
 
   ///FIREBASE CODE ERRORS
   static const String enterAValidEmail =

@@ -13,6 +13,15 @@ class RegisterVM extends ChangeNotifier {
   List<state_colombia.State> states = [];
   List<String> towns = [];
 
+  bool _acceptPolicies = false;
+
+  bool get acceptPolicies => _acceptPolicies;
+
+  set acceptPolicies(bool value) {
+    _acceptPolicies = value;
+    notifyListeners();
+  }
+
   Future<void> loadStatesAndCities() async {
     states = await stateRepository.getStates();
     notifyListeners();

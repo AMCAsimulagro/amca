@@ -5,7 +5,6 @@ import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
-import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:flutter/material.dart';
