@@ -1,5 +1,6 @@
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:amca/ui/features/register/register_vm.dart';
+import 'package:amca/ui/features/webview_page/webview_page.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/assets.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -241,15 +242,59 @@ class _RegisterPageState extends State<RegisterPage> {
                               const SizedBox(
                                 height: 12,
                               ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    value: vm.acceptPolicies,
+                                    onChanged: (value) {
+                                      vm.acceptPolicies = !vm.acceptPolicies;
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (_) => const WebViewPage(
+                                              title: AmcaWords.dataPolicy,
+                                              url: AmcaWords.policyUrl,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        AmcaWords.acceptPolicies,
+                                        textAlign: TextAlign.start,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall
+                                            ?.copyWith(
+                                              color: Colors.lightBlue,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
                               AmcaButton(
                                 text: AmcaWords.register,
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
+                                onPressed: () async {
+                                  if (!vm.acceptPolicies) {
+                                    await Dialogs.showErrorDialogWithMessage(
+                                      context,
+                                      AmcaWords.youShouldAcceptPolicies,
+                                    );
+                                    return;
+                                  }
+                                  if (_formKey.currentState!.validate() &&
+                                      vm.acceptPolicies) {
                                     createUser(vm);
                                   }
                                 },
                               ),
-
                             ],
                           ),
                         ),
@@ -290,4 +335,3 @@ class _RegisterPageState extends State<RegisterPage> {
     } catch (_) {}
   }
 }
-
