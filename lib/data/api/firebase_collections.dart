@@ -4,4 +4,5 @@ class FirebaseCollections {
   static const farming = 'farming';
   static const sembrados = 'sembrados';
   static const tiposDeSembrado = 'tiposDeSembrado';
+  static const frequentQuestions = 'frequentQuestions';
 }

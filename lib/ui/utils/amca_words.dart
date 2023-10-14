@@ -46,6 +46,7 @@ class AmcaWords {
   static const String fillAllFields = 'Llena todos los datos para registrarte';
   static const String firstName = 'Primer nombre';
   static const String firstLastName = 'Primer apellido';
+  static const String frequentQuestions = 'Preguntas frecuentes ';
   static const String forgotPassword = '¿Olvidaste tu contraseña?';
   static const String format = 'Formato';
   static const String home = 'Inicio';
@@ -134,6 +135,7 @@ class AmcaWords {
   static const String secondLastName = 'Segundo Apellido';
   static const String sownType = 'Tipo de sembrado';
   static const String sownArea = 'Área sembrada';
+  static const String supportDefaultMessage = 'Hola, necesito ayuda para usar AMCA';
   static const String transitory = 'Transitorio';
   static const String transitoryFarming = 'Cultivo transitorio';
   static const String town = 'Municipio';
@@ -144,6 +146,7 @@ class AmcaWords {
   static const String update = 'Actualizar';
   static const String variable = 'Variable';
   static const String value = 'Valor';
+  static const String virtualSupport = 'Asistencia virtual';
   static const String quantity = 'Cantidad';
   static const String welcome = 'Bienvenido';
   static const String youAreAdmin = '¡Eres Administrador!';
