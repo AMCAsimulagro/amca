@@ -5,6 +5,7 @@ class AmcaWords {
   static const String addCostOrExpense = 'Agregar Costo o Gasto';
   static const String addCropType = 'Agregar tipo de cultivo';
   static const String addCrop = 'Agregar cultivo';
+  static const String addQuestion = 'Agregar pregunta';
   static const String allFarms = 'Todos los cultivos';
   static const String allUsers = 'Todos los usuarios';
   static const String accept = 'Aceptar';
@@ -12,8 +13,10 @@ class AmcaWords {
   static const String agricultural = 'Agrícola';
   static const String amountSown = 'Cantidad sembrada';
   static const String areYouSureToDeleteThisCostOrExpense = '¿Desea eliminar este costo o gasto?';
+  static const String areYouSureToDeleteThisFrequentQuestion = '¿Desea eliminar esta pregunta frecuente?';
   static const String areYouSureToDeleteThisTransitoryFarming = '¿Desea eliminar este cultivo?';
   static const String cancel = 'Cancelar';
+  static const String create = 'Crear';
   static const String comment = 'Comentario';
   static const String createCostAndExpense = 'Crear costo y gasto';
   static const String createCropType = 'Crear tipo de cultivo';
@@ -25,6 +28,7 @@ class AmcaWords {
   static const String cropType = 'Tipo de cultivo';
   static const String cropTypes = 'Tipos de cultivo';
   static const String cost = 'Costos';
+  static const String content = 'Contenido';
   static const String costsAndExpenses = 'Costos y gastos';
   static const String dataPolicy = 'Política de datos';
   static const String date = 'Fecha';
@@ -37,6 +41,7 @@ class AmcaWords {
   static const String emailHasBeenSentToRecoverYourPassword = 'Se te ha enviado un correo electrónico para recuperar tu contraseña';
   static const String expense = 'Gasto';
   static const String editCostAndExpense = 'Editar Costo y Gasto';
+  static const String edit= 'Editar';
   static const String editCropType= 'Editar tipo de cultivo';
   static const String editFarming = 'Editar cultivo';
   static const String editProduction= 'Editar producción';
@@ -46,7 +51,8 @@ class AmcaWords {
   static const String fillAllFields = 'Llena todos los datos para registrarte';
   static const String firstName = 'Primer nombre';
   static const String firstLastName = 'Primer apellido';
-  static const String frequentQuestions = 'Preguntas frecuentes ';
+  static const String frequentQuestions = 'Preguntas frecuentes';
+  static const String frequentQuestion = 'Pregunta frecuente ';
   static const String forgotPassword = '¿Olvidaste tu contraseña?';
   static const String format = 'Formato';
   static const String home = 'Inicio';
@@ -95,6 +101,10 @@ class AmcaWords {
       'Por favor, ingrese el nombre del lote';
   static const String pleaseWriteIdentifier =
       'Por favor, escriba su cédula ciudadana';
+  static const String pleaseWriteATitle =
+      'Por favor, escriba un título';
+  static const String pleaseWriteAContent =
+      'Por favor, escriba el contenido';
   static const String pleaseAddEmail =
       'Por favor, ingrese un correo electrónico';
   static const String pleaseAddValidEmail =
@@ -138,8 +148,9 @@ class AmcaWords {
   static const String supportDefaultMessage = 'Hola, necesito ayuda para usar AMCA';
   static const String transitory = 'Transitorio';
   static const String transitoryFarming = 'Cultivo transitorio';
+  static const String title = 'Título';
   static const String town = 'Municipio';
-  static const String typeOfExploitation = 'Tipo de explotación';
+  static const String typesOfproduction = 'Tipos de producción';
   static const String units = 'Unidades';
   static const String unitOfMeasurement = 'Unidad de medida';
   static const String userInfo = 'Información del usuario';
@@ -153,7 +164,10 @@ class AmcaWords {
   static const String yourAccountHasBeenCreated = 'Tu cuenta ha sido creada';
   static const String yourCostOrExpenseHaveBeenCreated = 'Tu costo o gasto ha sido creado';
   static const String yourCostOrExpenseHaveBeenUpdated = 'Tu costo o gasto ha sido actualizado';
+  static const String yourFrequentQuestionHaveBeenCreated = 'Tu pregunta frecuente ha sido creada';
+  static const String yourFrequentQuestionHaveBeenUpdated = 'Tu pregunta frecuente ha sido actualizada';
   static const String yourCostOrExpenseHaveBeenDeleted = 'Tu costo o gasto ha sido eliminado';
+  static const String yourFrequentQuestionHaveBeenDeleted = 'Tu pregunta frecuente ha sido eliminada';
   static const String yourProductionHasBeenCreated = 'Tu producción ha sido creada';
   static const String yourProductionHasBeenUpdated = 'Tu producción ha sido actualizada';
   static const String yourProductionHasBeenDeleted = 'Tu producción ha sido eliminada';

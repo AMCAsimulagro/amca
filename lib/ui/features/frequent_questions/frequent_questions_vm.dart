@@ -6,7 +6,7 @@ import 'package:amca/domain/model/frequent_question.dart';
 import 'package:flutter/cupertino.dart';
 
 class FrequentQuestionsVM extends ChangeNotifier {
-  final FrequentQuestionRepository farmingRepository =
+  final FrequentQuestionRepository frequentRepository =
       locator<FrequentQuestionRepository>();
   List<FrequentQuestion> frequentQuestions = [];
   bool isLoading = true;
@@ -14,7 +14,7 @@ class FrequentQuestionsVM extends ChangeNotifier {
   Future<void> init() async {
     isLoading = true;
     try {
-      frequentQuestions = await farmingRepository.getFrequentQuestions();
+      frequentQuestions = await frequentRepository.getFrequentQuestions();
     } catch (e) {
     } finally {
       isLoading = false;

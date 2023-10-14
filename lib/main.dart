@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
         },
         child: MaterialApp(
           title: 'Amca',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: lightColorScheme,

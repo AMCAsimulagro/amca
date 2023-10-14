@@ -51,7 +51,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     final vm = context.watch<MainNavigationVM>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(pageTitle ?? AmcaWords.typeOfExploitation),
+        title: Text(pageTitle ?? AmcaWords.typesOfproduction),
       ),
       body: IndexedStack(
         index: vm.currentPage,
@@ -78,7 +78,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   final Map<int, NavigationOption> pagesToBuild = {
     0: NavigationOption(
       page: const HomePage(),
-      title: AmcaWords.typeOfExploitation,
+      title: AmcaWords.typesOfproduction,
     ),
     1: NavigationOption(
       page: const FarmingHistoryPage(),

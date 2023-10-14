@@ -121,7 +121,9 @@ class ProfilePage extends StatelessWidget {
                         ),
                         onTap: () async {
                           NavigationHelper.push(
-                            FrequentQuestionsPage.create(),
+                            FrequentQuestionsPage.create(
+                              isAdmin: vm.currentUser?.isAdmin ?? false,
+                            ),
                             context,
                           );
                         },
@@ -149,12 +151,12 @@ class ProfilePage extends StatelessWidget {
               Dialogs.showSuccessDialogWithOptions(context,
                   'Tu información personal sera eliminado permanentemente junto a tu acceso. ¿Estas seguro de eliminar tu cuenta?, ',
                   onTap: () async {
-                    Dialogs.showLoading(context);
-                    await vm.deleteAccount();
-                    NavigationHelper.pushAndRemoveUntil(
-                      LoginPage.create(),
-                      context,
-                    );
+                Dialogs.showLoading(context);
+                await vm.deleteAccount();
+                NavigationHelper.pushAndRemoveUntil(
+                  LoginPage.create(),
+                  context,
+                );
               });
             },
           ),

@@ -10,7 +10,7 @@ class FrequentQuestion with _$FrequentQuestion {
     String? id,
     required String title,
     required String content,
-    required String createdById,
+    String? createdById,
   }) = _FrequentQuestion;
 
   factory FrequentQuestion.fromJson(Map<String, Object?> json) =>

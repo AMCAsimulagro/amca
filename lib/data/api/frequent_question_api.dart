@@ -67,15 +67,15 @@ class FrequentQuestionApiAdapter extends FrequentQuestionApi {
       FrequentQuestion frequentQuestion) async {
     try {
       final frequentQuestionId = frequentQuestion.id ?? const Uuid().v4();
-      final transitoryFarmingToUpload = frequentQuestion.copyWith(
+      final frequentQuestionToUpload = frequentQuestion.copyWith(
         createdById: _firebaseAuth.currentUser?.uid ?? '',
         id: frequentQuestionId,
       );
       await _firebaseDb
           .collection(FirebaseCollections.frequentQuestions)
           .doc(frequentQuestionId)
-          .set(frequentQuestion.toJson());
-      return transitoryFarmingToUpload;
+          .set(frequentQuestionToUpload.toJson());
+      return frequentQuestionToUpload;
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,
