@@ -23,7 +23,7 @@ abstract class FarmingApi {
 
   Future<void> deleteTransitoryFarming(String id);
 
-  Future<List<CostAndExpense>> getCostsAndExpensesByFarming();
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId);
 
   Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);
 
@@ -181,9 +181,10 @@ class FarmingApiAdapter extends FarmingApi {
   }
 
   @override
-  Future<List<CostAndExpense>> getCostsAndExpensesByFarming() {
-    // TODO: implement getCostsAndExpensesByFarming
-    throw UnimplementedError();
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarming(
+      String farmingId) async {
+    final result = await getTransitoryFarmingById(farmingId);
+    return result.costsAndExpenses ?? [];
   }
 
   @override

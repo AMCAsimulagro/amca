@@ -225,18 +225,18 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
           );
         },
       ),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5,
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(8.0),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

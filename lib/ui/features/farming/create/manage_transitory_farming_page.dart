@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:amca/domain/model/transitory_farming.dart';
+import 'package:amca/ui/features/charts_profile/charts_profile_page.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/farming/create/create_transitory_farming_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
@@ -259,59 +262,83 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                     height: 24,
                   ),
                   if (isEditMode)
-                    Row(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Expanded(
-                          child: AmcaButton(
-                            text: AmcaWords.seeCostsAndExpenses,
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) =>
-                                      CostsExpensesListPage.create(
-                                    farmingId:
-                                        widget.transitoryFarming?.id ?? '',
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: AmcaButton(
+                                text: AmcaWords.seeCostsAndExpenses,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                      builder: (BuildContext context) =>
+                                          CostsExpensesListPage.create(
+                                        farmingId:
+                                            widget.transitoryFarming?.id ?? '',
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Expanded(
+                              child: AmcaButton(
+                                text:
+                                    widget.transitoryFarming?.production == null
+                                        ? AmcaWords.createProduction
+                                        : AmcaWords.seeProduction,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute<bool>(
+                                      builder: (BuildContext context) =>
+                                          ManageProductionPage.create(
+                                        farmingId:
+                                            widget.transitoryFarming?.id ?? '',
+                                        production: widget
+                                            .transitoryFarming?.production,
+                                      ),
+                                    ),
+                                  ).then((value) async {
+                                    if (value ?? false) {
+                                      final farmingHistoryVM =
+                                          Provider.of<FarmingHistoryVM>(
+                                        context,
+                                        listen: false,
+                                      );
+                                      await farmingHistoryVM.init();
+                                      Navigator.pop(context);
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(
-                          width: 15,
+                          height: 15,
                         ),
-                        Expanded(
-                          child: AmcaButton(
-                            text: widget.transitoryFarming?.production == null
-                                ? AmcaWords.createProduction
-                                : AmcaWords.seeProduction,
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute<bool>(
-                                  builder: (BuildContext context) =>
-                                      ManageProductionPage.create(
-                                    farmingId:
-                                        widget.transitoryFarming?.id ?? '',
-                                    production:
-                                        widget.transitoryFarming?.production,
-                                  ),
+                        AmcaButton(
+                          text: AmcaWords.seeCharts,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    ChartsProfilePage.create(
+                                  transitoryFarmingId:
+                                      widget.transitoryFarming!.id!,
                                 ),
-                              ).then((value) async {
-                                if (value ?? false) {
-                                  final farmingHistoryVM =
-                                      Provider.of<FarmingHistoryVM>(
-                                    context,
-                                    listen: false,
-                                  );
-                                  await farmingHistoryVM.init();
-                                  Navigator.pop(context);
-                                }
-                              });
-                            },
-                          ),
-                        ),
+                              ),
+                            );
+                          },
+                        )
                       ],
                     )
                 ],
@@ -320,18 +347,18 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
           );
         },
       ),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5,
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(8.0),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -380,8 +407,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        final result =
-            await createTransitoryVm.createTransitoryFarming(transitoryFarming);
+        await createTransitoryVm.createTransitoryFarming(transitoryFarming);
         final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
           context,
           listen: false,

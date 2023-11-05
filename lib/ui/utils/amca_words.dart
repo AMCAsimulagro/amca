@@ -16,6 +16,7 @@ class AmcaWords {
   static const String areYouSureToDeleteThisFrequentQuestion = '¿Desea eliminar esta pregunta frecuente?';
   static const String areYouSureToDeleteThisTransitoryFarming = '¿Desea eliminar este cultivo?';
   static const String cancel = 'Cancelar';
+  static const String chart = 'Gráficas';
   static const String create = 'Crear';
   static const String comment = 'Comentario';
   static const String createCostAndExpense = 'Crear costo y gasto';
@@ -140,6 +141,7 @@ class AmcaWords {
   static const String seeAllFarms = 'Ver todos los cultivos';
   static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
+  static const String seeCharts = 'Ver gráficas';
   static const String seeProduction = 'Ver Producción del lote';
   static const String secondName = 'Segundo nombre';
   static const String secondLastName = 'Segundo Apellido';
