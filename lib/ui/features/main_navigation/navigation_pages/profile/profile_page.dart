@@ -1,3 +1,4 @@
+import 'package:amca/ui/features/frequent_questions/frequent_questions_page.dart';
 import 'package:amca/ui/features/login/login_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming/all_farming_history_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/all_farming_info_page.dart';
@@ -104,6 +105,29 @@ class ProfilePage extends StatelessWidget {
                       Text(
                         vm.currentUser?.town ?? '',
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Divider(
+                        height: 1,
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.question_mark_outlined,
+                          color: Colors.black,
+                        ),
+                        title: const Text(
+                          AmcaWords.frequentQuestions,
+                        ),
+                        onTap: () async {
+                          NavigationHelper.push(
+                            FrequentQuestionsPage.create(
+                              isAdmin: vm.currentUser?.isAdmin ?? false,
+                            ),
+                            context,
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -127,12 +151,12 @@ class ProfilePage extends StatelessWidget {
               Dialogs.showSuccessDialogWithOptions(context,
                   'Tu información personal sera eliminado permanentemente junto a tu acceso. ¿Estas seguro de eliminar tu cuenta?, ',
                   onTap: () async {
-                    Dialogs.showLoading(context);
-                    await vm.deleteAccount();
-                    NavigationHelper.pushAndRemoveUntil(
-                      LoginPage.create(),
-                      context,
-                    );
+                Dialogs.showLoading(context);
+                await vm.deleteAccount();
+                NavigationHelper.pushAndRemoveUntil(
+                  LoginPage.create(),
+                  context,
+                );
               });
             },
           ),
