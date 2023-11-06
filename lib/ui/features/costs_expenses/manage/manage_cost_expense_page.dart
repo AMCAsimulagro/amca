@@ -53,9 +53,6 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   static const _locale = 'en';
   String createdDate = '';
 
-  String _formatNumber(String s) =>
-      NumberFormat.decimalPattern(_locale).format(int.parse(s));
-
   @override
   void initState() {
     isEditMode = widget.costAndExpense != null;

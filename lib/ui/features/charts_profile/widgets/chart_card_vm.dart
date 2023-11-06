@@ -1,21 +1,21 @@
+import 'package:amca/ui/utils/extensions/string_extensions.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
 class ChartCardVM extends ChangeNotifier {
+  Jiffy currentDateTime = Jiffy.now();
 
-  String currentDateFormatted = '';
-  DateTime currentDateTime = DateTime.now();
+  String get currentDateFormatted {
+    return '${currentDateTime.MMMM.firstLetterInCapitalize()} ${currentDateTime.year}';
+  }
 
-
-  void init() {
-    DateFormat dateFormat = DateFormat.yMMMM();
-    String formattedDate = dateFormat.format(currentDateTime);
-    currentDateFormatted = formattedDate;
+  void increaseDate() {
+    currentDateTime = currentDateTime.add(months: 1);
     notifyListeners();
   }
 
-  void increaseDate(){
-    var jiffy = Jiffy.;
+  void decreaseDate() {
+    currentDateTime = currentDateTime.subtract(months: 1);
+    notifyListeners();
   }
 }

@@ -30,4 +30,6 @@ extension CostAndExpenseExtension on CostAndExpense {
   int get year => createDate.year;
 
   int get month => createDate.month;
+
+  double get priceDouble => double.parse(price.replaceAll(',', ''));
 }

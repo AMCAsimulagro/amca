@@ -1,21 +1,20 @@
-import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/ui/utils/amca_palette.dart';
+import 'package:flutter/material.dart';
 
 class PieDataUI {
-  final int year;
-  final List<PieDataMonth>? monthsData;
+  final double value;
+
+  final double percentageInThePie;
+  final bool? isCost;
 
   PieDataUI({
-    required this.year,
-    this.monthsData,
+    required this.value,
+    this.isCost = false,
+    required this.percentageInThePie,
   });
-}
 
-class PieDataMonth {
-  final int? month;
-  final List<CostAndExpense>? costAndExpense;
+  String get percentage => '${percentageInThePie.toStringAsFixed(2)}%';
 
-  PieDataMonth({
-    this.month,
-    this.costAndExpense,
-  });
+  Color get color =>
+      isCost! ? AmcaPalette.pieCostColor : AmcaPalette.pieExpenseColor;
 }
