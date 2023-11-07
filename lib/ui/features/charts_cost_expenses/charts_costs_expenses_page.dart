@@ -38,6 +38,7 @@ class ChartsCostsExpensesPage extends StatefulWidget {
 
 class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
   int touchedIndex = -1;
+  int touchedGroupIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -169,11 +170,313 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                   );
                 },
                 child: StreamBuilder<List<BarDataUI>>(
-                  stream: vm.barCostDataStream.stream,
+                  stream: vm.barCostDataController.stream,
                   builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return BarChartCostExpenses(
-                        barDataUI: snapshot.data!,
+                    if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                      final dataList = snapshot.data!
+                          .map((e) => _BarData(
+                                AmcaPalette.pieCostColor,
+                                e.totalCost ?? 0.0,
+                                0,
+                              ))
+                          .toList();
+                      final double maxValue = dataList
+                          .map((barItem) => barItem.value)
+                          .reduce((valor1, valor2) =>
+                              valor1 > valor2 ? valor1 : valor2);
+                      return Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: AspectRatio(
+                          aspectRatio: 1.4,
+                          child: BarChart(
+                            BarChartData(
+                              alignment: BarChartAlignment.spaceBetween,
+                              borderData: FlBorderData(
+                                show: true,
+                                border: Border.symmetric(
+                                  horizontal: BorderSide(
+                                    color: Colors.blue.withOpacity(0.2),
+                                  ),
+                                ),
+                              ),
+                              titlesData: FlTitlesData(
+                                show: true,
+                                leftTitles: AxisTitles(
+                                  drawBehindEverything: true,
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    reservedSize: 80,
+                                    getTitlesWidget: (value, meta) {
+                                      return Text(
+                                        '\$${value.toInt().toString().formatNumberToColombianPesos()}',
+                                        textAlign: TextAlign.left,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                bottomTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    reservedSize: 36,
+                                    getTitlesWidget: (value, meta) {
+                                      final index = value.toInt();
+                                      final month =
+                                          snapshot.data![index].monthName;
+                                      return SideTitleWidget(
+                                        axisSide: meta.axisSide,
+                                        child: Text(
+                                          month,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                rightTitles: AxisTitles(),
+                                topTitles: AxisTitles(),
+                              ),
+                              gridData: FlGridData(
+                                show: true,
+                                drawVerticalLine: false,
+                                getDrawingHorizontalLine: (value) => FlLine(
+                                  color: Colors.black.withOpacity(0.2),
+                                  strokeWidth: 1,
+                                ),
+                              ),
+                              barGroups: dataList.asMap().entries.map((e) {
+                                final index = e.key;
+                                final data = e.value;
+                                return generateBarGroup(
+                                  index,
+                                  data.color,
+                                  data.value,
+                                  data.shadowValue,
+                                );
+                              }).toList(),
+                              maxY: maxValue,
+                              barTouchData: BarTouchData(
+                                enabled: true,
+                                handleBuiltInTouches: false,
+                                touchTooltipData: BarTouchTooltipData(
+                                  tooltipBgColor: Colors.transparent,
+                                  tooltipMargin: 0,
+                                  getTooltipItem: (
+                                    BarChartGroupData group,
+                                    int groupIndex,
+                                    BarChartRodData rod,
+                                    int rodIndex,
+                                  ) {
+                                    return BarTooltipItem(
+                                      rod.toY.toString(),
+                                      TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: rod.color,
+                                        fontSize: 12,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black26,
+                                            blurRadius: 12,
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                                touchCallback: (event, response) {
+                                  if (event.isInterestedForInteractions &&
+                                      response != null &&
+                                      response.spot != null) {
+                                    setState(() {
+                                      touchedGroupIndex =
+                                          response.spot!.touchedBarGroupIndex;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      touchedGroupIndex = -1;
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+
+                    if (snapshot.hasError) {
+                      const Text('Error');
+                    }
+
+                    return Container(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AmcaWords.youDontHaveCostOrExpensesRegistered,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 15),
+                          Text(
+                            AmcaWords.allYourCostOrExpenses,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),  ChartCard(
+                title: '${AmcaWords.expense} ${AmcaWords.barChart}',
+                dateSelectedType: DateSelectedType.semester,
+                dateSelected: (barCostDateSelected) {
+                  vm.createBarChart(
+                    barCostDateSelected,
+                    ChartTypeData.expenses,
+                  );
+                },
+                child: StreamBuilder<List<BarDataUI>>(
+                  stream: vm.barExpenseDataStream.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                      final dataList = snapshot.data!
+                          .map((e) => _BarData(
+                        AmcaPalette.pieCostColor,
+                        e.totalCost ?? 0.0,
+                        0,
+                      ))
+                          .toList();
+                      final double maxValue = dataList
+                          .map((barItem) => barItem.value)
+                          .reduce((valor1, valor2) =>
+                      valor1 > valor2 ? valor1 : valor2);
+                      return Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: AspectRatio(
+                          aspectRatio: 1.4,
+                          child: BarChart(
+                            BarChartData(
+                              alignment: BarChartAlignment.spaceBetween,
+                              borderData: FlBorderData(
+                                show: true,
+                                border: Border.symmetric(
+                                  horizontal: BorderSide(
+                                    color: Colors.blue.withOpacity(0.2),
+                                  ),
+                                ),
+                              ),
+                              titlesData: FlTitlesData(
+                                show: true,
+                                leftTitles: AxisTitles(
+                                  drawBehindEverything: true,
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    reservedSize: 80,
+                                    getTitlesWidget: (value, meta) {
+                                      return Text(
+                                        '\$${value.toInt().toString().formatNumberToColombianPesos()}',
+                                        textAlign: TextAlign.left,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                bottomTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    reservedSize: 36,
+                                    getTitlesWidget: (value, meta) {
+                                      final index = value.toInt();
+                                      final month =
+                                          snapshot.data![index].monthName;
+                                      return SideTitleWidget(
+                                        axisSide: meta.axisSide,
+                                        child: Text(
+                                          month,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                rightTitles: AxisTitles(),
+                                topTitles: AxisTitles(),
+                              ),
+                              gridData: FlGridData(
+                                show: true,
+                                drawVerticalLine: false,
+                                getDrawingHorizontalLine: (value) => FlLine(
+                                  color: Colors.black.withOpacity(0.2),
+                                  strokeWidth: 1,
+                                ),
+                              ),
+                              barGroups: dataList.asMap().entries.map((e) {
+                                final index = e.key;
+                                final data = e.value;
+                                return generateBarGroup(
+                                  index,
+                                  data.color,
+                                  data.value,
+                                  data.shadowValue,
+                                );
+                              }).toList(),
+                              maxY: maxValue,
+                              barTouchData: BarTouchData(
+                                enabled: true,
+                                handleBuiltInTouches: false,
+                                touchTooltipData: BarTouchTooltipData(
+                                  tooltipBgColor: Colors.transparent,
+                                  tooltipMargin: 0,
+                                  getTooltipItem: (
+                                      BarChartGroupData group,
+                                      int groupIndex,
+                                      BarChartRodData rod,
+                                      int rodIndex,
+                                      ) {
+                                    return BarTooltipItem(
+                                      rod.toY.toString(),
+                                      TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: rod.color,
+                                        fontSize: 12,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black26,
+                                            blurRadius: 12,
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                                touchCallback: (event, response) {
+                                  if (event.isInterestedForInteractions &&
+                                      response != null &&
+                                      response.spot != null) {
+                                    setState(() {
+                                      touchedGroupIndex =
+                                          response.spot!.touchedBarGroupIndex;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      touchedGroupIndex = -1;
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
                       );
                     }
 
@@ -236,40 +539,6 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
       },
     );
   }
-}
-
-class BarChartCostExpenses extends StatefulWidget {
-  BarChartCostExpenses({
-    super.key,
-    required this.barDataUI,
-  });
-
-  final shadowColor = const Color(0xFFCCCCCC);
-
-  final List<BarDataUI> barDataUI;
-
-  @override
-  State<BarChartCostExpenses> createState() => _BarChartCostExpensesState();
-}
-
-class _BarChartCostExpensesState extends State<BarChartCostExpenses> {
-  late List<_BarData> _dataList;
-  late double maxValue;
-
-  @override
-  void initState() {
-    super.initState();
-    _dataList = widget.barDataUI
-        .map((e) => _BarData(
-              AmcaPalette.pieCostColor,
-              e.totalCost ?? 0.0,
-              0,
-            ))
-        .toList();
-    maxValue = _dataList
-        .map((barItem) => barItem.value)
-        .reduce((valor1, valor2) => valor1 > valor2 ? valor1 : valor2);
-  }
 
   BarChartGroupData generateBarGroup(
     int x,
@@ -287,131 +556,11 @@ class _BarChartCostExpensesState extends State<BarChartCostExpenses> {
         ),
         BarChartRodData(
           toY: shadowValue,
-          color: widget.shadowColor,
+          color: Colors.transparent,
           width: 6,
         ),
       ],
       showingTooltipIndicators: touchedGroupIndex == x ? [0] : [],
-    );
-  }
-
-  int touchedGroupIndex = -1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: AspectRatio(
-        aspectRatio: 1.4,
-        child: BarChart(
-          BarChartData(
-            alignment: BarChartAlignment.spaceBetween,
-            borderData: FlBorderData(
-              show: true,
-              border: Border.symmetric(
-                horizontal: BorderSide(
-                  color: Colors.blue.withOpacity(0.2),
-                ),
-              ),
-            ),
-            titlesData: FlTitlesData(
-              show: true,
-              leftTitles: AxisTitles(
-                drawBehindEverything: true,
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: 80,
-                  getTitlesWidget: (value, meta) {
-                    return Text(
-                      '\$${value.toInt().toString().formatNumberToColombianPesos()}',
-                      textAlign: TextAlign.left,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    );
-                  },
-                ),
-              ),
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: 36,
-                  getTitlesWidget: (value, meta) {
-                    final index = value.toInt();
-                    return SideTitleWidget(
-                      axisSide: meta.axisSide,
-                      child: Text(
-                        index.toString(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              rightTitles: AxisTitles(),
-              topTitles: AxisTitles(),
-            ),
-            gridData: FlGridData(
-              show: true,
-              drawVerticalLine: false,
-              getDrawingHorizontalLine: (value) => FlLine(
-                color: Colors.black.withOpacity(0.2),
-                strokeWidth: 1,
-              ),
-            ),
-            barGroups: _dataList.asMap().entries.map((e) {
-              final index = e.key;
-              final data = e.value;
-              return generateBarGroup(
-                index,
-                data.color,
-                data.value,
-                data.shadowValue,
-              );
-            }).toList(),
-            maxY: maxValue,
-            barTouchData: BarTouchData(
-              enabled: true,
-              handleBuiltInTouches: false,
-              touchTooltipData: BarTouchTooltipData(
-                tooltipBgColor: Colors.transparent,
-                tooltipMargin: 0,
-                getTooltipItem: (
-                  BarChartGroupData group,
-                  int groupIndex,
-                  BarChartRodData rod,
-                  int rodIndex,
-                ) {
-                  return BarTooltipItem(
-                    rod.toY.toString(),
-                    TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: rod.color,
-                      fontSize: 12,
-                      shadows: const [
-                        Shadow(
-                          color: Colors.black26,
-                          blurRadius: 12,
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
-              touchCallback: (event, response) {
-                if (event.isInterestedForInteractions &&
-                    response != null &&
-                    response.spot != null) {
-                  setState(() {
-                    touchedGroupIndex = response.spot!.touchedBarGroupIndex;
-                  });
-                } else {
-                  setState(() {
-                    touchedGroupIndex = -1;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

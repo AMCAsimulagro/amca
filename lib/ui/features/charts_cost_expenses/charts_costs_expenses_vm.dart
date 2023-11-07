@@ -26,7 +26,7 @@ class ChartsProfileVM extends ChangeNotifier {
   final StreamController<List<PieDataUI>> pieDataStream =
       StreamController<List<PieDataUI>>();
 
-  final StreamController<List<BarDataUI>> barCostDataStream =
+  final StreamController<List<BarDataUI>> barCostDataController =
       StreamController<List<BarDataUI>>();
 
   final StreamController<List<BarDataUI>> barExpenseDataStream =
@@ -134,22 +134,28 @@ class ChartsProfileVM extends ChangeNotifier {
         barSemesterDataSelected = _getBarSemesterDateSelected(dateSelected);
         cacheSemesterData[cacheSemesterKey] = barSemesterDataSelected;
       }
+      if (barSemesterDataSelected.isNotEmpty) {
+        var dataUI = _getBarDataBySemester(
+          dateSelected,
+          barSemesterDataSelected,
+          chartTypeData,
+        );
 
-      var dataUI = _getBarDataBySemester(
-        dateSelected,
-        barSemesterDataSelected,
-        chartTypeData,
-      );
-      dataUI = dataUI.reversed.toList();
-
-      if (chartTypeData.isCost) {
-        barCostDataStream.add(dataUI);
+        if (chartTypeData.isCost) {
+          barCostDataController.add(dataUI);
+        } else {
+          barExpenseDataStream.add(dataUI);
+        }
       } else {
-        barExpenseDataStream.add(dataUI);
+        if (chartTypeData.isCost) {
+          barCostDataController.add([]);
+        } else {
+          barExpenseDataStream.add([]);
+        }
       }
     } catch (_) {
       if (chartTypeData.isCost) {
-        barCostDataStream.addError(Exception());
+        barCostDataController.addError(Exception());
       } else {
         barExpenseDataStream.addError(Exception());
       }
@@ -179,7 +185,7 @@ class ChartsProfileVM extends ChangeNotifier {
   ) {
     final List<BarDataUI> dataList = [];
     var index = dateSelected.isFirstSemester ? 1 : 7;
-    final limit = dateSelected.isFirstSemester ? 7 : 12;
+    final limit = dateSelected.isFirstSemester ? 6 : 12;
     for (index; index <= limit; index++) {
       dataList.add(BarDataUI(month: index));
     }
@@ -193,7 +199,7 @@ class ChartsProfileVM extends ChangeNotifier {
     return dataList;
   }
 
-  double _getTotalCost(
+  double? _getTotalCost(
       ChartTypeData chartTypeData, ChartDataMonth monthBySemester) {
     return (chartTypeData.isCost)
         ? monthBySemester.totalCost
@@ -203,7 +209,7 @@ class ChartsProfileVM extends ChangeNotifier {
   @override
   void dispose() {
     pieDataStream.close();
-    barCostDataStream.close();
+    barCostDataController.close();
     barExpenseDataStream.close();
     super.dispose();
   }
