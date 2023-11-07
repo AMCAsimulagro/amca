@@ -17,6 +17,8 @@ enum ChartTypeData {
 
 extension ChartTypeUtils on ChartTypeData {
   bool get isCost => this == ChartTypeData.costs;
+
+  bool get isExpenses => this == ChartTypeData.expenses;
 }
 
 class ChartsProfileVM extends ChangeNotifier {
@@ -97,8 +99,8 @@ class ChartsProfileVM extends ChangeNotifier {
       final pieMonthSelected = pieDataByYear.monthsData
           ?.firstWhere((element) => element.month == dateSelected.month);
       if (pieMonthSelected != null) {
-        final totalCost = pieMonthSelected.totalCost;
-        final totalExpense = pieMonthSelected.totalExpense;
+        final totalCost = pieMonthSelected.totalCost ?? 0.0;
+        final totalExpense = pieMonthSelected.totalExpense ?? 0.0;
         final total = totalCost + totalExpense;
         final PieDataUI pieDataUICost = PieDataUI(
           value: totalCost,
@@ -140,11 +142,24 @@ class ChartsProfileVM extends ChangeNotifier {
           barSemesterDataSelected,
           chartTypeData,
         );
+        bool hasData = false;
+
+        for (var element in barSemesterDataSelected) {
+          if (chartTypeData.isCost && element.hasCosts) {
+            hasData = true;
+            break;
+          }
+          if (chartTypeData.isExpenses && element.hasExpenses) {
+            hasData = true;
+            break;
+          }
+        }
 
         if (chartTypeData.isCost) {
-          barCostDataController.add(dataUI);
-        } else {
-          barExpenseDataStream.add(dataUI);
+          barCostDataController.add(hasData ? dataUI : []);
+        }
+        if (chartTypeData.isExpenses) {
+          barExpenseDataStream.add(hasData ? dataUI : []);
         }
       } else {
         if (chartTypeData.isCost) {

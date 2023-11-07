@@ -25,15 +25,18 @@ class ChartDataMonth {
   List<CostAndExpense> get expenses =>
       costAndExpense?.where((element) => !element.isCost).toList() ?? [];
 
-  double get totalCost => costs.isNotEmpty
+  bool get hasCosts => costs.isNotEmpty;
+  bool get hasExpenses => expenses.isNotEmpty;
+
+  double? get totalCost => costs.isNotEmpty
       ? costs
           .map((cost) => cost.priceDouble)
           .reduce((valorAnterior, valorActual) => valorAnterior + valorActual)
-      : 0.0;
+      : null;
 
-  double get totalExpense => expenses.isNotEmpty
+  double? get totalExpense => expenses.isNotEmpty
       ? expenses
           .map((cost) => cost.priceDouble)
           .reduce((valorAnterior, valorActual) => valorAnterior + valorActual)
-      : 0.0;
+      : null;
 }
