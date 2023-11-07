@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:amca/domain/model/transitory_farming.dart';
-import 'package:amca/ui/features/charts_profile/charts_profile_page.dart';
+import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/farming/create/create_transitory_farming_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
@@ -331,7 +331,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                               context,
                               MaterialPageRoute<void>(
                                 builder: (BuildContext context) =>
-                                    ChartsProfilePage.create(
+                                    ChartsCostsExpensesPage.create(
                                   transitoryFarmingId:
                                       widget.transitoryFarming!.id!,
                                 ),

@@ -1,20 +1,20 @@
 import 'package:amca/domain/model/cost_expense.dart';
 
-class PieDataYear {
+class ChartDataYear {
   final int year;
-  final List<PieDataMonth>? monthsData;
+  final List<ChartDataMonth>? monthsData;
 
-  PieDataYear({
+  ChartDataYear({
     required this.year,
     this.monthsData,
   });
 }
 
-class PieDataMonth {
+class ChartDataMonth {
   final int? month;
   final List<CostAndExpense>? costAndExpense;
 
-  PieDataMonth({
+  ChartDataMonth({
     this.month,
     this.costAndExpense,
   });

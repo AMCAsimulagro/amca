@@ -36,7 +36,7 @@ class AmcaWords {
       'No se ha creado costos y gastos hasta el momento para este cultivo';
   static const String cropType = 'Tipo de cultivo';
   static const String cropTypes = 'Tipos de cultivo';
-  static const String cost = 'Costos';
+  static const String costs = 'Costos';
   static const String content = 'Contenido';
   static const String costsAndExpenses = 'Costos y gastos';
   static const String dataPolicy = 'Política de datos';
@@ -88,6 +88,7 @@ class AmcaWords {
       'No se ha creado alguna producción de un lote hasta el momento para este cultivo';
   static const String permanent = 'Permanente';
   static const String pieChart = '(Pie)';
+  static const String barChart = '(Barras)';
   static const String product = 'Producto';
   static const String productOrService = 'Producto o Servicio';
   static const String pleaseAddDate = 'Por favor, ingrese una fecha';
@@ -143,6 +144,7 @@ class AmcaWords {
   static const String salaries = 'Salarios';
   static const String state = 'Departamento';
   static const String service = 'Servicio';
+  static const String semester = 'Semestre';
   static const String seeAllFarms = 'Ver todos los cultivos';
   static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';

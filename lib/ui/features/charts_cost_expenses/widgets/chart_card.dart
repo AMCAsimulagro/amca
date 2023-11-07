@@ -1,4 +1,4 @@
-import 'package:amca/ui/features/charts_profile/widgets/chart_card_vm.dart';
+import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
@@ -9,17 +9,21 @@ class ChartCard extends StatelessWidget {
     required this.child,
     required this.title,
     required this.dateSelected,
+    this.dateSelectedType = DateSelectedType.month,
   });
 
   final Widget child;
   final String title;
+  final DateSelectedType dateSelectedType;
   final Function(Jiffy) dateSelected;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       lazy: false,
-      create: (context) => ChartCardVM(),
+      create: (context) => ChartCardVM(
+        dateSelectedType: dateSelectedType,
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24).copyWith(top: 15),
         child: Column(
