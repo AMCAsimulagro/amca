@@ -1,5 +1,7 @@
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
+import 'package:amca/ui/utils/amca_words.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +33,27 @@ class ChartCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Text(title),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(title),
+                  ),
+                  Consumer<ChartCardVM>(
+                      builder: (BuildContext context, vm, Widget? child) {
+                    return IconButton(
+                      tooltip: AmcaWords.filter,
+                      onPressed: () {
+                        _selectDate(
+                          context,
+                          vm,
+                        );
+
+                      },
+                      icon: const Icon(Icons.edit_calendar),
+                    );
+                  })
+                ],
+              ),
             ),
             Card(
               elevation: 10,
@@ -79,5 +101,22 @@ class ChartCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _selectDate(
+    BuildContext context,
+    ChartCardVM vm,
+  ) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2010),
+      lastDate: DateTime.now(),
+    );
+
+    if (picked != null) {
+      vm.setFilterDate(DateFormat('yyyy-MM-dd').format(picked));
+      dateSelected(vm.currentDateTime);
+    }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:amca/ui/utils/amca_words.dart';
-import 'package:amca/ui/utils/constants.dart';
 import 'package:amca/ui/utils/extensions/jiffy_extensions.dart';
 import 'package:amca/ui/utils/extensions/string_extensions.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,5 +66,10 @@ class ChartCardVM extends ChangeNotifier {
       default:
         return Jiffy.now();
     }
+  }
+
+  void setFilterDate(String format) {
+    currentDateTime = Jiffy.parse(format);
+    notifyListeners();
   }
 }

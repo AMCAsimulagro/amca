@@ -60,6 +60,8 @@ class AmcaWords {
   static const String farmingType = 'Tipo de cultivo';
   static const String fillAllFields = 'Llena todos los datos para registrarte';
   static const String firstName = 'Primer nombre';
+
+  static const String filter = 'Filtrar';
   static const String firstLastName = 'Primer apellido';
   static const String frequentQuestions = 'Preguntas frecuentes';
   static const String frequentQuestion = 'Pregunta frecuente ';

@@ -38,7 +38,8 @@ class ChartsCostsExpensesPage extends StatefulWidget {
 
 class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
   int touchedIndex = -1;
-  int touchedGroupIndex = -1;
+  int touchedCostsIndex = -1;
+  int touchedExpensesIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -253,6 +254,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                   data.color,
                                   data.value,
                                   data.shadowValue,
+                                  ChartTypeData.costs,
                                 );
                               }).toList(),
                               maxY: maxValue,
@@ -289,12 +291,12 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                       response != null &&
                                       response.spot != null) {
                                     setState(() {
-                                      touchedGroupIndex =
+                                      touchedCostsIndex =
                                           response.spot!.touchedBarGroupIndex;
                                     });
                                   } else {
                                     setState(() {
-                                      touchedGroupIndex = -1;
+                                      touchedCostsIndex = -1;
                                     });
                                   }
                                 },
@@ -335,7 +337,8 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
               ),
               const SizedBox(
                 height: 15,
-              ),  ChartCard(
+              ),
+              ChartCard(
                 title: '${AmcaWords.expense} ${AmcaWords.barChart}',
                 dateSelectedType: DateSelectedType.semester,
                 dateSelected: (barCostDateSelected) {
@@ -350,15 +353,15 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                     if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                       final dataList = snapshot.data!
                           .map((e) => _BarData(
-                        AmcaPalette.pieCostColor,
-                        e.totalCost ?? 0.0,
-                        0,
-                      ))
+                                AmcaPalette.pieCostColor,
+                                e.totalCost ?? 0.0,
+                                0,
+                              ))
                           .toList();
                       final double maxValue = dataList
                           .map((barItem) => barItem.value)
                           .reduce((valor1, valor2) =>
-                      valor1 > valor2 ? valor1 : valor2);
+                              valor1 > valor2 ? valor1 : valor2);
                       return Padding(
                         padding: const EdgeInsets.all(24),
                         child: AspectRatio(
@@ -428,6 +431,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                   data.color,
                                   data.value,
                                   data.shadowValue,
+                                  ChartTypeData.expenses,
                                 );
                               }).toList(),
                               maxY: maxValue,
@@ -438,11 +442,11 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                   tooltipBgColor: Colors.transparent,
                                   tooltipMargin: 0,
                                   getTooltipItem: (
-                                      BarChartGroupData group,
-                                      int groupIndex,
-                                      BarChartRodData rod,
-                                      int rodIndex,
-                                      ) {
+                                    BarChartGroupData group,
+                                    int groupIndex,
+                                    BarChartRodData rod,
+                                    int rodIndex,
+                                  ) {
                                     return BarTooltipItem(
                                       rod.toY.toString(),
                                       TextStyle(
@@ -464,12 +468,12 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                       response != null &&
                                       response.spot != null) {
                                     setState(() {
-                                      touchedGroupIndex =
+                                      touchedExpensesIndex =
                                           response.spot!.touchedBarGroupIndex;
                                     });
                                   } else {
                                     setState(() {
-                                      touchedGroupIndex = -1;
+                                      touchedExpensesIndex = -1;
                                     });
                                   }
                                 },
@@ -545,7 +549,10 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
     Color color,
     double value,
     double shadowValue,
+    ChartTypeData typeData,
   ) {
+    final touchIndex =
+        typeData.isCost ? touchedCostsIndex : touchedExpensesIndex;
     return BarChartGroupData(
       x: x,
       barRods: [
@@ -560,7 +567,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
           width: 6,
         ),
       ],
-      showingTooltipIndicators: touchedGroupIndex == x ? [0] : [],
+      showingTooltipIndicators: touchIndex == x ? [0] : [],
     );
   }
 }
@@ -572,3 +579,5 @@ class _BarData {
   final double value;
   final double shadowValue;
 }
+
+
