@@ -112,6 +112,7 @@ class ChartCard extends StatelessWidget {
       initialDate: DateTime.now(),
       firstDate: DateTime(2010),
       lastDate: DateTime.now(),
+      helpText: '${AmcaWords.filterIn} $title',
     );
 
     if (picked != null) {
