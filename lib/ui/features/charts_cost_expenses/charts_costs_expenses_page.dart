@@ -64,7 +64,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                   vm.createPieChart(piedDateSelected);
                 },
                 child: StreamBuilder<List<PieDataUI>>(
-                  stream: vm.pieDataStream.stream,
+                  stream: vm.pieData,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return Column(
@@ -171,7 +171,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                   );
                 },
                 child: StreamBuilder<List<BarDataUI>>(
-                  stream: vm.barCostDataController.stream,
+                  stream: vm.barCostData,
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                       final dataList = snapshot.data!
@@ -348,7 +348,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                   );
                 },
                 child: StreamBuilder<List<BarDataUI>>(
-                  stream: vm.barExpenseDataStream.stream,
+                  stream: vm.barExpenseData,
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                       final dataList = snapshot.data!
@@ -579,5 +579,3 @@ class _BarData {
   final double value;
   final double shadowValue;
 }
-
-

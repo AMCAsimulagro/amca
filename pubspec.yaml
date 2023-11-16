@@ -53,6 +53,7 @@ dependencies:
   url_launcher: ^6.1.1
   fl_chart: any
   jiffy: ^6.2.1
+  rxdart: ^0.27.7
 
 
 dev_dependencies:

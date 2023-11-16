@@ -9,6 +9,7 @@ import 'package:amca/domain/model/pie_data_ui.dart';
 import 'package:amca/ui/utils/extensions/jiffy_extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:rxdart/rxdart.dart';
 
 enum ChartTypeData {
   costs,
@@ -25,14 +26,19 @@ class ChartsProfileVM extends ChangeNotifier {
   final FarmingRepository farmingRepository = locator<FarmingRepository>();
   List<ChartDataYear> chartDataUI = [];
 
-  final StreamController<List<PieDataUI>> pieDataStream =
-      StreamController<List<PieDataUI>>();
+  final pieDataSubject = BehaviorSubject<List<PieDataUI>>();
 
-  final StreamController<List<BarDataUI>> barCostDataController =
-      StreamController<List<BarDataUI>>();
+  ValueStream<List<PieDataUI>> get pieData => pieDataSubject.stream;
 
-  final StreamController<List<BarDataUI>> barExpenseDataStream =
-      StreamController<List<BarDataUI>>();
+  final barCostDataSubject= BehaviorSubject<List<BarDataUI>>();
+
+  ValueStream<List<BarDataUI>> get barCostData => barCostDataSubject.stream;
+
+  final barExpenseDataSubject = BehaviorSubject<List<BarDataUI>>();
+
+  ValueStream<List<BarDataUI>> get barExpenseData => barExpenseDataSubject.stream;
+
+
   bool isLoading = true;
 
   final Map<String, List<ChartDataMonth>> cacheSemesterData = {};
@@ -112,13 +118,13 @@ class ChartsProfileVM extends ChangeNotifier {
           isCost: false,
           percentageInThePie: (totalExpense * 100) / total,
         );
-        pieDataStream.add([
+        pieDataSubject.add([
           pieDataUICost,
           pieDataUIExpenses,
         ]);
       }
     } catch (_) {
-      pieDataStream.addError(Exception());
+      pieDataSubject.addError(Exception());
     }
   }
 
@@ -156,23 +162,23 @@ class ChartsProfileVM extends ChangeNotifier {
         }
 
         if (chartTypeData.isCost) {
-          barCostDataController.add(hasData ? dataUI : []);
+          barCostDataSubject.add(hasData ? dataUI : []);
         }
         if (chartTypeData.isExpenses) {
-          barExpenseDataStream.add(hasData ? dataUI : []);
+          barExpenseDataSubject.add(hasData ? dataUI : []);
         }
       } else {
         if (chartTypeData.isCost) {
-          barCostDataController.add([]);
+          barCostDataSubject.add([]);
         } else {
-          barExpenseDataStream.add([]);
+          barExpenseDataSubject.add([]);
         }
       }
     } catch (_) {
       if (chartTypeData.isCost) {
-        barCostDataController.addError(Exception());
+        barCostDataSubject.addError(Exception());
       } else {
-        barExpenseDataStream.addError(Exception());
+        barExpenseDataSubject.addError(Exception());
       }
     }
   }
@@ -223,9 +229,9 @@ class ChartsProfileVM extends ChangeNotifier {
 
   @override
   void dispose() {
-    pieDataStream.close();
-    barCostDataController.close();
-    barExpenseDataStream.close();
+    pieDataSubject.close();
+    barCostDataSubject.close();
+    barExpenseDataSubject.close();
     super.dispose();
   }
 }
