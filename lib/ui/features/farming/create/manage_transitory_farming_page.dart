@@ -25,7 +25,10 @@ class ManageTransitoryFarming extends StatefulWidget {
           {Key? key, TransitoryFarming? transitoryFarming}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => CreateTransitoryFarmingVM()..init(),
+        create: (context) => CreateTransitoryFarmingVM()
+          ..init(
+            transitoryFarming: transitoryFarming,
+          ),
         child: ManageTransitoryFarming._(
             key: key, transitoryFarming: transitoryFarming),
       );
@@ -43,7 +46,6 @@ class ManageTransitoryFarming extends StatefulWidget {
 }
 
 class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
-  late final bool isEditMode;
   final _formKey = GlobalKey<FormState>();
   final _partNameController = TextEditingController();
   final _cropTypeController = TextEditingController();
@@ -62,328 +64,327 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
 
   @override
   void initState() {
-    isEditMode = widget.transitoryFarming != null;
     _preloadData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            isEditMode ? AmcaWords.editFarming : AmcaWords.transitoryFarming),
-        backgroundColor: AmcaPalette.lightGreen,
-      ),
-      body: Consumer<CreateTransitoryFarmingVM>(
-        builder: (context, vm, _) {
-          return Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(
-                top: 20.0,
-                right: 16.0,
-                left: 16.0,
-                bottom: 100,
-              ),
-              child: Column(
-                children: [
-                  AmcaDatePickerField(
-                    labelText: AmcaWords.date,
-                    initialDate: createdDate,
-                    onChanged: (String date) {
-                      createdDate = date;
-                    },
-                    validator: (value) {
-                      if (value != null && value.isEmpty) {
-                        return AmcaWords.pleaseAddDate;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaTextFormField(
-                    textEditingController: _partNameController,
-                    labelText: AmcaWords.partName,
-                    validator: (value) {
-                      if (value != null && value.isEmpty) {
-                        return AmcaWords.pleasePartName;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaSelectFormField(
-                    labelText: AmcaWords.cropType,
-                    textEditingController: _cropTypeController,
-                    options: vm.cropTypes.map((e) => e.tipo).toList(),
-                    validator: (farming) {
-                      if (farming != null && farming.isEmpty) {
-                        return AmcaWords.pleaseSelectCropType;
-                      }
-                      return null;
-                    },
-                    optionSelected: (optionSelected) {
-                      _cropController.clear();
-                      vm.onCropType(optionSelected);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaSelectFormField(
-                    labelText: AmcaWords.crop,
-                    textEditingController: _cropController,
-                    options: vm.crop,
-                    validator: (farming) {
-                      if (farming != null && farming.isEmpty) {
-                        return AmcaWords.pleaseSelectCrop;
-                      }
-                      return null;
-                    },
-                    enabled: _cropTypeController.text.isNotEmpty,
-                    optionSelected: (optionSelected) {
-                      //  vm.setState(optionSelected);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaTextFormField(
-                    textEditingController: _sownAreaController,
-                    textInputType: TextInputType.number,
-                    labelText: '${AmcaWords.sownArea} (m²)',
-                    inputFormatters: [
-                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                    ],
-                    validator: (value) {
-                      if (value != null && value.isEmpty) {
-                        return AmcaWords.pleaseSownArea;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaSelectFormField(
-                    labelText: AmcaWords.sownType,
-                    textEditingController: _sownTypeController,
-                    options: vm.sownTypes,
-                    validator: (farming) {
-                      if (farming != null && farming.isEmpty) {
-                        return AmcaWords.pleaseSelectSownType;
-                      }
-                      return null;
-                    },
-                    optionSelected: (optionSelected) {
-                      //  vm.setState(optionSelected);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaSelectFormField(
-                    labelText: AmcaWords.format,
-                    textEditingController: _formatController,
-                    options: const [
-                      AmcaWords.units,
-                      AmcaWords.kG,
-                    ],
-                    validator: (farming) {
-                      if (farming != null && farming.isEmpty) {
-                        return AmcaWords.pleaseSelectFormat;
-                      }
-                      return null;
-                    },
-                    optionSelected: (optionSelected) {
-                      //  vm.setState(optionSelected);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaTextFormField(
-                    textEditingController: _amountSownController,
-                    textInputType: TextInputType.number,
-                    labelText: AmcaWords.amountSown,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                    ],
-                    validator: (value) {
-                      if (value != null && value.isEmpty) {
-                        return AmcaWords.pleaseAddAmountSown;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaTextFormField(
-                    textEditingController: _valueController,
-                    textInputType: TextInputType.number,
-                    labelText: AmcaWords.value,
-                    prefixText: '\$',
-                    inputFormatters: [
-                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                    ],
-                    onChanged: (value) {
-                      value = _formatNumber(value.replaceAll(',', ''));
-                      _valueController.value = TextEditingValue(
-                        text: value,
-                        selection:
-                            TextSelection.collapsed(offset: value.length),
-                      );
-                    },
-                    validator: (value) {
-                      if (value != null && value.isEmpty) {
-                        return AmcaWords.pleaseAddValue;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  AmcaTextFormField(
-                    textEditingController: _commentController,
-                    maxLength: 100,
-                    labelText: AmcaWords.comment,
-                    validator: (value) {
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  if (isEditMode)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: AmcaButton(
-                                text: AmcaWords.seeCostsAndExpenses,
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute<void>(
-                                      builder: (BuildContext context) =>
-                                          CostsExpensesListPage.create(
-                                        farmingId:
-                                            widget.transitoryFarming?.id ?? '',
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              child: AmcaButton(
-                                text:
-                                    widget.transitoryFarming?.production == null
-                                        ? AmcaWords.createProduction
-                                        : AmcaWords.seeProduction,
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute<bool>(
-                                      builder: (BuildContext context) =>
-                                          ManageProductionPage.create(
-                                        farmingId:
-                                            widget.transitoryFarming?.id ?? '',
-                                        production: widget
-                                            .transitoryFarming?.production,
-                                      ),
-                                    ),
-                                  ).then((value) async {
-                                    if (value ?? false) {
-                                      final farmingHistoryVM =
-                                          Provider.of<FarmingHistoryVM>(
-                                        context,
-                                        listen: false,
-                                      );
-                                      await farmingHistoryVM.init();
-                                      Navigator.pop(context);
-                                    }
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        AmcaButton(
-                          text: AmcaWords.seeCharts,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    ChartsCostsExpensesPage.create(
-                                  transitoryFarmingId:
-                                      widget.transitoryFarming!.id!,
-                                ),
-                              ),
-                            );
-                          },
-                        )
-                      ],
-                    )
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 5,
-            ),
-          ],
+    return Consumer<CreateTransitoryFarmingVM>(builder: (context, vm, _) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(vm.isEditMode
+              ? AmcaWords.editFarming
+              : AmcaWords.transitoryFarming),
+          backgroundColor: AmcaPalette.lightGreen,
         ),
-        padding: const EdgeInsets.all(8.0),
-        child: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              AmcaButton(
-                text: isEditMode ? AmcaWords.update : AmcaWords.createFarming,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    createTransitoryFarming();
-                  }
-                },
-              ),
-              if (isEditMode)
-                AmcaButton(
-                  text: AmcaWords.delete,
-                  type: AmcaButtonType.destroy,
-                  onPressed: () {
-                    showOptionDialog(widget.transitoryFarming!.id!, context);
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(
+              top: 20.0,
+              right: 16.0,
+              left: 16.0,
+              bottom: 100,
+            ),
+            child: Column(
+              children: [
+                AmcaDatePickerField(
+                  labelText: AmcaWords.date,
+                  initialDate: createdDate,
+                  onChanged: (String date) {
+                    createdDate = date;
+                  },
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseAddDate;
+                    }
+                    return null;
                   },
                 ),
-            ],
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _partNameController,
+                  labelText: AmcaWords.partName,
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleasePartName;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaSelectFormField(
+                  labelText: AmcaWords.cropType,
+                  textEditingController: _cropTypeController,
+                  options: vm.cropTypes.map((e) => e.tipo).toList(),
+                  validator: (farming) {
+                    if (farming != null && farming.isEmpty) {
+                      return AmcaWords.pleaseSelectCropType;
+                    }
+                    return null;
+                  },
+                  optionSelected: (optionSelected) {
+                    _cropController.clear();
+                    vm.onCropType(optionSelected);
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaSelectFormField(
+                  labelText: AmcaWords.crop,
+                  textEditingController: _cropController,
+                  options: vm.crop,
+                  validator: (farming) {
+                    if (farming != null && farming.isEmpty) {
+                      return AmcaWords.pleaseSelectCrop;
+                    }
+                    return null;
+                  },
+                  enabled: _cropTypeController.text.isNotEmpty,
+                  optionSelected: (optionSelected) {
+                    //  vm.setState(optionSelected);
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _sownAreaController,
+                  textInputType: TextInputType.number,
+                  labelText: '${AmcaWords.sownArea} (m²)',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseSownArea;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaSelectFormField(
+                  labelText: AmcaWords.sownType,
+                  textEditingController: _sownTypeController,
+                  options: vm.sownTypes,
+                  validator: (farming) {
+                    if (farming != null && farming.isEmpty) {
+                      return AmcaWords.pleaseSelectSownType;
+                    }
+                    return null;
+                  },
+                  optionSelected: (optionSelected) {
+                    //  vm.setState(optionSelected);
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaSelectFormField(
+                  labelText: AmcaWords.format,
+                  textEditingController: _formatController,
+                  options: const [
+                    AmcaWords.units,
+                    AmcaWords.kG,
+                  ],
+                  validator: (farming) {
+                    if (farming != null && farming.isEmpty) {
+                      return AmcaWords.pleaseSelectFormat;
+                    }
+                    return null;
+                  },
+                  optionSelected: (optionSelected) {
+                    //  vm.setState(optionSelected);
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _amountSownController,
+                  textInputType: TextInputType.number,
+                  labelText: AmcaWords.amountSown,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseAddAmountSown;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _valueController,
+                  textInputType: TextInputType.number,
+                  labelText: AmcaWords.value,
+                  prefixText: '\$',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  onChanged: (value) {
+                    value = _formatNumber(value.replaceAll(',', ''));
+                    _valueController.value = TextEditingValue(
+                      text: value,
+                      selection: TextSelection.collapsed(offset: value.length),
+                    );
+                  },
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseAddValue;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _commentController,
+                  maxLength: 100,
+                  labelText: AmcaWords.comment,
+                  validator: (value) {
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                if (vm.isEditMode)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AmcaButton(
+                              text: AmcaWords.seeCostsAndExpenses,
+                              onPressed: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        CostsExpensesListPage.create(
+                                      farmingId: vm.transitoryFarming?.id ?? '',
+                                    ),
+                                  ),
+                                ).then((value) async {
+                                  Dialogs.showLoading(context);
+                                  await vm.getTransitoryFarming();
+                                  Dialogs.close(context);
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: AmcaButton(
+                              text: vm.transitoryFarming?.production == null
+                                  ? AmcaWords.createProduction
+                                  : AmcaWords.seeProduction,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<bool>(
+                                    builder: (BuildContext context) =>
+                                        ManageProductionPage.create(
+                                      farmingId: vm.transitoryFarming?.id ?? '',
+                                      production:
+                                          vm.transitoryFarming?.production,
+                                    ),
+                                  ),
+                                ).then((value) async {
+                                  if (value ?? false) {
+                                    final farmingHistoryVM =
+                                        Provider.of<FarmingHistoryVM>(
+                                      context,
+                                      listen: false,
+                                    );
+                                    await farmingHistoryVM.init();
+                                    Navigator.pop(context);
+                                  }
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      AmcaButton(
+                        text: AmcaWords.seeCharts,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  ChartsCostsExpensesPage.create(
+                                transitoryFarmingId: vm.transitoryFarming!.id!,
+                              ),
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  )
+              ],
+            ),
           ),
         ),
-      ),
-    );
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            boxShadow: const <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 5,
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.all(8.0),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                AmcaButton(
+                  text: vm.isEditMode
+                      ? AmcaWords.update
+                      : AmcaWords.createFarming,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      createTransitoryFarming();
+                    }
+                  },
+                ),
+                if (vm.isEditMode)
+                  AmcaButton(
+                    text: AmcaWords.delete,
+                    type: AmcaButtonType.destroy,
+                    onPressed: () {
+                      showOptionDialog(context);
+                    },
+                  ),
+              ],
+            ),
+          ),
+        ),
+      );
+    });
   }
 
   Future<void> createTransitoryFarming() async {
@@ -403,7 +404,11 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
       amountSown: _amountSownController.text,
       value: _valueController.text,
       comment: _commentController.text,
-      id: isEditMode ? widget.transitoryFarming!.id : null,
+      costsAndExpenses: createTransitoryVm.transitoryFarming?.costsAndExpenses,
+      production: createTransitoryVm.transitoryFarming?.production,
+      id: createTransitoryVm.isEditMode
+          ? createTransitoryVm.transitoryFarming!.id
+          : null,
     );
     try {
       await CallsWithDialogs.call(context, () async {
@@ -415,7 +420,7 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
 
         Dialogs.showSuccessDialogWithMessage(
           context,
-          isEditMode
+          createTransitoryVm.isEditMode
               ? AmcaWords.yourTransitoryFarmingHasBeenUpdated
               : AmcaWords.yourTransitoryFarmingHasBeenCreated,
         ).then((value) {
@@ -431,14 +436,14 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
     } catch (_) {}
   }
 
-  Future<void> deleteTransitoryFarming(String id) async {
+  Future<void> deleteTransitoryFarming() async {
     final createTransitoryVm = Provider.of<CreateTransitoryFarmingVM>(
       context,
       listen: false,
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await createTransitoryVm.deleteTransitoryFarming(id);
+        await createTransitoryVm.deleteTransitoryFarming();
         final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
           context,
           listen: false,
@@ -451,15 +456,16 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
     } catch (_) {}
   }
 
-  Future<void> showOptionDialog(String id, BuildContext context) async {
+  Future<void> showOptionDialog(BuildContext context) async {
     await Dialogs.showSuccessDialogWithOptions(
         context, AmcaWords.areYouSureToDeleteThisTransitoryFarming,
         onTap: () async {
-      await deleteTransitoryFarming(id);
+      await deleteTransitoryFarming();
     });
   }
 
   void _preloadData() {
+    bool isEditMode = widget.transitoryFarming != null;
     if (isEditMode) {
       final preloadTransitoryFarming = widget.transitoryFarming;
       _partNameController.text = preloadTransitoryFarming?.partName ?? '';

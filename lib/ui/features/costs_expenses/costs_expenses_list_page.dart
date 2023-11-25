@@ -100,7 +100,7 @@ class CostsExpensesListPage extends StatelessWidget {
                     height: 12,
                   ),
                   AmcaButton(
-                    text: AmcaWords.seeProduction,
+                    text: AmcaWords.addCostOrExpense,
                     onPressed: () {
                       Navigator.push(
                         context,

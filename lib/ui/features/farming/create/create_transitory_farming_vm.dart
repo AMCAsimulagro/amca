@@ -11,8 +11,17 @@ class CreateTransitoryFarmingVM extends ChangeNotifier {
   List<CropTypes> cropTypes = [];
   List<String> sownTypes = [];
 
-  void init() async {
+  TransitoryFarming? transitoryFarming;
+
+  bool get isEditMode => transitoryFarming != null;
+
+  void init({
+    TransitoryFarming? transitoryFarming,
+  }) async {
     try {
+      if (transitoryFarming != null) {
+        this.transitoryFarming = transitoryFarming;
+      }
       cropTypes = await farmingRepository.getCropTypes();
       sownTypes = await farmingRepository.getSown();
     } catch (e) {
@@ -24,7 +33,17 @@ class CreateTransitoryFarmingVM extends ChangeNotifier {
   Future<TransitoryFarming?> createTransitoryFarming(
       TransitoryFarming transitoryFarming) async {
     try {
+      this.transitoryFarming = transitoryFarming;
       return await farmingRepository.createTransitoryFarming(transitoryFarming);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<TransitoryFarming?> getTransitoryFarming() async {
+    try {
+      transitoryFarming = await farmingRepository.getTransitoryFarmingById(transitoryFarming!.id!);
+      return transitoryFarming;
     } catch (e) {
       return null;
     }
@@ -36,9 +55,9 @@ class CreateTransitoryFarmingVM extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteTransitoryFarming(String id) async {
+  Future<void> deleteTransitoryFarming() async {
     try {
-      return await farmingRepository.deleteTransitoryFarming(id);
+      return await farmingRepository.deleteTransitoryFarming(transitoryFarming!.id!);
     } catch (e) {
       return;
     }
