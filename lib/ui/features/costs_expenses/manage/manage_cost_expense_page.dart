@@ -53,9 +53,6 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   static const _locale = 'en';
   String createdDate = '';
 
-  String _formatNumber(String s) =>
-      NumberFormat.decimalPattern(_locale).format(int.parse(s));
-
   @override
   void initState() {
     isEditMode = widget.costAndExpense != null;
@@ -225,18 +222,18 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
           );
         },
       ),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5,
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(8.0),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

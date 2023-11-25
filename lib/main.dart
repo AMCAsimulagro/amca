@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -18,6 +19,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FlutterNativeSplash.remove();
   DependecyInjection.registerInjections();
+  await Jiffy.setLocale('es');
   runApp(const MyApp());
 }
 
@@ -65,6 +67,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: const [
             Locale('es'),
+            Locale('es_us'),
           ],
           home: SplashPage.create(),
         ),

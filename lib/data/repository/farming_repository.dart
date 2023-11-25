@@ -71,7 +71,7 @@ class FarmingRepositoryAdapter extends FarmingRepository {
 
   @override
   Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId) {
-    return _api.getCostsAndExpensesByFarming();
+    return _api.getCostsAndExpensesByFarming(farmingId);
   }
 
   @override

@@ -16,7 +16,7 @@ class ProductServiceData {
     description: [
       Description(
         description: 'Servicios Públicos',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
     ],
@@ -27,37 +27,37 @@ class ProductServiceData {
     description: [
       Description(
         description: 'Insecticidas',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
         description: 'Abono Orgánico',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
         description: 'Abono Químico',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
         description: 'Materia Vegetal',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
         description: 'Herramientas',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
         description: 'Concentrado',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
         description: 'Sal Mineralizada',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
     ],
@@ -73,12 +73,12 @@ class ProductServiceData {
       ),
       Description(
         description: 'Mantenimiento Preventivo',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.permanent,
       ),
       Description(
         description: 'Mantenimiento Correctivo',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
       Description(
@@ -109,12 +109,12 @@ class ProductServiceData {
     description: [
       Description(
         description: 'Sueldo',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.permanent,
       ),
       Description(
         description: 'Jornales',
-        costOrExpense: AmcaWords.cost,
+        costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
     ],

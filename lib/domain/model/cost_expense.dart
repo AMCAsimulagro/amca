@@ -23,3 +23,13 @@ class CostAndExpense with _$CostAndExpense {
   factory CostAndExpense.fromJson(Map<String, Object?> json) =>
       _$CostAndExpenseFromJson(json);
 }
+
+extension CostAndExpenseExtension on CostAndExpense {
+  bool get isCost => description.costOrExpense == 'Costos';
+
+  int get year => createDate.year;
+
+  int get month => createDate.month;
+
+  double get priceDouble => double.parse(price.replaceAll(',', ''));
+}
