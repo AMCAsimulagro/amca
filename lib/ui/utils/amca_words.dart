@@ -158,7 +158,7 @@ class AmcaWords {
   static const String sownType = 'Tipo de sembrado';
   static const String sownArea = 'Área sembrada';
   static const String supportDefaultMessage =
-      'Hola, necesito ayuda para usar AMCA';
+      'Hola,%20necesito%20ayuda%20para%20usar%20AMCA';
   static const String transitory = 'Transitorio';
   static const String transitoryFarming = 'Cultivo transitorio';
   static const String title = 'Título';

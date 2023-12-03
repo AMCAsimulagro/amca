@@ -104,15 +104,15 @@ class FrequentQuestionsPage extends StatelessWidget {
   }
 
   Future<void> _launchWhatsapp(BuildContext context) async {
-    var whatsapp = "+573012523459";
+    var supportNumber = "3012523459";
     var whatsappAndroid = Uri.parse(
-        "whatsapp://send?phone=$whatsapp&text=${AmcaWords.supportDefaultMessage}");
+        "https://wa.me/57$supportNumber?text=${AmcaWords.supportDefaultMessage}");
     if (await canLaunchUrl(whatsappAndroid)) {
       launchUrl(whatsappAndroid);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("No tienes instalado WhatsApp en tu celular"),
+        SnackBar(
+          content: Text("Erro al contactar soporte, llamar a $supportNumber"),
         ),
       );
     }
