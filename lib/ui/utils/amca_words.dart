@@ -142,7 +142,7 @@ class AmcaWords {
   static const String production = 'Producción';
   static const String profile = 'Perfil';
   static const String policyUrl =
-      'https://docs.google.com/document/d/1XpIdjxEirXKEYzuyAPxT4xqlwUiiymTLpLilAT3puIA/edit';
+      'https://docs.google.com/document/d/1eW8J3bg1Os4FfTGP-4SdhR0DhUkMUNfLJUpyirbPdxk/edit';
   static const String salaries = 'Salarios';
   static const String state = 'Departamento';
   static const String service = 'Servicio';
