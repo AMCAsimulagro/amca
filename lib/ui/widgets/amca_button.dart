@@ -1,13 +1,19 @@
+/// {@category Widget}
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:flutter/material.dart';
 
-
-enum AmcaButtonType{
+/// Enumeración que define los tipos de botón Amca.
+enum AmcaButtonType {
+  /// Tipo de botón primario.
   primary,
+
+  /// Tipo de botón de destrucción.
   destroy,
 }
 
+/// Widget personalizado que representa un botón Amca.
 class AmcaButton extends StatelessWidget {
+  /// Constructor para crear un nuevo AmcaButton.
   const AmcaButton({
     super.key,
     this.text,
@@ -15,8 +21,13 @@ class AmcaButton extends StatelessWidget {
     this.type = AmcaButtonType.primary,
   });
 
+  /// Texto que se muestra en el botón.
   final String? text;
+
+  /// Función de devolución de llamada que se ejecuta cuando se presiona el botón.
   final VoidCallback? onPressed;
+
+  /// Tipo de botón Amca.
   final AmcaButtonType type;
 
   @override
@@ -37,7 +48,8 @@ class AmcaButton extends StatelessWidget {
     );
   }
 
-  ButtonStyle? _getButtonStyle(){
+  /// Obtiene el estilo del botón según el tipo especificado.
+  ButtonStyle? _getButtonStyle() {
     final styles = {
       AmcaButtonType.primary: ElevatedButton.styleFrom(
         backgroundColor: AmcaPalette.lightGreen,
@@ -45,7 +57,7 @@ class AmcaButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
         ),
       ),
-      AmcaButtonType.destroy : ElevatedButton.styleFrom(
+      AmcaButtonType.destroy: ElevatedButton.styleFrom(
         backgroundColor: Colors.red,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
