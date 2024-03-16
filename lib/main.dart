@@ -1,3 +1,4 @@
+/// {@category Main}
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/firebase_options.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
@@ -14,6 +15,11 @@ import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+/// Función principal que inicia la aplicación.
+///
+/// Este método es el punto de entrada de la aplicación Flutter.
+/// Inicializa Firebase, registra las dependencias, configura el idioma y
+/// lanza la aplicación.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -23,8 +29,12 @@ void main() async {
   runApp(const MyApp());
 }
 
+/// Aplicación principal de la aplicación.
+///
+/// Esta clase crea la estructura de la aplicación y define el tema general.
+/// También registra los proveedores de cambio notificable para la gestión del estado.
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +67,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Arial Rounded MT Bold',
             appBarTheme: const AppBarTheme(
               backgroundColor: AmcaPalette.lightGreen,
-              foregroundColor: Colors.white, //here you can give the text color
+              foregroundColor: Colors.white,
             ),
           ),
           localizationsDelegates: const [
