@@ -1,3 +1,4 @@
+/// {@category Menu Farmin}
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+/// ## FarmingHistoryPage widget
 class FarmingHistoryPage extends StatefulWidget {
   const FarmingHistoryPage({
     super.key,

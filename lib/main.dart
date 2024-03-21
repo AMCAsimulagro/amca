@@ -1,3 +1,11 @@
+/// {@category Main}
+/// Main configuration of the Flutter application.
+/// 
+/// Initializes Firebase, manages dependency injection,
+/// sets the application language, and defines the main theme.
+
+
+/// Imports of Bookstores and Resources
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/firebase_options.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
@@ -14,6 +22,13 @@ import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+/// Función Principal `main()`
+/// This file contains the main implementation of the Flutter application.
+/// Responsible for initializing Firebase, configuring dependency injection,
+/// set the application language and define the main theme.
+/// Additionally, defines the general structure of the application using widgets
+/// provided by Flutter, such as MaterialApp and MultiProvider.
+/// 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -23,6 +38,7 @@ void main() async {
   runApp(const MyApp());
 }
 
+/// Clase `MyApp`
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

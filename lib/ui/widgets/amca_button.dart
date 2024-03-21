@@ -1,9 +1,17 @@
+/// {@category Widgets}
+///
+/// This file contains the `AmcaButton` widget, which is a custom button
+/// for the Amca application.
+///
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:flutter/material.dart';
 
-
-enum AmcaButtonType{
+/// Enum representing the type of `AmcaButton`.
+enum AmcaButtonType {
+  /// Primary button type.
   primary,
+  
+  /// Destroy button type.
   destroy,
 }
 
@@ -15,8 +23,13 @@ class AmcaButton extends StatelessWidget {
     this.type = AmcaButtonType.primary,
   });
 
+  /// Text displayed on the button.
   final String? text;
+
+  /// Callback function called when the button is pressed.
   final VoidCallback? onPressed;
+
+  /// Type of the button (primary or destroy).
   final AmcaButtonType type;
 
   @override
@@ -37,7 +50,8 @@ class AmcaButton extends StatelessWidget {
     );
   }
 
-  ButtonStyle? _getButtonStyle(){
+  /// Returns the button style based on the button type.
+  ButtonStyle? _getButtonStyle() {
     final styles = {
       AmcaButtonType.primary: ElevatedButton.styleFrom(
         backgroundColor: AmcaPalette.lightGreen,
@@ -45,7 +59,7 @@ class AmcaButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
         ),
       ),
-      AmcaButtonType.destroy : ElevatedButton.styleFrom(
+      AmcaButtonType.destroy: ElevatedButton.styleFrom(
         backgroundColor: Colors.red,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),

@@ -1,3 +1,8 @@
+/// {@category Widgets}
+///
+/// This file contains the `AmcaContainerButton` widget, which is a custom container
+/// button for the Amca application.
+///
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +13,10 @@ class AmcaContainerButton extends StatelessWidget {
     this.onTap,
   });
 
+  /// Text displayed on the button.
   final String text;
+
+  /// Callback function called when the button is tapped.
   final GestureTapCallback? onTap;
 
   @override

@@ -1,3 +1,8 @@
+/// {@category Dictionaries}
+///
+/// The `AmcaWords` class provides a collection of constant strings used
+/// throughout the Amca application for localization and text consistency.
+///
 class AmcaWords {
   static const String adminOptions = 'Opciones de administrador';
   static const String addInformation = 'Añadir información';
