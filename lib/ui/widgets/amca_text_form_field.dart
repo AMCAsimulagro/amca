@@ -1,38 +1,12 @@
 /// {@category Widgets}
-/// This file contains the implementation of the `AmcaTextFormField` widget,
-/// which is a custom extension of the `TextFormField` widget in Flutter.
-///
-/// `AmcaTextFormField` provides additional functionality and custom styles for text fields
-/// in the Amca application.
-/// 
-
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// A custom text field for the Amca application.
-///
-/// Provides additional functionality and custom styles for text fields.
-///
-///
-/// Example of Use:
-/// ```dart
-/// AmcaTextFormField(
-///   labelText: 'Nombre',
-///   textEditingController: _nameController,
-///   textInputType: TextInputType.text,
-///   validator: (value) {
-///     if (value.isEmpty) {
-///       return 'Please enter your name';
-///     }
-///     return null;
-///   },
-/// ),
-/// ```
-
+/// Un campo de formulario de texto personalizado para la aplicación Amca.
 class AmcaTextFormField extends StatefulWidget {
   const AmcaTextFormField({
-    Key? key,
+    super.key,
     this.labelText,
     this.textEditingController,
     this.obscureText = false,
@@ -45,51 +19,48 @@ class AmcaTextFormField extends StatefulWidget {
     this.onTap,
     this.readOnly = false,
     this.prefixText,
-  }) : super(key: key);
+  });
 
-
-  /// Label for the text field.
+  /// Texto que se mostrará como etiqueta para el campo de formulario de texto.
   final String? labelText;
 
-  /// Indicates whether the text should be hidden.
+  /// Indica si el texto debe ser ocultado, útil para contraseñas u otros campos sensibles.
   final bool obscureText;
 
-  /// Indicates whether the text field is enabled.
+  /// Indica si el campo de formulario de texto está habilitado para interacción del usuario.
   final bool? enabled;
 
-  /// Indicates whether the text field is read-only.
+  /// Indica si el campo de formulario de texto es de solo lectura.
   final bool readOnly;
 
-  /// Controller for the text field.
+  /// Controlador para controlar el texto que se muestra en el campo de formulario de texto.
   final TextEditingController? textEditingController;
 
-  /// Validation function for the text field.
+  /// Validador que se ejecutará para validar el contenido del campo de formulario de texto.
   final FormFieldValidator<String>? validator;
 
-  /// Text input type.
+  /// Tipo de entrada del teclado que se utilizará para el campo de formulario de texto.
   final TextInputType? textInputType;
 
-  /// Maximum text length allowed.
+  /// Longitud máxima permitida para el texto ingresado en el campo de formulario de texto.
   final int? maxLength;
 
-  /// Function called when the text changes.
+  /// Callback que se llama cuando el contenido del campo de formulario de texto cambia.
   final ValueChanged<String>? onChanged;
 
-  /// List of text input formatters.
+  /// Lista de formateadores de entrada que se aplicarán al texto ingresado en el campo de formulario de texto.
   final List<TextInputFormatter>? inputFormatters;
 
-  /// Function called when the text field is pressed.
+  /// Callback que se llama cuando se toca el campo de formulario de texto.
   final GestureTapCallback? onTap;
 
-  /// Text displayed before the text field.
-
+  /// Texto que se mostrará como prefijo dentro del campo de formulario de texto.
   final String? prefixText;
 
   @override
   State<AmcaTextFormField> createState() => _AmcaTextFormFieldState();
 }
 
-/// Status of the `AmcaTextFormField` widget.
 class _AmcaTextFormFieldState extends State<AmcaTextFormField> {
   late TextEditingController _textEditingController;
 

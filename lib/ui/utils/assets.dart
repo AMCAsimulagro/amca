@@ -1,8 +1,3 @@
-/// {@category Assets}
-///
-/// The `Assets` class provides paths to various assets used in the Amca application,
-/// such as images and JSON data.
-///
 class Assets {
   static const background = 'assets/images/background.png';
   static const farming = 'assets/images/farming.png';

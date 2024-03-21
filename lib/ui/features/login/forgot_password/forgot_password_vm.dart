@@ -1,5 +1,3 @@
-/// {@category Login}
-/// Remember password
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/state_repository.dart';
 import 'package:amca/dependecy_injection.dart';
