@@ -1,3 +1,4 @@
+/// {@category Register}
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:amca/ui/features/register/register_vm.dart';
 import 'package:amca/ui/features/webview_page/webview_page.dart';
@@ -16,6 +17,8 @@ import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage._({super.key});
+
+  /// Factory method to create a [ChangeNotifierProvider] for [RegisterVM].
 
   static ChangeNotifierProvider<RegisterVM> create({Key? key}) =>
       ChangeNotifierProvider(

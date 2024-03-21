@@ -1,3 +1,4 @@
+/// {@category Login}
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';

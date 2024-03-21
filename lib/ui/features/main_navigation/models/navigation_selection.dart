@@ -1,3 +1,4 @@
+/// {@category Menu model}
 import 'package:flutter/cupertino.dart';
 
 class NavigationOption {

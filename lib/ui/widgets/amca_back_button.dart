@@ -1,4 +1,9 @@
-/// {@category Widget}
+
+/// {@category Widgets}
+///
+/// This file contains the `AmcaBackButton` widget, which is a custom back button
+/// for the Amca application.
+///
 
 import 'package:flutter/material.dart';
 

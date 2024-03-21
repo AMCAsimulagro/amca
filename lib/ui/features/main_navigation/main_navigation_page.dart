@@ -1,3 +1,5 @@
+/// {@category Navigation}
+
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/models/navigation_selection.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_page.dart';
