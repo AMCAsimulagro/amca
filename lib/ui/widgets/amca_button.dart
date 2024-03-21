@@ -12,10 +12,13 @@ enum AmcaButtonType {
   primary,
   
   /// Destroy button type.
+
   destroy,
 }
 
+/// Widget personalizado que representa un botón Amca.
 class AmcaButton extends StatelessWidget {
+  /// Constructor para crear un nuevo AmcaButton.
   const AmcaButton({
     super.key,
     this.text,
@@ -30,6 +33,7 @@ class AmcaButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   /// Type of the button (primary or destroy).
+
   final AmcaButtonType type;
 
   @override
@@ -51,6 +55,7 @@ class AmcaButton extends StatelessWidget {
   }
 
   /// Returns the button style based on the button type.
+
   ButtonStyle? _getButtonStyle() {
     final styles = {
       AmcaButtonType.primary: ElevatedButton.styleFrom(

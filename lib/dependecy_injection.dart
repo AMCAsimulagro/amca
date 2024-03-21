@@ -14,6 +14,7 @@
 /// DependecyInjection.registerInjections();
 /// ```
 /// {@end-tool}
+
 import 'package:amca/data/api/farming_api.dart';
 import 'package:amca/data/api/frequent_question_api.dart';
 import 'package:amca/data/api/login_api.dart';
@@ -32,6 +33,7 @@ final GetIt locator = GetIt.instance;
 /// Clase encargada de la inyección de dependencias.
 class DependecyInjection {
   /// Registra todas las inyecciones necesarias para la aplicación.
+
   static void registerInjections() {
     locator.registerSingleton<StateRepository>(StateRepositoryAdapter());
 
@@ -44,8 +46,7 @@ class DependecyInjection {
     locator.registerSingleton<UsersApi>(UsersApiAdapter());
     locator.registerSingleton<UsersRepository>(UsersRepositoryAdapter());
 
-    locator
-        .registerSingleton<FrequentQuestionApi>(FrequentQuestionApiAdapter());
+    locator.registerSingleton<FrequentQuestionApi>(FrequentQuestionApiAdapter());
     locator.registerSingleton<FrequentQuestionRepository>(
         FrequentQuestionRepositoryAdapter());
   }

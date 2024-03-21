@@ -6,6 +6,7 @@
 
 
 /// Imports of Bookstores and Resources
+
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/firebase_options.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 /// Función Principal `main()`
 /// This file contains the main implementation of the Flutter application.
@@ -38,9 +40,11 @@ void main() async {
   runApp(const MyApp());
 }
 
+
 /// Clase `MyApp`
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +77,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Arial Rounded MT Bold',
             appBarTheme: const AppBarTheme(
               backgroundColor: AmcaPalette.lightGreen,
-              foregroundColor: Colors.white, //here you can give the text color
+              foregroundColor: Colors.white,
             ),
           ),
           localizationsDelegates: const [

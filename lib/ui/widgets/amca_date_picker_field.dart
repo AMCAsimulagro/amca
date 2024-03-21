@@ -3,11 +3,14 @@
 /// form field for the Amca application.
 ///
 ///
+
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/// Campo de entrada de fecha con selección de fecha.
 class AmcaDatePickerField extends StatefulWidget {
+  /// Constructor para crear un nuevo AmcaDatePickerField.
   const AmcaDatePickerField({
     super.key,
     this.onChanged,
@@ -26,6 +29,7 @@ class AmcaDatePickerField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
 
   /// Initial date for the date picker form field.
+
   final String? initialDate;
 
   @override
@@ -55,6 +59,7 @@ class _AmcaDatePickerFieldState extends State<AmcaDatePickerField> {
     );
   }
   /// Opens a date picker dialog to select a date.
+
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,

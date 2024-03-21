@@ -4,7 +4,9 @@ import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 
 /// form field for the Amca application.
+
 class AmcaSelectFormField extends StatefulWidget {
+  /// Constructor para crear un nuevo AmcaSelectFormField.
   const AmcaSelectFormField({
     super.key,
     this.labelText,
@@ -31,6 +33,7 @@ class AmcaSelectFormField extends StatefulWidget {
   final Function(String optionSelected) optionSelected;
 
   /// Indicates whether the dropdown is enabled.
+
   final bool enabled;
 
   @override
@@ -62,6 +65,7 @@ class _AmcaSelectFormFieldState extends State<AmcaSelectFormField> {
     );
   }
 
+  /// Función para mostrar el diálogo de opciones.
   void _showOptionsDialog() {
     showDialog(
       context: context,

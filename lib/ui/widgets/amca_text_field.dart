@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 ///
 /// Provides custom styles for text fields.
 ///
+
 class AmcaTextField extends StatefulWidget {
   const AmcaTextField({
     super.key,
@@ -28,6 +29,7 @@ class AmcaTextField extends StatefulWidget {
   final bool obscureText;
 
   /// Controller for the text field.
+
   final TextEditingController? textEditingController;
 
   @override
