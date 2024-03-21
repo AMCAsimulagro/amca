@@ -1,10 +1,11 @@
-/// {@category Widget}
-
+/// {@category Widgets}
+///
+/// This file contains the `AmcaBackButton` widget, which is a custom back button
+/// for the Amca application.
+///
 import 'package:flutter/material.dart';
 
-/// Widget que muestra un botón de retroceso personalizado.
 class AmcaBackButton extends StatelessWidget {
-  /// Constructor para crear un nuevo AmcaBackButton.
   const AmcaBackButton({
     super.key,
   });
@@ -21,7 +22,7 @@ class AmcaBackButton extends StatelessWidget {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pop(context); // Navega hacia atrás cuando se presiona el botón
+          Navigator.pop(context);
         },
       ),
     );

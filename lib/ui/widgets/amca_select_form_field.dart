@@ -1,10 +1,10 @@
-/// {@category Widget}
+/// {@category Widgets}
+/// This file contains the `AmcaSelectFormField` widget, which is a custom dropdown
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 
-/// Campo de formulario de selección con lista de opciones.
+/// form field for the Amca application.
 class AmcaSelectFormField extends StatefulWidget {
-  /// Constructor para crear un nuevo AmcaSelectFormField.
   const AmcaSelectFormField({
     super.key,
     this.labelText,
@@ -15,28 +15,28 @@ class AmcaSelectFormField extends StatefulWidget {
     this.enabled = true,
   });
 
-  /// Etiqueta que se muestra en el campo de entrada.
+  /// Label for the select form field.
   final String? labelText;
 
-  /// Controlador de texto para controlar el contenido del campo de entrada.
+  /// Controller for the text field.
   final TextEditingController? textEditingController;
 
-  /// Validador que se ejecuta en el campo de entrada.
+  /// Validation function for the select form field.
   final FormFieldValidator<String>? validator;
 
-  /// Lista de opciones que se muestran en el diálogo de selección.
+  /// List of options for the dropdown.
   final List<String> options;
 
-  /// Función de devolución de llamada que se llama cuando se selecciona una opción.
+  /// Callback function called when an option is selected.
   final Function(String optionSelected) optionSelected;
 
-  /// Determina si el campo de entrada está habilitado o deshabilitado.
+  /// Indicates whether the dropdown is enabled.
   final bool enabled;
 
   @override
   State<AmcaSelectFormField> createState() => _AmcaSelectFormFieldState();
 }
-
+/// Status of the `AmcaSelectFormField` widget.
 class _AmcaSelectFormFieldState extends State<AmcaSelectFormField> {
   late TextEditingController _textEditingController;
 
@@ -62,7 +62,6 @@ class _AmcaSelectFormFieldState extends State<AmcaSelectFormField> {
     );
   }
 
-  /// Función para mostrar el diálogo de opciones.
   void _showOptionsDialog() {
     showDialog(
       context: context,
