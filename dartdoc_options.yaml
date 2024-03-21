@@ -1,0 +1,9 @@
+dartdoc:
+  categories:
+    "Main":
+      label: "Main"
+      description: "Codigo principal"
+      name: "Main"
+  categoryOrder:
+    - Main
+  showUndocumentedCategories: false
