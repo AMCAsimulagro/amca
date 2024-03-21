@@ -1,18 +1,13 @@
-/// {@category Widgets}
-///
-/// This file contains the `AmcaButton` widget, which is a custom button
-/// for the Amca application.
-///
+/// {@category Widget}
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:flutter/material.dart';
 
-/// Enum representing the type of `AmcaButton`.
+/// Enumeración que define los tipos de botón Amca.
 enum AmcaButtonType {
-  /// Primary button type.
+  /// Tipo de botón primario.
   primary,
-  
-  /// Destroy button type.
 
+  /// Tipo de botón de destrucción.
   destroy,
 }
 
@@ -26,14 +21,13 @@ class AmcaButton extends StatelessWidget {
     this.type = AmcaButtonType.primary,
   });
 
-  /// Text displayed on the button.
+  /// Texto que se muestra en el botón.
   final String? text;
 
-  /// Callback function called when the button is pressed.
+  /// Función de devolución de llamada que se ejecuta cuando se presiona el botón.
   final VoidCallback? onPressed;
 
-  /// Type of the button (primary or destroy).
-
+  /// Tipo de botón Amca.
   final AmcaButtonType type;
 
   @override
@@ -54,8 +48,7 @@ class AmcaButton extends StatelessWidget {
     );
   }
 
-  /// Returns the button style based on the button type.
-
+  /// Obtiene el estilo del botón según el tipo especificado.
   ButtonStyle? _getButtonStyle() {
     final styles = {
       AmcaButtonType.primary: ElevatedButton.styleFrom(

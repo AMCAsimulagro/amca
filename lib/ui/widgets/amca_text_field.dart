@@ -1,19 +1,8 @@
 /// {@category Widgets}
-///
-/// This file contains the definition of the `AmcaTextFormField` widget, which is an extension
-/// custom Flutter `TextFormField` widget.
-///
-/// `AmcaTextFormField` provides additional functionality and custom styles
-/// for text fields in the Amca application.
-///
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 
-/// A custom text field for the Amca application.
-///
-/// Provides custom styles for text fields.
-///
-
+/// Un campo de texto personalizado para la aplicación Amca.
 class AmcaTextField extends StatefulWidget {
   const AmcaTextField({
     super.key,
@@ -22,21 +11,19 @@ class AmcaTextField extends StatefulWidget {
     this.obscureText = false,
   });
 
-  /// Label for the text field.
+  /// Texto que se mostrará como etiqueta para el campo de texto.
   final String? labelText;
 
-  /// Indicates whether the text should be hidden.
+  /// Indica si el texto debe ser ocultado, útil para contraseñas u otros campos sensibles.
   final bool obscureText;
 
-  /// Controller for the text field.
-
+  /// Controlador para controlar el texto que se muestra en el campo de texto.
   final TextEditingController? textEditingController;
 
   @override
   State<AmcaTextField> createState() => _AmcaTextFieldState();
 }
 
-/// Status of the `AmcaTextField` widget.
 class _AmcaTextFieldState extends State<AmcaTextField> {
   @override
   Widget build(BuildContext context) {

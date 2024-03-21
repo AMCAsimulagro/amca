@@ -1,9 +1,4 @@
-/// {@category Widgets}
-/// This file contains the `AmcaDatePickerField` widget, which is a custom date picker
-/// form field for the Amca application.
-///
-///
-
+/// {@category Widget}
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,23 +14,22 @@ class AmcaDatePickerField extends StatefulWidget {
     this.initialDate,
   });
 
-  /// Callback function called when the date changes.
-
+  /// Función de devolución de llamada que se llama cuando cambia la fecha seleccionada.
   final ValueChanged<String>? onChanged;
 
-  /// Label for the date picker form field.
+  /// Etiqueta que se muestra en el campo de entrada.
   final String? labelText;
-  /// Validation function for the date picker form field.
+
+  /// Validador que se ejecuta en el campo de entrada.
   final FormFieldValidator<String>? validator;
 
-  /// Initial date for the date picker form field.
-
+  /// Fecha inicial que se muestra en el campo de entrada.
   final String? initialDate;
 
   @override
   State<AmcaDatePickerField> createState() => _AmcaDatePickerFieldState();
 }
-/// Status of the `AmcaDatePickerField` widget.
+
 class _AmcaDatePickerFieldState extends State<AmcaDatePickerField> {
   final TextEditingController _dateController = TextEditingController();
   DateTime? _selectedDate;
@@ -58,8 +52,8 @@ class _AmcaDatePickerFieldState extends State<AmcaDatePickerField> {
       validator: widget.validator,
     );
   }
-  /// Opens a date picker dialog to select a date.
 
+  /// Función para mostrar un selector de fecha.
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,

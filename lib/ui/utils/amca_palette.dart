@@ -1,20 +1,9 @@
-/// {@category Styles}
-///
-/// This file contains the `AmcaPalette` class, which provides a collection of
-/// predefined colors used in the Amca application.
-///
 import 'package:flutter/material.dart';
 
 class AmcaPalette {
-  /// Dark green color used in the Amca application.
   static const darkGreen = Color(0xFF173D2E);
-
-  /// Color used for pie chart representing costs in the Amca application.
   static const pieCostColor = Color(0xFF79BD4D);
+  static const pieExpenseColor = Color(0xff174100);
 
-  /// Color used for pie chart representing expenses in the Amca application.
-  static const pieExpenseColor = Color(0xFF174100);
-
-  /// Light green color used in the Amca application.
   static const lightGreen = Color(0xFF00C913);
 }

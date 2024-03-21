@@ -1,10 +1,8 @@
-/// {@category Widgets}
-/// This file contains the `AmcaSelectFormField` widget, which is a custom dropdown
+/// {@category Widget}
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 
-/// form field for the Amca application.
-
+/// Campo de formulario de selección con lista de opciones.
 class AmcaSelectFormField extends StatefulWidget {
   /// Constructor para crear un nuevo AmcaSelectFormField.
   const AmcaSelectFormField({
@@ -17,29 +15,28 @@ class AmcaSelectFormField extends StatefulWidget {
     this.enabled = true,
   });
 
-  /// Label for the select form field.
+  /// Etiqueta que se muestra en el campo de entrada.
   final String? labelText;
 
-  /// Controller for the text field.
+  /// Controlador de texto para controlar el contenido del campo de entrada.
   final TextEditingController? textEditingController;
 
-  /// Validation function for the select form field.
+  /// Validador que se ejecuta en el campo de entrada.
   final FormFieldValidator<String>? validator;
 
-  /// List of options for the dropdown.
+  /// Lista de opciones que se muestran en el diálogo de selección.
   final List<String> options;
 
-  /// Callback function called when an option is selected.
+  /// Función de devolución de llamada que se llama cuando se selecciona una opción.
   final Function(String optionSelected) optionSelected;
 
-  /// Indicates whether the dropdown is enabled.
-
+  /// Determina si el campo de entrada está habilitado o deshabilitado.
   final bool enabled;
 
   @override
   State<AmcaSelectFormField> createState() => _AmcaSelectFormFieldState();
 }
-/// Status of the `AmcaSelectFormField` widget.
+
 class _AmcaSelectFormFieldState extends State<AmcaSelectFormField> {
   late TextEditingController _textEditingController;
 

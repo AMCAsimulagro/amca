@@ -1,5 +1,3 @@
-/// {@category Menu Home}
-
 import 'package:amca/ui/features/farming/type/farming_type_page.dart';
 import 'package:amca/ui/features/farming/widgets/card_option.dart';
 import 'package:amca/ui/utils/amca_words.dart';
