@@ -1,3 +1,5 @@
+/// {@category Menu farming info}
+
 import 'dart:developer';
 
 import 'package:amca/domain/model/crop_types.dart';
