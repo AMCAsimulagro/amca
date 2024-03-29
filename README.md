@@ -1,6 +1,27 @@
-# amca
+![Static Badge](https://img.shields.io/badge/Version--V2-2?style=for-the-badge)
 
-Proyecto trabajo de grado Amca
+![Static Badge](https://img.shields.io/badge/Languaje-Dart-a?style=for-the-badge&logo=dart&color=2bb7f6) 
+![Static Badge](https://img.shields.io/badge/framework-Flutter-a?style=for-the-badge&logo=Flutter&color=00b4a9)
+
+![Static Badge](https://img.shields.io/badge/DB-Firebase-a?style=for-the-badge&logo=Firebase&color=f88c12)
+![Static Badge](https://img.shields.io/badge/Source_code_editor-VsCode-a?style=for-the-badge&logo=Visual%20studio%20code&color=0081c2)
+
+![Static Badge](https://img.shields.io/badge/Emulator-Android_Studio-a?style=for-the-badge&logo=Android%20studio&color=3ddc84)
+
+
+
+# AMCA
+
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <img src='https://i.imgur.com/B9yYopR.png' alt="Descripción de la imagen" style="width:200px; height:200px;">
+    </div>
+    <div style="flex: 1;">
+        AMCA is a mobile application designed to facilitate financial management and crop monitoring in the agricultural and livestock sector.
+        It allows users to enter detailed information about their crops, including data related to costs, expenses and production. This information is securely stored in a database and used to provide crop management and analysis functionalities. AMCA is aimed at both professional farmers and gardening enthusiasts, and offers an intuitive and efficient interface to monitor crop profitability.
+    </div>
+</div>
+
 
 # Required Resources
 1. Download and install [Node.js](https://nodejs.org/en/download/).
@@ -9,14 +30,31 @@ Proyecto trabajo de grado Amca
    1. Flutter
 4. Download [Android Studio](https://developer.android.com/studio?hl=en) for Android app development.
 
-## Clone Repository
+
+
+# Repository.
+## Clone Repository.
 1. Access the [GitHub repository](https://github.com/AMCAsimulagro/amca).
 2. Clone the repository into a desired folder using the following command in the terminal:
 
-   ```bash
-   git clone https://github.com/AMCAsimulagro/amca.git
-   ```
+    ```bash
+    git clone https://github.com/AMCAsimulagro/amca.git
+    ```
+## Bring the latest changes
 
+```bash
+    git pull origin main
+```
+
+### How to collaborate
+Improvements are always welcome!
+
+- Create a new branch `git checkout -b feature/name of improvement`
+- Make the necessary adjustments within this branch and try to be specific.
+- Commit to save changes `git commit -am 'NEW: X improvement added'`
+- Upload changes to the repositoryUpload changes to the repository `git push origin feature/name of improvement`.
+- Finally create a PR (Pull Request).
+  
 ## Installations and Configurations
 ### Android Studio
 1. Run the Android Studio installation.
@@ -35,6 +73,21 @@ Proyecto trabajo de grado Amca
     ```bash
         choco install dart-sdk
     ```
+
+# Create Folder Doc
+
+``` bash
+dart pub get 
+dart doc
+dart pub global activate dhttpd
+dhttpd --path doc/api
+```
+- **dart pub get:**  Obtain libraries/download them `Only 1 time in the entire project`
+- **art doc:** Interpret the comments and create a folder called doc/api with the codes
+- **dart pub global activate dhttpd:** Update the interpretation folder
+- **dhttpd --path doc/api:** Activate the local host on port 8080
+
+For futher information go to [DartDoc Github](https://github.com/dart-lang/dartdoc/tree/main). In this you can find the official documentation and configuration on how to run and configure `Dart Doc`
 
 ---
 ## Getting Started
