@@ -1,3 +1,6 @@
+/// {@category Domain}
+// This file defines the [CostAndExpense] class representing both cost and expense items, along with associated JSON serialization.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,15 +12,20 @@ part of 'cost_expense.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// This method returns the identity of the provided value.
 T _$identity<T>(T value) => value;
 
+// Error thrown when using the private constructor.
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+// JSON deserialization function for [CostAndExpense] class.
 CostAndExpense _$CostAndExpenseFromJson(Map<String, dynamic> json) {
   return _CostAndExpense.fromJson(json);
 }
 
+/// This mixin contains the abstract getters and setters for [CostAndExpense] class.
+/// 
 /// @nodoc
 mixin _$CostAndExpense {
   String? get uidOwner => throw _privateConstructorUsedError;
@@ -47,6 +55,8 @@ mixin _$CostAndExpense {
       throw _privateConstructorUsedError;
 }
 
+/// This class implements the copyWith method for [CostAndExpense].
+/// 
 /// @nodoc
 abstract class $CostAndExpenseCopyWith<$Res> {
   factory $CostAndExpenseCopyWith(
@@ -68,6 +78,8 @@ abstract class $CostAndExpenseCopyWith<$Res> {
   $DescriptionCopyWith<$Res> get description;
 }
 
+/// This class implements the copyWith method for [CostAndExpense].
+/// 
 /// @nodoc
 class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
     implements $CostAndExpenseCopyWith<$Res> {

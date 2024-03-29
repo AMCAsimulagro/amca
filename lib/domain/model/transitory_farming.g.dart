@@ -1,3 +1,7 @@
+/// {@category Domain}
+/// This file contains the serialization and deserialization methods for the TransitoryFarming class, allowing instances to be converted to and from JSON format.
+/// It is automatically generated using the JsonSerializable package based on the TransitoryFarming class definition.
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'transitory_farming.dart';

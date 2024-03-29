@@ -1,3 +1,9 @@
+/// {@category Domain}
+// This file contains the definition of the TransitoryFarming class, which represents an object related to transitory farming.
+// It includes serialization and deserialization of TransitoryFarming instances to/from JSON, as well as methods for calculating the total cost and expenses.
+// Additionally, it is automatically generated using Freezed and JsonSerializable for immutability and serialization/deserialization of objects.
+// copyWith and toString methods are provided for ease of instance management and debugging.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint

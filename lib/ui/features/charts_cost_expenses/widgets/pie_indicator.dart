@@ -1,5 +1,10 @@
+/// {@category Features ChartCost Widgets }
+/// This file contains a widget `Indicator` used for displaying a colored indicator with text.
+
+/// Imports of Bookstores and Resources
 import 'package:flutter/material.dart';
 
+/// Widget for displaying a colored indicator with text.
 class Indicator extends StatelessWidget {
   const Indicator({
     super.key,

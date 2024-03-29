@@ -1,3 +1,11 @@
+/// {@category Domain}
+/// This file defines the TransitoryFarming class, which represents a transitory farming entity.
+/// It contains properties such as id, createDate, partName, cropType, crop, sownArea, sownType,
+/// format, amountSown, value, uidOwner, comment, costsAndExpenses, and production. It also includes
+/// methods for JSON serialization and deserialization, as well as a method to calculate the total
+/// cost and expense.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/production.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

@@ -1,3 +1,8 @@
+/// {@category Features CostExpense Manage}
+/// This file contains the definition of the `ManageCostExpenseVM` class, which serves as a ViewModel
+/// for managing cost and expense data in a Flutter application.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
@@ -7,18 +12,19 @@ import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:amca/ui/features/costs_expenses/manage/product_service_data.dart';
 import 'package:flutter/cupertino.dart';
 
+/// A ViewModel for managing cost and expense data.
 class ManageCostExpenseVM extends ChangeNotifier {
   ManageCostExpenseVM(this.farmingId);
 
-  final FarmingRepository farmingRepository = locator<FarmingRepository>();
+  final FarmingRepository farmingRepository = locator<FarmingRepository>();/// Farming data repository.
 
-  TransitoryFarming? transitoryFarming;
+  TransitoryFarming? transitoryFarming;/// Transitory farming.
 
-  ProductOrService? productOrServiceSelected;
+  ProductOrService? productOrServiceSelected;/// Selected product or service.
 
-  Description? descriptionSelected;
+  Description? descriptionSelected;/// Selected description.
 
-  bool isLoading = true;
+  bool isLoading = true;/// Loading indicator.
   String farmingId;
 
   Future<void> init() async {

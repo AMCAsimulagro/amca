@@ -1,3 +1,6 @@
+/// {@category Domain}
+// This file defines the [CropTypes] class with JSON serialization and deserialization functions using manual implementation.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint

@@ -1,3 +1,9 @@
+/// {@category Domain}
+/// This file defines a Description class using Freezed and JsonSerializable annotations.
+/// The Description class represents an object with properties for description, cost or expense, and type.
+/// It is designed to be immutable and provides methods for JSON serialization and deserialization.
+/// This file includes both the definition of the Description class and the generated code for JSON serialization/deserialization.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint

@@ -1,3 +1,10 @@
+/// {@category Api}
+/// This file contains the implementation of an interface `FrequentQuestionApi` and its adapter `FrequentQuestionApiAdapter`
+///
+/// which provide methods to interact with Firebase database in a Flutter application specifically for managing frequent questions.
+/// These methods are designed to retrieve, manage, and delete frequent questions.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';
 import 'package:amca/domain/model/app_exception.dart';
 import 'package:amca/domain/model/frequent_question.dart';
@@ -6,15 +13,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uuid/uuid.dart';
 
+/// Abstract interface defining methods to interact with the database specifically for managing frequent questions.
 abstract class FrequentQuestionApi {
-  Future<List<FrequentQuestion>> getFrequentQuestions();
+  Future<List<FrequentQuestion>> getFrequentQuestions();/// Retrieves a list of frequent questions from the database.
 
   Future<FrequentQuestion> manageFrequentQuestion(
-      FrequentQuestion frequentQuestion);
+      FrequentQuestion frequentQuestion);/// Manages a frequent question by adding or updating it in the database.
 
-  Future<void> deleteFrequentQuestion(FrequentQuestion frequentQuestion);
+  Future<void> deleteFrequentQuestion(FrequentQuestion frequentQuestion);/// Deletes a frequent question from the database.
 }
 
+/// Implementation of the `FrequentQuestionApi` interface.
 class FrequentQuestionApiAdapter extends FrequentQuestionApi {
   final _firebaseDb = FirebaseFirestore.instance;
   final _firebaseAuth = FirebaseAuth.instance;

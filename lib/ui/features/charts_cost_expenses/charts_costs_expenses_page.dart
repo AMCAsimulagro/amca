@@ -1,3 +1,7 @@
+/// {@category Features ChartCost}
+/// This file contains the implementation of the `ChartsCostsExpensesPage` widget, which displays charts for costs and expenses.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/domain/model/bar_data_ui.dart';
 import 'package:amca/domain/model/pie_data_ui.dart';
 import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_vm.dart';
@@ -12,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 
+/// Widget for displaying charts for costs and expenses.
 class ChartsCostsExpensesPage extends StatefulWidget {
   const ChartsCostsExpensesPage._(
       {super.key, required this.transitoryFarmingId});

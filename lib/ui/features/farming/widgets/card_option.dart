@@ -1,6 +1,14 @@
+/// {@category Features Farming Widgets}
+/// This file contains the implementation of the [CardOption] class, which represents a card with an image and text.
+/// Users can tap on the card to perform a specific action defined by the [onTap] callback.
+
+/// Imports of Bookstores and Resources
 import 'package:flutter/material.dart';
 
+/// StatelessWidget representing a card with an image and text.
 class CardOption extends StatelessWidget {
+
+  /// Constructs a [CardOption] widget.
   const CardOption({
     super.key,
     required this.imagePath,
@@ -8,9 +16,9 @@ class CardOption extends StatelessWidget {
     this.onTap,
   });
 
-  final String imagePath;
-  final String text;
-  final GestureTapCallback? onTap;
+  final String imagePath;/// Path to the image asset.
+  final String text; /// Text displayed below the image.
+  final GestureTapCallback? onTap;/// Callback function invoked when the card is tapped.
 
   @override
   Widget build(BuildContext context) {

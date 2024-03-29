@@ -1,3 +1,11 @@
+/// {@category Features CostExpense}
+/// This file contains the implementation of the [CostsExpensesListPage] widget,
+/// which displays a list of costs and expenses related to farming activities.
+/// It allows users to view, add, and manage their costs and expenses.
+/// This page utilizes [ChangeNotifierProvider] to manage the state using [CostsExpensesListVM].
+/// It also includes UI elements such as buttons and a floating action button.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
 import 'package:amca/ui/features/costs_expenses/manage/manage_cost_expense_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
@@ -7,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+/// This class displays a list of costs and expenses related to agricultural activities.
 class CostsExpensesListPage extends StatelessWidget {
   static ChangeNotifierProvider<CostsExpensesListVM> create(
           {Key? key, required String farmingId}) =>
