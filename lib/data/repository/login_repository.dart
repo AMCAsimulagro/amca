@@ -1,28 +1,36 @@
+/// {@category Repository}
+/// This file contains the implementation of an interface `LoginRepository` and its adapter `LoginRepositoryAdapter`
+/// 
+/// which provide methods to interact with the Login API in a Flutter application for managing user authentication and account-related actions.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/data/api/login_api.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+/// Abstract class defining methods to interact with the Login API for user authentication and account-related actions.
 abstract class LoginRepository {
   Future<UserCredential> createUserWithEmailAndPassword(
-      AmcaUser user, String password);
+      AmcaUser user, String password);/// Creates a new user account with email and password.
 
   Future<UserCredential> signInWithIdentificationAndPassword(
-      String identification, String password);
+      String identification, String password);/// Signs in an existing user with identification (e.g., email) and password.
 
-  Future<void> sendPasswordResetEmail(String email);
+  Future<void> sendPasswordResetEmail(String email);/// Sends a password reset email to the specified email address.
 
-  Future<bool> isLogged();
+  Future<bool> isLogged();/// Checks if a user is currently logged in.
 
-  Future<void> signOut();
+  Future<void> signOut();/// Signs out the current user.
 
-  Future<AmcaUser> getUserCurrentlyLogged();
+  Future<AmcaUser> getUserCurrentlyLogged();/// Retrieves the user currently logged in.
 
-  Future<void> recoverPassword(String email);
+  Future<void> recoverPassword(String email);/// Sends a password recovery email to the specified email address.
 
-  Future<void> deleteAccount();
+  Future<void> deleteAccount();/// Deletes the current user account.
 }
 
+/// Implementation of the `LoginRepository` interface.
 class LoginRepositoryAdapter extends LoginRepository {
   final LoginApi _api = locator<LoginApi>();
 

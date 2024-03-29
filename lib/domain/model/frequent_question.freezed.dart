@@ -1,3 +1,8 @@
+/// {@category Domain}
+/// This file contains the generated code for JSON serialization and deserialization of the FrequentQuestion class.
+/// It includes functions to convert FrequentQuestion objects to and from JSON maps.
+/// This code is generated automatically by the Freezed package.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint

@@ -1,3 +1,11 @@
+/// {@category Domain}
+/// This file defines a Spawn class using Freezed and JsonSerializable annotations.
+/// The Spawn class represents a spawn with a list of types.
+/// It is designed to be immutable and provides methods for JSON serialization and deserialization.
+/// This file includes both the definition of the Spawn class and the generated code for JSON serialization/deserialization.
+/// Freezed annotations are used to generate constructors and equality checks for the class, while JsonSerializable annotations
+/// are used to generate toJson() and fromJson() methods for serialization and deserialization.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint

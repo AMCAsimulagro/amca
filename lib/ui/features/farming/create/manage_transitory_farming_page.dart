@@ -1,5 +1,14 @@
+/// {@category Features Farming Create}
+/// /// This file contains the implementation of the [ManageTransitoryFarming] class, which provides a user interface
+/// for creating and managing transitory farming activities. It includes form fields for inputting details such as
+/// date, part name, crop type, crop, sown area, sown type, format, amount sown, value, and comments. Users can
+/// create, update, and delete transitory farming activities. It interacts with the [CreateTransitoryFarmingVM]
+/// ViewModel to handle business logic related to transitory farming. Dependencies include various UI widgets,
+/// [TransitoryFarming] model, and ViewModels such as [CreateTransitoryFarmingVM] and [FarmingHistoryVM].
+
 // ignore_for_file: use_build_context_synchronously
 
+/// Imports of Bookstores and Resources
 import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
@@ -20,7 +29,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+/// StatefulWidget for creating and managing transitory farming activities.
 class ManageTransitoryFarming extends StatefulWidget {
+
+  /// Creates a [ManageTransitoryFarming] instance with an optional [transitoryFarming].
   static ChangeNotifierProvider<CreateTransitoryFarmingVM> create(
           {Key? key, TransitoryFarming? transitoryFarming}) =>
       ChangeNotifierProvider(
@@ -33,11 +45,13 @@ class ManageTransitoryFarming extends StatefulWidget {
             key: key, transitoryFarming: transitoryFarming),
       );
 
+ /// Constructs a [ManageTransitoryFarming] widget.
   const ManageTransitoryFarming._({
     super.key,
     this.transitoryFarming,
   });
 
+/// The transitory farming activity.
   final TransitoryFarming? transitoryFarming;
 
   @override
@@ -45,6 +59,7 @@ class ManageTransitoryFarming extends StatefulWidget {
       _ManageTransitoryFarmingState();
 }
 
+/// State class associated with [ManageTransitoryFarming] widget.
 class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
   final _formKey = GlobalKey<FormState>();
   final _partNameController = TextEditingController();

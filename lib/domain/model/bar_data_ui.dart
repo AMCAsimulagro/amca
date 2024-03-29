@@ -1,4 +1,10 @@
+/// {@category Domain}
+/// This class represents UI-specific data for displaying bar chart data.
+/// It contains information about a specific month and its corresponding total cost.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/domain/model/chart_data.dart';
+
 
 class BarDataUI {
   final int month;

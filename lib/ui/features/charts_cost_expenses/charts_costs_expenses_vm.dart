@@ -1,3 +1,8 @@
+/// {@category Features ChartCost}
+/// This file contains the definition of the `ChartsProfileVM` class, which serves as a ViewModel
+/// for managing chart data in a Flutter application.
+
+/// Imports of Bookstores and Resources
 import 'dart:async';
 
 import 'package:amca/data/repository/farming_repository.dart';
@@ -11,17 +16,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:rxdart/rxdart.dart';
 
+/// Enumeration representing the type of data for the chart.
 enum ChartTypeData {
   costs,
   expenses,
 }
 
+/// Extension for the ChartTypeData enumeration providing helpful methods.
 extension ChartTypeUtils on ChartTypeData {
   bool get isCost => this == ChartTypeData.costs;
 
   bool get isExpenses => this == ChartTypeData.expenses;
 }
 
+/// Class representing the ViewModel for managing chart data.
 class ChartsProfileVM extends ChangeNotifier {
   final FarmingRepository farmingRepository = locator<FarmingRepository>();
   List<ChartDataYear> chartDataUI = [];
@@ -43,6 +51,7 @@ class ChartsProfileVM extends ChangeNotifier {
 
   final Map<String, List<ChartDataMonth>> cacheSemesterData = {};
 
+ /// Method to initialize the ViewModel.
   Future<void> init(String transitoryFarmingId) async {
     isLoading = true;
     final costAndExpenses = await farmingRepository
@@ -65,6 +74,7 @@ class ChartsProfileVM extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Method to generate chart data.
   void generateChartData(List<CostAndExpense> costAndExpenses) {
     for (var costExpense in costAndExpenses) {
       int year = costExpense.year;
@@ -98,6 +108,7 @@ class ChartsProfileVM extends ChangeNotifier {
     }
   }
 
+/// Method to create a pie chart.
   void createPieChart(Jiffy dateSelected) {
     try {
       final pieDataByYear = chartDataUI
@@ -128,6 +139,7 @@ class ChartsProfileVM extends ChangeNotifier {
     }
   }
 
+ /// Method to create a bar chart.
   void createBarChart(
     Jiffy dateSelected,
     ChartTypeData chartTypeData,
@@ -183,6 +195,7 @@ class ChartsProfileVM extends ChangeNotifier {
     }
   }
 
+ /// Method to retrieve bar data for the selected semester.
   List<ChartDataMonth> _getBarSemesterDateSelected(Jiffy dateSelected) {
     final barDataByYear =
         chartDataUI.firstWhere((element) => element.year == dateSelected.year);

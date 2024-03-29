@@ -1,3 +1,9 @@
+/// {@category Features CostExpense Manage}
+/// This file contains the implementation of a Flutter page for managing agricultural costs and expenses.
+/// It provides fields to input information such as date, product or service, description, quantity, price, and comments.
+/// The page utilizes the Provider pattern to manage the application state and displays dialogs for user interaction.
+
+/// Imports of Bookstores and Resources
 import 'dart:developer';
 
 import 'package:amca/domain/model/cost_expense.dart';
@@ -17,7 +23,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+// This class represents the main page for managing costs and expenses.
 class ManageCostExpensePage extends StatefulWidget {
+
+  // Static method to create an instance of ChangeNotifierProvider for this page.
   static ChangeNotifierProvider<ManageCostExpenseVM> create(
           {Key? key,
           CostAndExpense? costAndExpense,
@@ -25,23 +34,29 @@ class ManageCostExpensePage extends StatefulWidget {
       ChangeNotifierProvider(
         lazy: false,
         create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
+        
+        // Constructor for the ManageCostExpensePage.
         child: ManageCostExpensePage._(
           key: key,
           costAndExpense: costAndExpense,
         ),
       );
 
+// Private constructor for the ManageCostExpensePage.
   const ManageCostExpensePage._({
     super.key,
     this.costAndExpense,
   });
 
+// Property to store the current cost or expense, if in edit mode.
   final CostAndExpense? costAndExpense;
 
+// Method to create the state of the widget.
   @override
   State<ManageCostExpensePage> createState() => _ManageCostExpensePageState();
 }
 
+// Class representing the state of the page for managing costs and expenses.
 class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   late final bool isEditMode;
   final _formKey = GlobalKey<FormState>();
@@ -53,6 +68,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   static const _locale = 'en';
   String createdDate = '';
 
+// Method called when initializing the state of the widget.
   @override
   void initState() {
     isEditMode = widget.costAndExpense != null;
@@ -60,6 +76,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     super.initState();
   }
 
+ // Method to build the user interface of the page.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -266,6 +283,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     );
   }
 
+ // Method to create or update the cost or expense.
   Future<void> createCostAndExpense() async {
     final manageVM = Provider.of<ManageCostExpenseVM>(
       context,
@@ -300,6 +318,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     }
   }
 
+// Method to display a confirmation dialog before deleting a cost or expense.
   Future<void> showOptionDialog(String id, BuildContext context) async {
     await Dialogs.showSuccessDialogWithOptions(
         context, AmcaWords.areYouSureToDeleteThisCostOrExpense,
@@ -308,6 +327,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     });
   }
 
+// Method to delete a cost or expense.
   Future<void> deleteCostOrExpense(String id) async {
     final manageVM = Provider.of<ManageCostExpenseVM>(
       context,
@@ -323,6 +343,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     } catch (_) {}
   }
 
+// Method to preload data if the page is in edit mode.
   void _preloadData() {
     if (isEditMode) {
       final manageCostVM = Provider.of<ManageCostExpenseVM>(
@@ -347,6 +368,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   }
 }
 
+// Widget to display the selected description of the product or service.
 class _DescriptionSelected extends StatelessWidget {
   const _DescriptionSelected({Key? key}) : super(key: key);
 

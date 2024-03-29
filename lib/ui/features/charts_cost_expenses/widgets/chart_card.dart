@@ -1,3 +1,7 @@
+/// {@category Features ChartCost Widgets }
+/// This file contains a widget `ChartCard` used for displaying a chart card with date selection functionality.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
+/// Widget for displaying a chart card with date selection functionality.
 class ChartCard extends StatelessWidget {
   const ChartCard({
     super.key,

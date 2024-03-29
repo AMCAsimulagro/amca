@@ -1,3 +1,11 @@
+/// {@category Domain}
+/// This file defines a Production class using Freezed and JsonSerializable annotations.
+/// The Production class represents a production with various attributes such as uidOwner, partName, transitoryFarmingId, etc.
+/// It is designed to be immutable and provides methods for JSON serialization and deserialization.
+/// This file includes both the definition of the Production class and the generated code for JSON serialization/deserialization.
+/// Freezed annotations are used to generate constructors and equality checks for the class, while JsonSerializable annotations
+/// are used to generate toJson() and fromJson() methods for serialization and deserialization.
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint

@@ -1,3 +1,11 @@
+/// {@category Api}
+///This file contains the implementation of an interface `FarmingApi` and its adapter `FarmingApiAdapter`
+///
+/// which provides methods to interact with the Firebase database in a Flutter application.
+/// These methods are designed to perform operations related to agriculture,
+/// how to obtain crop types, create and delete transient agriculture records, manage costs and expenses, among others.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';
 import 'package:amca/domain/model/app_exception.dart';
 import 'package:amca/domain/model/cost_expense.dart';
@@ -9,41 +17,45 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uuid/uuid.dart';
 
+/// Abstract interface defining methods to interact with the database related to farming.
 abstract class FarmingApi {
-  Future<List<CropTypes>> getCropTypes();
 
-  Future<List<String>> getSown();
+  Future<List<CropTypes>> getCropTypes();/// Retrieves a list of crop types from the database.
+
+  Future<List<String>> getSown(); /// Retrieves a list of spawn from the database.
 
   Future<TransitoryFarming> createTransitoryFarming(
-      TransitoryFarming transitoryFarming);
+      TransitoryFarming transitoryFarming); /// Creates a transitory farming record in the database.
 
-  Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid);
+  Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid); /// Retrieves the history of transitory farming records associated with a specific user.
 
-  Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
+  Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin(); /// Retrieves the complete history of transitory farming records for an admin.
 
-  Future<void> deleteTransitoryFarming(String id);
+  Future<void> deleteTransitoryFarming(String id); /// Deletes a transitory farming record from the database.
 
-  Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId);
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId); /// Retrieves the costs and expenses associated with a specific farming record.
 
-  Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);
+  Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);  /// Retrieves a transitory farming record by its unique identifier.
 
   Future<CostAndExpense?> createCastExpense(
     CostAndExpense costAndExpense, {
     required TransitoryFarming farming,
-  });
+  });/// Creates a new cost or expense associated with a farming record.
 
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
-      {required TransitoryFarming farming});
+      {required TransitoryFarming farming}); /// Deletes a cost or expense associated with a farming record.
 
-  Future<CropTypes?> createCropType(CropTypes cropTypes);
+  Future<CropTypes?> createCropType(CropTypes cropTypes);  /// Creates a new crop type in the database.
 
-  Future<CropTypes?> deleteCropType(CropTypes cropTypes);
+  Future<CropTypes?> deleteCropType(CropTypes cropTypes);/// Deletes a crop type from the database.
 }
 
+/// Implementation of the `FarmingApi` interface.
 class FarmingApiAdapter extends FarmingApi {
   final _firebaseDb = FirebaseFirestore.instance;
   final _firebaseAuth = FirebaseAuth.instance;
 
+ // Implementation of getCropTypes
   @override
   Future<List<CropTypes>> getCropTypes() async {
     try {
@@ -65,6 +77,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of getSown
   @override
   Future<List<String>> getSown() async {
     try {
@@ -87,6 +100,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of createTransitoryFarming
   @override
   Future<TransitoryFarming> createTransitoryFarming(
       TransitoryFarming transitoryFarming) async {
@@ -114,6 +128,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+ // Implementation of getFarmingHistoryByUid
   @override
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid) async {
     try {
@@ -139,6 +154,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+ // Implementation of getAllFarmingHistoryByAdmin
   @override
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin() async {
     try {
@@ -161,6 +177,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of deleteTransitoryFarming
   @override
   Future<void> deleteTransitoryFarming(String id) async {
     try {
@@ -180,6 +197,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of getCostsAndExpensesByFarming
   @override
   Future<List<CostAndExpense>> getCostsAndExpensesByFarming(
       String farmingId) async {
@@ -187,6 +205,7 @@ class FarmingApiAdapter extends FarmingApi {
     return result.costsAndExpenses ?? [];
   }
 
+// Implementation of getTransitoryFarmingById
   @override
   Future<TransitoryFarming> getTransitoryFarmingById(String farmingId) async {
     try {
@@ -207,6 +226,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of createCastExpense
   @override
   Future<CostAndExpense?> createCastExpense(
     CostAndExpense costAndExpense, {
@@ -245,6 +265,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of deleteCostAndExpense
   @override
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
       {required TransitoryFarming farming}) async {
@@ -271,6 +292,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of createCropType
   @override
   Future<CropTypes?> createCropType(CropTypes cropTypes) async {
     try {
@@ -295,6 +317,7 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+// Implementation of deleteCropType
   @override
   Future<CropTypes?> deleteCropType(CropTypes cropTypes) async {
     try {

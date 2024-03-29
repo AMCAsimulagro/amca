@@ -1,3 +1,8 @@
+/// {@category Frequent Questions}
+/// This file contains the implementation of the [ManageFrequentQuestionPage] class, which is responsible for managing frequent questions.
+/// Users can create, update, or delete frequent questions using this page.
+
+/// Imports of Bookstores and Resources
 import 'dart:developer';
 
 import 'package:amca/domain/model/frequent_question.dart';
@@ -11,7 +16,12 @@ import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// StatefulWidget responsible for managing frequent questions.
 class ManageFrequentQuestionPage extends StatefulWidget {
+
+  /// Creates a [ManageFrequentQuestionPage].
+  ///
+  /// The [frequentQuestion] parameter is optional and represents the frequent question to be managed.
   static ChangeNotifierProvider<ManageFrequentQuestionVM> create({
     Key? key,
     FrequentQuestion? frequentQuestion,
@@ -30,6 +40,7 @@ class ManageFrequentQuestionPage extends StatefulWidget {
     this.frequentQuestion,
   });
 
+/// The frequent question being managed.
   final FrequentQuestion? frequentQuestion;
 
   @override

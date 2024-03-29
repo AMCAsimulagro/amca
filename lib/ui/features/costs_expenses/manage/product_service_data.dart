@@ -1,9 +1,18 @@
+/// {@category Features CostExpense Manage}
+/// Data management class for product or service options.
+/// This class provides static lists of product or service options along with their descriptions.
+/// Each product or service has a name and a list of descriptions associated with it.
+/// Each description includes details such as the description itself, whether it's a cost or expense, and its type.
+
+/// Imports of Bookstores and Resources
 import 'package:amca/domain/model/description.dart';
 import 'package:amca/domain/model/product_or_service.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 
+// Class to manage data for product or service selection.
 class ProductServiceData {
 
+// List of product or service options.
   static final List<ProductOrService> productServiceList = [
     service,
     product,
