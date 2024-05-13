@@ -71,17 +71,14 @@ class ManageProductionVM extends ChangeNotifier {
       /// Calculates the total cost , expenses and  inversion initial
       final totalCostAndExpenses = permanentFarming?.profitCrop();
 
-
       // Refers to the profits already recorded at the time of cultivation
       final listTotalPrice = permanentFarming?.totalPrice();
 
       /// Calculates the total production value
       final totalValueProduction =
-          int.parse((production.price.replaceAll(',', ''))) +
-              listTotalPrice!;
+          int.parse((production.price.replaceAll(',', ''))) + listTotalPrice!;
 
-
-final finallyTotalProfit = totalValueProduction! - totalCostAndExpenses!;
+      final finallyTotalProfit = totalValueProduction! - totalCostAndExpenses!;
 
       /// Creates a copy of the production with the updated total value, ID (if missing), and owner ID
       final productionToUpdate = production.copyWith(
@@ -111,15 +108,21 @@ final finallyTotalProfit = totalValueProduction! - totalCostAndExpenses!;
       isLoading = false;
     }
   }
-  
 
   /// ## Function to delete the current production
-  Future<PermanentFarming?> deleteProduction() async {
+  Future<PermanentFarming?> deleteProduction(int index) async {
     isLoading = true;
     try {
       /// Creates a copy of permanentFarming with production set to null
+
+      final listProducts = permanentFarming.production;
+
+      if (index >= 0 && index < listProducts.length) {
+        listProducts.removeAt(index);
+      }
+
       permanentFarming = permanentFarming?.copyWith(
-        production: null,
+        production: listProducts,
       );
 
       /// Saves the updated information to the database
