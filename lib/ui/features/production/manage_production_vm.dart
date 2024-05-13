@@ -65,14 +65,13 @@ class ManageProductionVM extends ChangeNotifier {
   Future<TransitoryFarming?> createProduction(Production production) async {
     isLoading = true;
     try {
-      /// Calculates the total cost and expenses
-      final totalCostAndExpenses =
-          transitoryFarming?.calculateTotalCostAndExpense();
+      /// Calculates the total cost and expense
+
+      final profitCrop = transitoryFarming?.profitCrop();
 
       /// Calculates the total production value
       final totalValueProduction =
-          int.parse((production.price.replaceAll(',', ''))) -
-              totalCostAndExpenses!;
+          int.parse((production.price.replaceAll(',', ''))) - profitCrop!;
 
       /// Creates a copy of the production with the updated total value, ID (if missing), and owner ID
       final productionToUpdate = production.copyWith(

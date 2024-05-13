@@ -5,6 +5,7 @@
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/option/option_farming_page.dart';
+import 'package:amca/ui/features/permanent_farming/option/option_permanent_farming_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -15,7 +16,6 @@ import 'package:provider/provider.dart';
 
 /// StatelessWidget for presenting options for different types of farming activities.
 class FarmingTypePage extends StatelessWidget {
-
   /// Constructs a [FarmingTypePage] widget.
   const FarmingTypePage({super.key});
 
@@ -43,15 +43,14 @@ class FarmingTypePage extends StatelessWidget {
                   },
                 ),
               ),
-               Expanded(
+              Expanded(
                 child: AmcaContainerButton(
                   text: AmcaWords.permanent,
-                  onTap: () async {
-                    final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
+                  onTap: () {
+                    NavigationHelper.push(
+                      const OptionFarmingPagePermanent(),
                       context,
-                      listen: false,
                     );
-                    await farmingHistoryVM.init();
                   },
                 ),
               ),

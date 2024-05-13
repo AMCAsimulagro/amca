@@ -13,31 +13,29 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: CardOption(
-                  imagePath: Assets.agricola,
-                  text: AmcaWords.agricultural,
-                  onTap: () {
-                    NavigationHelper.push(
-                      const FarmingTypePage(),
-                      context,
-                    );
-                  },
-                ),
+      child: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: CardOption(
+                imagePath: Assets.agricola,
+                text: AmcaWords.agricultural,
+                onTap: () {
+                  NavigationHelper.push(
+                    const FarmingTypePage(),
+                    context,
+                  );
+                },
               ),
-              const Expanded(
-                child: CardOption(
-                  imagePath: Assets.pecuaria,
-                  text: AmcaWords.livestock,
-                ),
+            ),
+            const Expanded(
+              child: CardOption(
+                imagePath: Assets.pecuaria,
+                text: AmcaWords.livestock,
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

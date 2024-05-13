@@ -12,6 +12,7 @@ import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/crop_types.dart';
 import 'package:amca/domain/model/spawn.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
+import 'package:amca/domain/model/permanent_farming.dart';
 import 'package:amca/ui/utils/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,35 +20,75 @@ import 'package:uuid/uuid.dart';
 
 /// Abstract interface defining methods to interact with the database related to farming.
 abstract class FarmingApi {
+  /// Retrieves a list of crop types from the database.
+  Future<List<CropTypes>> getCropTypes();
 
-  Future<List<CropTypes>> getCropTypes();/// Retrieves a list of crop types from the database.
+  /// Retrieves a list of Permanent crop types from the database.
+  Future<List<CropTypes>> getPermanentCropTypes();
 
-  Future<List<String>> getSown(); /// Retrieves a list of spawn from the database.
+  /// Retrieves a list of spawn from the database.
+  Future<List<String>> getSown();
 
+  /// Creates a transitory farming record in the database.
   Future<TransitoryFarming> createTransitoryFarming(
-      TransitoryFarming transitoryFarming); /// Creates a transitory farming record in the database.
+      TransitoryFarming transitoryFarming);
 
-  Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid); /// Retrieves the history of transitory farming records associated with a specific user.
+  /// Creates a permanent farming record in the database.
+  Future<PermanentFarming> createPermanentFarming(
+      PermanentFarming permanentFarming);
 
-  Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin(); /// Retrieves the complete history of transitory farming records for an admin.
+  /// Retrieves the history of transitory farming records associated with a specific user.
+  Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid);
 
-  Future<void> deleteTransitoryFarming(String id); /// Deletes a transitory farming record from the database.
+  /// Retrieves the history of transitory farming records associated with a specific user.
+  Future<List<PermanentFarming>> getPermanentFarmingHistoryByUid(String? uid);
 
-  Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId); /// Retrieves the costs and expenses associated with a specific farming record.
+  /// Retrieves the complete history of transitory farming records for an admin.
+  Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
-  Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);  /// Retrieves a transitory farming record by its unique identifier.
+  /// Deletes a transitory farming record from the database.
+  Future<void> deleteTransitoryFarming(String id);
 
+  /// Deletes a transitory farming record from the database.
+  Future<void> deletePermanentFarming(String id);
+
+  /// Retrieves the costs and expenses associated with a specific farming record.
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId);
+
+   /// Retrieves the costs and expenses associated with a specific farming record.
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarmingPermanent(String farmingId);
+
+  /// Retrieves a transitory farming record by its unique identifier.
+  Future<TransitoryFarming> getTransitoryFarmingById(String farmingId);
+
+  /// Retrieves a permanent farming record by its unique identifier.
+  Future<PermanentFarming> getPermanentFarmingById(String farmingId);
+
+  /// Creates a new cost or expense associated with a farming record.
   Future<CostAndExpense?> createCastExpense(
     CostAndExpense costAndExpense, {
     required TransitoryFarming farming,
-  });/// Creates a new cost or expense associated with a farming record.
+  });
 
+  /// Creates a new cost or expense associated with a farming record.
+  Future<CostAndExpense?> createCastExpensePermanent(
+    CostAndExpense costAndExpense, {
+    required PermanentFarming farming,
+  });
+
+  /// Deletes a cost or expense associated with a farming record.
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
-      {required TransitoryFarming farming}); /// Deletes a cost or expense associated with a farming record.
+      {required TransitoryFarming farming});
 
-  Future<CropTypes?> createCropType(CropTypes cropTypes);  /// Creates a new crop type in the database.
+  /// Deletes a cost or expense associated with a farming record.
+  Future<CostAndExpense?> deleteCostAndExpensePermanent(String costAndExpenseId,
+      {required PermanentFarming farming});
 
-  Future<CropTypes?> deleteCropType(CropTypes cropTypes);/// Deletes a crop type from the database.
+  /// Creates a new crop type in the database.
+  Future<CropTypes?> createCropType(CropTypes cropTypes);
+
+  /// Deletes a crop type from the database.
+  Future<CropTypes?> deleteCropType(CropTypes cropTypes);
 }
 
 /// Implementation of the `FarmingApi` interface.
@@ -55,12 +96,37 @@ class FarmingApiAdapter extends FarmingApi {
   final _firebaseDb = FirebaseFirestore.instance;
   final _firebaseAuth = FirebaseAuth.instance;
 
- // Implementation of getCropTypes
+  /// Implementation of getCropTypes
+  /// Connects to [Firebase] and gets all the values ​​and returns them
   @override
   Future<List<CropTypes>> getCropTypes() async {
     try {
       final collection =
           await _firebaseDb.collection(FirebaseCollections.farmingInfo).get();
+      final data =
+          collection.docs.map((doc) => CropTypes.fromJson(doc.data())).toList();
+
+      return data;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  /// Implementation of getPermanentCropTypes
+  /// Connects to [Firebase] and gets all the values ​​and returns them
+  @override
+  Future<List<CropTypes>> getPermanentCropTypes() async {
+    try {
+      final collection = await _firebaseDb
+          .collection(FirebaseCollections.permanentcroptypes)
+          .get();
       final data =
           collection.docs.map((doc) => CropTypes.fromJson(doc.data())).toList();
 
@@ -128,7 +194,35 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
- // Implementation of getFarmingHistoryByUid
+  // Implementation of createPermanentFarming
+  @override
+  Future<PermanentFarming> createPermanentFarming(
+      PermanentFarming permanentFarming) async {
+    try {
+      final permanentId = permanentFarming.id ?? const Uuid().v4();
+      final permanentFarmingToUpload = permanentFarming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        id: permanentId,
+      );
+
+      await _firebaseDb
+          .collection(FirebaseCollections.farmingPermanent)
+          .doc(permanentId)
+          .set(permanentFarmingToUpload.toJson());
+      return permanentFarmingToUpload;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  // Implementation of getFarmingHistoryByUid
   @override
   Future<List<TransitoryFarming>> getFarmingHistoryByUid(String? uid) async {
     try {
@@ -154,7 +248,34 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
- // Implementation of getAllFarmingHistoryByAdmin
+  // Implementation of getFarmingHistoryByUid
+  @override
+  Future<List<PermanentFarming>> getPermanentFarmingHistoryByUid(
+      String? uid) async {
+    try {
+      final userId = uid ?? _firebaseAuth.currentUser?.uid ?? '';
+      final collection = await _firebaseDb
+          .collection(FirebaseCollections.farmingPermanent)
+          .where("uidOwner", isEqualTo: userId)
+          .get();
+      final data = collection.docs
+          .map((doc) => PermanentFarming.fromJson(doc.data()))
+          .toList()
+        ..sort((a, b) => b.createDate.compareTo(a.createDate));
+      return data;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  // Implementation of getAllFarmingHistoryByAdmin
   @override
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin() async {
     try {
@@ -197,11 +318,39 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+  // Implementation of deletePermanentFarming
+  @override
+  Future<void> deletePermanentFarming(String id) async {
+    try {
+      return await _firebaseDb
+          .collection(FirebaseCollections.farmingPermanent)
+          .doc(id)
+          .delete();
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
 // Implementation of getCostsAndExpensesByFarming
   @override
   Future<List<CostAndExpense>> getCostsAndExpensesByFarming(
       String farmingId) async {
     final result = await getTransitoryFarmingById(farmingId);
+    return result.costsAndExpenses ?? [];
+  }
+
+  // Implementation of getCostsAndExpensesByFarming
+  @override
+  Future<List<CostAndExpense>> getCostsAndExpensesByFarmingPermanent(
+      String farmingId) async {
+    final result = await getPermanentFarmingById(farmingId);
     return result.costsAndExpenses ?? [];
   }
 
@@ -214,6 +363,27 @@ class FarmingApiAdapter extends FarmingApi {
           .doc(farmingId)
           .get();
       return TransitoryFarming.fromJson(data.data()!);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  // Implementation of getPermanentFarmingById
+  @override
+  Future<PermanentFarming> getPermanentFarmingById(String farmingId) async {
+    try {
+      final data = await _firebaseDb
+          .collection(FirebaseCollections.farmingPermanent)
+          .doc(farmingId)
+          .get();
+      return PermanentFarming.fromJson(data.data()!);
     } on FirebaseAuthException catch (e) {
       throw AppException(
         message: e.message,
@@ -265,6 +435,45 @@ class FarmingApiAdapter extends FarmingApi {
     }
   }
 
+  // Implementation of createCastExpense
+  @override
+  Future<CostAndExpense?> createCastExpensePermanent(
+    CostAndExpense costAndExpense, {
+    required PermanentFarming farming,
+  }) async {
+    try {
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpense.uidOwner = _firebaseAuth.currentUser?.uid ?? '';
+      final costAndExpenseId = costAndExpense.id ?? const Uuid().v4();
+      final costAndExpenseToUpload = costAndExpense.copyWith(
+        id: costAndExpenseId,
+      );
+      int index =
+          costAndExpenseList.indexWhere((obj) => obj.id == costAndExpenseId);
+      if (index != -1) {
+        costAndExpenseList
+            .replaceRange(index, index + 1, [costAndExpenseToUpload]);
+      } else {
+        costAndExpenseList.add(costAndExpenseToUpload);
+      }
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createPermanentFarming(farmingToUpload);
+      return costAndExpenseToUpload;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
 // Implementation of deleteCostAndExpense
   @override
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId,
@@ -279,6 +488,33 @@ class FarmingApiAdapter extends FarmingApi {
         costsAndExpenses: costAndExpenseList,
       );
       await createTransitoryFarming(farmingToUpload);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+
+  // Implementation of deleteCostAndExpense
+  @override
+  Future<CostAndExpense?> deleteCostAndExpensePermanent(String costAndExpenseId,
+      {required PermanentFarming farming}) async {
+    try {
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpenseList
+          .removeWhere((element) => element.id == costAndExpenseId);
+
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createPermanentFarming(farmingToUpload);
       return null;
     } on FirebaseAuthException catch (e) {
       throw AppException(

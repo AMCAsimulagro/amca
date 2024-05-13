@@ -23,20 +23,25 @@ class AmcaContainerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.all(8),
-        height: double.infinity,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AmcaPalette.lightGreen,
-            width: 1,
+      child: Center(
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          height: double.infinity,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.green, // Cambia el color de fondo a verde
           ),
-        ),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headlineSmall,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white, // Cambia el color del texto a blanco
+              fontSize: 24, // Ajusta el tamaño de la fuente según lo desees
+              fontWeight:
+                  FontWeight.bold, // Opcional: ajusta el peso de la fuente
+            ),
+          ),
         ),
       ),
     );
