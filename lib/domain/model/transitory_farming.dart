@@ -47,6 +47,20 @@ class TransitoryFarming with _$TransitoryFarming {
           }).reduce((value, element) => value + element) ??
           0;
     }
+    //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
+    return totalCostAndExpense;
+  }
+
+  int profitCrop() {
+    int totalCostAndExpense = 0;
+    if ((costsAndExpenses ?? []).isNotEmpty) {
+      totalCostAndExpense = costsAndExpenses?.map((e) {
+            final price = int.parse(e.price.replaceAll(',', ''));
+            return price;
+          }).reduce((value, element) => value + element) ??
+          0;
+    }
+    totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
   }
 }

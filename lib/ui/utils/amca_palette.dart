@@ -17,4 +17,7 @@ class AmcaPalette {
 
   /// Light green color used in the Amca application.
   static const lightGreen = Color(0xFF00C913);
+
+  static const permanentColor = Color.fromARGB(255, 76, 175, 79);
+  static const TransitoryColor = Color.fromARGB(255, 0, 180, 169);
 }

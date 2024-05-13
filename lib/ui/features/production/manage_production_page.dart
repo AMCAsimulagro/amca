@@ -108,6 +108,10 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
+                          'Inversion Inicial: \$${vm.transitoryFarming?.value}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Text(
                           'Total Costos y Gastos del cultivo: \$${vm.transitoryFarming?.calculateTotalCostAndExpense().toString().formatNumberToColombianPesos() ?? ''}',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
