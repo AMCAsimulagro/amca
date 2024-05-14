@@ -165,50 +165,65 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                         const SizedBox(
                           height: 12,
                         ),
-
-                        
-
                         if (vm.permanentFarming?.production != null)
-  for (int index = 0; index < (vm.permanentFarming?.production ?? []).length; index++)
-    Container(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${vm.permanentFarming.production[index].createDate.month}/${vm.permanentFarming.production[index].createDate.day}/${vm.permanentFarming.production[index].createDate.year}', // Display month, day, and year
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(Icons.attach_money, color: Colors.green), // Green money icon
-                    SizedBox(width: 4),
-                    Text(
-                      'Venta: \$${vm.permanentFarming.production[index].price}', // Display item price
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.green),
+                          for (var item
+                              in vm.permanentFarming?.production ?? []) ...[
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12.0),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.grey)),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${item.createDate.month}/${item.createDate.day}/${item.createDate.year}', // Display month, day, and year
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.attach_money,
+                                                color: Colors
+                                                    .green), // Green money icon
+                                            SizedBox(width: 4),
+                                            Text(
+                                              'Venta: \$${item.price}', // Display item price
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                      color: Colors.green),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.delete, color: Colors.red),
+                                    onPressed: () {
+                                      deleteProduction(0);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.delete, color: Colors.red),
-            onPressed: () {
-              deleteProduction(index);
-            },
-          ),
-        ],
-      ),
-    ),
+                  ]
 
                   //!SECTION
 
@@ -320,14 +335,6 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                   }
                 },
               ),
-              if (isEditMode)
-                AmcaButton(
-                  text: AmcaWords.delete,
-                  type: AmcaButtonType.destroy,
-                  onPressed: () {
-                    deleteProduction();
-                  },
-                ),
             ],
           ),
         ),
@@ -373,6 +380,25 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
       log(e.toString());
     }
   }
+
+  // Future<void> deleteProduction() async {
+  //   final manageVM = Provider.of<ManageProductionVM>(
+  //     context,
+  //     listen: false,
+  //   );
+  //   try {
+  //     await CallsWithDialogs.call(context, () async {
+  //       await manageVM.deleteProduction();
+  //       await Dialogs.showSuccessDialogWithMessage(
+  //         context,
+  //         AmcaWords.yourProductionHasBeenDeleted,
+  //       );
+  //       Navigator.pop(context);
+  //     });
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   Future<void> deleteProduction(int index) async {
     final manageVM = Provider.of<ManageProductionVM>(

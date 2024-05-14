@@ -28,6 +28,7 @@
 2. Download Git from the [official website](https://git-scm.com/downloads) and follow the installation instructions as well as user configuration.
 3. Download [Visual Studio Code](https://code.visualstudio.com/download) and then install the following plugins:
    1. Flutter
+   2. Dart
 4. Download [Android Studio](https://developer.android.com/studio?hl=en) for Android app development.
 
 
