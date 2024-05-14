@@ -165,6 +165,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                         const SizedBox(
                           height: 12,
                         ),
+
                         if (vm.permanentFarming?.production != null)
                           for (var item
                               in vm.permanentFarming?.production ?? []) ...[
@@ -211,10 +212,21 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                                       ],
                                     ),
                                   ),
+                                  // IconButton(
+                                  //   icon: Icon(Icons.delete, color: Colors.red),
+                                  //   onPressed: () {
+                                  //     deleteProduction(0);
+                                  //   },
+                                  // ),
                                   IconButton(
                                     icon: Icon(Icons.delete, color: Colors.red),
                                     onPressed: () {
-                                      deleteProduction(0);
+                                      // Obtener el índice del elemento actual en la lista
+                                      int index = vm
+                                              .permanentFarming?.production
+                                              ?.indexOf(item) ??
+                                          -1;
+                                      deleteProduction(index);
                                     },
                                   ),
                                 ],
