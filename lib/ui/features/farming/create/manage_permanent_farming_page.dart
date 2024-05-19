@@ -316,7 +316,7 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                                         ManageProductionPage.create(
                                       farmingId: vm.permanentFarming?.id ?? '',
                                       production://TODO -  Cambiar la poss
-                                          vm.permanentFarming?.production?[0],
+                                          vm.permanentFarming?.production?.isEmpty == true ? vm.permanentFarming!.production![0] : null,
                                     ),
                                   ),
                                 ).then((value) async {
@@ -347,7 +347,7 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                               builder: (BuildContext context) =>
                                   ManageProductionPageProfit.create(
                                 farmingId: vm.permanentFarming?.id ?? '',
-                                production: vm.permanentFarming?.production?[0],//TODO - cambiar Poss
+                                production: vm.permanentFarming?.production?.isEmpty == true ? vm.permanentFarming!.production![0] : null,//TODO - cambiar Poss
                               ),
                             ),
                           ).then((value) async {

@@ -121,8 +121,19 @@ class ManageProductionVM extends ChangeNotifier {
         listProducts.removeAt(index);
       }
 
+      final totalCostAndExpenses = permanentFarming?.profitCrop();
+
+      // Refers to the profits already recorded at the time of cultivation
+      final listTotalPrice = permanentFarming?.totalPrice();
+
+      /// Calculates the total production value
+      final totalValueProduction = listTotalPrice!;
+
+      final finallyTotalProfit = totalValueProduction! - totalCostAndExpenses!;
+
       permanentFarming = permanentFarming?.copyWith(
-        production: listProducts,
+        production: listProducts!.isEmpty ? null : listProducts,
+        totalProfit: finallyTotalProfit.toString(),
       );
 
       /// Saves the updated information to the database

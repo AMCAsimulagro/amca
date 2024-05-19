@@ -67,8 +67,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(isEditMode ? AmcaWords.editProduction : AmcaWords.production),
+        title: Text("Producciones"),
         backgroundColor: AmcaPalette.lightGreen,
       ),
       body: Consumer<ManageProductionVM>(
@@ -156,7 +155,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                         ),
                         // Check if production list is not null before iterating
                         Text(
-                          'Ganancia del cultivo: \$${vm.permanentFarming?.totalProfit.formatNumberToColombianPesos() ?? ''}',
+                          '${int.parse(vm.permanentFarming!.totalProfit) > 0 ? "Ganancia del Culttivo" : int.parse(vm.permanentFarming!.totalProfit)== 0 ? "Punto Muerto Económico" : "Perdida del Cultivo"}: \$${vm.permanentFarming?.totalProfit.formatNumberToColombianPesos() ?? ''}',
                           style:
                               Theme.of(context).textTheme.titleMedium?.copyWith(
                                     color: _getEarningsColors(vm),
@@ -167,8 +166,9 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                         ),
 
                         if (vm.permanentFarming?.production != null)
-                          for (var item
-                              in vm.permanentFarming?.production ?? []) ...[
+                          for (var item in vm.permanentFarming!.production!
+                              .toList()
+                              .reversed) ...[
                             Container(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -195,6 +195,21 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                                         SizedBox(height: 4),
                                         Row(
                                           children: [
+                                            Icon(Icons.local_shipping,
+                                                color: Color.fromARGB(255, 116, 116, 116)), // Green money icon
+                                            SizedBox(width: 4),
+                                            Text(
+                                              '${item.quantity} ${item.unitOfMeasurement}${int.parse(item.quantity) > 1 ? "s":""}', // Display item price
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                      color: const Color.fromARGB(255, 116, 116, 116)),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
                                             Icon(Icons.attach_money,
                                                 color: Colors
                                                     .green), // Green money icon
@@ -210,6 +225,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                                           ],
                                         ),
                                       ],
+                                      
                                     ),
                                   ),
                                   // IconButton(
@@ -218,6 +234,8 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                                   //     deleteProduction(0);
                                   //   },
                                   // ),
+                                  
+                                  //if (vm.permanentFarming!.production!.length > 1)
                                   IconButton(
                                     icon: Icon(Icons.delete, color: Colors.red),
                                     onPressed: () {
@@ -315,6 +333,16 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                     const SizedBox(
                       height: 24,
                     ),
+                    AmcaButton(
+                      text: isEditMode
+                          ? AmcaWords.update
+                          : AmcaWords.createProduction,
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          createProduction();
+                        }
+                      },
+                    )
                   ],
                 ],
               ),
@@ -322,35 +350,35 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
           );
         },
       ),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5,
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              AmcaButton(
-                text:
-                    isEditMode ? AmcaWords.update : AmcaWords.createProduction,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    createProduction();
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: SafeArea(
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       color: Theme.of(context).scaffoldBackgroundColor,
+      //       boxShadow: const <BoxShadow>[
+      //         BoxShadow(
+      //           color: Colors.grey,
+      //           blurRadius: 5,
+      //         ),
+      //       ],
+      //     ),
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: Column(
+      //       mainAxisSize: MainAxisSize.min,
+      //       crossAxisAlignment: CrossAxisAlignment.stretch,
+      //       children: [
+      //         AmcaButton(
+      //           text:
+      //               isEditMode ? AmcaWords.update : AmcaWords.createProduction,
+      //           onPressed: () {
+      //             if (_formKey.currentState!.validate()) {
+      //               createProduction();
+      //             }
+      //           },
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 
@@ -386,7 +414,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
               ? AmcaWords.yourProductionHasBeenUpdated
               : AmcaWords.yourProductionHasBeenCreated,
         );
-        Navigator.pop(context);
+        //Navigator.pop(context);
       });
     } catch (e) {
       log(e.toString());
@@ -424,7 +452,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
           context,
           AmcaWords.yourProductionHasBeenDeleted,
         );
-        Navigator.pop(context);
+        //Navigator.pop(context);
       });
     } catch (e) {
       log(e.toString());
@@ -446,6 +474,10 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
   Color _getEarningsColors(ManageProductionVM vm) {
     final value = int.parse(//TODO - cambiar pos
         vm.permanentFarming?.totalProfit.replaceAll(',', '') ?? '0');
-    return value < 0 ? Colors.red : AmcaPalette.lightGreen;
+    return value < 0
+        ? Colors.red
+        : value == 0
+            ? Color.fromRGBO(255, 102, 0, 1)
+            : AmcaPalette.lightGreen;
   }
 }
