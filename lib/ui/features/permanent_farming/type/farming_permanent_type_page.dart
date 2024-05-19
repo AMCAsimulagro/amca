@@ -5,7 +5,6 @@
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/option/option_farming_page.dart';
-import 'package:amca/ui/features/permanent_farming/option/option_permanent_farming_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -45,10 +44,10 @@ class FarmingTypePage extends StatelessWidget {
               ),
               Expanded(
                 child: AmcaContainerButton(
-                  text: AmcaWords.permanent,
+                  text: AmcaWords.transitory,
                   onTap: () {
                     NavigationHelper.push(
-                      const OptionFarmingPagePermanent(),
+                      const OptionFarmingPage(),
                       context,
                     );
                   },

@@ -4,8 +4,8 @@
 
 import 'dart:developer';
 
-import 'package:amca/domain/model/production.dart';
-import 'package:amca/ui/features/production/manage_production_vm.dart';
+import 'package:amca/domain/model/production_permanent.dart';
+import 'package:amca/ui/features/production/manage_permanent_production_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -58,7 +58,6 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   @override
   void initState() {
     isEditMode = widget.production != null;
-    _preloadData();
     super.initState();
   }
 
@@ -66,8 +65,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(isEditMode ? AmcaWords.editProduction : AmcaWords.production),
+        title: Text(AmcaWords.production),
         backgroundColor: AmcaPalette.lightGreen,
       ),
       body: Consumer<ManageProductionVM>(
@@ -90,46 +88,19 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Lote: ${vm.transitoryFarming?.partName ?? ''}',
+                    'Lote: ${vm.permanentFarming?.partName ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   Text(
-                    'Cultivo: ${vm.transitoryFarming?.crop ?? ''}',
+                    'Cultivo: ${vm.permanentFarming?.crop ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: 12,
                   ),
-                  if (isEditMode)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          'Inversion Inicial: \$${vm.transitoryFarming?.value}',
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          'Total Costos y Gastos del cultivo: \$${vm.transitoryFarming?.calculateTotalCostAndExpense().toString().formatNumberToColombianPesos() ?? ''}',
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Text(
-                          'Ganancia del cultivo: \$${vm.transitoryFarming?.production?.totalValue?.formatNumberToColombianPesos() ?? ''}',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: _getEarningsColors(vm),
-                                  ),
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                      ],
-                    ),
                   AmcaDatePickerField(
                     labelText: AmcaWords.date,
                     initialDate: createdDate,
@@ -228,22 +199,13 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               AmcaButton(
-                text:
-                    isEditMode ? AmcaWords.update : AmcaWords.createProduction,
+                text: AmcaWords.createProduction,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     createProduction();
                   }
                 },
               ),
-              if (isEditMode)
-                AmcaButton(
-                  text: AmcaWords.delete,
-                  type: AmcaButtonType.destroy,
-                  onPressed: () {
-                    deleteProduction();
-                  },
-                ),
             ],
           ),
         ),
@@ -267,7 +229,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final production = Production(
       createDate: date,
-      partName: manageVM.transitoryFarming?.partName,
+      partName: manageVM.permanentFarming?.partName,
       price: _priceController.text,
       id: isEditMode ? widget.production!.id : null,
       transitoryFarmingId: manageVM.farmingId ?? '',
@@ -297,7 +259,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await manageVM.deleteProduction();
+        await manageVM.deleteProduction(0);
         await Dialogs.showSuccessDialogWithMessage(
           context,
           AmcaWords.yourProductionHasBeenDeleted,
@@ -321,10 +283,10 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     }
   }
 
-  Color _getEarningsColors(ManageProductionVM vm) {
-    final value = int.parse(
-        vm.transitoryFarming?.production?.totalValue?.replaceAll(',', '') ??
-            '0');
-    return value < 0 ? Colors.red : AmcaPalette.lightGreen;
-  }
+  // Color _getEarningsColors(ManageProductionVM vm) {
+  //   final value = int.parse(
+  //       vm.permanentFarming?.production?.totalValue?.replaceAll(',', '') ??
+  //           '0');
+  //   return value < 0 ? Colors.red : AmcaPalette.lightGreen;
+  // }
 }

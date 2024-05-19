@@ -1,5 +1,5 @@
 /// {@category Domain}
-/// This file defines the TransitoryFarming class, which represents a transitory farming entity.
+/// This file defines the PermanentFarming class, which represents a permanent farming entity.
 /// It contains properties such as id, createDate, partName, cropType, crop, sownArea, sownType,
 /// format, amountSown, value, uidOwner, comment, costsAndExpenses, and production. It also includes
 /// methods for JSON serialization and deserialization, as well as a method to calculate the total
@@ -7,20 +7,22 @@
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/production.dart';
+import 'package:amca/domain/model/production_permanent.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'transitory_farming.freezed.dart';
+part 'permanent_farming.freezed.dart';
 
-part 'transitory_farming.g.dart';
+part 'permanent_farming.g.dart';
 
 @unfreezed
-class TransitoryFarming with _$TransitoryFarming {
-  const TransitoryFarming._();
+class PermanentFarming with _$PermanentFarming {
+  const PermanentFarming._();
 
-  factory TransitoryFarming({
+  factory PermanentFarming({
     String? id,
     required DateTime createDate,
+    required String totalProfit,
     required String partName,
     required String cropType,
     required String crop,
@@ -32,11 +34,12 @@ class TransitoryFarming with _$TransitoryFarming {
     String? uidOwner,
     String? comment,
     List<CostAndExpense>? costsAndExpenses,
-    Production? production,
-  }) = _TransitoryFarming;
+    //Production? production,
+    List<Production>? production,
+  }) = _PermanentFarming;
 
-  factory TransitoryFarming.fromJson(Map<String, Object?> json) =>
-      _$TransitoryFarmingFromJson(json);
+  factory PermanentFarming.fromJson(Map<String, Object?> json) =>
+      _$PermanentFarmingFromJson(json);
 
   int calculateTotalCostAndExpense() {
     int totalCostAndExpense = 0;
@@ -47,7 +50,6 @@ class TransitoryFarming with _$TransitoryFarming {
           }).reduce((value, element) => value + element) ??
           0;
     }
-    //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
   }
 
@@ -60,7 +62,21 @@ class TransitoryFarming with _$TransitoryFarming {
           }).reduce((value, element) => value + element) ??
           0;
     }
-    totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
+    totalCostAndExpense =
+        totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
+  }
+
+  int totalPrice() {
+    int total = 0;
+
+    if ((production ?? []).isNotEmpty) {
+      total = production?.map((e) {
+            final price = int.parse(e.price.replaceAll(',', ''));
+            return price;
+          }).reduce((value, element) => value + element) ??
+          0;
+    }
+    return total;
   }
 }
