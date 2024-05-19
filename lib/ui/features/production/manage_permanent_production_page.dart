@@ -259,7 +259,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await manageVM.deleteProduction();
+        await manageVM.deleteProduction(0);
         await Dialogs.showSuccessDialogWithMessage(
           context,
           AmcaWords.yourProductionHasBeenDeleted,

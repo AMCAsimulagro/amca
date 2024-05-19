@@ -115,9 +115,9 @@ class ManageProductionVM extends ChangeNotifier {
     try {
       /// Creates a copy of permanentFarming with production set to null
 
-      final listProducts = permanentFarming.production;
+      final listProducts = permanentFarming?.production;
 
-      if (index >= 0 && index < listProducts.length) {
+      if (index >= 0 && index < listProducts!.length) {
         listProducts.removeAt(index);
       }
 
