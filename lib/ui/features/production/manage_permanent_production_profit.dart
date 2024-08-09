@@ -155,7 +155,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                         ),
                         // Check if production list is not null before iterating
                         Text(
-                          '${int.parse(vm.permanentFarming!.totalProfit) > 0 ? "Ganancia del Culttivo" : int.parse(vm.permanentFarming!.totalProfit)== 0 ? "Punto Muerto Económico" : "Perdida del Cultivo"}: \$${vm.permanentFarming?.totalProfit.formatNumberToColombianPesos() ?? ''}',
+                          '${int.parse(vm.permanentFarming!.totalProfit) > 0 ? "Ganancia del Cultivo" : int.parse(vm.permanentFarming!.totalProfit)== 0 ? "Punto Muerto Económico" : "Perdida del Cultivo"}: \$${vm.permanentFarming?.totalProfit.formatNumberToColombianPesos() ?? ''}',
                           style:
                               Theme.of(context).textTheme.titleMedium?.copyWith(
                                     color: _getEarningsColors(vm),
