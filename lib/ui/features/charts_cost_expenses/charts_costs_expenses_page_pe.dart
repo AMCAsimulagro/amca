@@ -208,7 +208,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                               titlesData: FlTitlesData(
                                 show: true,
                                 leftTitles: AxisTitles(
-                                  drawBehindEverything: true,
+                                  // drawBehindEverything: true,
                                   sideTitles: SideTitles(
                                     showTitles: true,
                                     reservedSize: 80,
@@ -232,7 +232,8 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                       final month =
                                           snapshot.data![index].monthName;
                                       return SideTitleWidget(
-                                        axisSide: meta.axisSide,
+                                        meta: meta,
+                                        // axisSide: meta.axisSide,
                                         child: Text(
                                           month,
                                         ),
@@ -267,7 +268,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 enabled: true,
                                 handleBuiltInTouches: false,
                                 touchTooltipData: BarTouchTooltipData(
-                                  tooltipBgColor: Colors.transparent,
+                                  // tooltipBgColor: Colors.transparent,
                                   tooltipMargin: 0,
                                   getTooltipItem: (
                                     BarChartGroupData group,
@@ -385,7 +386,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                               titlesData: FlTitlesData(
                                 show: true,
                                 leftTitles: AxisTitles(
-                                  drawBehindEverything: true,
+                                  // drawBehindEverything: true,
                                   sideTitles: SideTitles(
                                     showTitles: true,
                                     reservedSize: 80,
@@ -409,7 +410,8 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                       final month =
                                           snapshot.data![index].monthName;
                                       return SideTitleWidget(
-                                        axisSide: meta.axisSide,
+                                        meta: meta,
+                                        // axisSide: meta.axisSide,
                                         child: Text(
                                           month,
                                         ),
@@ -444,7 +446,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 enabled: true,
                                 handleBuiltInTouches: false,
                                 touchTooltipData: BarTouchTooltipData(
-                                  tooltipBgColor: Colors.transparent,
+                                  // tooltipBgColor: Colors.transparent,
                                   tooltipMargin: 0,
                                   getTooltipItem: (
                                     BarChartGroupData group,
