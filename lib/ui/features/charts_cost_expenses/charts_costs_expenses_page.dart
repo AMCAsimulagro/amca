@@ -1,5 +1,6 @@
 /// {@category Features ChartCost}
 /// This file contains the implementation of the `ChartsCostsExpensesPage` widget, which displays charts for costs and expenses.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/bar_data_ui.dart';

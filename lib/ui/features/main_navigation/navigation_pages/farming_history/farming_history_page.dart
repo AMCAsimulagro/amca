@@ -1,4 +1,5 @@
 /// {@category Menu Farmin}
+library;
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
 import 'package:amca/ui/features/farming/create/manage_permanent_farming_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
@@ -196,7 +197,7 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
       Widget Function(dynamic) builder, String type) {
     List<Widget> farmingList = [];
 
-    farmingHistory.forEach((farmingItem) {
+    for (var farmingItem in farmingHistory) {
       farmingList.add(
         ListTile(
           title: Row(
@@ -246,7 +247,7 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
           },
         ),
       );
-    });
+    }
 
     return farmingList;
   }

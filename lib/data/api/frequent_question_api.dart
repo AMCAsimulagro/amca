@@ -3,6 +3,7 @@
 ///
 /// which provide methods to interact with Firebase database in a Flutter application specifically for managing frequent questions.
 /// These methods are designed to retrieve, manage, and delete frequent questions.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';

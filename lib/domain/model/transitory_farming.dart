@@ -4,6 +4,7 @@
 /// format, amountSown, value, uidOwner, comment, costsAndExpenses, and production. It also includes
 /// methods for JSON serialization and deserialization, as well as a method to calculate the total
 /// cost and expense.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';

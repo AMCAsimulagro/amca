@@ -4,6 +4,7 @@
 /// It allows users to view, add, and manage their costs and expenses.
 /// This page utilizes [ChangeNotifierProvider] to manage the state using [CostsExpensesListVM].
 /// It also includes UI elements such as buttons and a floating action button.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/costs_expenses/costs_permanent_expenses_list_vm.dart';

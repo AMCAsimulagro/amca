@@ -2,6 +2,7 @@
 /// This file contains the implementation of the [FarmingTypePage] class, which presents options for different types
 /// of farming activities: transitory and permanent. Users can navigate to the respective pages for managing each type
 /// of farming activity by tapping on the buttons.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/option/option_farming_page.dart';

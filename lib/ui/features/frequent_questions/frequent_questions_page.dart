@@ -2,6 +2,7 @@
 /// This file contains the implementation of the page for managing frequently asked questions in a Flutter application.
 /// The page allows for creating, editing, and deleting frequently asked questions, displaying a form for entering the title and content of the question.
 /// It also provides functionality for displaying a confirmation dialog when attempting to delete a frequently asked question.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/frequent_question.dart';
@@ -145,7 +146,6 @@ class FrequentQuestionsPage extends StatelessWidget {
 class _EditFrequentQuestion extends StatelessWidget {
   /// Constructor for the _EditFrequentQuestion class.
   const _EditFrequentQuestion({
-    super.key,
     required this.frequentQuestion,
   });
 

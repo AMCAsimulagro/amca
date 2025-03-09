@@ -2,6 +2,7 @@
 /// This file contains the implementation of an interface `UsersRepository` and its adapter `UsersRepositoryAdapter`
 /// 
 /// which provide methods to interact with user data.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/users_api.dart';

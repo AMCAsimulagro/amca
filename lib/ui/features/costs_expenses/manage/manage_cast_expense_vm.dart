@@ -1,6 +1,7 @@
 /// {@category Features CostExpense Manage}
 /// This file contains the definition of the `ManageCostExpenseVM` class, which serves as a ViewModel
 /// for managing cost and expense data in a Flutter application.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';
@@ -32,7 +33,6 @@ class ManageCostExpenseVM extends ChangeNotifier {
     try {
       transitoryFarming =
           await farmingRepository.getTransitoryFarmingById(farmingId);
-    } catch (e) {
     } finally {
       notifyListeners();
       isLoading = false;

@@ -1,5 +1,6 @@
 /// {@category Utils}
 /// Class that provides error messages associated with API exception codes.
+library;
 import 'package:amca/ui/utils/amca_words.dart';
 
 /// Gets the error message associated with an exception code.

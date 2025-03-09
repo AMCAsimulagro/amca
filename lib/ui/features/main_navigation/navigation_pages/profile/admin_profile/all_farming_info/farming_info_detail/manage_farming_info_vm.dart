@@ -1,4 +1,5 @@
 /// {@category Menu farming info}
+library;
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/crop_types.dart';
@@ -50,7 +51,6 @@ class ManageFarmingInfoVM extends ChangeNotifier {
     isLoading = true;
     try {
       await farmingRepository.createCropType(cropTypes);
-    } catch (e) {
     } finally {
       isLoading = false;
       notifyListeners();
@@ -61,7 +61,6 @@ class ManageFarmingInfoVM extends ChangeNotifier {
     isLoading = true;
     try {
       await farmingRepository.deleteCropType(cropType!);
-    } catch (e) {
     } finally {
       isLoading = false;
       notifyListeners();

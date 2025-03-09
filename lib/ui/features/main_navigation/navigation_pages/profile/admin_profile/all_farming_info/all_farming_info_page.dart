@@ -1,4 +1,5 @@
 /// {@category Menu farming info}
+library;
 
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/all_farming_info_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/farming_info_detail/manage_farming_info_page.dart';

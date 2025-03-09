@@ -1,4 +1,5 @@
 /// {@category Manage Production}
+library;
 
 /// Import statements for necessary libraries
 

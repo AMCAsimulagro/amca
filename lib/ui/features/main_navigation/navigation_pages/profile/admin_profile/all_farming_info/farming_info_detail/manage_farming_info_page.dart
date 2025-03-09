@@ -1,4 +1,5 @@
 /// {@category Menu farming info}
+library;
 
 import 'dart:developer';
 

@@ -1,4 +1,5 @@
 /// {@category Menu allUser}
+library;
 
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/users_repository.dart';
@@ -21,7 +22,6 @@ class AllUsersVM extends ChangeNotifier {
       amcaUsers = await usersRepository.getAllUsers()
         ..removeWhere(
             (element) => element.identification == currentUser.identification);
-    } catch (e) {
     } finally {
       isLoading = false;
       notifyListeners();

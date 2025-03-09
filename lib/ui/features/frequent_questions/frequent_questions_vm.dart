@@ -1,6 +1,7 @@
 /// {@category Frequent Questions}
 /// This file contains the view model class `FrequentQuestionsVM` which is responsible for managing frequently asked questions (FAQs).
 /// The [FrequentQuestionsVM] class provides functionality for retrieving and managing a list of frequently asked questions. It interacts with the [FrequentQuestionRepository] to fetch FAQs from the data source.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';

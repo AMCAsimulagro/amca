@@ -1,5 +1,6 @@
 /// {@category Domain}
 /// This file contains the definition of the [CropTypes] class, along with its JSON serialization and deserialization functions.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';

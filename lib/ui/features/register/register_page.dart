@@ -1,4 +1,5 @@
 /// {@category Register}
+library;
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:amca/ui/features/register/register_vm.dart';
 import 'package:amca/ui/features/webview_page/webview_page.dart';

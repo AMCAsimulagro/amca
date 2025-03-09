@@ -3,6 +3,7 @@
 /// This file contains the `AmcaBackButton` widget, which is a custom back button
 /// for the Amca application.
 ///
+library;
 import 'package:flutter/material.dart';
 
 class AmcaBackButton extends StatelessWidget {

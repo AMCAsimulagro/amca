@@ -4,6 +4,7 @@
 /// for validating email addresses, formatting numbers to Colombian pesos, and capitalizing
 /// the first letter of a string.
 ///
+library;
 import 'package:intl/intl.dart';
 
 extension EmailValidator on String {
