@@ -12,16 +12,16 @@ import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
 
 /// StatelessWidget for managing transitory farming activities.
-class OptionFarmingPage extends StatelessWidget {
+class OptionLivestockFishFarmingCachamaPage extends StatelessWidget {
 
-   /// Constructs an [OptionFarmingPage] widget.
-  const OptionFarmingPage({super.key});
+   /// Constructs an [OptionLivestockFishFarmingCachamaPage] widget.
+  const OptionLivestockFishFarmingCachamaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AmcaWords.transitoryFarming),
+        title: const Text(AmcaWords.cachama),
         backgroundColor: AmcaPalette.lightGreen,
       ),
       body: Padding(
@@ -32,12 +32,25 @@ class OptionFarmingPage extends StatelessWidget {
             children: [
               Expanded(
                 child: AmcaContainerButton(
-                  text: AmcaWords.createFarming,
+                  text: AmcaWords.addCostAndExpense,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>  ManageTransitoryFarming.create(),
+                        builder: (BuildContext context) => ManageTransitoryFarming.create(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                child: AmcaContainerButton(
+                  text: AmcaWords.addProduction,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => ManageTransitoryFarming.create(),
                       ),
                     );
                   },

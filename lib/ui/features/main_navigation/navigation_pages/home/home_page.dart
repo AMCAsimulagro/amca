@@ -3,8 +3,8 @@ library;
 
 import 'package:amca/ui/features/farming/type/farming_type_page.dart';
 import 'package:amca/ui/features/farming/widgets/card_option.dart';
-import 'package:amca/ui/features/livestock/type/farming_type_page.dart' as livestockFarmingTypePage;
-import 'package:amca/ui/features/livestock/widgets/card_option.dart' as livestockCardOption;
+import 'package:amca/ui/features/livestock/type/livestock_type_page.dart';
+import 'package:amca/ui/features/livestock/widgets/card_option.dart'as livestockCardOption;
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/assets.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                 imagePath: Assets.pecuaria,
                 text: AmcaWords.livestock,
                 onTap: (){
-                  NavigationHelper.push(const livestockFarmingTypePage.FarmingTypePage(), context);
+                  NavigationHelper.push(LivestockTypePage(), context);
                 },                
               ),
             ),

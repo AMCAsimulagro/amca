@@ -248,4 +248,26 @@ class AmcaWords {
       'Tu cédula ciudadana o contraseña son incorrectos';
   static const String thisIdentificationNumberIsAlreadyInUse =
       'La cédula ciudadana ya esta actualmente registrada';
+
+  // Words modulo Livestock(Pecuario)
+  static const String livestockType = 'Tipo de Explotación';
+  static const String animalHusbandry = 'Ganadería';
+  static const String poultry = 'Avicola';
+  static const String pigFarming = 'Porcicultura';
+  static const String fishFarming = 'Piscicultura';
+  static const String addCostAndExpense = 'Ingresar Costos y Gastos';
+  static const String addProduction = 'Ingresar Producción';
+
+  // Words submodulo Ganadería
+  static const String meat = 'Carne';
+  static const String milk = 'Leche';
+
+  // Words submodulo Porcicultura
+
+  // Words submodulo Avicola
+
+  // Words submodulo Piscicultura
+  static const String tilapia = 'Tilapia';
+  static const String cachama = 'Cachama';
+
 }
