@@ -265,6 +265,8 @@ class AmcaWords {
   // Words submodulo Porcicultura
 
   // Words submodulo Avicola
+  static const String eggs = 'Huevos';
+  static const String fatten = 'Engorde';
 
   // Words submodulo Piscicultura
   static const String tilapia = 'Tilapia';

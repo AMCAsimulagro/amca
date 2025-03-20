@@ -12,10 +12,10 @@ import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
 
 /// StatelessWidget for managing transitory farming activities.
-class OptionLivestockAnimalHusbrandryMeatPage extends StatelessWidget {
+class OptionLivestockPoultryFattenPage extends StatelessWidget {
 
-   /// Constructs an [OptionLivestockAnimalHusbrandryMeatPage] widget.
-  const OptionLivestockAnimalHusbrandryMeatPage({super.key});
+   /// Constructs an [OptionLivestockPoultryFattenPage] widget.
+  const OptionLivestockPoultryFattenPage({super.key});
 
   @override
   Widget build(BuildContext context) {

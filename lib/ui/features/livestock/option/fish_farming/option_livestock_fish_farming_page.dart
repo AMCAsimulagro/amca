@@ -6,7 +6,7 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/option/animal_husbandry/meat/option_livestock_animal_husbrandry_meat_page.dart';
+import 'package:amca/ui/features/livestock/option/animal_husbandry/meat/option_livestock_animal_husbandry_meat_page.dart';
 import 'package:amca/ui/features/livestock/option/animal_husbandry/milk/option_livestock_animal_husbrandry_milk_page.dart';
 import 'package:amca/ui/features/livestock/option/fish_farming/cachama/option_livestock_fish_farming_cachama_page.dart';
 import 'package:amca/ui/features/livestock/option/fish_farming/tilapia/option_livestock_fish_farming_tilapia_page.dart';
