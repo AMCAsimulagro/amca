@@ -1,4 +1,5 @@
 /// {@category Menu farming info}
+library;
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
@@ -13,7 +14,6 @@ class AllFarmingHistoryVM extends ChangeNotifier {
     isLoading = true;
     try {
       farmingHistory = await farmingRepository.getAllFarmingHistoryByAdmin();
-    } catch (e) {
     } finally {
       isLoading = false;
       notifyListeners();

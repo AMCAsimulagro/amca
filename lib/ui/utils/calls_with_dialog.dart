@@ -2,6 +2,7 @@
 /// The `AsyncCallDialogManager` class provides a utility for making asynchronous calls
 /// with dialog management, such as showing loading indicators and error dialogs.
 ///
+library;
 import 'package:amca/domain/model/app_exception.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:flutter/material.dart';

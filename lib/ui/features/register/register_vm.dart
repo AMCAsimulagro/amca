@@ -5,6 +5,7 @@
 ///  - Loading states and cities from the repository.
 ///  - Managing user selections for state and town.
 ///  - Handling user registration through the LoginRepository.
+library;
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/state_repository.dart';
 import 'package:amca/dependecy_injection.dart';

@@ -1,7 +1,10 @@
 /// {@category Menu Home}
+library;
 
 import 'package:amca/ui/features/farming/type/farming_type_page.dart';
 import 'package:amca/ui/features/farming/widgets/card_option.dart';
+import 'package:amca/ui/features/livestock/type/livestock_type_page.dart';
+import 'package:amca/ui/features/livestock/widgets/card_option.dart'as livestockCardOption;
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/assets.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
@@ -28,10 +31,13 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
-            const Expanded(
-              child: CardOption(
+            Expanded(
+              child: livestockCardOption.CardOption(
                 imagePath: Assets.pecuaria,
                 text: AmcaWords.livestock,
+                onTap: (){
+                  NavigationHelper.push(LivestockTypePage(), context);
+                },                
               ),
             ),
           ],

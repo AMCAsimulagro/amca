@@ -1,6 +1,7 @@
 /// {@category Features Farming Widgets}
 /// This file contains the implementation of the [CardOption] class, which represents a card with an image and text.
 /// Users can tap on the card to perform a specific action defined by the [onTap] callback.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:flutter/material.dart';

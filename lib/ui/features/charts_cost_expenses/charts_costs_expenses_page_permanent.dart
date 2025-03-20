@@ -1,5 +1,6 @@
 /// {@category Features ChartCost}
 /// This file contains the implementation of the `ChartsCostsExpensesPage` widget, which displays charts for costs and expenses.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/bar_data_ui.dart';
@@ -208,7 +209,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                               titlesData: FlTitlesData(
                                 show: true,
                                 leftTitles: AxisTitles(
-                                  drawBehindEverything: true,
+                                  // drawBehindEverything: true,
                                   sideTitles: SideTitles(
                                     showTitles: true,
                                     reservedSize: 80,
@@ -232,7 +233,8 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                       final month =
                                           snapshot.data![index].monthName;
                                       return SideTitleWidget(
-                                        axisSide: meta.axisSide,
+                                        meta: meta,
+                                        // axisSide: meta.axisSide,
                                         child: Text(
                                           month,
                                         ),
@@ -267,7 +269,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 enabled: true,
                                 handleBuiltInTouches: false,
                                 touchTooltipData: BarTouchTooltipData(
-                                  tooltipBgColor: Colors.transparent,
+                                  // tooltipBgColor: Colors.transparent,
                                   tooltipMargin: 0,
                                   getTooltipItem: (
                                     BarChartGroupData group,
@@ -385,7 +387,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                               titlesData: FlTitlesData(
                                 show: true,
                                 leftTitles: AxisTitles(
-                                  drawBehindEverything: true,
+                                  // drawBehindEverything: true,
                                   sideTitles: SideTitles(
                                     showTitles: true,
                                     reservedSize: 80,
@@ -409,7 +411,8 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                       final month =
                                           snapshot.data![index].monthName;
                                       return SideTitleWidget(
-                                        axisSide: meta.axisSide,
+                                        meta: meta,
+                                        // axisSide: meta.axisSide,
                                         child: Text(
                                           month,
                                         ),
@@ -444,7 +447,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 enabled: true,
                                 handleBuiltInTouches: false,
                                 touchTooltipData: BarTouchTooltipData(
-                                  tooltipBgColor: Colors.transparent,
+                                  // tooltipBgColor: Colors.transparent,
                                   tooltipMargin: 0,
                                   getTooltipItem: (
                                     BarChartGroupData group,

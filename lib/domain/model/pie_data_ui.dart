@@ -3,6 +3,7 @@
 /// The PieDataUI class represents data for displaying a pie chart segment.
 /// It includes properties for the value, percentage in the pie, and whether it represents a cost or expense.
 /// This class also provides methods to get the percentage as a formatted string and the color based on the type.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/utils/amca_palette.dart';

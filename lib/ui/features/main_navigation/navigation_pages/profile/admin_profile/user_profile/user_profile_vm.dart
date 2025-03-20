@@ -1,4 +1,5 @@
 /// {@category Menu userProfile}
+library;
 
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/users_repository.dart';
@@ -15,7 +16,6 @@ class UserProfileVM extends ChangeNotifier {
   Future<void> init(AmcaUser userSelected) async {
     try {
       this.userSelected = userSelected;
-    } catch (e) {
     } finally {
       notifyListeners();
     }

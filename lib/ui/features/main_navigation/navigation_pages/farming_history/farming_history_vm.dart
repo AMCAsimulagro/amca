@@ -1,4 +1,5 @@
 /// {@category Menu Farmin}
+library;
 
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
@@ -17,7 +18,6 @@ class FarmingHistoryVM extends ChangeNotifier {
     try {
       farmingHistory = await farmingRepository.getFarmingHistoryByUid(null);
       farmingHistoryPermanent = await farmingRepository.getPermanentFarmingHistoryByUid(null);
-    } catch (e) {
     } finally {
       isLoading = false;
       notifyListeners();

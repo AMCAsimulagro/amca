@@ -194,6 +194,7 @@ class _$PermanentFarmingCopyWithImpl<$Res, $Val extends PermanentFarming>
     if (_value.production == null) {
       return null;
     }
+    return null;
 
     // return $ProductionCopyWith<$Res>(_value.production!, (value) {
     //   return _then(_value.copyWith(production: value) as $Val);

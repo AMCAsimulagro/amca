@@ -3,6 +3,7 @@
 /// This class provides static lists of product or service options along with their descriptions.
 /// Each product or service has a name and a list of descriptions associated with it.
 /// Each description includes details such as the description itself, whether it's a cost or expense, and its type.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/description.dart';

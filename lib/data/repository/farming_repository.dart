@@ -2,6 +2,7 @@
 /// This file contains the implementation of an interface `FarmingRepository` and its adapter `FarmingRepositoryAdapter`
 ///
 /// which provide methods to interact with the Farming API in a Flutter application for managing farming-related data.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/farming_api.dart';

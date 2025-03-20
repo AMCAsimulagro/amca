@@ -2,6 +2,7 @@
 /// This file contains the definition of the ProductOrService class.
 /// The ProductOrService class represents a product or service with properties for its name and description.
 /// It includes a list of Description objects to provide details about the product or service.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/description.dart';

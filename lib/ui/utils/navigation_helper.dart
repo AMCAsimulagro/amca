@@ -1,4 +1,5 @@
 /// {@category Utils}
+library;
 
 import 'package:flutter/material.dart';
 

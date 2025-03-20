@@ -1,4 +1,5 @@
 /// {@category Menu allUser}
+library;
 
 import 'package:amca/domain/model/amca_user.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_users/all_users_vm.dart';

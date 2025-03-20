@@ -1,5 +1,6 @@
 /// {@category Features ChartCost Widgets }
 /// This file contains a widget `ChartCard` used for displaying a chart card with date selection functionality.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';

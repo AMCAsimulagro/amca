@@ -1,5 +1,6 @@
 /// {@category Features ChartCost Widgets }
 /// This file contains a widget `Indicator` used for displaying a colored indicator with text.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:flutter/material.dart';

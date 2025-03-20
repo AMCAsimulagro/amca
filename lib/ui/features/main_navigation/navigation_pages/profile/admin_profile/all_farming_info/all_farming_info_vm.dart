@@ -1,4 +1,5 @@
 /// {@category Menu farming info}
+library;
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/crop_types.dart';
@@ -13,7 +14,6 @@ class AllFarmingInfoVM extends ChangeNotifier {
     isLoading = true;
     try {
       farmingInfo = await farmingRepository.getCropTypes();
-    } catch (e) {
     } finally {
       isLoading = false;
       notifyListeners();

@@ -10,7 +10,6 @@ class ProfileVM extends ChangeNotifier {
   void init() async {
     try {
       currentUser = await loginRepository.getUserCurrentlyLogged();
-    } catch (e) {
     } finally {
       notifyListeners();
     }

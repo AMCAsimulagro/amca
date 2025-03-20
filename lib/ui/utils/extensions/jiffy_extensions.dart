@@ -3,6 +3,7 @@
 /// This file contains the `JiffyUtils` extension, which provides utility methods
 /// for the Jiffy package.
 ///
+library;
 import 'package:amca/ui/utils/constants.dart';
 import 'package:jiffy/jiffy.dart';
 

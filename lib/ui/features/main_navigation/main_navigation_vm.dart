@@ -1,4 +1,5 @@
 /// {@category Navigation}
+library;
 import 'package:flutter/cupertino.dart';
 
 class MainNavigationVM extends ChangeNotifier {

@@ -3,6 +3,7 @@
 /// The Description class represents an object with properties for description, cost or expense, and type.
 /// It is designed to be immutable and provides methods for JSON serialization and deserialization.
 /// This file includes both the definition of the Description class and the generated code for JSON serialization/deserialization.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';

@@ -5,6 +5,7 @@
 /// `AmcaTextFormField` provides additional functionality and custom styles for text fields
 /// in the Amca application.
 /// 
+library;
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +31,7 @@ import 'package:flutter/services.dart';
 /// ```
 class AmcaTextFormField extends StatefulWidget {
   const AmcaTextFormField({
-    Key? key,
+    super.key,
     this.labelText,
     this.textEditingController,
     this.obscureText = false,
@@ -43,7 +44,7 @@ class AmcaTextFormField extends StatefulWidget {
     this.onTap,
     this.readOnly = false,
     this.prefixText,
-  }) : super(key: key);
+  });
 
   /// Label for the text field.
   final String? labelText;

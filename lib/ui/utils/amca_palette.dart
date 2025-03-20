@@ -3,6 +3,7 @@
 /// This file contains the `AmcaPalette` class, which provides a collection of
 /// predefined colors used in the Amca application.
 ///
+library;
 import 'package:flutter/material.dart';
 
 class AmcaPalette {

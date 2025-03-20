@@ -14,6 +14,7 @@
 /// DependecyInjection.registerInjections();
 /// ```
 /// {@end-tool}
+library;
 import 'package:amca/data/api/farming_api.dart';
 import 'package:amca/data/api/frequent_question_api.dart';
 import 'package:amca/data/api/login_api.dart';

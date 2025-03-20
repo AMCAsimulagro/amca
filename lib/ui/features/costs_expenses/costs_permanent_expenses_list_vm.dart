@@ -3,6 +3,7 @@
 /// the list of costs and expenses related to farming activities. It interacts with the data layer through the [FarmingRepository]
 /// to fetch and update farming-related data. The ViewModel provides functionality to initialize data fetching and handles
 /// the loading state of the data. Dependencies include the [FarmingRepository], [CostAndExpense] model, and Flutter's [ChangeNotifier].
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';
@@ -29,7 +30,6 @@ class CostsExpensesListVM extends ChangeNotifier {
     try {
       final permanentFarming = await farmingRepository.getPermanentFarmingById(farmingId!);
       costsAndExpenses = permanentFarming.costsAndExpenses ?? [];
-    } catch (e) {
     } finally {
       notifyListeners();
       isLoading = false;

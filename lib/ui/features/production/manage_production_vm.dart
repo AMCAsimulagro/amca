@@ -17,6 +17,7 @@
 /// * **`init()`:** Initializes the class by loading the current production data.
 /// * **`createProduction(Production production)`:** Creates a new production object and saves it to the database.
 /// * **`deleteProduction()`:** Deletes the current production from the database.
+library;
 
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';

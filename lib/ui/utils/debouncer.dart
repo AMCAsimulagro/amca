@@ -1,6 +1,7 @@
 /// {@category Utils}
 ///
 /// A debouncer class to debounce function calls.
+library;
 import 'dart:async';
 import 'dart:ui';
 

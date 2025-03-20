@@ -2,6 +2,7 @@
 /// This file contains the implementation of an interface `LoginRepository` and its adapter `LoginRepositoryAdapter`
 /// 
 /// which provide methods to interact with the Login API in a Flutter application for managing user authentication and account-related actions.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/login_api.dart';

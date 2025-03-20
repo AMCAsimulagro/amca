@@ -4,6 +4,7 @@
 /// Is responsible for:
 /// - Manage user login status.
 /// - Notify the UI about changes to the login state.
+library;
 
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/dependecy_injection.dart';

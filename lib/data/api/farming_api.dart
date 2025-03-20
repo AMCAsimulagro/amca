@@ -4,6 +4,7 @@
 /// which provides methods to interact with the Firebase database in a Flutter application.
 /// These methods are designed to perform operations related to agriculture,
 /// how to obtain crop types, create and delete transient agriculture records, manage costs and expenses, among others.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';

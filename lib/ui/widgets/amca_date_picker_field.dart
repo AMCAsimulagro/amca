@@ -3,6 +3,7 @@
 /// form field for the Amca application.
 ///
 ///
+library;
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

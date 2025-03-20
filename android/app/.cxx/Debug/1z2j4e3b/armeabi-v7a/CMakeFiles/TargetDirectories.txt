@@ -1,0 +1,2 @@
+C:/Users/Santiago/Documents/PG-AMCA/amca/android/app/.cxx/Debug/1z2j4e3b/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Santiago/Documents/PG-AMCA/amca/android/app/.cxx/Debug/1z2j4e3b/armeabi-v7a/CMakeFiles/rebuild_cache.dir
