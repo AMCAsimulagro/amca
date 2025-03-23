@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'production_permanent.dart';
+part of 'production.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -47,8 +47,10 @@ mixin _$Production {
       throw _privateConstructorUsedError; // Quantity of the production.
   set price(String value) =>
       throw _privateConstructorUsedError; // Price of the production.
-  String? get totalValue =>
+  String? get average =>
       throw _privateConstructorUsedError; // Price of the production.
+  set average(String? value) => throw _privateConstructorUsedError;
+  String? get totalValue => throw _privateConstructorUsedError;
   set totalValue(String? value) =>
       throw _privateConstructorUsedError; // Total value of the production.
   String? get id =>
@@ -79,6 +81,7 @@ abstract class $ProductionCopyWith<$Res> {
       String unitOfMeasurement,
       String quantity,
       String price,
+      String? average,
       String? totalValue,
       String? id});
 }
@@ -105,6 +108,7 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
     Object? unitOfMeasurement = null,
     Object? quantity = null,
     Object? price = null,
+    Object? average = freezed,
     Object? totalValue = freezed,
     Object? id = freezed,
   }) {
@@ -137,6 +141,10 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
+      average: freezed == average
+          ? _value.average
+          : average // ignore: cast_nullable_to_non_nullable
+              as String?,
       totalValue: freezed == totalValue
           ? _value.totalValue
           : totalValue // ignore: cast_nullable_to_non_nullable
@@ -165,6 +173,7 @@ abstract class _$$ProductionImplCopyWith<$Res>
       String unitOfMeasurement,
       String quantity,
       String price,
+      String? average,
       String? totalValue,
       String? id});
 }
@@ -189,6 +198,7 @@ class __$$ProductionImplCopyWithImpl<$Res>
     Object? unitOfMeasurement = null,
     Object? quantity = null,
     Object? price = null,
+    Object? average = freezed,
     Object? totalValue = freezed,
     Object? id = freezed,
   }) {
@@ -221,6 +231,10 @@ class __$$ProductionImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
+      average: freezed == average
+          ? _value.average
+          : average // ignore: cast_nullable_to_non_nullable
+              as String?,
       totalValue: freezed == totalValue
           ? _value.totalValue
           : totalValue // ignore: cast_nullable_to_non_nullable
@@ -244,6 +258,7 @@ class _$ProductionImpl implements _Production {
       required this.unitOfMeasurement,
       required this.quantity,
       required this.price,
+      this.average,
       this.totalValue,
       this.id});
 
@@ -272,6 +287,8 @@ class _$ProductionImpl implements _Production {
   String price;
 // Price of the production.
   @override
+  String? average;
+  @override
   String? totalValue;
 // Total value of the production.
   @override
@@ -279,7 +296,7 @@ class _$ProductionImpl implements _Production {
 
   @override
   String toString() {
-    return 'Production(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, totalValue: $totalValue, id: $id)';
+    return 'Production(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
   }
 
   /// Create a copy of Production
@@ -307,6 +324,7 @@ abstract class _Production implements Production {
       required String unitOfMeasurement,
       required String quantity,
       required String price,
+      String? average,
       String? totalValue,
       String? id}) = _$ProductionImpl;
 
@@ -336,7 +354,10 @@ abstract class _Production implements Production {
   String get price; // Quantity of the production.
   set price(String value); // Price of the production.
   @override
-  String? get totalValue; // Price of the production.
+  String? get average; // Price of the production.
+  set average(String? value);
+  @override
+  String? get totalValue;
   set totalValue(String? value); // Total value of the production.
   @override
   String? get id; // Total value of the production.

@@ -1,9 +1,3 @@
-/// {@category Domain}
-/// This file defines a Description class using Freezed and JsonSerializable annotations.
-/// The Description class represents an object with properties for description, cost or expense, and type.
-/// It is designed to be immutable and provides methods for JSON serialization and deserialization.
-/// This file includes both the definition of the Description class and the generated code for JSON serialization/deserialization.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -18,7 +12,7 @@ part of 'description.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Description _$DescriptionFromJson(Map<String, dynamic> json) {
   return _Description.fromJson(json);
@@ -26,12 +20,18 @@ Description _$DescriptionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Description {
-  String get description => throw _privateConstructorUsedError;
-  String get costOrExpense => throw _privateConstructorUsedError;
+  String get description =>
+      throw _privateConstructorUsedError; // Description of the object.
+  String get costOrExpense =>
+      throw _privateConstructorUsedError; // Cost or expense associated with the object.
   String get type => throw _privateConstructorUsedError;
 
+  /// Serializes this Description to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Description
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DescriptionCopyWith<Description> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +55,8 @@ class _$DescriptionCopyWithImpl<$Res, $Val extends Description>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Description
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,24 +82,26 @@ class _$DescriptionCopyWithImpl<$Res, $Val extends Description>
 }
 
 /// @nodoc
-abstract class _$$_DescriptionCopyWith<$Res>
+abstract class _$$DescriptionImplCopyWith<$Res>
     implements $DescriptionCopyWith<$Res> {
-  factory _$$_DescriptionCopyWith(
-          _$_Description value, $Res Function(_$_Description) then) =
-      __$$_DescriptionCopyWithImpl<$Res>;
+  factory _$$DescriptionImplCopyWith(
+          _$DescriptionImpl value, $Res Function(_$DescriptionImpl) then) =
+      __$$DescriptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String description, String costOrExpense, String type});
 }
 
 /// @nodoc
-class __$$_DescriptionCopyWithImpl<$Res>
-    extends _$DescriptionCopyWithImpl<$Res, _$_Description>
-    implements _$$_DescriptionCopyWith<$Res> {
-  __$$_DescriptionCopyWithImpl(
-      _$_Description _value, $Res Function(_$_Description) _then)
+class __$$DescriptionImplCopyWithImpl<$Res>
+    extends _$DescriptionCopyWithImpl<$Res, _$DescriptionImpl>
+    implements _$$DescriptionImplCopyWith<$Res> {
+  __$$DescriptionImplCopyWithImpl(
+      _$DescriptionImpl _value, $Res Function(_$DescriptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Description
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,7 +109,7 @@ class __$$_DescriptionCopyWithImpl<$Res>
     Object? costOrExpense = null,
     Object? type = null,
   }) {
-    return _then(_$_Description(
+    return _then(_$DescriptionImpl(
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -124,19 +128,21 @@ class __$$_DescriptionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Description implements _Description {
-  _$_Description(
+class _$DescriptionImpl implements _Description {
+  _$DescriptionImpl(
       {required this.description,
       required this.costOrExpense,
       required this.type});
 
-  factory _$_Description.fromJson(Map<String, dynamic> json) =>
-      _$$_DescriptionFromJson(json);
+  factory _$DescriptionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DescriptionImplFromJson(json);
 
   @override
   final String description;
+// Description of the object.
   @override
   final String costOrExpense;
+// Cost or expense associated with the object.
   @override
   final String type;
 
@@ -146,10 +152,10 @@ class _$_Description implements _Description {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Description &&
+            other is _$DescriptionImpl &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.costOrExpense, costOrExpense) ||
@@ -157,20 +163,22 @@ class _$_Description implements _Description {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, description, costOrExpense, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Description
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DescriptionCopyWith<_$_Description> get copyWith =>
-      __$$_DescriptionCopyWithImpl<_$_Description>(this, _$identity);
+  _$$DescriptionImplCopyWith<_$DescriptionImpl> get copyWith =>
+      __$$DescriptionImplCopyWithImpl<_$DescriptionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DescriptionToJson(
+    return _$$DescriptionImplToJson(
       this,
     );
   }
@@ -180,19 +188,22 @@ abstract class _Description implements Description {
   factory _Description(
       {required final String description,
       required final String costOrExpense,
-      required final String type}) = _$_Description;
+      required final String type}) = _$DescriptionImpl;
 
   factory _Description.fromJson(Map<String, dynamic> json) =
-      _$_Description.fromJson;
+      _$DescriptionImpl.fromJson;
 
   @override
-  String get description;
+  String get description; // Description of the object.
   @override
-  String get costOrExpense;
+  String get costOrExpense; // Cost or expense associated with the object.
   @override
   String get type;
+
+  /// Create a copy of Description
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_DescriptionCopyWith<_$_Description> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DescriptionImplCopyWith<_$DescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

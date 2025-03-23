@@ -12,4 +12,10 @@ class FirebaseCollections {
   static const frequentQuestions = 'frequentQuestions';
   static const permanentcroptypes = 'permanentcroptypes';
   static const farmingPermanent = 'farmingPermanent';
+
+  //Collection names for livestock
+  static const pigFarming = 'pigFarming';
+  static const fishFarming = 'fishFarming';
+  static const animalHusbandry = 'animalHusbandry';
+  static const poultry = 'poultry';
 }

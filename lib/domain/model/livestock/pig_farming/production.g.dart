@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'production_permanent.dart';
+part of 'production.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -15,6 +15,7 @@ _$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
       unitOfMeasurement: json['unitOfMeasurement'] as String,
       quantity: json['quantity'] as String,
       price: json['price'] as String,
+      average: json['average'] as String?,
       totalValue: json['totalValue'] as String?,
       id: json['id'] as String?,
     );
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$ProductionImplToJson(_$ProductionImpl instance) =>
       'unitOfMeasurement': instance.unitOfMeasurement,
       'quantity': instance.quantity,
       'price': instance.price,
+      'average': instance.average,
       'totalValue': instance.totalValue,
       'id': instance.id,
     };

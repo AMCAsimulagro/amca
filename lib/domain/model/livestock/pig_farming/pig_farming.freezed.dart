@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'transitory_farming.dart';
+part of 'pig_farming.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,18 +14,20 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TransitoryFarming _$TransitoryFarmingFromJson(Map<String, dynamic> json) {
-  return _TransitoryFarming.fromJson(json);
+PigFarming _$PigFarmingFromJson(Map<String, dynamic> json) {
+  return _PigFarming.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TransitoryFarming {
+mixin _$PigFarming {
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
   DateTime get createDate => throw _privateConstructorUsedError;
   set createDate(DateTime value) => throw _privateConstructorUsedError;
-  String get partName => throw _privateConstructorUsedError;
-  set partName(String value) => throw _privateConstructorUsedError;
+  String get totalProfit => throw _privateConstructorUsedError;
+  set totalProfit(String value) => throw _privateConstructorUsedError;
+  String get farmName => throw _privateConstructorUsedError;
+  set farmName(String value) => throw _privateConstructorUsedError;
   String get cropType => throw _privateConstructorUsedError;
   set cropType(String value) => throw _privateConstructorUsedError;
   String get crop => throw _privateConstructorUsedError;
@@ -47,30 +49,32 @@ mixin _$TransitoryFarming {
   List<CostAndExpense>? get costsAndExpenses =>
       throw _privateConstructorUsedError;
   set costsAndExpenses(List<CostAndExpense>? value) =>
-      throw _privateConstructorUsedError;
-  Production? get production => throw _privateConstructorUsedError;
-  set production(Production? value) => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; //Production? production,
+  List<Production>? get production =>
+      throw _privateConstructorUsedError; //Production? production,
+  set production(List<Production>? value) => throw _privateConstructorUsedError;
 
-  /// Serializes this TransitoryFarming to a JSON map.
+  /// Serializes this PigFarming to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of TransitoryFarming
+  /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TransitoryFarmingCopyWith<TransitoryFarming> get copyWith =>
+  $PigFarmingCopyWith<PigFarming> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TransitoryFarmingCopyWith<$Res> {
-  factory $TransitoryFarmingCopyWith(
-          TransitoryFarming value, $Res Function(TransitoryFarming) then) =
-      _$TransitoryFarmingCopyWithImpl<$Res, TransitoryFarming>;
+abstract class $PigFarmingCopyWith<$Res> {
+  factory $PigFarmingCopyWith(
+          PigFarming value, $Res Function(PigFarming) then) =
+      _$PigFarmingCopyWithImpl<$Res, PigFarming>;
   @useResult
   $Res call(
       {String? id,
       DateTime createDate,
-      String partName,
+      String totalProfit,
+      String farmName,
       String cropType,
       String crop,
       String sownArea,
@@ -81,29 +85,28 @@ abstract class $TransitoryFarmingCopyWith<$Res> {
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      Production? production});
-
-  $ProductionCopyWith<$Res>? get production;
+      List<Production>? production});
 }
 
 /// @nodoc
-class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
-    implements $TransitoryFarmingCopyWith<$Res> {
-  _$TransitoryFarmingCopyWithImpl(this._value, this._then);
+class _$PigFarmingCopyWithImpl<$Res, $Val extends PigFarming>
+    implements $PigFarmingCopyWith<$Res> {
+  _$PigFarmingCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TransitoryFarming
+  /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? createDate = null,
-    Object? partName = null,
+    Object? totalProfit = null,
+    Object? farmName = null,
     Object? cropType = null,
     Object? crop = null,
     Object? sownArea = null,
@@ -125,9 +128,13 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      partName: null == partName
-          ? _value.partName
-          : partName // ignore: cast_nullable_to_non_nullable
+      totalProfit: null == totalProfit
+          ? _value.totalProfit
+          : totalProfit // ignore: cast_nullable_to_non_nullable
+              as String,
+      farmName: null == farmName
+          ? _value.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
               as String,
       cropType: null == cropType
           ? _value.cropType
@@ -172,37 +179,24 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
       production: freezed == production
           ? _value.production
           : production // ignore: cast_nullable_to_non_nullable
-              as Production?,
+              as List<Production>?,
     ) as $Val);
-  }
-
-  /// Create a copy of TransitoryFarming
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductionCopyWith<$Res>? get production {
-    if (_value.production == null) {
-      return null;
-    }
-
-    return $ProductionCopyWith<$Res>(_value.production!, (value) {
-      return _then(_value.copyWith(production: value) as $Val);
-    });
   }
 }
 
 /// @nodoc
-abstract class _$$TransitoryFarmingImplCopyWith<$Res>
-    implements $TransitoryFarmingCopyWith<$Res> {
-  factory _$$TransitoryFarmingImplCopyWith(_$TransitoryFarmingImpl value,
-          $Res Function(_$TransitoryFarmingImpl) then) =
-      __$$TransitoryFarmingImplCopyWithImpl<$Res>;
+abstract class _$$PigFarmingImplCopyWith<$Res>
+    implements $PigFarmingCopyWith<$Res> {
+  factory _$$PigFarmingImplCopyWith(
+          _$PigFarmingImpl value, $Res Function(_$PigFarmingImpl) then) =
+      __$$PigFarmingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
       DateTime createDate,
-      String partName,
+      String totalProfit,
+      String farmName,
       String cropType,
       String crop,
       String sownArea,
@@ -213,28 +207,26 @@ abstract class _$$TransitoryFarmingImplCopyWith<$Res>
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      Production? production});
-
-  @override
-  $ProductionCopyWith<$Res>? get production;
+      List<Production>? production});
 }
 
 /// @nodoc
-class __$$TransitoryFarmingImplCopyWithImpl<$Res>
-    extends _$TransitoryFarmingCopyWithImpl<$Res, _$TransitoryFarmingImpl>
-    implements _$$TransitoryFarmingImplCopyWith<$Res> {
-  __$$TransitoryFarmingImplCopyWithImpl(_$TransitoryFarmingImpl _value,
-      $Res Function(_$TransitoryFarmingImpl) _then)
+class __$$PigFarmingImplCopyWithImpl<$Res>
+    extends _$PigFarmingCopyWithImpl<$Res, _$PigFarmingImpl>
+    implements _$$PigFarmingImplCopyWith<$Res> {
+  __$$PigFarmingImplCopyWithImpl(
+      _$PigFarmingImpl _value, $Res Function(_$PigFarmingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransitoryFarming
+  /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? createDate = null,
-    Object? partName = null,
+    Object? totalProfit = null,
+    Object? farmName = null,
     Object? cropType = null,
     Object? crop = null,
     Object? sownArea = null,
@@ -247,7 +239,7 @@ class __$$TransitoryFarmingImplCopyWithImpl<$Res>
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
-    return _then(_$TransitoryFarmingImpl(
+    return _then(_$PigFarmingImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -256,9 +248,13 @@ class __$$TransitoryFarmingImplCopyWithImpl<$Res>
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      partName: null == partName
-          ? _value.partName
-          : partName // ignore: cast_nullable_to_non_nullable
+      totalProfit: null == totalProfit
+          ? _value.totalProfit
+          : totalProfit // ignore: cast_nullable_to_non_nullable
+              as String,
+      farmName: null == farmName
+          ? _value.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
               as String,
       cropType: null == cropType
           ? _value.cropType
@@ -303,18 +299,19 @@ class __$$TransitoryFarmingImplCopyWithImpl<$Res>
       production: freezed == production
           ? _value.production
           : production // ignore: cast_nullable_to_non_nullable
-              as Production?,
+              as List<Production>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TransitoryFarmingImpl extends _TransitoryFarming {
-  _$TransitoryFarmingImpl(
+class _$PigFarmingImpl extends _PigFarming with DiagnosticableTreeMixin {
+  _$PigFarmingImpl(
       {this.id,
       required this.createDate,
-      required this.partName,
+      required this.totalProfit,
+      required this.farmName,
       required this.cropType,
       required this.crop,
       required this.sownArea,
@@ -328,15 +325,17 @@ class _$TransitoryFarmingImpl extends _TransitoryFarming {
       this.production})
       : super._();
 
-  factory _$TransitoryFarmingImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TransitoryFarmingImplFromJson(json);
+  factory _$PigFarmingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PigFarmingImplFromJson(json);
 
   @override
   String? id;
   @override
   DateTime createDate;
   @override
-  String partName;
+  String totalProfit;
+  @override
+  String farmName;
   @override
   String cropType;
   @override
@@ -357,36 +356,59 @@ class _$TransitoryFarmingImpl extends _TransitoryFarming {
   String? comment;
   @override
   List<CostAndExpense>? costsAndExpenses;
+//Production? production,
   @override
-  Production? production;
+  List<Production>? production;
 
   @override
-  String toString() {
-    return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PigFarming(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
-  /// Create a copy of TransitoryFarming
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PigFarming'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('createDate', createDate))
+      ..add(DiagnosticsProperty('totalProfit', totalProfit))
+      ..add(DiagnosticsProperty('farmName', farmName))
+      ..add(DiagnosticsProperty('cropType', cropType))
+      ..add(DiagnosticsProperty('crop', crop))
+      ..add(DiagnosticsProperty('sownArea', sownArea))
+      ..add(DiagnosticsProperty('sownType', sownType))
+      ..add(DiagnosticsProperty('format', format))
+      ..add(DiagnosticsProperty('amountSown', amountSown))
+      ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('uidOwner', uidOwner))
+      ..add(DiagnosticsProperty('comment', comment))
+      ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
+      ..add(DiagnosticsProperty('production', production));
+  }
+
+  /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TransitoryFarmingImplCopyWith<_$TransitoryFarmingImpl> get copyWith =>
-      __$$TransitoryFarmingImplCopyWithImpl<_$TransitoryFarmingImpl>(
-          this, _$identity);
+  _$$PigFarmingImplCopyWith<_$PigFarmingImpl> get copyWith =>
+      __$$PigFarmingImplCopyWithImpl<_$PigFarmingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TransitoryFarmingImplToJson(
+    return _$$PigFarmingImplToJson(
       this,
     );
   }
 }
 
-abstract class _TransitoryFarming extends TransitoryFarming {
-  factory _TransitoryFarming(
+abstract class _PigFarming extends PigFarming {
+  factory _PigFarming(
       {String? id,
       required DateTime createDate,
-      required String partName,
+      required String totalProfit,
+      required String farmName,
       required String cropType,
       required String crop,
       required String sownArea,
@@ -397,11 +419,11 @@ abstract class _TransitoryFarming extends TransitoryFarming {
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      Production? production}) = _$TransitoryFarmingImpl;
-  _TransitoryFarming._() : super._();
+      List<Production>? production}) = _$PigFarmingImpl;
+  _PigFarming._() : super._();
 
-  factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =
-      _$TransitoryFarmingImpl.fromJson;
+  factory _PigFarming.fromJson(Map<String, dynamic> json) =
+      _$PigFarmingImpl.fromJson;
 
   @override
   String? get id;
@@ -410,8 +432,11 @@ abstract class _TransitoryFarming extends TransitoryFarming {
   DateTime get createDate;
   set createDate(DateTime value);
   @override
-  String get partName;
-  set partName(String value);
+  String get totalProfit;
+  set totalProfit(String value);
+  @override
+  String get farmName;
+  set farmName(String value);
   @override
   String get cropType;
   set cropType(String value);
@@ -441,15 +466,15 @@ abstract class _TransitoryFarming extends TransitoryFarming {
   set comment(String? value);
   @override
   List<CostAndExpense>? get costsAndExpenses;
-  set costsAndExpenses(List<CostAndExpense>? value);
+  set costsAndExpenses(List<CostAndExpense>? value); //Production? production,
   @override
-  Production? get production;
-  set production(Production? value);
+  List<Production>? get production; //Production? production,
+  set production(List<Production>? value);
 
-  /// Create a copy of TransitoryFarming
+  /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransitoryFarmingImplCopyWith<_$TransitoryFarmingImpl> get copyWith =>
+  _$$PigFarmingImplCopyWith<_$PigFarmingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

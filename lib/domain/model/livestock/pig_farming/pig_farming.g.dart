@@ -1,18 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'permanent_farming.dart';
+part of 'pig_farming.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PermanentFarmingImpl _$$PermanentFarmingImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PermanentFarmingImpl(
+_$PigFarmingImpl _$$PigFarmingImplFromJson(Map<String, dynamic> json) =>
+    _$PigFarmingImpl(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       totalProfit: json['totalProfit'] as String,
-      partName: json['partName'] as String,
+      farmName: json['farmName'] as String,
       cropType: json['cropType'] as String,
       crop: json['crop'] as String,
       sownArea: json['sownArea'] as String,
@@ -30,13 +29,12 @@ _$PermanentFarmingImpl _$$PermanentFarmingImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$PermanentFarmingImplToJson(
-        _$PermanentFarmingImpl instance) =>
+Map<String, dynamic> _$$PigFarmingImplToJson(_$PigFarmingImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),
       'totalProfit': instance.totalProfit,
-      'partName': instance.partName,
+      'farmName': instance.farmName,
       'cropType': instance.cropType,
       'crop': instance.crop,
       'sownArea': instance.sownArea,

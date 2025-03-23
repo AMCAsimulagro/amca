@@ -263,6 +263,8 @@ class AmcaWords {
   static const String milk = 'Leche';
 
   // Words submodulo Porcicultura
+  static const String farmName = 'Nombre de la Finca';
+  static const String pleaseFarmName = 'Por favor, ingrese el nombre del la Finca';
 
   // Words submodulo Avicola
   static const String eggs = 'Huevos';
