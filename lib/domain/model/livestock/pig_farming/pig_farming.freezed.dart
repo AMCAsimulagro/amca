@@ -28,8 +28,8 @@ mixin _$PigFarming {
   set totalProfit(String value) => throw _privateConstructorUsedError;
   String get farmName => throw _privateConstructorUsedError;
   set farmName(String value) => throw _privateConstructorUsedError;
-  String get cropType => throw _privateConstructorUsedError;
-  set cropType(String value) => throw _privateConstructorUsedError;
+  String get productionType => throw _privateConstructorUsedError;
+  set productionType(String value) => throw _privateConstructorUsedError;
   String get crop => throw _privateConstructorUsedError;
   set crop(String value) => throw _privateConstructorUsedError;
   String get sownArea => throw _privateConstructorUsedError;
@@ -75,8 +75,7 @@ abstract class $PigFarmingCopyWith<$Res> {
       DateTime createDate,
       String totalProfit,
       String farmName,
-      String cropType,
-      String crop,
+      String productionType,
       String sownArea,
       String sownType,
       String format,
@@ -107,8 +106,7 @@ class _$PigFarmingCopyWithImpl<$Res, $Val extends PigFarming>
     Object? createDate = null,
     Object? totalProfit = null,
     Object? farmName = null,
-    Object? cropType = null,
-    Object? crop = null,
+    Object? productionType = null,
     Object? sownArea = null,
     Object? sownType = null,
     Object? format = null,
@@ -136,13 +134,9 @@ class _$PigFarmingCopyWithImpl<$Res, $Val extends PigFarming>
           ? _value.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
-      cropType: null == cropType
-          ? _value.cropType
-          : cropType // ignore: cast_nullable_to_non_nullable
-              as String,
-      crop: null == crop
-          ? _value.crop
-          : crop // ignore: cast_nullable_to_non_nullable
+      productionType: null == productionType
+          ? _value.productionType
+          : productionType // ignore: cast_nullable_to_non_nullable
               as String,
       sownArea: null == sownArea
           ? _value.sownArea
@@ -197,8 +191,7 @@ abstract class _$$PigFarmingImplCopyWith<$Res>
       DateTime createDate,
       String totalProfit,
       String farmName,
-      String cropType,
-      String crop,
+      String productionType,
       String sownArea,
       String sownType,
       String format,
@@ -227,8 +220,7 @@ class __$$PigFarmingImplCopyWithImpl<$Res>
     Object? createDate = null,
     Object? totalProfit = null,
     Object? farmName = null,
-    Object? cropType = null,
-    Object? crop = null,
+    Object? productionType = null,
     Object? sownArea = null,
     Object? sownType = null,
     Object? format = null,
@@ -256,13 +248,9 @@ class __$$PigFarmingImplCopyWithImpl<$Res>
           ? _value.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
-      cropType: null == cropType
-          ? _value.cropType
-          : cropType // ignore: cast_nullable_to_non_nullable
-              as String,
-      crop: null == crop
-          ? _value.crop
-          : crop // ignore: cast_nullable_to_non_nullable
+      productionType: null == productionType
+          ? _value.productionType
+          : productionType // ignore: cast_nullable_to_non_nullable
               as String,
       sownArea: null == sownArea
           ? _value.sownArea
@@ -312,8 +300,7 @@ class _$PigFarmingImpl extends _PigFarming with DiagnosticableTreeMixin {
       required this.createDate,
       required this.totalProfit,
       required this.farmName,
-      required this.cropType,
-      required this.crop,
+      required this.productionType,
       required this.sownArea,
       required this.sownType,
       required this.format,
@@ -337,9 +324,7 @@ class _$PigFarmingImpl extends _PigFarming with DiagnosticableTreeMixin {
   @override
   String farmName;
   @override
-  String cropType;
-  @override
-  String crop;
+  String productionType;
   @override
   String sownArea;
   @override
@@ -362,7 +347,7 @@ class _$PigFarmingImpl extends _PigFarming with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PigFarming(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'PigFarming(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, cropType: $productionType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override
@@ -374,8 +359,7 @@ class _$PigFarmingImpl extends _PigFarming with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('createDate', createDate))
       ..add(DiagnosticsProperty('totalProfit', totalProfit))
       ..add(DiagnosticsProperty('farmName', farmName))
-      ..add(DiagnosticsProperty('cropType', cropType))
-      ..add(DiagnosticsProperty('crop', crop))
+      ..add(DiagnosticsProperty('productionType', productionType))
       ..add(DiagnosticsProperty('sownArea', sownArea))
       ..add(DiagnosticsProperty('sownType', sownType))
       ..add(DiagnosticsProperty('format', format))
@@ -409,8 +393,7 @@ abstract class _PigFarming extends PigFarming {
       required DateTime createDate,
       required String totalProfit,
       required String farmName,
-      required String cropType,
-      required String crop,
+      required String productionType,
       required String sownArea,
       required String sownType,
       required String format,
@@ -438,11 +421,8 @@ abstract class _PigFarming extends PigFarming {
   String get farmName;
   set farmName(String value);
   @override
-  String get cropType;
-  set cropType(String value);
-  @override
-  String get crop;
-  set crop(String value);
+  String get productionType;
+  set productionType(String value);
   @override
   String get sownArea;
   set sownArea(String value);

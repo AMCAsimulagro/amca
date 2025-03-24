@@ -249,6 +249,7 @@ class AmcaWords {
   static const String thisIdentificationNumberIsAlreadyInUse =
       'La cédula ciudadana ya esta actualmente registrada';
 
+  static const String productionType = 'Tipo de Producción';
   // Words modulo Livestock(Pecuario)
   static const String livestockType = 'Tipo de Explotación';
   static const String animalHusbandry = 'Ganadería';
@@ -264,7 +265,13 @@ class AmcaWords {
 
   // Words submodulo Porcicultura
   static const String farmName = 'Nombre de la Finca';
-  static const String pleaseFarmName = 'Por favor, ingrese el nombre del la Finca';
+  static const String pleaseFarmName =
+      'Por favor, ingrese el nombre del la Finca';
+  static String yourPigFarmingHasBeenUpdated = 'Tu ... ha sido actualizado';
+  static String yourPigFarmingHasBeenCreated = 'Tu ... ha sido creado';
+  static String yourPigFarmingHasBeenDeleted = 'Tu ... ha sido eliminado';
+  static const String areYouSureToDeleteThisPigFarming =
+      '¿Desea eliminar este ...?';
 
   // Words submodulo Avicola
   static const String eggs = 'Huevos';
@@ -273,5 +280,4 @@ class AmcaWords {
   // Words submodulo Piscicultura
   static const String tilapia = 'Tilapia';
   static const String cachama = 'Cachama';
-
 }

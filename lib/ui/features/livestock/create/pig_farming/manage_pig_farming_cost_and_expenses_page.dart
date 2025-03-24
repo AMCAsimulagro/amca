@@ -13,7 +13,7 @@ import 'package:amca/domain/model/livestock/pig_farming/pig_farming.dart';
 
 /// Imports of Bookstores and Resources
 
-import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_permanent.dart';
+import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_pig_farming.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/livestock/create/pig_farming/create_pig_farming_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
@@ -65,8 +65,8 @@ class ManagePigFarmingCostAndExpenses extends StatefulWidget {
 class _ManagePigFarmingCostAndExpensesState
     extends State<ManagePigFarmingCostAndExpenses> {
   final _formKey = GlobalKey<FormState>();
-  final _partNameController = TextEditingController();
-  final _cropTypeController = TextEditingController();
+  final _farmNameController = TextEditingController();
+  final _productionTypeController = TextEditingController();
   final _cropController = TextEditingController();
   final _sownAreaController = TextEditingController();
   final _sownTypeController = TextEditingController();
@@ -123,7 +123,7 @@ class _ManagePigFarmingCostAndExpensesState
                   height: 12,
                 ),
                 AmcaTextFormField(
-                  textEditingController: _partNameController,
+                  textEditingController: _farmNameController,
                   labelText: AmcaWords.farmName,
                   validator: (value) {
                     if (value != null && value.isEmpty) {
@@ -136,9 +136,9 @@ class _ManagePigFarmingCostAndExpensesState
                   height: 12,
                 ),
                 AmcaSelectFormField(
-                  labelText: AmcaWords.cropType,
-                  textEditingController: _cropTypeController,
-                  options: vm.productionTypes.map((e) => e.tipo).toList(),
+                  labelText: AmcaWords.productionType,
+                  textEditingController: _productionTypeController,
+                  options: vm.productionTypes,
                   validator: (farming) {
                     if (farming != null && farming.isEmpty) {
                       return AmcaWords.pleaseSelectCropType;
@@ -148,24 +148,6 @@ class _ManagePigFarmingCostAndExpensesState
                   optionSelected: (optionSelected) {
                     _cropController.clear();
                     vm.onCropType(optionSelected);
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.crop,
-                  textEditingController: _cropController,
-                  options: vm.crop,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectCrop;
-                    }
-                    return null;
-                  },
-                  enabled: _cropTypeController.text.isNotEmpty,
-                  optionSelected: (optionSelected) {
-                    //  vm.setState(optionSelected);
                   },
                 ),
                 const SizedBox(
@@ -293,7 +275,7 @@ class _ManagePigFarmingCostAndExpensesState
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         CostsExpensesListPage.create(
-                                      farmingId: vm.pigFarming?.id ?? '',
+                                      farmingId: vm.currentPigFarming?.id ?? '',
                                     ),
                                   ),
                                 ).then((value) async {
@@ -309,7 +291,7 @@ class _ManagePigFarmingCostAndExpensesState
                           ),
                           Expanded(
                             child: AmcaButton(
-                              text: vm.pigFarming?.production == null
+                              text: vm.currentPigFarming?.production == null
                                   ? AmcaWords.createProduction
                                   : AmcaWords.seeProduction,
                               onPressed: () {
@@ -318,9 +300,9 @@ class _ManagePigFarmingCostAndExpensesState
                                   MaterialPageRoute<bool>(
                                     builder: (BuildContext context) =>
                                         ManageProductionPage.create(
-                                      farmingId: vm.pigFarming?.id ?? '',
+                                      farmingId: vm.currentPigFarming?.id ?? '',
                                       production: //TODO - Cambiar poss Esto es para modificar
-                                          vm.pigFarming?.production?[0],
+                                          null//vm.currentPigFarming?.production?[0],
                                     ),
                                   ),
                                 ).then((value) async {
@@ -349,8 +331,8 @@ class _ManagePigFarmingCostAndExpensesState
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
-                                  ChartsCostsExpensesPage.create(
-                                pigFarmingId: vm.pigFarming!.id!,
+                                  ChartsCostsExpensesPigPage.create(
+                                    pigFarmingId: vm.currentPigFarming!.id!,
                               ),
                             ),
                           );
@@ -412,9 +394,8 @@ class _ManagePigFarmingCostAndExpensesState
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final pigFarming = PigFarming(
       createDate: date,
-      partName: _partNameController.text,
-      cropType: _cropTypeController.text,
-      crop: _cropController.text,
+      farmName: _farmNameController.text,
+      productionType: _productionTypeController.text,
       totalProfit: "",
       sownArea: _sownAreaController.text,
       sownType: _sownTypeController.text,
@@ -422,10 +403,10 @@ class _ManagePigFarmingCostAndExpensesState
       amountSown: _amountSownController.text,
       value: _valueController.text,
       comment: _commentController.text,
-      costsAndExpenses: createPermanentVm.pigFarming?.costsAndExpenses,
-      production: createPermanentVm.pigFarming?.production,
+      costsAndExpenses: createPermanentVm.currentPigFarming?.costsAndExpenses,
+      production: createPermanentVm.currentPigFarming?.production,
       id: createPermanentVm.isEditMode
-          ? createPermanentVm.pigFarming!.id
+          ? createPermanentVm.currentPigFarming!.id
           : null,
     );
     try {
@@ -485,9 +466,8 @@ class _ManagePigFarmingCostAndExpensesState
     bool isEditMode = widget.pigFarming != null;
     if (isEditMode) {
       final preloadPigFarming = widget.pigFarming;
-      _partNameController.text = preloadPigFarming?.partName ?? '';
-      _cropTypeController.text = preloadPigFarming?.cropType ?? '';
-      _cropController.text = preloadPigFarming?.crop ?? '';
+      _farmNameController.text = preloadPigFarming?.farmName ?? '';
+      _productionTypeController.text = preloadPigFarming?.productionType ?? '';
       _sownAreaController.text = preloadPigFarming?.sownArea ?? '';
       _sownTypeController.text = preloadPigFarming?.sownType ?? '';
       _formatController.text = preloadPigFarming?.format ?? '';

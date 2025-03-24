@@ -16,16 +16,17 @@ class CreatePigFarmingVM extends ChangeNotifier {
   /// Instance of [PigFarmingRepository] for performing CRUD operations
   final PigFarmingRepository _pigFarmingRepository = locator<PigFarmingRepository>();
 
-  List<String> _categories = []; // Ej: Engorde, Reproducción
   List<String> _pigCategories = []; // Ej: Engorde, Reproducción
   List<String> _productionTypes = []; // Tipos de producción porcina
+  List<String> _sownTypes = []; // Tipos de
 
   PigFarming? _currentPigFarming; 
-  
+
 
   // Getters públicos
   List<String> get pigCategories => _pigCategories;
   List<String> get productionTypes => _productionTypes;
+  List<String> get sownTypes => _sownTypes;
   PigFarming? get currentPigFarming => _currentPigFarming;
   bool get isEditMode => _currentPigFarming != null;
 
@@ -38,6 +39,7 @@ class CreatePigFarmingVM extends ChangeNotifier {
       // Cargar datos específicos de porcicultura
       _pigCategories = await _loadPigCategories();
       _productionTypes = await _loadProductionTypes();
+      _sownTypes = await _loadSownTypes();
     } finally {
       notifyListeners();
     }
@@ -71,7 +73,7 @@ class CreatePigFarmingVM extends ChangeNotifier {
 
   /// Maneja la selección de categoría porcina
   void onPigCategorySelected(String category) {
-    _categories = _pigCategories.firstWhere((element)=> element == category);
+    //_categories = _pigCategories.firstWhere((element)=> element == category);
      
     
   }
@@ -91,13 +93,18 @@ class CreatePigFarmingVM extends ChangeNotifier {
 
   // Métodos auxiliares para carga de datos específicos
   Future<List<String>> _loadPigCategories() async {
-    // Implementar lógica para obtener categorías de la API
+    // TODO Implementar lógica para obtener categorías de la API
     return ['Engorde', 'Reproducción', 'Cría'];
   }
 
   Future<List<String>> _loadProductionTypes() async {
-    // Implementar lógica para obtener tipos de producción
+    // TODO Implementar lógica para obtener tipos de producción
     return ['Carne', 'Reproductores', 'Lechones'];
+  }
+
+  Future<List<String>> _loadSownTypes() async {
+    // TODO Implementar lógica para obtener tipos de
+    return [];
   }
 
   /// Actualiza los cálculos financieros
@@ -110,4 +117,8 @@ class CreatePigFarmingVM extends ChangeNotifier {
     return (_currentPigFarming?.totalPrice() ?? 0) - 
            (_currentPigFarming?.calculateTotalCostAndExpense() ?? 0);
   }
+
+
+
+  void onCropType(String optionSelected) {}
 }
