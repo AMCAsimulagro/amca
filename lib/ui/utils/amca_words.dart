@@ -260,8 +260,28 @@ class AmcaWords {
   static const String addProduction = 'Ingresar Producción';
 
   // Words submodulo Ganadería
+  static const String yourAnimalHusbandryHasBeenDeleted =
+      'Tu ... ha sido eliminado';
   static const String meat = 'Carne';
   static const String milk = 'Leche';
+  static const String animalNumber = 'Número de animales';
+  static const String expensiveType = 'Costo o Gasto';
+  static const String pleaseSelectExpensiveType =
+      'Por favor, seleccione si es un costo o un gasto';
+  static const String type = 'Tipo';
+  static const String pleaseSelectType = 'Por favor, seleccione un tipo';
+  static const String amount = 'Cantidad';
+  static const String pleaseAddAmount =
+      'Por favor, ingrese la cantidad';
+  static const String pleaseAnimalNumber = 'Por favor, ingrese el número de animales';
+  static const String pleaseSelectDescriptionType =
+      'Por favor, seleccione una descripción';
+  static const String pleaseSelectProductionType =
+      'Por favor, seleccione un tipo de producción';
+  static String yourAnimalHusbandryHasBeenUpdated = 'Tu ... ha sido actualizado';
+  static String yourAnimalHusbandryHasBeenCreated = 'Tu ... ha sido creado';
+  static const String areYouSureToDeleteThisAnimalHusbandry =
+      '¿Desea eliminar este ...?';
 
   // Words submodulo Porcicultura
   static const String farmName = 'Nombre de la Finca';

@@ -20,5 +20,7 @@ class AmcaPalette {
   static const lightGreen = Color(0xFF00C913);
 
   static const permanentColor = Color.fromARGB(255, 76, 175, 79);
-  static const TransitoryColor = Color.fromARGB(255, 0, 180, 169);
+  static const transitoryColor = Color.fromARGB(255, 0, 180, 169);
+  static const animalHusbandryColor = Color.fromARGB(255, 210, 180, 140);
+  static const pigFarmingColor = Color.fromARGB(255, 255, 182, 193);
 }

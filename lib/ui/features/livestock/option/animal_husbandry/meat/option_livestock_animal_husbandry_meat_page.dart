@@ -6,6 +6,7 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/manage_animal_husbandry_cost_and_expenses_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
@@ -37,7 +38,7 @@ class OptionLivestockAnimalHusbandryMeatPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ManageTransitoryFarming.create(),
+                        builder: (BuildContext context) => ManageAnimalHusbandryCostAndExpenses.create(),
                       ),
                     );
                   },
