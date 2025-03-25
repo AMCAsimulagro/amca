@@ -23,13 +23,13 @@ mixin _$Production {
   String? get uidOwner => throw _privateConstructorUsedError;
   set uidOwner(String? value) =>
       throw _privateConstructorUsedError; // Owner UID of the production.
-  String? get partName =>
+  String? get farmName =>
       throw _privateConstructorUsedError; // Owner UID of the production.
-  set partName(String? value) =>
+  set farmName(String? value) =>
       throw _privateConstructorUsedError; // Part name of the production.
-  String get transitoryFarmingId =>
+  String get animalHusbandryId =>
       throw _privateConstructorUsedError; // Part name of the production.
-  set transitoryFarmingId(String value) =>
+  set animalHusbandryId(String value) =>
       throw _privateConstructorUsedError; // Transitory farming ID of the production.
   DateTime get createDate =>
       throw _privateConstructorUsedError; // Transitory farming ID of the production.
@@ -75,8 +75,8 @@ abstract class $ProductionCopyWith<$Res> {
   @useResult
   $Res call(
       {String? uidOwner,
-      String? partName,
-      String transitoryFarmingId,
+      String? farmName,
+      String animalHusbandryId,
       DateTime createDate,
       String unitOfMeasurement,
       String quantity,
@@ -102,8 +102,8 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
   @override
   $Res call({
     Object? uidOwner = freezed,
-    Object? partName = freezed,
-    Object? transitoryFarmingId = null,
+    Object? farmName = freezed,
+    Object? animalHusbandryId = null,
     Object? createDate = null,
     Object? unitOfMeasurement = null,
     Object? quantity = null,
@@ -117,13 +117,13 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
           ? _value.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
-      partName: freezed == partName
-          ? _value.partName
-          : partName // ignore: cast_nullable_to_non_nullable
+      farmName: freezed == farmName
+          ? _value.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
               as String?,
-      transitoryFarmingId: null == transitoryFarmingId
-          ? _value.transitoryFarmingId
-          : transitoryFarmingId // ignore: cast_nullable_to_non_nullable
+      animalHusbandryId: null == animalHusbandryId
+          ? _value.animalHusbandryId
+          : animalHusbandryId // ignore: cast_nullable_to_non_nullable
               as String,
       createDate: null == createDate
           ? _value.createDate
@@ -167,8 +167,8 @@ abstract class _$$ProductionImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? uidOwner,
-      String? partName,
-      String transitoryFarmingId,
+      String? farmName,
+      String animalHusbandryId,
       DateTime createDate,
       String unitOfMeasurement,
       String quantity,
@@ -192,8 +192,8 @@ class __$$ProductionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uidOwner = freezed,
-    Object? partName = freezed,
-    Object? transitoryFarmingId = null,
+    Object? farmName = freezed,
+    Object? animalHusbandryId = null,
     Object? createDate = null,
     Object? unitOfMeasurement = null,
     Object? quantity = null,
@@ -207,13 +207,13 @@ class __$$ProductionImplCopyWithImpl<$Res>
           ? _value.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
-      partName: freezed == partName
-          ? _value.partName
-          : partName // ignore: cast_nullable_to_non_nullable
+      farmName: freezed == farmName
+          ? _value.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
               as String?,
-      transitoryFarmingId: null == transitoryFarmingId
-          ? _value.transitoryFarmingId
-          : transitoryFarmingId // ignore: cast_nullable_to_non_nullable
+      animalHusbandryId: null == animalHusbandryId
+          ? _value.animalHusbandryId
+          : animalHusbandryId // ignore: cast_nullable_to_non_nullable
               as String,
       createDate: null == createDate
           ? _value.createDate
@@ -252,8 +252,8 @@ class __$$ProductionImplCopyWithImpl<$Res>
 class _$ProductionImpl implements _Production {
   _$ProductionImpl(
       {this.uidOwner,
-      this.partName,
-      required this.transitoryFarmingId,
+      this.farmName,
+      required this.animalHusbandryId,
       required this.createDate,
       required this.unitOfMeasurement,
       required this.quantity,
@@ -269,10 +269,10 @@ class _$ProductionImpl implements _Production {
   String? uidOwner;
 // Owner UID of the production.
   @override
-  String? partName;
+  String? farmName;
 // Part name of the production.
   @override
-  String transitoryFarmingId;
+  String animalHusbandryId;
 // Transitory farming ID of the production.
   @override
   DateTime createDate;
@@ -296,7 +296,7 @@ class _$ProductionImpl implements _Production {
 
   @override
   String toString() {
-    return 'Production(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
+    return 'Production(uidOwner: $uidOwner, farmName: $farmName, animalHusbandryId: $animalHusbandryId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
   }
 
   /// Create a copy of Production
@@ -318,8 +318,8 @@ class _$ProductionImpl implements _Production {
 abstract class _Production implements Production {
   factory _Production(
       {String? uidOwner,
-      String? partName,
-      required String transitoryFarmingId,
+      String? farmName,
+      required String animalHusbandryId,
       required DateTime createDate,
       required String unitOfMeasurement,
       required String quantity,
@@ -335,11 +335,11 @@ abstract class _Production implements Production {
   String? get uidOwner;
   set uidOwner(String? value); // Owner UID of the production.
   @override
-  String? get partName; // Owner UID of the production.
-  set partName(String? value); // Part name of the production.
+  String? get farmName; // Owner UID of the production.
+  set farmName(String? value); // Part name of the production.
   @override
-  String get transitoryFarmingId; // Part name of the production.
-  set transitoryFarmingId(
+  String get animalHusbandryId; // Part name of the production.
+  set animalHusbandryId(
       String value); // Transitory farming ID of the production.
   @override
   DateTime get createDate; // Transitory farming ID of the production.

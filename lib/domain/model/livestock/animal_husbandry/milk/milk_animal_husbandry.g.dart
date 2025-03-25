@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'animal_husbandry.dart';
+part of 'milk_animal_husbandry.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

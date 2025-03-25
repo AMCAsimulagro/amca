@@ -8,19 +8,19 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/production.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_production.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'animal_husbandry.freezed.dart';
+part 'milk_animal_husbandry.freezed.dart';
 
-part 'animal_husbandry.g.dart';
+part 'milk_animal_husbandry.g.dart';
 
 @unfreezed
-class AnimalHusbandry with _$AnimalHusbandry {
-  const AnimalHusbandry._();
+class MilkAnimalHusbandry with _$MilkAnimalHusbandry {
+  const MilkAnimalHusbandry._();
 
-  factory AnimalHusbandry({
+  factory MilkAnimalHusbandry({
     String? id,
     required DateTime createDate,
     required String totalProfit,
@@ -39,8 +39,8 @@ class AnimalHusbandry with _$AnimalHusbandry {
     List<Production>? production,
   }) = _AnimalHusbandry;
 
-  factory AnimalHusbandry.fromJson(Map<String, Object?> json) =>
-      _$AnimalHusbandryFromJson(json);
+  factory MilkAnimalHusbandry.fromJson(Map<String, Object?> json) =>
+      _$MilkAnimalHusbandryFromJson(json);
 
   int calculateTotalCostAndExpense() {
     int totalCostAndExpense = 0;

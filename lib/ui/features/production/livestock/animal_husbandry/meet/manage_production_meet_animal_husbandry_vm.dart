@@ -1,0 +1,122 @@
+/// {@category Manage Production}
+/// This code defines the `ManageProductionVM` class, which is responsible for managing production in the application. The class has the following responsibilities:
+///
+/// * **Get production information:** Loads the current production data from the database.
+/// * **Create a new production:** Creates a new production object and saves it to the database.
+/// * **Delete production:** Delete the current production from the database.
+///
+/// **The class also includes the following properties:**
+///
+/// * **`partProductions`:** List of `CostAndExpense` objects that represent the costs and expenses of the production.
+/// * **`transitoryFarming`:** `TransitoryFarming` object that represents the current production information.
+/// * **`isLoading`:** Indicates whether the class is loading data from the database.
+/// * **`farmingId`:** Production identifier.
+///
+/// **The functions of the class are:**
+///
+/// * **`init()`:** Initializes the class by loading the current production data.
+/// * **`createProduction(Production production)`:** Creates a new production object and saves it to the database.
+/// * **`deleteProduction()`:** Deletes the current production from the database.
+library;
+
+import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
+import 'package:amca/dependecy_injection.dart';
+import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meet/production.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:uuid/uuid.dart';
+
+/// ## Clase ManageProductionVM
+class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
+  /// ManageProductionVM constructor with optional farmingId
+  ManageProductionMeetMeetAnimalHusbandryVM({this.farmingId});
+
+  /// Farming repository
+  final AnimalHusbandryRepository animalHusbandryRepository =
+      locator<AnimalHusbandryRepository>();
+
+  /// List of CostAndExpense
+  List<CostAndExpense> partProductions = [];
+
+  /// TransitoryFarming object
+  MeetAnimalHusbandry? meetAnimalHusbandry;
+
+  /// Indicates if it is loading data
+  bool isLoading = true;
+
+  /// Production identifier
+  String? farmingId;
+
+  /// ## Function to initialize the class
+  Future<void> init() async {
+    isLoading = true;
+    try {
+      /// Loads the current production information
+      meetAnimalHusbandry =
+          await animalHusbandryRepository.getMeetById(farmingId!);
+    } catch (e) {
+      // Handle errors loading data
+    } finally {
+      notifyListeners();
+      isLoading = false;
+    }
+  }
+
+  /// ## Function to create a new production
+  Future<MeetAnimalHusbandry?> createProduction(Production production) async {
+    isLoading = true;
+    try {
+      /// Calculates the total cost and expense
+
+      final profitCrop = meetAnimalHusbandry?.profitCrop();
+
+      /// Calculates the total production value
+      final totalValueProduction =
+          int.parse((production.price.replaceAll(',', ''))) - profitCrop!;
+
+      /// Creates a copy of the production with the updated total value, ID (if missing), and owner ID
+      final productionToUpdate = production.copyWith(
+        totalValue: totalValueProduction.toString(),
+        id: production.id ?? const Uuid().v4(),
+        uidOwner: meetAnimalHusbandry?.uidOwner,
+      );
+
+      /// Creates a copy of TransitoryFarming with the updated production
+      meetAnimalHusbandry = meetAnimalHusbandry?.copyWith(
+          // TODO revisar casteo a lista: production: productionToUpdate,
+          );
+
+      /// Saves the updated information to the database
+      final result = await animalHusbandryRepository
+          .createMeetAnimalHusbandry(meetAnimalHusbandry!);
+      return meetAnimalHusbandry;
+    } catch (e) {
+      return null;
+    } finally {
+      notifyListeners();
+      isLoading = false;
+    }
+  }
+
+  /// ## Function to delete the current production
+  Future<MeetAnimalHusbandry?> deleteProduction() async {
+    isLoading = true;
+    try {
+      /// Creates a copy of TransitoryFarming with production set to null
+      meetAnimalHusbandry = meetAnimalHusbandry?.copyWith(
+        production: null,
+      );
+
+      /// Saves the updated information to the database
+      final result = await animalHusbandryRepository
+          .createMeetAnimalHusbandry(meetAnimalHusbandry!);
+      return result;
+    } catch (e) {
+      return null;
+    } finally {
+      notifyListeners();
+      isLoading = false;
+    }
+  }
+}

@@ -3,46 +3,53 @@ library;
 import 'package:amca/data/api/firebase_collections.dart';
 import 'package:amca/domain/model/app_exception.dart';
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/animal_husbandry.dart';
-import 'package:amca/domain/model/livestock/production.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_production.dart';
 import 'package:amca/ui/utils/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class AnimalHusbandryApi {
-  Future<AnimalHusbandry> createAnimalHusbandry(
-      AnimalHusbandry animalHusbandry);
+  Future<MilkAnimalHusbandry> createAnimalHusbandry(
+      MilkAnimalHusbandry animalHusbandry);
 
-  Future<List<AnimalHusbandry>> getAnimalHusbandryHistoryByUid(String? uid);
+  Future<List<MilkAnimalHusbandry>> getMilkAnimalHusbandryHistoryByUid(
+      String? uid);
 
-  Future<List<AnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
+  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+      String? uid);
+
+  Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
 
   Future<void> deleteAnimalHusbandry(String id);
 
   Future<List<CostAndExpense>> getCostsAndExpensesByAnimalHusbandry(
       String farmingId);
 
-  Future<AnimalHusbandry> getAnimalHusbandryById(String farmingId);
+  Future<MilkAnimalHusbandry> getMilkById(String farmingId);
+
+  Future<MeetAnimalHusbandry> getMeetById(String farmingId);
 
   Future<CostAndExpense?> createPigCostExpense(
     CostAndExpense costAndExpense, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 
   Future<CostAndExpense?> deletePigCostExpense(
     String costAndExpenseId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 
   Future<Production?> createProduction(
     Production production, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 
   Future<Production?> deleteProduction(
     String productionId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 }
 
@@ -51,8 +58,8 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   final _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<AnimalHusbandry> createAnimalHusbandry(
-      AnimalHusbandry animalHusbandry) async {
+  Future<MilkAnimalHusbandry> createAnimalHusbandry(
+      MilkAnimalHusbandry animalHusbandry) async {
     try {
       final animalHusbandryId = animalHusbandry.id ?? const Uuid().v4();
       final animalHusbandryToUpload = animalHusbandry.copyWith(
@@ -73,7 +80,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<List<AnimalHusbandry>> getAnimalHusbandryHistoryByUid(
+  Future<List<MilkAnimalHusbandry>> getMilkAnimalHusbandryHistoryByUid(
       String? uid) async {
     try {
       final userId = uid ?? _firebaseAuth.currentUser?.uid ?? '';
@@ -83,7 +90,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
           .get();
 
       return collection.docs
-          .map((doc) => AnimalHusbandry.fromJson(doc.data()))
+          .map((doc) => MilkAnimalHusbandry.fromJson(doc.data()))
           .toList()
         ..sort((a, b) => b.createDate.compareTo(a.createDate));
     } on FirebaseAuthException catch (e) {
@@ -94,13 +101,14 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<List<AnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin() async {
+  Future<List<MilkAnimalHusbandry>>
+      getAllAnimalHusbandryHistoryByAdmin() async {
     try {
       final collection = await _firebaseDb
           .collection(FirebaseCollections.animalHusbandry)
           .get();
       return collection.docs
-          .map((doc) => AnimalHusbandry.fromJson(doc.data()))
+          .map((doc) => MilkAnimalHusbandry.fromJson(doc.data()))
           .toList()
         ..sort((a, b) => a.createDate.compareTo(b.createDate));
     } on FirebaseAuthException catch (e) {
@@ -127,18 +135,18 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   @override
   Future<List<CostAndExpense>> getCostsAndExpensesByAnimalHusbandry(
       String farmingId) async {
-    final result = await getAnimalHusbandryById(farmingId);
+    final result = await getMilkById(farmingId);
     return result.costsAndExpenses ?? [];
   }
 
   @override
-  Future<AnimalHusbandry> getAnimalHusbandryById(String farmingId) async {
+  Future<MilkAnimalHusbandry> getMilkById(String farmingId) async {
     try {
       final data = await _firebaseDb
           .collection(FirebaseCollections.animalHusbandry)
           .doc(farmingId)
           .get();
-      return AnimalHusbandry.fromJson(data.data()!);
+      return MilkAnimalHusbandry.fromJson(data.data()!);
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
     } catch (e) {
@@ -149,7 +157,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   @override
   Future<CostAndExpense?> createPigCostExpense(
     CostAndExpense costAndExpense, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) async {
     try {
       var costExpenseList = farming.costsAndExpenses ?? [];
@@ -174,7 +182,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   @override
   Future<CostAndExpense?> deletePigCostExpense(
     String costAndExpenseId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) async {
     try {
       final costExpenseList = farming.costsAndExpenses
@@ -195,7 +203,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   @override
   Future<Production?> createProduction(
     Production production, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) async {
     try {
       final productionList = farming.production ?? [];
@@ -219,7 +227,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   @override
   Future<Production?> deleteProduction(
     String productionId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) async {
     try {
       final productionList = farming.production
@@ -229,6 +237,42 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
       final updatedFarming = farming.copyWith(production: productionList);
       await createAnimalHusbandry(updatedFarming);
       return null;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(message: e.message, codeError: e.code);
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
+  @override
+  Future<MeetAnimalHusbandry> getMeetById(String farmingId) async {
+    try {
+      final data = await _firebaseDb
+          .collection(FirebaseCollections.animalHusbandry)
+          .doc(farmingId)
+          .get();
+      return MeetAnimalHusbandry.fromJson(data.data()!);
+    } on FirebaseAuthException catch (e) {
+      throw AppException(message: e.message, codeError: e.code);
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
+  @override
+  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+      String? uid) async {
+    try {
+      final userId = uid ?? _firebaseAuth.currentUser?.uid ?? '';
+      final collection = await _firebaseDb
+          .collection(FirebaseCollections.animalHusbandry)
+          .where("uidOwner", isEqualTo: userId)
+          .get();
+
+      return collection.docs
+          .map((doc) => MeetAnimalHusbandry.fromJson(doc.data()))
+          .toList()
+        ..sort((a, b) => b.createDate.compareTo(a.createDate));
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
     } catch (e) {

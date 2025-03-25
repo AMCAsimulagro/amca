@@ -7,20 +7,29 @@ library;
 import 'package:amca/data/api/livestock/pig_farming/animal_husbandry_api.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/animal_husbandry.dart';
-import 'package:amca/domain/model/livestock/production.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_production.dart';
 
 /// Abstract class defining methods to interact with the Pig Farming API
 abstract class AnimalHusbandryRepository {
-  /// Creates a new pig farming record
-  Future<AnimalHusbandry> createAnimalHusbandry(
-      AnimalHusbandry animalHusbandry);
+  /// Creates a milk new animal husbandry record
+  Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
+      MilkAnimalHusbandry animalHusbandry);
+
+  /// Creates a new meet new animal record
+  Future<MeetAnimalHusbandry> createMeetAnimalHusbandry(
+      MeetAnimalHusbandry animalHusbandry);
 
   /// Retrieves pig farming history for a specific user
-  Future<List<AnimalHusbandry>> getAnimalHusbandryHistoryByUid(String? uid);
+  Future<List<MilkAnimalHusbandry>> getMilkAnimalHusbandryHistoryByUid(
+      String? uid);
+
+  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+      String? uid);
 
   /// Retrieves all pig farming records (admin only)
-  Future<List<AnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
+  Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
 
   /// Deletes a pig farming record
   Future<void> deleteAnimalHusbandry(String id);
@@ -30,30 +39,32 @@ abstract class AnimalHusbandryRepository {
       String farmingId);
 
   /// Retrieves a specific pig farming record by ID
-  Future<AnimalHusbandry> getAnimalHusbandryById(String farmingId);
+  Future<MeetAnimalHusbandry> getMeetById(String farmingId);
+
+  Future<MilkAnimalHusbandry> getMilkById(String farmingId);
 
   /// Creates a new cost/expense record for pig farming
   Future<CostAndExpense?> createPigCostExpense(
     CostAndExpense costAndExpense, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 
   /// Deletes a cost/expense record from pig farming
   Future<CostAndExpense?> deletePigCostExpense(
     String costAndExpenseId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 
   /// Creates a new production record for pig farming
   Future<Production?> createProduction(
     Production production, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 
   /// Deletes a production record from pig farming
   Future<Production?> deleteProduction(
     String productionId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   });
 }
 
@@ -62,18 +73,19 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   final AnimalHusbandryApi _api = locator<AnimalHusbandryApi>();
 
   @override
-  Future<AnimalHusbandry> createAnimalHusbandry(
-      AnimalHusbandry animalHusbandry) {
+  Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
+      MilkAnimalHusbandry animalHusbandry) {
     return _api.createAnimalHusbandry(animalHusbandry);
   }
 
   @override
-  Future<List<AnimalHusbandry>> getAnimalHusbandryHistoryByUid(String? uid) {
-    return _api.getAnimalHusbandryHistoryByUid(uid);
+  Future<List<MilkAnimalHusbandry>> getMilkAnimalHusbandryHistoryByUid(
+      String? uid) {
+    return _api.getMilkAnimalHusbandryHistoryByUid(uid);
   }
 
   @override
-  Future<List<AnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin() {
+  Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin() {
     return _api.getAllAnimalHusbandryHistoryByAdmin();
   }
 
@@ -89,14 +101,19 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<AnimalHusbandry> getAnimalHusbandryById(String farmingId) {
-    return _api.getAnimalHusbandryById(farmingId);
+  Future<MeetAnimalHusbandry> getMeetById(String farmingId) {
+    return _api.getMeetById(farmingId);
+  }
+
+  @override
+  Future<MilkAnimalHusbandry> getMilkById(String farmingId) {
+    return _api.getMilkById(farmingId);
   }
 
   @override
   Future<CostAndExpense?> createPigCostExpense(
     CostAndExpense costAndExpense, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) {
     return _api.createPigCostExpense(costAndExpense, farming: farming);
   }
@@ -104,7 +121,7 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   @override
   Future<CostAndExpense?> deletePigCostExpense(
     String costAndExpenseId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) {
     return _api.deletePigCostExpense(costAndExpenseId, farming: farming);
   }
@@ -112,7 +129,7 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   @override
   Future<Production?> createProduction(
     Production production, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) {
     return _api.createProduction(production, farming: farming);
   }
@@ -120,8 +137,21 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   @override
   Future<Production?> deleteProduction(
     String productionId, {
-    required AnimalHusbandry farming,
+    required MilkAnimalHusbandry farming,
   }) {
     return _api.deleteProduction(productionId, farming: farming);
+  }
+
+  @override
+  Future<MeetAnimalHusbandry> createMeetAnimalHusbandry(
+      MeetAnimalHusbandry animalHusbandry) {
+    // TODO: implement createMeetAnimalHusbandry
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+      String? uid) {
+    return _api.getMeetAnimalHusbandryHistoryByUid(uid);
   }
 }

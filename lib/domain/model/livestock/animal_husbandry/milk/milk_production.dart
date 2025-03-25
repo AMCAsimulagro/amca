@@ -11,9 +11,9 @@ library;
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'production.freezed.dart';
+part 'milk_production.freezed.dart';
 
-part 'production.g.dart';
+part 'milk_production.g.dart';
 
 /// Represents a production.
 @unfreezed
@@ -21,8 +21,8 @@ class Production with _$Production {
   /// Default constructor for Production.
   factory Production({
     String? uidOwner,// Owner UID of the production.
-    String? partName,// Part name of the production.
-    required String transitoryFarmingId,// Transitory farming ID of the production.
+    String? farmName,// Part name of the production.
+    required String animalHusbandryId,// Transitory farming ID of the production.
     required DateTime createDate,// Creation date of the production.
     required String unitOfMeasurement,// Unit of measurement of the production.
     required String quantity,// Quantity of the production.

@@ -6,8 +6,6 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/option/animal_husbandry/meat/option_livestock_animal_husbandry_meat_page.dart';
-import 'package:amca/ui/features/livestock/option/animal_husbandry/milk/option_livestock_animal_husbrandry_milk_page.dart';
 import 'package:amca/ui/features/livestock/option/fish_farming/cachama/option_livestock_fish_farming_cachama_page.dart';
 import 'package:amca/ui/features/livestock/option/fish_farming/tilapia/option_livestock_fish_farming_tilapia_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
@@ -18,8 +16,7 @@ import 'package:flutter/material.dart';
 
 /// StatelessWidget for managing transitory farming activities.
 class OptionLivestockFishFarmingPage extends StatelessWidget {
-
-   /// Constructs an [OptionLivestockFishFarmingPage] widget.
+  /// Constructs an [OptionLivestockFishFarmingPage] widget.
   const OptionLivestockFishFarmingPage({super.key});
 
   @override
@@ -39,7 +36,10 @@ class OptionLivestockFishFarmingPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.tilapia,
                   onTap: () {
-                    NavigationHelper.push(const OptionLivestockFishFarmingTilapiaPage(), context,);
+                    NavigationHelper.push(
+                      const OptionLivestockFishFarmingTilapiaPage(),
+                      context,
+                    );
                   },
                 ),
               ),
@@ -47,7 +47,10 @@ class OptionLivestockFishFarmingPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.cachama,
                   onTap: () {
-                    NavigationHelper.push(const OptionLivestockFishFarmingCachamaPage(), context,);
+                    NavigationHelper.push(
+                      const OptionLivestockFishFarmingCachamaPage(),
+                      context,
+                    );
                   },
                 ),
               ),

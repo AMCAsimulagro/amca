@@ -3,6 +3,9 @@ library;
 
 import 'package:amca/ui/features/farming/create/manage_permanent_farming_page.dart';
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/meet/manage_meet_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -10,7 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../domain/model/livestock/animal_husbandry/animal_husbandry.dart';
+import '../../../../../domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import '../../../../../domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import '../../../../../domain/model/livestock/pig_farming/pig_farming.dart';
 import '../../../../../domain/model/permanent_farming.dart';
 import '../../../../../domain/model/transitory_farming.dart';
@@ -71,15 +75,26 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
           );
         }
 
-        if (vm.animalHusbandry.isNotEmpty) {
+        if (vm.meetAnimalHusbandry.isNotEmpty) {
           farmingItems.addAll(
             _buildFarmingList(
-              vm.animalHusbandry,
-              (farmingItem) => ManagePermanentFarming.create(
-                permanentFarming: farmingItem,
+              vm.meetAnimalHusbandry,
+              (farmingItem) => ManageMeetAnimalHusbandry.create(
+                animalHusbandry: farmingItem,
               ),
-              AmcaWords
-                  .animalHusbandry, // Agrega un identificador para esta sección
+              AmcaWords.meat, // Agrega un identificador para esta sección
+            ),
+          );
+        }
+
+        if (vm.milkAnimalHusbandry.isNotEmpty) {
+          farmingItems.addAll(
+            _buildFarmingList(
+              vm.milkAnimalHusbandry,
+              (farmingItem) => ManageMilkAnimalHusbandry.create(
+                animalHusbandry: farmingItem,
+              ),
+              AmcaWords.milk, // Agrega un identificador para esta sección
             ),
           );
         }
@@ -88,8 +103,8 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
           farmingItems.addAll(
             _buildFarmingList(
               vm.pigFarming,
-              (farmingItem) => ManagePermanentFarming.create(
-                permanentFarming: farmingItem,
+              (farmingItem) => ManagePigFarmingCostAndExpenses.create(
+                pigFarming: farmingItem,
               ),
               AmcaWords.pigFarming, // Agrega un identificador para esta sección
             ),
@@ -126,7 +141,8 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
 
     for (var farmingItem in farmingHistory) {
       final name = switch (farmingItem) {
-        AnimalHusbandry() => farmingItem.farmName,
+        MilkAnimalHusbandry() => farmingItem.farmName,
+        MeetAnimalHusbandry() => farmingItem.farmName,
         TransitoryFarming() => farmingItem.partName,
         PermanentFarming() => farmingItem.partName,
         PigFarming() => farmingItem.farmName,
@@ -191,7 +207,8 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
     return switch (shade) {
       AmcaWords.transitory => AmcaPalette.transitoryColor,
       AmcaWords.permanent => AmcaPalette.permanentColor,
-      AmcaWords.animalHusbandry => AmcaPalette.animalHusbandryColor,
+      AmcaWords.meat => AmcaPalette.meat,
+      AmcaWords.milk => AmcaPalette.milk,
       AmcaWords.pigFarming => AmcaPalette.pigFarmingColor,
       _ => const Color.fromARGB(255, 210, 180, 140), // Default: Café claro
     };

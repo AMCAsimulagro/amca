@@ -1,18 +1,18 @@
 /// {@category Features Farming Create}
-/// /// This file contains the implementation of the [ManageAnimalHusbandryCostAndExpenses] class, which provides a user interface
+/// /// This file contains the implementation of the [ManageMilkAnimalHusbandry] class, which provides a user interface
 /// for creating and managing permanent farming activities. It includes form fields for inputting details such as
 /// date, part name, crop type, crop, sown area, sown type, format, amount sown, value, and comments. Users can
 /// create, update, and delete permanent farming activities. It interacts with the [CreateAnimalHusbandryVM]
 /// ViewModel to handle business logic related to permanent farming. Dependencies include various UI widgets,
-/// [AnimalHusbandry] model, and ViewModels such as [CreateAnimalHusbandryVM] and [FarmingHistoryVM].
+/// [MilkAnimalHusbandry] model, and ViewModels such as [CreateAnimalHusbandryVM] and [FarmingHistoryVM].
 library;
 
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:amca/domain/model/livestock/animal_husbandry/animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_meet_animal_husbandry.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/create_animal_husbandry_vm.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/create_milk_animal_husbandry_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/features/production/manage_permanent_production_page.dart';
@@ -30,37 +30,36 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 /// StatefulWidget for creating and managing permanent farming activities.
-class ManageAnimalHusbandryCostAndExpenses extends StatefulWidget {
-  /// Creates a [ManageAnimalHusbandryCostAndExpenses] instance with an optional [animalHusbandry].
+class ManageMilkAnimalHusbandry extends StatefulWidget {
+  /// Creates a [ManageMilkAnimalHusbandry] instance with an optional [animalHusbandry].
   static ChangeNotifierProvider<CreateAnimalHusbandryVM> create(
-          {Key? key, AnimalHusbandry? animalHusbandry}) =>
+          {Key? key, MilkAnimalHusbandry? animalHusbandry}) =>
       ChangeNotifierProvider(
         lazy: false,
         create: (context) => CreateAnimalHusbandryVM()
           ..init(
             animalHusbandry: animalHusbandry,
           ),
-        child: ManageAnimalHusbandryCostAndExpenses._(
+        child: ManageMilkAnimalHusbandry._(
             key: key, animalHusbandry: animalHusbandry),
       );
 
-  /// Constructs a [ManageAnimalHusbandryCostAndExpenses] widget.
-  const ManageAnimalHusbandryCostAndExpenses._({
+  /// Constructs a [ManageMilkAnimalHusbandry] widget.
+  const ManageMilkAnimalHusbandry._({
     super.key,
     this.animalHusbandry,
   });
 
   /// The permanent farming activity.
-  final AnimalHusbandry? animalHusbandry;
+  final MilkAnimalHusbandry? animalHusbandry;
 
   @override
-  State<ManageAnimalHusbandryCostAndExpenses> createState() =>
-      _ManageAnimalHusbandryCostAndExpensesState();
+  State<ManageMilkAnimalHusbandry> createState() =>
+      _ManageMilkAnimalHusbandryState();
 }
 
-/// State class associated with [ManageAnimalHusbandryCostAndExpenses] widget.
-class _ManageAnimalHusbandryCostAndExpensesState
-    extends State<ManageAnimalHusbandryCostAndExpenses> {
+/// State class associated with [ManageMilkAnimalHusbandry] widget.
+class _ManageMilkAnimalHusbandryState extends State<ManageMilkAnimalHusbandry> {
   final _formKey = GlobalKey<FormState>();
   final _farmNameController = TextEditingController();
   final _animalNumbersController = TextEditingController();
@@ -88,9 +87,8 @@ class _ManageAnimalHusbandryCostAndExpensesState
     return Consumer<CreateAnimalHusbandryVM>(builder: (context, vm, _) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(vm.isEditMode
-              ? AmcaWords.editFarming
-              : AmcaWords.animalHusbandry),
+          title:
+              Text(vm.isEditMode ? AmcaWords.edit : AmcaWords.animalHusbandry),
           backgroundColor: AmcaPalette.lightGreen,
         ),
         body: Form(
@@ -160,10 +158,7 @@ class _ManageAnimalHusbandryCostAndExpensesState
                     }
                     return null;
                   },
-                  optionSelected: (optionSelected) {
-                    _descriptionTypeController.clear();
-                    vm.onCropType(optionSelected);
-                  },
+                  optionSelected: (optionSelected) {},
                 ),
                 const SizedBox(
                   height: 12,
@@ -178,10 +173,7 @@ class _ManageAnimalHusbandryCostAndExpensesState
                     }
                     return null;
                   },
-                  optionSelected: (optionSelected) {
-                    _descriptionTypeController.clear();
-                    vm.onCropType(optionSelected);
-                  },
+                  optionSelected: (optionSelected) {},
                 ),
                 const SizedBox(
                   height: 12,
@@ -196,9 +188,7 @@ class _ManageAnimalHusbandryCostAndExpensesState
                     }
                     return null;
                   },
-                  optionSelected: (optionSelected) {
-                    //  vm.setState(optionSelected);
-                  },
+                  optionSelected: (optionSelected) {},
                 ),
                 const SizedBox(
                   height: 12,
@@ -376,9 +366,7 @@ class _ManageAnimalHusbandryCostAndExpensesState
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AmcaButton(
-                  text: vm.isEditMode
-                      ? AmcaWords.update
-                      : AmcaWords.create,
+                  text: vm.isEditMode ? AmcaWords.update : AmcaWords.create,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       createAnimalHusbandry();
@@ -407,7 +395,7 @@ class _ManageAnimalHusbandryCostAndExpensesState
       listen: false,
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
-    final animalHusbandry = AnimalHusbandry(
+    final animalHusbandry = MilkAnimalHusbandry(
       createDate: date,
       farmName: _farmNameController.text,
       productionType: _productionTypeController.text,
@@ -487,6 +475,8 @@ class _ManageAnimalHusbandryCostAndExpensesState
       _farmNameController.text = preloadAnimalHusbandry?.farmName ?? '';
       _productionTypeController.text =
           preloadAnimalHusbandry?.productionType ?? '';
+      _descriptionTypeController.text =
+          preloadAnimalHusbandry?.descriptionType ?? '';
       _animalNumbersController.text =
           preloadAnimalHusbandry?.numberAnimals ?? '';
       _expensiveTypeController.text =

@@ -9,8 +9,8 @@ part of 'production.dart';
 _$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
     _$ProductionImpl(
       uidOwner: json['uidOwner'] as String?,
-      partName: json['partName'] as String?,
-      transitoryFarmingId: json['transitoryFarmingId'] as String,
+      farmName: json['farmName'] as String?,
+      animalHusbandryId: json['animalHusbandryId'] as String,
       createDate: DateTime.parse(json['createDate'] as String),
       unitOfMeasurement: json['unitOfMeasurement'] as String,
       quantity: json['quantity'] as String,
@@ -23,8 +23,8 @@ _$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ProductionImplToJson(_$ProductionImpl instance) =>
     <String, dynamic>{
       'uidOwner': instance.uidOwner,
-      'partName': instance.partName,
-      'transitoryFarmingId': instance.transitoryFarmingId,
+      'farmName': instance.farmName,
+      'animalHusbandryId': instance.animalHusbandryId,
       'createDate': instance.createDate.toIso8601String(),
       'unitOfMeasurement': instance.unitOfMeasurement,
       'quantity': instance.quantity,

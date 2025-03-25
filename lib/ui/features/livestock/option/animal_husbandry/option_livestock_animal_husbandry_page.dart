@@ -6,18 +6,16 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/option/animal_husbandry/meat/option_livestock_animal_husbandry_meat_page.dart';
-import 'package:amca/ui/features/livestock/option/animal_husbandry/milk/option_livestock_animal_husbrandry_milk_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/meet/manage_meet_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
-import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
 
 /// StatelessWidget for managing transitory farming activities.
 class OptionLivestockAnimalHusbrandryPage extends StatelessWidget {
-
-   /// Constructs an [OptionLivestockAnimalHusbrandryPage] widget.
+  /// Constructs an [OptionLivestockAnimalHusbrandryPage] widget.
   const OptionLivestockAnimalHusbrandryPage({super.key});
 
   @override
@@ -37,7 +35,13 @@ class OptionLivestockAnimalHusbrandryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.meat,
                   onTap: () {
-                    NavigationHelper.push(const OptionLivestockAnimalHusbandryMeatPage(), context,);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            ManageMeetAnimalHusbandry.create(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -45,7 +49,13 @@ class OptionLivestockAnimalHusbrandryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.milk,
                   onTap: () {
-                    NavigationHelper.push(const OptionLivestockAnimalHusbrandryMilkPage(), context,);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            ManageMilkAnimalHusbandry.create(),
+                      ),
+                    );
                   },
                 ),
               ),
