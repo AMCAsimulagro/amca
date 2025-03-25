@@ -9,7 +9,6 @@ library;
 import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import 'package:flutter/cupertino.dart';
 
 /// ViewModel for creating and managing pig farming activities.
@@ -55,8 +54,8 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
       MeetAnimalHusbandry animalHusbandry) async {
     try {
       _currentAnimalHusbandry = animalHusbandry;
-      final result =
-          await _animalHusbandryRepository.createMeetAnimalHusbandry(animalHusbandry);
+      final result = await _animalHusbandryRepository
+          .createMeetAnimalHusbandry(animalHusbandry);
       _currentAnimalHusbandry = result;
       notifyListeners();
       return result;

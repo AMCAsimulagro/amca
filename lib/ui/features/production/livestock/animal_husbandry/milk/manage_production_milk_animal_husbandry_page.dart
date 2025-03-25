@@ -114,7 +114,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                           height: 12,
                         ),
                         Text(
-                          '', // 'Ganancia del cultivo: \$${vm.animalHusbandry?.production?.totalValue?.formatNumberToColombianPesos() ?? ''}',
+                          'Ganancia del cultivo:', // \$${vm.animalHusbandry?.production?.totalValue?.formatNumberToColombianPesos() ?? ''}',
                           style:
                               Theme.of(context).textTheme.titleMedium?.copyWith(
                                     color: _getEarningsColors(vm),
@@ -292,7 +292,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await manageVM.deleteProduction();
+        await manageVM.deleteProduction(0);
         await Dialogs.showSuccessDialogWithMessage(
           context,
           AmcaWords.yourProductionHasBeenDeleted,

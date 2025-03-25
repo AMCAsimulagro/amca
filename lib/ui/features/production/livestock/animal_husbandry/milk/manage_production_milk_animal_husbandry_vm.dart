@@ -53,8 +53,7 @@ class ManageProductionMilkAnimalHusbandryVM extends ChangeNotifier {
     isLoading = true;
     try {
       /// Loads the current production information
-      animalHusbandry =
-          await animalHusbandryRepository.getMilkById(farmingId!);
+      animalHusbandry = await animalHusbandryRepository.getMilkById(farmingId!);
     } catch (e) {
       // Handle errors loading data
     } finally {
@@ -67,28 +66,36 @@ class ManageProductionMilkAnimalHusbandryVM extends ChangeNotifier {
   Future<MilkAnimalHusbandry?> createProduction(Production production) async {
     isLoading = true;
     try {
-      /// Calculates the total cost and expense
+      /// Calculates the total cost , expenses and  inversion initial
+      final totalCostAndExpenses = animalHusbandry?.profitCrop();
 
-      final profitCrop = animalHusbandry?.profitCrop();
+      // Refers to the profits already recorded at the time of cultivation
+      final listTotalPrice = animalHusbandry?.totalPrice();
 
       /// Calculates the total production value
       final totalValueProduction =
-          int.parse((production.price.replaceAll(',', ''))) - profitCrop!;
+          int.parse((production.price.replaceAll(',', ''))) + listTotalPrice!;
+
+      final finallyTotalProfit = totalValueProduction - totalCostAndExpenses!;
 
       /// Creates a copy of the production with the updated total value, ID (if missing), and owner ID
       final productionToUpdate = production.copyWith(
-        totalValue: totalValueProduction.toString(),
+        //totalValue: totalValueProduction.toString(),
         id: production.id ?? const Uuid().v4(),
         uidOwner: animalHusbandry?.uidOwner,
       );
 
-      /// Creates a copy of TransitoryFarming with the updated production
+      final List<Production> updatedProductions =
+          List<Production>.from(animalHusbandry?.production ?? []);
+      updatedProductions.add(productionToUpdate);
+
       animalHusbandry = animalHusbandry?.copyWith(
-          // TODO revisar casteo a lista: production: productionToUpdate,
-          );
+        production: updatedProductions,
+        totalProfit: finallyTotalProfit.toString(),
+      );
 
       /// Saves the updated information to the database
-      final result = await animalHusbandryRepository
+      await animalHusbandryRepository
           .createMilkAnimalHusbandry(animalHusbandry!);
       return animalHusbandry;
     } catch (e) {
@@ -100,12 +107,30 @@ class ManageProductionMilkAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// ## Function to delete the current production
-  Future<MilkAnimalHusbandry?> deleteProduction() async {
+  Future<MilkAnimalHusbandry?> deleteProduction(int index) async {
     isLoading = true;
     try {
-      /// Creates a copy of TransitoryFarming with production set to null
+      /// Creates a copy of animalHusbandry with production set to null
+
+      final listProducts = animalHusbandry?.production;
+
+      if (index >= 0 && index < listProducts!.length) {
+        listProducts.removeAt(index);
+      }
+
+      final totalCostAndExpenses = animalHusbandry?.profitCrop();
+
+      // Refers to the profits already recorded at the time of cultivation
+      final listTotalPrice = animalHusbandry?.totalPrice();
+
+      /// Calculates the total production value
+      final totalValueProduction = listTotalPrice!;
+
+      final finallyTotalProfit = totalValueProduction - totalCostAndExpenses!;
+
       animalHusbandry = animalHusbandry?.copyWith(
-        production: null,
+        production: listProducts!.isEmpty ? null : listProducts,
+        totalProfit: finallyTotalProfit.toString(),
       );
 
       /// Saves the updated information to the database

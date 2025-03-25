@@ -84,11 +84,11 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
 
       /// Creates a copy of TransitoryFarming with the updated production
       meetAnimalHusbandry = meetAnimalHusbandry?.copyWith(
-          // TODO revisar casteo a lista: production: productionToUpdate,
-          );
+        production: productionToUpdate,
+      );
 
       /// Saves the updated information to the database
-      final result = await animalHusbandryRepository
+      await animalHusbandryRepository
           .createMeetAnimalHusbandry(meetAnimalHusbandry!);
       return meetAnimalHusbandry;
     } catch (e) {
