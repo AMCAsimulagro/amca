@@ -11,7 +11,7 @@ import 'package:amca/domain/model/permanent_farming.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import '../../../../../domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 
 class FarmingHistoryVM extends ChangeNotifier {
   final FarmingRepository farmingRepository = locator<FarmingRepository>();
@@ -22,7 +22,7 @@ class FarmingHistoryVM extends ChangeNotifier {
   List<TransitoryFarming> farmingHistory = [];
   List<PermanentFarming> farmingHistoryPermanent = [];
   List<MilkAnimalHusbandry> milkAnimalHusbandry = [];
-  List<MeetAnimalHusbandry> meetAnimalHusbandry = [];
+  List<MeatAnimalHusbandry> meatAnimalHusbandry = [];
   List<PigFarming> pigFarming = [];
   bool isLoading = true;
 
@@ -34,8 +34,7 @@ class FarmingHistoryVM extends ChangeNotifier {
           await farmingRepository.getPermanentFarmingHistoryByUid(null);
       milkAnimalHusbandry = await animalHusbandryRepository
           .getMilkAnimalHusbandryHistoryByUid(null);
-      meetAnimalHusbandry = await animalHusbandryRepository
-          .getMeetAnimalHusbandryHistoryByUid(null);
+      meatAnimalHusbandry = await animalHusbandryRepository.getMeatAnimalHusbandryHistoryByUid(null);
       pigFarming = await pigFarmingRepository.getPigFarmingHistoryByUid(null);
     } finally {
       isLoading = false;

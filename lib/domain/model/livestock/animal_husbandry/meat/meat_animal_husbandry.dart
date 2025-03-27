@@ -8,29 +8,24 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/production.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'meet_animal_husbandry.freezed.dart';
+part 'meat_animal_husbandry.freezed.dart';
 
-part 'meet_animal_husbandry.g.dart';
+part 'meat_animal_husbandry.g.dart';
 
 @unfreezed
-class MeetAnimalHusbandry with _$MeetAnimalHusbandry {
-  const MeetAnimalHusbandry._();
+class MeatAnimalHusbandry with _$MeatAnimalHusbandry {
+  const MeatAnimalHusbandry._();
 
-  factory MeetAnimalHusbandry({
+  factory MeatAnimalHusbandry({
     String? id,
     required DateTime createDate,
     required String totalProfit,
     required String farmName,
-    required String productionType,
-    required String descriptionType,
-    required String expensiveType,
-    required String format,
     required String numberAnimals,
-    required String amount,
     required String value,
     String? uidOwner,
     String? comment,
@@ -38,8 +33,8 @@ class MeetAnimalHusbandry with _$MeetAnimalHusbandry {
     Production? production,
   }) = _MeetAnimalHusbandry;
 
-  factory MeetAnimalHusbandry.fromJson(Map<String, Object?> json) =>
-      _$MeetAnimalHusbandryFromJson(json);
+  factory MeatAnimalHusbandry.fromJson(Map<String, Object?> json) =>
+      _$MeatAnimalHusbandryFromJson(json);
 
   int calculateTotalCostAndExpense() {
     int totalCostAndExpense = 0;

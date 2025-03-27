@@ -9,7 +9,6 @@ part of 'milk_animal_husbandry.dart';
 // FreezedGenerator
 // **************************************************************************
 
-
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
@@ -37,22 +36,6 @@ mixin _$MilkAnimalHusbandry {
 
   set farmName(String value) => throw _privateConstructorUsedError;
 
-  String get productionType => throw _privateConstructorUsedError;
-
-  set productionType(String value) => throw _privateConstructorUsedError;
-
-  String get descriptionType => throw _privateConstructorUsedError;
-
-  set descriptionType(String value) => throw _privateConstructorUsedError;
-
-  String get expensiveType => throw _privateConstructorUsedError;
-
-  set expensiveType(String value) => throw _privateConstructorUsedError;
-
-  String get format => throw _privateConstructorUsedError;
-
-  set format(String value) => throw _privateConstructorUsedError;
-
   String get numberAnimals => throw _privateConstructorUsedError;
 
   set numberAnimals(String value) => throw _privateConstructorUsedError;
@@ -60,10 +43,6 @@ mixin _$MilkAnimalHusbandry {
   String get value => throw _privateConstructorUsedError;
 
   set value(String value) => throw _privateConstructorUsedError;
-
-  String get amount => throw _privateConstructorUsedError;
-
-  set amount(String value) => throw _privateConstructorUsedError;
 
   String? get uidOwner => throw _privateConstructorUsedError;
 
@@ -104,12 +83,7 @@ abstract class $AnimalHusbandryCopyWith<$Res> {
       DateTime createDate,
       String totalProfit,
       String farmName,
-      String productionType,
-      String descriptionType,
-      String expensiveType,
-      String format,
       String numberAnimals,
-      String amount,
       String value,
       String? uidOwner,
       String? comment,
@@ -137,12 +111,7 @@ class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MilkAnimalHusbandry>
     Object? createDate = null,
     Object? totalProfit = null,
     Object? farmName = null,
-    Object? productionType = null,
-    Object? descriptionType = null,
-    Object? expensiveType = null,
-    Object? format = null,
     Object? numberAnimals = null,
-    Object? amount = null,
     Object? value = null,
     Object? uidOwner = freezed,
     Object? comment = freezed,
@@ -166,29 +135,9 @@ class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MilkAnimalHusbandry>
           ? _value.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
-      productionType: null == productionType
-          ? _value.productionType
-          : productionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionType: null == descriptionType
-          ? _value.descriptionType
-          : descriptionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      expensiveType: null == expensiveType
-          ? _value.expensiveType
-          : expensiveType // ignore: cast_nullable_to_non_nullable
-              as String,
-      format: null == format
-          ? _value.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as String,
       numberAnimals: null == numberAnimals
           ? _value.numberAnimals
           : numberAnimals // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -228,12 +177,7 @@ abstract class _$$AnimalHusbandryImplCopyWith<$Res>
       DateTime createDate,
       String totalProfit,
       String farmName,
-      String productionType,
-      String descriptionType,
-      String expensiveType,
-      String format,
       String numberAnimals,
-      String amount,
       String value,
       String? uidOwner,
       String? comment,
@@ -258,12 +202,7 @@ class __$$AnimalHusbandryImplCopyWithImpl<$Res>
     Object? createDate = null,
     Object? totalProfit = null,
     Object? farmName = null,
-    Object? productionType = null,
-    Object? descriptionType = null,
-    Object? expensiveType = null,
-    Object? format = null,
     Object? numberAnimals = null,
-    Object? amount = null,
     Object? value = null,
     Object? uidOwner = freezed,
     Object? comment = freezed,
@@ -287,29 +226,9 @@ class __$$AnimalHusbandryImplCopyWithImpl<$Res>
           ? _value.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
-      productionType: null == productionType
-          ? _value.productionType
-          : productionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionType: null == descriptionType
-          ? _value.descriptionType
-          : descriptionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      expensiveType: null == expensiveType
-          ? _value.expensiveType
-          : expensiveType // ignore: cast_nullable_to_non_nullable
-              as String,
-      format: null == format
-          ? _value.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as String,
       numberAnimals: null == numberAnimals
           ? _value.numberAnimals
           : numberAnimals // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -344,12 +263,7 @@ class _$AnimalHusbandryImpl extends _AnimalHusbandry
       required this.createDate,
       required this.totalProfit,
       required this.farmName,
-      required this.productionType,
-      required this.descriptionType,
-      required this.expensiveType,
-      required this.format,
       required this.numberAnimals,
-      required this.amount,
       required this.value,
       this.uidOwner,
       this.comment,
@@ -369,17 +283,7 @@ class _$AnimalHusbandryImpl extends _AnimalHusbandry
   @override
   String farmName;
   @override
-  String productionType;
-  @override
-  String descriptionType;
-  @override
-  String expensiveType;
-  @override
-  String format;
-  @override
   String numberAnimals;
-  @override
-  String amount;
   @override
   String value;
   @override
@@ -395,7 +299,7 @@ class _$AnimalHusbandryImpl extends _AnimalHusbandry
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, productionType: $productionType, format: $format, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'AnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override
@@ -407,12 +311,7 @@ class _$AnimalHusbandryImpl extends _AnimalHusbandry
       ..add(DiagnosticsProperty('createDate', createDate))
       ..add(DiagnosticsProperty('totalProfit', totalProfit))
       ..add(DiagnosticsProperty('farmName', farmName))
-      ..add(DiagnosticsProperty('productionType', productionType))
-      ..add(DiagnosticsProperty('descriptionType', descriptionType))
-      ..add(DiagnosticsProperty('expensiveType', expensiveType))
-      ..add(DiagnosticsProperty('format', format))
       ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
-      ..add(DiagnosticsProperty('amount', amount))
       ..add(DiagnosticsProperty('value', value))
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
@@ -443,12 +342,7 @@ abstract class _AnimalHusbandry extends MilkAnimalHusbandry {
       required DateTime createDate,
       required String totalProfit,
       required String farmName,
-      required String productionType,
-      required String descriptionType,
-      required String expensiveType,
-      required String format,
       required String numberAnimals,
-      required String amount,
       required String value,
       String? uidOwner,
       String? comment,
@@ -481,34 +375,9 @@ abstract class _AnimalHusbandry extends MilkAnimalHusbandry {
   set farmName(String value);
 
   @override
-  String get productionType;
-
-  set productionType(String value);
-
-  @override
-  String get descriptionType;
-
-  set descriptionType(String value);
-
-  @override
-  String get expensiveType;
-
-  set expensiveType(String value);
-
-  @override
-  String get format;
-
-  set format(String value);
-
-  @override
   String get numberAnimals;
 
   set numberAnimals(String value);
-
-  @override
-  String get amount;
-
-  set amount(String value);
 
   @override
   String get value;

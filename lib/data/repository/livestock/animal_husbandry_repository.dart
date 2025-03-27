@@ -7,7 +7,7 @@ library;
 import 'package:amca/data/api/livestock/pig_farming/animal_husbandry_api.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_production.dart';
 
@@ -17,15 +17,15 @@ abstract class AnimalHusbandryRepository {
   Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
       MilkAnimalHusbandry animalHusbandry);
 
-  /// Creates a new meet new animal record
-  Future<MeetAnimalHusbandry> createMeetAnimalHusbandry(
-      MeetAnimalHusbandry animalHusbandry);
+  /// Creates a new meat new animal record
+  Future<MeatAnimalHusbandry> createMeatAnimalHusbandry(
+      MeatAnimalHusbandry animalHusbandry);
 
   /// Retrieves pig farming history for a specific user
   Future<List<MilkAnimalHusbandry>> getMilkAnimalHusbandryHistoryByUid(
       String? uid);
 
-  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+  Future<List<MeatAnimalHusbandry>> getMeatAnimalHusbandryHistoryByUid(
       String? uid);
 
   /// Retrieves all pig farming records (admin only)
@@ -39,7 +39,7 @@ abstract class AnimalHusbandryRepository {
       String farmingId);
 
   /// Retrieves a specific pig farming record by ID
-  Future<MeetAnimalHusbandry> getMeetById(String farmingId);
+  Future<MeatAnimalHusbandry> getMeetById(String farmingId);
 
   Future<MilkAnimalHusbandry> getMilkById(String farmingId);
 
@@ -75,7 +75,13 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   @override
   Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
       MilkAnimalHusbandry animalHusbandry) {
-    return _api.createAnimalHusbandry(animalHusbandry);
+    return _api.createMilkAnimalHusbandry(animalHusbandry);
+  }
+
+  @override
+  Future<MeatAnimalHusbandry> createMeatAnimalHusbandry(
+      MeatAnimalHusbandry animalHusbandry) {
+    return _api.createMeatAnimalHusbandry(animalHusbandry);
   }
 
   @override
@@ -101,8 +107,8 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<MeetAnimalHusbandry> getMeetById(String farmingId) {
-    return _api.getMeetById(farmingId);
+  Future<MeatAnimalHusbandry> getMeetById(String farmingId) {
+    return _api.getMeatById(farmingId);
   }
 
   @override
@@ -143,15 +149,8 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<MeetAnimalHusbandry> createMeetAnimalHusbandry(
-      MeetAnimalHusbandry animalHusbandry) {
-    // TODO: implement createMeetAnimalHusbandry
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+  Future<List<MeatAnimalHusbandry>> getMeatAnimalHusbandryHistoryByUid(
       String? uid) {
-    return _api.getMeetAnimalHusbandryHistoryByUid(uid);
+    return _api.getMeatAnimalHusbandryHistoryByUid(uid);
   }
 }

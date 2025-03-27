@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'meet_animal_husbandry.dart';
+part of 'meat_animal_husbandry.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-MeetAnimalHusbandry _$MeetAnimalHusbandryFromJson(Map<String, dynamic> json) {
+MeatAnimalHusbandry _$MeatAnimalHusbandryFromJson(Map<String, dynamic> json) {
   return _MeetAnimalHusbandry.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MeetAnimalHusbandry {
+mixin _$MeatAnimalHusbandry {
   String? get id => throw _privateConstructorUsedError;
 
   set id(String? value) => throw _privateConstructorUsedError;
@@ -36,22 +36,6 @@ mixin _$MeetAnimalHusbandry {
 
   set farmName(String value) => throw _privateConstructorUsedError;
 
-  String get productionType => throw _privateConstructorUsedError;
-
-  set productionType(String value) => throw _privateConstructorUsedError;
-
-  String get descriptionType => throw _privateConstructorUsedError;
-
-  set descriptionType(String value) => throw _privateConstructorUsedError;
-
-  String get expensiveType => throw _privateConstructorUsedError;
-
-  set expensiveType(String value) => throw _privateConstructorUsedError;
-
-  String get format => throw _privateConstructorUsedError;
-
-  set format(String value) => throw _privateConstructorUsedError;
-
   String get numberAnimals => throw _privateConstructorUsedError;
 
   set numberAnimals(String value) => throw _privateConstructorUsedError;
@@ -59,10 +43,6 @@ mixin _$MeetAnimalHusbandry {
   String get value => throw _privateConstructorUsedError;
 
   set value(String value) => throw _privateConstructorUsedError;
-
-  String get amount => throw _privateConstructorUsedError;
-
-  set amount(String value) => throw _privateConstructorUsedError;
 
   String? get uidOwner => throw _privateConstructorUsedError;
 
@@ -87,15 +67,15 @@ mixin _$MeetAnimalHusbandry {
   /// Create a copy of MeetAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AnimalHusbandryCopyWith<MeetAnimalHusbandry> get copyWith =>
+  $AnimalHusbandryCopyWith<MeatAnimalHusbandry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AnimalHusbandryCopyWith<$Res> {
   factory $AnimalHusbandryCopyWith(
-          MeetAnimalHusbandry value, $Res Function(MeetAnimalHusbandry) then) =
-      _$AnimalHusbandryCopyWithImpl<$Res, MeetAnimalHusbandry>;
+          MeatAnimalHusbandry value, $Res Function(MeatAnimalHusbandry) then) =
+      _$AnimalHusbandryCopyWithImpl<$Res, MeatAnimalHusbandry>;
 
   @useResult
   $Res call(
@@ -103,12 +83,7 @@ abstract class $AnimalHusbandryCopyWith<$Res> {
       DateTime createDate,
       String totalProfit,
       String farmName,
-      String productionType,
-      String descriptionType,
-      String expensiveType,
-      String format,
       String numberAnimals,
-      String amount,
       String value,
       String? uidOwner,
       String? comment,
@@ -117,7 +92,7 @@ abstract class $AnimalHusbandryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MeetAnimalHusbandry>
+class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MeatAnimalHusbandry>
     implements $AnimalHusbandryCopyWith<$Res> {
   _$AnimalHusbandryCopyWithImpl(this._value, this._then);
 
@@ -136,12 +111,7 @@ class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MeetAnimalHusbandry>
     Object? createDate = null,
     Object? totalProfit = null,
     Object? farmName = null,
-    Object? productionType = null,
-    Object? descriptionType = null,
-    Object? expensiveType = null,
-    Object? format = null,
     Object? numberAnimals = null,
-    Object? amount = null,
     Object? value = null,
     Object? uidOwner = freezed,
     Object? comment = freezed,
@@ -165,29 +135,9 @@ class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MeetAnimalHusbandry>
           ? _value.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
-      productionType: null == productionType
-          ? _value.productionType
-          : productionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionType: null == descriptionType
-          ? _value.descriptionType
-          : descriptionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      expensiveType: null == expensiveType
-          ? _value.expensiveType
-          : expensiveType // ignore: cast_nullable_to_non_nullable
-              as String,
-      format: null == format
-          ? _value.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as String,
       numberAnimals: null == numberAnimals
           ? _value.numberAnimals
           : numberAnimals // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -227,12 +177,7 @@ abstract class _$$AnimalHusbandryImplCopyWith<$Res>
       DateTime createDate,
       String totalProfit,
       String farmName,
-      String productionType,
-      String descriptionType,
-      String expensiveType,
-      String format,
       String numberAnimals,
-      String amount,
       String value,
       String? uidOwner,
       String? comment,
@@ -257,12 +202,7 @@ class __$$AnimalHusbandryImplCopyWithImpl<$Res>
     Object? createDate = null,
     Object? totalProfit = null,
     Object? farmName = null,
-    Object? productionType = null,
-    Object? descriptionType = null,
-    Object? expensiveType = null,
-    Object? format = null,
     Object? numberAnimals = null,
-    Object? amount = null,
     Object? value = null,
     Object? uidOwner = freezed,
     Object? comment = freezed,
@@ -286,29 +226,9 @@ class __$$AnimalHusbandryImplCopyWithImpl<$Res>
           ? _value.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
-      productionType: null == productionType
-          ? _value.productionType
-          : productionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionType: null == descriptionType
-          ? _value.descriptionType
-          : descriptionType // ignore: cast_nullable_to_non_nullable
-              as String,
-      expensiveType: null == expensiveType
-          ? _value.expensiveType
-          : expensiveType // ignore: cast_nullable_to_non_nullable
-              as String,
-      format: null == format
-          ? _value.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as String,
       numberAnimals: null == numberAnimals
           ? _value.numberAnimals
           : numberAnimals // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -343,12 +263,7 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
       required this.createDate,
       required this.totalProfit,
       required this.farmName,
-      required this.productionType,
-      required this.descriptionType,
-      required this.expensiveType,
-      required this.format,
       required this.numberAnimals,
-      required this.amount,
       required this.value,
       this.uidOwner,
       this.comment,
@@ -368,17 +283,7 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
   @override
   String farmName;
   @override
-  String productionType;
-  @override
-  String descriptionType;
-  @override
-  String expensiveType;
-  @override
-  String format;
-  @override
   String numberAnimals;
-  @override
-  String amount;
   @override
   String value;
   @override
@@ -393,7 +298,7 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MeetAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, productionType: $productionType, format: $format, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'MeetAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override
@@ -405,12 +310,7 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
       ..add(DiagnosticsProperty('createDate', createDate))
       ..add(DiagnosticsProperty('totalProfit', totalProfit))
       ..add(DiagnosticsProperty('farmName', farmName))
-      ..add(DiagnosticsProperty('productionType', productionType))
-      ..add(DiagnosticsProperty('descriptionType', descriptionType))
-      ..add(DiagnosticsProperty('expensiveType', expensiveType))
-      ..add(DiagnosticsProperty('format', format))
       ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
-      ..add(DiagnosticsProperty('amount', amount))
       ..add(DiagnosticsProperty('value', value))
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
@@ -435,18 +335,13 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
   }
 }
 
-abstract class _MeetAnimalHusbandry extends MeetAnimalHusbandry {
+abstract class _MeetAnimalHusbandry extends MeatAnimalHusbandry {
   factory _MeetAnimalHusbandry(
       {String? id,
       required DateTime createDate,
       required String totalProfit,
       required String farmName,
-      required String productionType,
-      required String descriptionType,
-      required String expensiveType,
-      required String format,
       required String numberAnimals,
-      required String amount,
       required String value,
       String? uidOwner,
       String? comment,
@@ -479,34 +374,9 @@ abstract class _MeetAnimalHusbandry extends MeetAnimalHusbandry {
   set farmName(String value);
 
   @override
-  String get productionType;
-
-  set productionType(String value);
-
-  @override
-  String get descriptionType;
-
-  set descriptionType(String value);
-
-  @override
-  String get expensiveType;
-
-  set expensiveType(String value);
-
-  @override
-  String get format;
-
-  set format(String value);
-
-  @override
   String get numberAnimals;
 
   set numberAnimals(String value);
-
-  @override
-  String get amount;
-
-  set amount(String value);
 
   @override
   String get value;

@@ -3,7 +3,7 @@ library;
 
 import 'package:amca/ui/features/farming/create/manage_permanent_farming_page.dart';
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/meet/manage_meet_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/manage_meet_animal_husbandry_page.dart';
 import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart';
 import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import '../../../../../domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import '../../../../../domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import '../../../../../domain/model/livestock/pig_farming/pig_farming.dart';
 import '../../../../../domain/model/permanent_farming.dart';
@@ -75,10 +75,10 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
           );
         }
 
-        if (vm.meetAnimalHusbandry.isNotEmpty) {
+        if (vm.meatAnimalHusbandry.isNotEmpty) {
           farmingItems.addAll(
             _buildFarmingList(
-              vm.meetAnimalHusbandry,
+              vm.meatAnimalHusbandry,
               (farmingItem) => ManageMeetAnimalHusbandry.create(
                 animalHusbandry: farmingItem,
               ),
@@ -142,7 +142,7 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
     for (var farmingItem in farmingHistory) {
       final name = switch (farmingItem) {
         MilkAnimalHusbandry() => farmingItem.farmName,
-        MeetAnimalHusbandry() => farmingItem.farmName,
+        MeatAnimalHusbandry() => farmingItem.farmName,
         TransitoryFarming() => farmingItem.partName,
         PermanentFarming() => farmingItem.partName,
         PigFarming() => farmingItem.farmName,

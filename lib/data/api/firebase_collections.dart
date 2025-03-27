@@ -16,6 +16,7 @@ class FirebaseCollections {
   //Collection names for livestock
   static const pigFarming = 'pigFarming';
   static const fishFarming = 'fishFarming';
-  static const animalHusbandry = 'animalHusbandry';
+  static const milkAnimalHusbandry = 'milkAnimalHusbandry';
+  static const meatAnimalHusbandry = 'meatAnimalHusbandry';
   static const poultry = 'poultry';
 }

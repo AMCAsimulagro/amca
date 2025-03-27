@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'meet_animal_husbandry.dart';
+part of 'meat_animal_husbandry.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -13,12 +13,7 @@ _$MeetAnimalHusbandryImpl _$$MeetAnimalHusbandryImplFromJson(
       createDate: DateTime.parse(json['createDate'] as String),
       totalProfit: json['totalProfit'] as String,
       farmName: json['farmName'] as String,
-      productionType: json['productionType'] as String,
-      descriptionType: json['descriptionType'] as String,
-      expensiveType: json['expensiveType'] as String,
-      format: json['format'] as String,
       numberAnimals: json['numberAnimals'] as String,
-      amount: json['amount'] as String,
       value: json['value'] as String,
       uidOwner: json['uidOwner'] as String?,
       comment: json['comment'] as String?,
@@ -37,12 +32,7 @@ Map<String, dynamic> _$$MeetAnimalHusbandryImplToJson(
       'createDate': instance.createDate.toIso8601String(),
       'totalProfit': instance.totalProfit,
       'farmName': instance.farmName,
-      'productionType': instance.productionType,
-      'descriptionType': instance.descriptionType,
-      'expensiveType': instance.expensiveType,
-      'format': instance.format,
       'numberAnimals': instance.numberAnimals,
-      'amount': instance.amount,
       'value': instance.value,
       'uidOwner': instance.uidOwner,
       'comment': instance.comment,

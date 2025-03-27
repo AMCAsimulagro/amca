@@ -9,10 +9,10 @@ library;
 
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_meet_animal_husbandry.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/meet/create_meet_animal_husbandry_vm.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/create_meet_animal_husbandry_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/features/production/manage_permanent_production_page.dart';
@@ -22,7 +22,6 @@ import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_date_picker_field.dart';
-import 'package:amca/ui/widgets/amca_select_form_field.dart';
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +32,7 @@ import 'package:provider/provider.dart';
 class ManageMeetAnimalHusbandry extends StatefulWidget {
   /// Creates a [ManageMeetAnimalHusbandry] instance with an optional [animalHusbandry].
   static ChangeNotifierProvider<CreateMeetAnimalHusbandryVM> create(
-          {Key? key, MeetAnimalHusbandry? animalHusbandry}) =>
+          {Key? key, MeatAnimalHusbandry? animalHusbandry}) =>
       ChangeNotifierProvider(
         lazy: false,
         create: (context) => CreateMeetAnimalHusbandryVM()
@@ -51,7 +50,7 @@ class ManageMeetAnimalHusbandry extends StatefulWidget {
   });
 
   /// The permanent farming activity.
-  final MeetAnimalHusbandry? animalHusbandry;
+  final MeatAnimalHusbandry? animalHusbandry;
 
   @override
   State<ManageMeetAnimalHusbandry> createState() =>
@@ -63,11 +62,6 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
   final _formKey = GlobalKey<FormState>();
   final _farmNameController = TextEditingController();
   final _animalNumbersController = TextEditingController();
-  final _productionTypeController = TextEditingController();
-  final _descriptionTypeController = TextEditingController();
-  final _expensiveTypeController = TextEditingController();
-  final _typeController = TextEditingController();
-  final _amountController = TextEditingController();
   final _valueController = TextEditingController();
   final _commentController = TextEditingController();
   static const _locale = 'en';
@@ -141,81 +135,6 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                   validator: (value) {
                     if (value != null && value.isEmpty) {
                       return AmcaWords.pleaseAnimalNumber;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.productionType,
-                  textEditingController: _productionTypeController,
-                  options: vm.productionTypes,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectProductionType;
-                    }
-                    return null;
-                  },
-                  optionSelected: (optionSelected) {},
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.description,
-                  textEditingController: _descriptionTypeController,
-                  options: vm.descriptionTypes,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectDescriptionType;
-                    }
-                    return null;
-                  },
-                  optionSelected: (optionSelected) {},
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.expensiveType,
-                  textEditingController: _expensiveTypeController,
-                  options: vm.expensiveTypes,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectExpensiveType;
-                    }
-                    return null;
-                  },
-                  optionSelected: (optionSelected) {},
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaTextFormField(
-                  labelText: AmcaWords.type,
-                  textEditingController: _typeController,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectType;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaTextFormField(
-                  textEditingController: _amountController,
-                  textInputType: TextInputType.number,
-                  labelText: AmcaWords.amount,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                  ],
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return AmcaWords.pleaseAddAmount;
                     }
                     return null;
                   },
@@ -396,16 +315,11 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
       listen: false,
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
-    final animalHusbandry = MeetAnimalHusbandry(
+    final animalHusbandry = MeatAnimalHusbandry(
       createDate: date,
       farmName: _farmNameController.text,
-      productionType: _productionTypeController.text,
-      descriptionType: _descriptionTypeController.text,
       totalProfit: "",
       numberAnimals: _animalNumbersController.text,
-      expensiveType: _expensiveTypeController.text,
-      format: _typeController.text,
-      amount: _amountController.text,
       value: _valueController.text,
       comment: _commentController.text,
       costsAndExpenses:
@@ -476,16 +390,8 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
     if (isEditMode) {
       final preloadAnimalHusbandry = widget.animalHusbandry;
       _farmNameController.text = preloadAnimalHusbandry?.farmName ?? '';
-      _productionTypeController.text =
-          preloadAnimalHusbandry?.productionType ?? '';
-      _descriptionTypeController.text =
-          preloadAnimalHusbandry?.descriptionType ?? '';
       _animalNumbersController.text =
           preloadAnimalHusbandry?.numberAnimals ?? '';
-      _expensiveTypeController.text =
-          preloadAnimalHusbandry?.expensiveType ?? '';
-      _typeController.text = preloadAnimalHusbandry?.format ?? '';
-      _amountController.text = preloadAnimalHusbandry?.amount ?? '';
       _valueController.text = preloadAnimalHusbandry?.value ?? '';
       _commentController.text = preloadAnimalHusbandry?.comment ?? '';
       createdDate = DateFormat('yyyy-MM-dd')

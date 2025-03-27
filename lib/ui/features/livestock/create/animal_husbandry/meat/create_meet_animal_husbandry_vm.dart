@@ -3,12 +3,12 @@
 /// for creating and managing pig farming activities. It interacts with the data layer through the [AnimalHusbandryRepository]
 /// to perform CRUD operations on pig farming data. The ViewModel provides functionality to initialize data,
 /// create, retrieve, update, and delete pig farming activities. Dependencies include the [AnimalHusbandryRepository],
-/// [MeetAnimalHusbandry], and Flutter's [ChangeNotifier].
+/// [MeatAnimalHusbandry], and Flutter's [ChangeNotifier].
 library;
 
 import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
 import 'package:amca/dependecy_injection.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:flutter/cupertino.dart';
 
 /// ViewModel for creating and managing pig farming activities.
@@ -21,7 +21,7 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
   List<String> _productionTypes = []; // Ej: Servicio, Producto, otro.
   List<String> _expensiveTypes = []; // Ej: Costo, Gasto.
 
-  MeetAnimalHusbandry? _currentAnimalHusbandry;
+  MeatAnimalHusbandry? _currentAnimalHusbandry;
 
   // Getters públicos
   List<String> get descriptionTypes => _descriptionTypes;
@@ -30,12 +30,12 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
 
   List<String> get expensiveTypes => _expensiveTypes;
 
-  MeetAnimalHusbandry? get currentAnimalHusbandry => _currentAnimalHusbandry;
+  MeatAnimalHusbandry? get currentAnimalHusbandry => _currentAnimalHusbandry;
 
   bool get isEditMode => _currentAnimalHusbandry != null;
 
   /// Initializes the ViewModel with optional pig farming data
-  void init({MeetAnimalHusbandry? animalHusbandry}) async {
+  void init({MeatAnimalHusbandry? animalHusbandry}) async {
     try {
       if (animalHusbandry != null) {
         _currentAnimalHusbandry = animalHusbandry;
@@ -50,12 +50,12 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// Crea o actualiza un registro de ganaderia
-  Future<MeetAnimalHusbandry?> createAnimalHusbandry(
-      MeetAnimalHusbandry animalHusbandry) async {
+  Future<MeatAnimalHusbandry?> createAnimalHusbandry(
+      MeatAnimalHusbandry animalHusbandry) async {
     try {
       _currentAnimalHusbandry = animalHusbandry;
       final result = await _animalHusbandryRepository
-          .createMeetAnimalHusbandry(animalHusbandry);
+          .createMeatAnimalHusbandry(animalHusbandry);
       _currentAnimalHusbandry = result;
       notifyListeners();
       return result;
@@ -65,7 +65,7 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// Obtiene un registro específico de ganaderia
-  Future<MeetAnimalHusbandry?> getAnimalHusbandry() async {
+  Future<MeatAnimalHusbandry?> getAnimalHusbandry() async {
     try {
       if (_currentAnimalHusbandry?.id != null) {
         _currentAnimalHusbandry = await _animalHusbandryRepository

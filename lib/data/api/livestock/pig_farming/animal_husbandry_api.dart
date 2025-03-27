@@ -3,7 +3,7 @@ library;
 import 'package:amca/data/api/firebase_collections.dart';
 import 'package:amca/domain/model/app_exception.dart';
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_production.dart';
 import 'package:amca/ui/utils/constants.dart';
@@ -12,13 +12,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class AnimalHusbandryApi {
-  Future<MilkAnimalHusbandry> createAnimalHusbandry(
+  Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
       MilkAnimalHusbandry animalHusbandry);
+  Future<MeatAnimalHusbandry> createMeatAnimalHusbandry(
+      MeatAnimalHusbandry animalHusbandry);
 
   Future<List<MilkAnimalHusbandry>> getMilkAnimalHusbandryHistoryByUid(
       String? uid);
 
-  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+  Future<List<MeatAnimalHusbandry>> getMeatAnimalHusbandryHistoryByUid(
       String? uid);
 
   Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
@@ -30,7 +32,7 @@ abstract class AnimalHusbandryApi {
 
   Future<MilkAnimalHusbandry> getMilkById(String farmingId);
 
-  Future<MeetAnimalHusbandry> getMeetById(String farmingId);
+  Future<MeatAnimalHusbandry> getMeatById(String farmingId);
 
   Future<CostAndExpense?> createPigCostExpense(
     CostAndExpense costAndExpense, {
@@ -58,7 +60,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   final _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<MilkAnimalHusbandry> createAnimalHusbandry(
+  Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
       MilkAnimalHusbandry animalHusbandry) async {
     try {
       final animalHusbandryId = animalHusbandry.id ?? const Uuid().v4();
@@ -68,7 +70,29 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
       );
 
       await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.milkAnimalHusbandry)
+          .doc(animalHusbandryId)
+          .set(animalHusbandryToUpload.toJson());
+      return animalHusbandryToUpload;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(message: e.message, codeError: e.code);
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
+  @override
+  Future<MeatAnimalHusbandry> createMeatAnimalHusbandry(
+      MeatAnimalHusbandry animalHusbandry) async {
+    try {
+      final animalHusbandryId = animalHusbandry.id ?? const Uuid().v4();
+      final animalHusbandryToUpload = animalHusbandry.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        id: animalHusbandryId,
+      );
+
+      await _firebaseDb
+          .collection(FirebaseCollections.meatAnimalHusbandry)
           .doc(animalHusbandryId)
           .set(animalHusbandryToUpload.toJson());
       return animalHusbandryToUpload;
@@ -85,7 +109,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
     try {
       final userId = uid ?? _firebaseAuth.currentUser?.uid ?? '';
       final collection = await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.milkAnimalHusbandry)
           .where("uidOwner", isEqualTo: userId)
           .get();
 
@@ -105,7 +129,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
       getAllAnimalHusbandryHistoryByAdmin() async {
     try {
       final collection = await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.milkAnimalHusbandry)
           .get();
       return collection.docs
           .map((doc) => MilkAnimalHusbandry.fromJson(doc.data()))
@@ -122,7 +146,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   Future<void> deleteAnimalHusbandry(String id) async {
     try {
       return await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.milkAnimalHusbandry)
           .doc(id)
           .delete();
     } on FirebaseAuthException catch (e) {
@@ -143,7 +167,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   Future<MilkAnimalHusbandry> getMilkById(String farmingId) async {
     try {
       final data = await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.milkAnimalHusbandry)
           .doc(farmingId)
           .get();
       return MilkAnimalHusbandry.fromJson(data.data()!);
@@ -170,7 +194,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
       costExpenseList.add(costExpenseToUpload);
       final updatedFarming =
           farming.copyWith(costsAndExpenses: costExpenseList);
-      await createAnimalHusbandry(updatedFarming);
+      await createMilkAnimalHusbandry(updatedFarming);
       return costExpenseToUpload;
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
@@ -191,7 +215,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
 
       final updatedFarming =
           farming.copyWith(costsAndExpenses: costExpenseList);
-      await createAnimalHusbandry(updatedFarming);
+      await createMilkAnimalHusbandry(updatedFarming);
       return null;
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
@@ -215,7 +239,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
 
       productionList.add(productionToUpload);
       final updatedFarming = farming.copyWith(production: productionList);
-      await createAnimalHusbandry(updatedFarming);
+      await createMilkAnimalHusbandry(updatedFarming);
       return productionToUpload;
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
@@ -235,7 +259,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
           .toList();
 
       final updatedFarming = farming.copyWith(production: productionList);
-      await createAnimalHusbandry(updatedFarming);
+      await createMilkAnimalHusbandry(updatedFarming);
       return null;
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
@@ -245,13 +269,13 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<MeetAnimalHusbandry> getMeetById(String farmingId) async {
+  Future<MeatAnimalHusbandry> getMeatById(String farmingId) async {
     try {
       final data = await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.meatAnimalHusbandry)
           .doc(farmingId)
           .get();
-      return MeetAnimalHusbandry.fromJson(data.data()!);
+      return MeatAnimalHusbandry.fromJson(data.data()!);
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
     } catch (e) {
@@ -260,17 +284,17 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<List<MeetAnimalHusbandry>> getMeetAnimalHusbandryHistoryByUid(
+  Future<List<MeatAnimalHusbandry>> getMeatAnimalHusbandryHistoryByUid(
       String? uid) async {
     try {
       final userId = uid ?? _firebaseAuth.currentUser?.uid ?? '';
       final collection = await _firebaseDb
-          .collection(FirebaseCollections.animalHusbandry)
+          .collection(FirebaseCollections.meatAnimalHusbandry)
           .where("uidOwner", isEqualTo: userId)
           .get();
 
       return collection.docs
-          .map((doc) => MeetAnimalHusbandry.fromJson(doc.data()))
+          .map((doc) => MeatAnimalHusbandry.fromJson(doc.data()))
           .toList()
         ..sort((a, b) => b.createDate.compareTo(a.createDate));
     } on FirebaseAuthException catch (e) {

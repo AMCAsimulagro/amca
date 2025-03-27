@@ -22,8 +22,8 @@ library;
 import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/meet_animal_husbandry.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/production.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:uuid/uuid.dart';
 
@@ -40,7 +40,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
   List<CostAndExpense> partProductions = [];
 
   /// TransitoryFarming object
-  MeetAnimalHusbandry? meetAnimalHusbandry;
+  MeatAnimalHusbandry? meetAnimalHusbandry;
 
   /// Indicates if it is loading data
   bool isLoading = true;
@@ -64,7 +64,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// ## Function to create a new production
-  Future<MeetAnimalHusbandry?> createProduction(Production production) async {
+  Future<MeatAnimalHusbandry?> createProduction(Production production) async {
     isLoading = true;
     try {
       /// Calculates the total cost and expense
@@ -89,7 +89,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
 
       /// Saves the updated information to the database
       await animalHusbandryRepository
-          .createMeetAnimalHusbandry(meetAnimalHusbandry!);
+          .createMeatAnimalHusbandry(meetAnimalHusbandry!);
       return meetAnimalHusbandry;
     } catch (e) {
       return null;
@@ -100,7 +100,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// ## Function to delete the current production
-  Future<MeetAnimalHusbandry?> deleteProduction() async {
+  Future<MeatAnimalHusbandry?> deleteProduction() async {
     isLoading = true;
     try {
       /// Creates a copy of TransitoryFarming with production set to null
@@ -110,7 +110,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
 
       /// Saves the updated information to the database
       final result = await animalHusbandryRepository
-          .createMeetAnimalHusbandry(meetAnimalHusbandry!);
+          .createMeatAnimalHusbandry(meetAnimalHusbandry!);
       return result;
     } catch (e) {
       return null;

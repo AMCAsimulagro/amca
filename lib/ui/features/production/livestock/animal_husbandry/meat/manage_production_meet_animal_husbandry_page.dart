@@ -5,8 +5,8 @@ library;
 
 import 'dart:developer';
 
-import 'package:amca/domain/model/livestock/animal_husbandry/meet/production.dart';
-import 'package:amca/ui/features/production/livestock/animal_husbandry/meet/manage_production_meet_animal_husbandry_vm.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
+import 'package:amca/ui/features/production/livestock/animal_husbandry/meat/manage_production_meet_animal_husbandry_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';

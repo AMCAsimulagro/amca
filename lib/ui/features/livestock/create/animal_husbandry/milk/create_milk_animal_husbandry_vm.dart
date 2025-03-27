@@ -17,18 +17,7 @@ class CreateAnimalHusbandryVM extends ChangeNotifier {
   final AnimalHusbandryRepository _animalHusbandryRepository =
       locator<AnimalHusbandryRepository>();
 
-  List<String> _descriptionTypes = []; // Ej: Concentrado, Jornales, impuestos.
-  List<String> _productionTypes = []; // Ej: Servicio, Producto, otro.
-  List<String> _expensiveTypes = []; // Ej: Costo, Gasto.
-
   MilkAnimalHusbandry? _currentAnimalHusbandry;
-
-  // Getters públicos
-  List<String> get descriptionTypes => _descriptionTypes;
-
-  List<String> get productionTypes => _productionTypes;
-
-  List<String> get expensiveTypes => _expensiveTypes;
 
   MilkAnimalHusbandry? get currentAnimalHusbandry => _currentAnimalHusbandry;
 
@@ -40,10 +29,6 @@ class CreateAnimalHusbandryVM extends ChangeNotifier {
       if (animalHusbandry != null) {
         _currentAnimalHusbandry = animalHusbandry;
       }
-      // Cargar datos específicos de ganaderia
-      _descriptionTypes = await _loadDescriptionTypes();
-      _productionTypes = await _loadProductionTypes();
-      _expensiveTypes = await _loadExpensiveTypes();
     } finally {
       notifyListeners();
     }
@@ -54,8 +39,8 @@ class CreateAnimalHusbandryVM extends ChangeNotifier {
       MilkAnimalHusbandry animalHusbandry) async {
     try {
       _currentAnimalHusbandry = animalHusbandry;
-      final result =
-          await _animalHusbandryRepository.createMilkAnimalHusbandry(animalHusbandry);
+      final result = await _animalHusbandryRepository
+          .createMilkAnimalHusbandry(animalHusbandry);
       _currentAnimalHusbandry = result;
       notifyListeners();
       return result;
@@ -95,22 +80,6 @@ class CreateAnimalHusbandryVM extends ChangeNotifier {
     } catch (e) {
       return;
     }
-  }
-
-  // Métodos auxiliares para carga de datos específicos
-  Future<List<String>> _loadDescriptionTypes() async {
-    // TODO Implementar lógica para obtener categorías de la API depende de lo seleccionado en ProductionType
-    return ['Asistencia tecnica', 'Contratos'];
-  }
-
-  Future<List<String>> _loadProductionTypes() async {
-    // TODO Implementar lógica para obtener tipos de producción
-    return ['Servicio', 'Producto', 'Salarios', 'Otro'];
-  }
-
-  Future<List<String>> _loadExpensiveTypes() async {
-    // TODO Implementar lógica para obtener tipos de
-    return ['Costo', 'Gasto'];
   }
 
   /// Actualiza los cálculos financieros
