@@ -3,7 +3,7 @@ library;
 
 import 'package:amca/ui/features/farming/create/manage_permanent_farming_page.dart';
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/manage_meet_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/manage_meat_animal_husbandry_page.dart';
 import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart';
 import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';

@@ -44,13 +44,13 @@ abstract class AnimalHusbandryRepository {
   Future<MilkAnimalHusbandry> getMilkById(String farmingId);
 
   /// Creates a new cost/expense record for pig farming
-  Future<CostAndExpense?> createPigCostExpense(
+  Future<CostAndExpense?> createMilkCostExpense(
     CostAndExpense costAndExpense, {
     required MilkAnimalHusbandry farming,
   });
 
   /// Deletes a cost/expense record from pig farming
-  Future<CostAndExpense?> deletePigCostExpense(
+  Future<CostAndExpense?> deleteMilkCostExpense(
     String costAndExpenseId, {
     required MilkAnimalHusbandry farming,
   });
@@ -117,7 +117,7 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<CostAndExpense?> createPigCostExpense(
+  Future<CostAndExpense?> createMilkCostExpense(
     CostAndExpense costAndExpense, {
     required MilkAnimalHusbandry farming,
   }) {
@@ -125,7 +125,7 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<CostAndExpense?> deletePigCostExpense(
+  Future<CostAndExpense?> deleteMilkCostExpense(
     String costAndExpenseId, {
     required MilkAnimalHusbandry farming,
   }) {

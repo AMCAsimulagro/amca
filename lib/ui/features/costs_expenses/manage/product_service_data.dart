@@ -15,17 +15,22 @@ class ProductServiceData {
 
 // List of product or service options.
   static final List<ProductOrService> productServiceList = [
+    salaries,
     service,
     product,
     other,
-    salaries,
   ];
 
   static final service = ProductOrService(
     productOrServiceName: AmcaWords.service,
     description: [
       Description(
-        description: 'Servicios Públicos',
+        description: 'Asistencia Tecnica',
+        costOrExpense: AmcaWords.costs,
+        type: AmcaWords.variable,
+      ),
+      Description(
+        description: 'Contratos',
         costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
@@ -36,7 +41,7 @@ class ProductServiceData {
     productOrServiceName: AmcaWords.product,
     description: [
       Description(
-        description: 'Insecticidas',
+        description: 'Agroquimico',
         costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
@@ -67,6 +72,16 @@ class ProductServiceData {
       ),
       Description(
         description: 'Sal Mineralizada',
+        costOrExpense: AmcaWords.costs,
+        type: AmcaWords.variable,
+      ),
+      Description(
+        description: 'Vacunas',
+        costOrExpense: AmcaWords.costs,
+        type: AmcaWords.variable,
+      ),
+      Description(
+        description: 'Medicamentos',
         costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
       ),
@@ -118,14 +133,14 @@ class ProductServiceData {
     productOrServiceName: AmcaWords.salaries,
     description: [
       Description(
-        description: 'Sueldo',
-        costOrExpense: AmcaWords.costs,
-        type: AmcaWords.permanent,
-      ),
-      Description(
         description: 'Jornales',
         costOrExpense: AmcaWords.costs,
         type: AmcaWords.variable,
+      ),
+      Description(
+        description: 'Administrativo',
+        costOrExpense: AmcaWords.costs,
+        type: AmcaWords.permanent,
       ),
     ],
   );
