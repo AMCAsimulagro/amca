@@ -6,7 +6,7 @@
 library;
 
 /// Imports of Bookstores and Resources
-import 'package:amca/data/repository/farming_repository.dart';
+import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,20 +15,26 @@ import 'package:flutter/cupertino.dart';
 class CostsExpensesListVM extends ChangeNotifier {
   CostsExpensesListVM({this.farmingId});
 
- /// Instance of [FarmingRepository] for fetching farming-related data.
-  final FarmingRepository farmingRepository = locator<FarmingRepository>();
+  /// Instance of [AnimalHusbandryRepository] for fetching farming-related data.
+  final AnimalHusbandryRepository animalHusbandryRepository =
+      locator<AnimalHusbandryRepository>();
 
-/// List of costs and expenses.
+  /// List of costs and expenses.
   List<CostAndExpense> costsAndExpenses = [];
 
-  bool isLoading = true;  /// Indicates whether the data is currently being loaded.
-  String? farmingId;/// The ID of the farming activity.
+  bool isLoading = true;
 
-/// Initializes the data fetching process.
+  /// Indicates whether the data is currently being loaded.
+  String? farmingId;
+
+  /// The ID of the farming activity.
+
+  /// Initializes the data fetching process.
   Future<void> init() async {
     isLoading = true;
     try {
-      final transitoryFarming = await farmingRepository.getTransitoryFarmingById(farmingId!);
+      final transitoryFarming =
+          await animalHusbandryRepository.getMeatById(farmingId!);
       costsAndExpenses = transitoryFarming.costsAndExpenses ?? [];
     } finally {
       notifyListeners();

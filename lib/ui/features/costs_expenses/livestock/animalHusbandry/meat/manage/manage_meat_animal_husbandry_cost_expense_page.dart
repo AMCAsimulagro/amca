@@ -8,7 +8,7 @@ library;
 import 'dart:developer';
 
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/ui/features/costs_expenses/manage/manage_cast_expense_vm.dart';
+import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/manage/manage_meat_animal_husbandry_cast_expense_vm.dart';
 import 'package:amca/ui/features/costs_expenses/manage/product_service_data.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -26,7 +26,6 @@ import 'package:provider/provider.dart';
 
 // This class represents the main page for managing costs and expenses.
 class ManageCostExpensePage extends StatefulWidget {
-
   // Static method to create an instance of ChangeNotifierProvider for this page.
   static ChangeNotifierProvider<ManageCostExpenseVM> create(
           {Key? key,
@@ -35,7 +34,7 @@ class ManageCostExpensePage extends StatefulWidget {
       ChangeNotifierProvider(
         lazy: false,
         create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
-        
+
         // Constructor for the ManageCostExpensePage.
         child: ManageCostExpensePage._(
           key: key,
@@ -66,7 +65,6 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   final _quantityController = TextEditingController();
   final _priceController = TextEditingController();
   final _commentController = TextEditingController();
-  static const _locale = 'en';
   String createdDate = '';
 
 // Method called when initializing the state of the widget.
@@ -77,7 +75,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     super.initState();
   }
 
- // Method to build the user interface of the page.
+  // Method to build the user interface of the page.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,14 +100,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Lote: ${vm.transitoryFarming?.partName ?? ''}',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    'Cultivo: ${vm.transitoryFarming?.crop ?? ''}',
+                    'Finca: ${vm.meatAnimalHusbandry?.farmName ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
@@ -284,7 +275,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     );
   }
 
- // Method to create or update the cost or expense.
+  // Method to create or update the cost or expense.
   Future<void> createCostAndExpense() async {
     final manageVM = Provider.of<ManageCostExpenseVM>(
       context,
@@ -293,7 +284,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final costAndExpense = CostAndExpense(
       createDate: date,
-      partName: manageVM.transitoryFarming?.partName,
+      partName: manageVM.meatAnimalHusbandry?.farmName,
       price: _priceController.text,
       comment: _commentController.text,
       id: isEditMode ? widget.costAndExpense!.id : null,

@@ -3,13 +3,12 @@
 /// for managing cost and expense data in a Flutter application.
 library;
 
-/// Imports of Bookstores and Resources
-import 'package:amca/data/repository/farming_repository.dart';
+import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/description.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:amca/domain/model/product_or_service.dart';
-import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:amca/ui/features/costs_expenses/manage/product_service_data.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -17,22 +16,33 @@ import 'package:flutter/cupertino.dart';
 class ManageCostExpenseVM extends ChangeNotifier {
   ManageCostExpenseVM(this.farmingId);
 
-  final FarmingRepository farmingRepository = locator<FarmingRepository>();/// Farming data repository.
+  final AnimalHusbandryRepository animalHusbandryRepository =
+      locator<AnimalHusbandryRepository>();
 
-  TransitoryFarming? transitoryFarming;/// Transitory farming.
+  /// Farming data repository.
 
-  ProductOrService? productOrServiceSelected;/// Selected product or service.
+  MeatAnimalHusbandry? meatAnimalHusbandry;
 
-  Description? descriptionSelected;/// Selected description.
+  /// Transitory farming.
 
-  bool isLoading = true;/// Loading indicator.
+  ProductOrService? productOrServiceSelected;
+
+  /// Selected product or service.
+
+  Description? descriptionSelected;
+
+  /// Selected description.
+
+  bool isLoading = true;
+
+  /// Loading indicator.
   String farmingId;
 
   Future<void> init() async {
     isLoading = true;
     try {
-      transitoryFarming =
-          await farmingRepository.getTransitoryFarmingById(farmingId);
+      meatAnimalHusbandry =
+          await animalHusbandryRepository.getMeatById(farmingId);
     } finally {
       notifyListeners();
       isLoading = false;
@@ -42,21 +52,21 @@ class ManageCostExpenseVM extends ChangeNotifier {
   Future<CostAndExpense?> addCostAndExpenseToFarming(
       CostAndExpense costAndExpense) async {
     try {
-      if (transitoryFarming?.production != null) {
+      if (meatAnimalHusbandry?.production != null) {
         final totalCostAndExpenses =
-            transitoryFarming?.calculateTotalCostAndExpense();
+            meatAnimalHusbandry?.calculateTotalCostAndExpense();
         final totalValueProduction = int.parse(
-                (transitoryFarming?.production?.price.replaceAll(',', '')) ??
+                (meatAnimalHusbandry?.production?.price.replaceAll(',', '')) ??
                     '0') -
             totalCostAndExpenses!;
-        transitoryFarming = transitoryFarming?.copyWith(
-          production: transitoryFarming?.production?.copyWith(
+        meatAnimalHusbandry = meatAnimalHusbandry?.copyWith(
+          production: meatAnimalHusbandry?.production?.copyWith(
             totalValue: totalValueProduction.toString(),
           ),
         );
       }
-      return await farmingRepository.createCastExpense(costAndExpense,
-          farming: transitoryFarming!);
+      return await animalHusbandryRepository
+          .createMeatCostExpense(costAndExpense, farming: meatAnimalHusbandry!);
     } catch (e) {
       return null;
     }
@@ -80,8 +90,9 @@ class ManageCostExpenseVM extends ChangeNotifier {
 
   Future<CostAndExpense?> deleteCostAndExpense(String costAndExpenseId) async {
     try {
-      return await farmingRepository.deleteCostAndExpense(costAndExpenseId,
-          farming: transitoryFarming!);
+      return await animalHusbandryRepository.deleteMeatCostExpense(
+          costAndExpenseId,
+          farming: meatAnimalHusbandry!);
     } catch (e) {
       return null;
     }

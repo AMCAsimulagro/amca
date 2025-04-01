@@ -39,7 +39,7 @@ abstract class AnimalHusbandryRepository {
       String farmingId);
 
   /// Retrieves a specific pig farming record by ID
-  Future<MeatAnimalHusbandry> getMeetById(String farmingId);
+  Future<MeatAnimalHusbandry> getMeatById(String farmingId);
 
   Future<MilkAnimalHusbandry> getMilkById(String farmingId);
 
@@ -53,6 +53,18 @@ abstract class AnimalHusbandryRepository {
   Future<CostAndExpense?> deleteMilkCostExpense(
     String costAndExpenseId, {
     required MilkAnimalHusbandry farming,
+  });
+
+  /// Creates a new cost/expense record for pig farming
+  Future<CostAndExpense?> createMeatCostExpense(
+    CostAndExpense costAndExpense, {
+    required MeatAnimalHusbandry farming,
+  });
+
+  /// Deletes a cost/expense record from pig farming
+  Future<CostAndExpense?> deleteMeatCostExpense(
+    String costAndExpenseId, {
+    required MeatAnimalHusbandry farming,
   });
 
   /// Creates a new production record for pig farming
@@ -107,7 +119,7 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<MeatAnimalHusbandry> getMeetById(String farmingId) {
+  Future<MeatAnimalHusbandry> getMeatById(String farmingId) {
     return _api.getMeatById(farmingId);
   }
 
@@ -121,7 +133,7 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
     CostAndExpense costAndExpense, {
     required MilkAnimalHusbandry farming,
   }) {
-    return _api.createPigCostExpense(costAndExpense, farming: farming);
+    return _api.createMilkCostExpense(costAndExpense, farming: farming);
   }
 
   @override
@@ -129,7 +141,23 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
     String costAndExpenseId, {
     required MilkAnimalHusbandry farming,
   }) {
-    return _api.deletePigCostExpense(costAndExpenseId, farming: farming);
+    return _api.deleteMilkCostExpense(costAndExpenseId, farming: farming);
+  }
+
+  @override
+  Future<CostAndExpense?> createMeatCostExpense(
+    CostAndExpense costAndExpense, {
+    required MeatAnimalHusbandry farming,
+  }) {
+    return _api.createMeatCostExpense(costAndExpense, farming: farming);
+  }
+
+  @override
+  Future<CostAndExpense?> deleteMeatCostExpense(
+    String costAndExpenseId, {
+    required MeatAnimalHusbandry farming,
+  }) {
+    return _api.deleteMeatCostExpense(costAndExpenseId, farming: farming);
   }
 
   @override

@@ -11,7 +11,7 @@ library;
 
 import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_meet_animal_husbandry.dart';
-import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
+import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/costs_expenses_meat_animal_husbandry_list_page.dart';
 import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/create_meat_animal_husbandry_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';

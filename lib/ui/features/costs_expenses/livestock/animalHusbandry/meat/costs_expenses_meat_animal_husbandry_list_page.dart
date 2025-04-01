@@ -6,9 +6,9 @@
 /// It also includes UI elements such as buttons and a floating action button.
 library;
 
+import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/costs_expenses_meat_animal_husbandry_list_vm.dart';
 /// Imports of Bookstores and Resources
-import 'package:amca/ui/features/costs_expenses/costs_expenses_list_vm.dart';
-import 'package:amca/ui/features/costs_expenses/manage/manage_cost_expense_page.dart';
+import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/manage/manage_meat_animal_husbandry_cost_expense_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/widgets/amca_button.dart';

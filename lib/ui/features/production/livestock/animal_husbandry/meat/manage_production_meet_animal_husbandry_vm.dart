@@ -54,7 +54,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
     try {
       /// Loads the current production information
       meetAnimalHusbandry =
-          await animalHusbandryRepository.getMeetById(farmingId!);
+          await animalHusbandryRepository.getMeatById(farmingId!);
     } catch (e) {
       // Handle errors loading data
     } finally {

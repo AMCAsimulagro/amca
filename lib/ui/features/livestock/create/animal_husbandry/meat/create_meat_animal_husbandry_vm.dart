@@ -54,7 +54,7 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
     try {
       if (_currentAnimalHusbandry?.id != null) {
         _currentAnimalHusbandry = await _animalHusbandryRepository
-            .getMeetById(_currentAnimalHusbandry!.id!);
+            .getMeatById(_currentAnimalHusbandry!.id!);
         notifyListeners();
       }
       return _currentAnimalHusbandry;

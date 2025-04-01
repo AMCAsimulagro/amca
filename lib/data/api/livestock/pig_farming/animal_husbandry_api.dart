@@ -14,6 +14,7 @@ import 'package:uuid/uuid.dart';
 abstract class AnimalHusbandryApi {
   Future<MilkAnimalHusbandry> createMilkAnimalHusbandry(
       MilkAnimalHusbandry animalHusbandry);
+
   Future<MeatAnimalHusbandry> createMeatAnimalHusbandry(
       MeatAnimalHusbandry animalHusbandry);
 
@@ -34,14 +35,24 @@ abstract class AnimalHusbandryApi {
 
   Future<MeatAnimalHusbandry> getMeatById(String farmingId);
 
-  Future<CostAndExpense?> createPigCostExpense(
+  Future<CostAndExpense?> createMilkCostExpense(
     CostAndExpense costAndExpense, {
     required MilkAnimalHusbandry farming,
   });
 
-  Future<CostAndExpense?> deletePigCostExpense(
+  Future<CostAndExpense?> deleteMilkCostExpense(
     String costAndExpenseId, {
     required MilkAnimalHusbandry farming,
+  });
+
+  Future<CostAndExpense?> createMeatCostExpense(
+    CostAndExpense costAndExpense, {
+    required MeatAnimalHusbandry farming,
+  });
+
+  Future<CostAndExpense?> deleteMeatCostExpense(
+    String costAndExpenseId, {
+    required MeatAnimalHusbandry farming,
   });
 
   Future<Production?> createProduction(
@@ -179,7 +190,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<CostAndExpense?> createPigCostExpense(
+  Future<CostAndExpense?> createMilkCostExpense(
     CostAndExpense costAndExpense, {
     required MilkAnimalHusbandry farming,
   }) async {
@@ -204,7 +215,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<CostAndExpense?> deletePigCostExpense(
+  Future<CostAndExpense?> deleteMilkCostExpense(
     String costAndExpenseId, {
     required MilkAnimalHusbandry farming,
   }) async {
@@ -216,6 +227,52 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
       final updatedFarming =
           farming.copyWith(costsAndExpenses: costExpenseList);
       await createMilkAnimalHusbandry(updatedFarming);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(message: e.message, codeError: e.code);
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
+  @override
+  Future<CostAndExpense?> createMeatCostExpense(
+    CostAndExpense costAndExpense, {
+    required MeatAnimalHusbandry farming,
+  }) async {
+    try {
+      var costExpenseList = farming.costsAndExpenses ?? [];
+      final costExpenseId = costAndExpense.id ?? const Uuid().v4();
+      final costExpenseToUpload = costAndExpense.copyWith(
+        id: costExpenseId,
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+      );
+
+      costExpenseList.add(costExpenseToUpload);
+      final updatedFarming =
+          farming.copyWith(costsAndExpenses: costExpenseList);
+      await createMeatAnimalHusbandry(updatedFarming);
+      return costExpenseToUpload;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(message: e.message, codeError: e.code);
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
+  @override
+  Future<CostAndExpense?> deleteMeatCostExpense(
+    String costAndExpenseId, {
+    required MeatAnimalHusbandry farming,
+  }) async {
+    try {
+      final costExpenseList = farming.costsAndExpenses
+          ?.where((element) => element.id != costAndExpenseId)
+          .toList();
+
+      final updatedFarming =
+          farming.copyWith(costsAndExpenses: costExpenseList);
+      await createMeatAnimalHusbandry(updatedFarming);
       return null;
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
