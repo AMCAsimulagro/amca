@@ -15,7 +15,7 @@ import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/c
 import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/create_meat_animal_husbandry_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
-import 'package:amca/ui/features/production/manage_permanent_production_page.dart';
+import 'package:amca/ui/features/production/livestock/animal_husbandry/meat/manage_production_meet_animal_husbandry_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -224,7 +224,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                                                 vm.currentAnimalHusbandry?.id ??
                                                     '',
                                             production: //TODO - Cambiar poss Esto es para modificar
-                                                null //vm.currentAnimalHusbandry?.production?[0],
+                                                vm.currentAnimalHusbandry?.production,
                                             ),
                                   ),
                                 ).then((value) async {

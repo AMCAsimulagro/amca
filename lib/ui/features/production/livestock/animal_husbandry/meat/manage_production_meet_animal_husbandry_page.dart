@@ -94,7 +94,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Lote: ${vm.meetAnimalHusbandry?.farmName ?? ''}',
+                    'Finca: ${vm.meetAnimalHusbandry?.farmName ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(

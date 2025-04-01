@@ -12,11 +12,11 @@ library;
 import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
 import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_meet_animal_husbandry.dart';
 import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/milk/costs_milk_animal_husbandry_expenses_list_page.dart';
-
 import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/create_milk_animal_husbandry_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
-import 'package:amca/ui/features/production/manage_permanent_production_page.dart';
+import 'package:amca/ui/features/production/livestock/animal_husbandry/milk/manage_production_milk_animal_husbandry_page.dart';
+import 'package:amca/ui/features/production/livestock/animal_husbandry/milk/manage_production_milk_animal_husbandry_profit.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -211,22 +211,24 @@ class _ManageMilkAnimalHusbandryState extends State<ManageMilkAnimalHusbandry> {
                           ),
                           Expanded(
                             child: AmcaButton(
-                              text:
-                                  vm.currentAnimalHusbandry?.production == null
-                                      ? AmcaWords.createProduction
-                                      : AmcaWords.seeProduction,
+                              text: AmcaWords.createProduction,
+                              // Delete validation structurue of the production => alway text is `create`
                               onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute<bool>(
                                     builder: (BuildContext context) =>
                                         ManageProductionPage.create(
-                                            farmingId:
-                                                vm.currentAnimalHusbandry?.id ??
-                                                    '',
-                                            production: //TODO - Cambiar poss Esto es para modificar
-                                                null //vm.currentAnimalHusbandry?.production?[0],
-                                            ),
+                                      farmingId:
+                                          vm.currentAnimalHusbandry?.id ?? '',
+                                      production: //TODO - Cambiar poss Esto es para modificar
+                                          vm.currentAnimalHusbandry?.production
+                                                      ?.isEmpty ==
+                                                  true
+                                              ? vm.currentAnimalHusbandry!
+                                                  .production![0]
+                                              : null,
+                                    ),
                                   ),
                                 ).then((value) async {
                                   if (value ?? false) {
@@ -243,6 +245,39 @@ class _ManageMilkAnimalHusbandryState extends State<ManageMilkAnimalHusbandry> {
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      AmcaButton(
+                        text: AmcaWords.seeProduction,
+                        // Delete validation structurue of the production => alway text is `create`
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<bool>(
+                              builder: (BuildContext context) =>
+                                  ManageProductionPageProfit.create(
+                                farmingId: vm.currentAnimalHusbandry?.id ?? '',
+                                production: vm.currentAnimalHusbandry
+                                            ?.production?.isEmpty ==
+                                        true
+                                    ? vm.currentAnimalHusbandry!.production![0]
+                                    : null, //TODO - cambiar Poss
+                              ),
+                            ),
+                          ).then((value) async {
+                            if (value ?? false) {
+                              final farmingHistoryVM =
+                                  Provider.of<FarmingHistoryVM>(
+                                context,
+                                listen: false,
+                              );
+                              await farmingHistoryVM.init();
+                              Navigator.pop(context);
+                            }
+                          });
+                        },
                       ),
                       const SizedBox(
                         height: 15,
