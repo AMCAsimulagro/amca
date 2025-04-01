@@ -36,10 +36,10 @@ class OptionLivestockFishFarmingPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.tilapia,
                   onTap: () {
-                    NavigationHelper.push(
-                      const OptionLivestockFishFarmingTilapiaPage(),
-                      context,
-                    );
+                    // NavigationHelper.push(
+                    //   const OptionLivestockFishFarmingTilapiaPage(),
+                    //   context,
+                    // );
                   },
                 ),
               ),
@@ -47,10 +47,10 @@ class OptionLivestockFishFarmingPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.cachama,
                   onTap: () {
-                    NavigationHelper.push(
-                      const OptionLivestockFishFarmingCachamaPage(),
-                      context,
-                    );
+                    // NavigationHelper.push(
+                    //   const OptionLivestockFishFarmingCachamaPage(),
+                    //   context,
+                    // );
                   },
                 ),
               ),

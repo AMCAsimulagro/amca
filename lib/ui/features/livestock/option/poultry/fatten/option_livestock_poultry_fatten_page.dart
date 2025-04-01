@@ -34,12 +34,12 @@ class OptionLivestockPoultryFattenPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.addCostAndExpense,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ManageTransitoryFarming.create(),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute<void>(
+                    //     builder: (BuildContext context) => ManageTransitoryFarming.create(),
+                    //   ),
+                    // );
                   },
                 ),
               ),
@@ -47,12 +47,12 @@ class OptionLivestockPoultryFattenPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.addProduction,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ManageTransitoryFarming.create(),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute<void>(
+                    //     builder: (BuildContext context) => ManageTransitoryFarming.create(),
+                    //   ),
+                    // );
                   },
                 ),
               ),
