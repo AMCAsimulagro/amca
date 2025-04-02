@@ -6,11 +6,8 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/option/poultry/eggs/option_livestock_poultry_eggs_page.dart';
-import 'package:amca/ui/features/livestock/option/poultry/fatten/option_livestock_poultry_fatten_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
-import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
 
@@ -36,10 +33,10 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.eggs,
                   onTap: () {
-                    NavigationHelper.push(
+/*                    NavigationHelper.push(
                       const OptionLivestockPoultryEggsPage(),
                       context,
-                    );
+                    );*/
                   },
                 ),
               ),
@@ -47,10 +44,10 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.fatten,
                   onTap: () {
-                    NavigationHelper.push(
+/*                    NavigationHelper.push(
                       const OptionLivestockPoultryFattenPage(),
                       context,
-                    );
+                    );*/
                   },
                 ),
               ),

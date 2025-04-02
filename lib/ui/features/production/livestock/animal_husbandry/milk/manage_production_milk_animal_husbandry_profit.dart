@@ -280,7 +280,7 @@ class _ManageProductionPageState extends State<ManageProductionPageProfit> {
                     AmcaSelectFormField(
                       labelText: AmcaWords.unitOfMeasurement,
                       textEditingController: _unitOfMeasureController,
-                      options: Constants.unitOfMeasurement,
+                      options: Constants.unitOfMeasurementOfVolume,
                       validator: (farming) {
                         if (farming != null && farming.isEmpty) {
                           return AmcaWords.pleaseSelectAUnitMeasurement;

@@ -5,7 +5,7 @@ library;
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/bar_data_ui.dart';
 import 'package:amca/domain/model/pie_data_ui.dart';
-import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_vm_permanent.dart';
+import 'package:amca/ui/features/charts_cost_expenses/animal_husbandry/meet/charts_costs_expenses_vm_meat_a_h.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/pie_indicator.dart';
@@ -17,8 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// Widget for displaying charts for costs and expenses.
-class ChartsCostsExpensesMettAnimalHusbandryPage extends StatefulWidget {
-  const ChartsCostsExpensesMettAnimalHusbandryPage._(
+class ChartsCostsExpensesMeatAnimalHusbandryPage extends StatefulWidget {
+  const ChartsCostsExpensesMeatAnimalHusbandryPage._(
       {super.key, required this.animalHusbandryId});
 
   static ChangeNotifierProvider<ChartsProfileVM> create({
@@ -28,7 +28,7 @@ class ChartsCostsExpensesMettAnimalHusbandryPage extends StatefulWidget {
       ChangeNotifierProvider(
         lazy: false,
         create: (context) => ChartsProfileVM()..init(animalHusbandryId),
-        child: ChartsCostsExpensesMettAnimalHusbandryPage._(
+        child: ChartsCostsExpensesMeatAnimalHusbandryPage._(
           key: key,
           animalHusbandryId: animalHusbandryId,
         ),
@@ -37,11 +37,12 @@ class ChartsCostsExpensesMettAnimalHusbandryPage extends StatefulWidget {
   final String animalHusbandryId;
 
   @override
-  State<ChartsCostsExpensesMettAnimalHusbandryPage> createState() =>
-      _ChartsCostsExpensesMettAnimalHusbandryPageState();
+  State<ChartsCostsExpensesMeatAnimalHusbandryPage> createState() =>
+      _ChartsCostsExpensesMeatAnimalHusbandryPageState();
 }
 
-class _ChartsCostsExpensesMettAnimalHusbandryPageState extends State<ChartsCostsExpensesMettAnimalHusbandryPage> {
+class _ChartsCostsExpensesMeatAnimalHusbandryPageState
+    extends State<ChartsCostsExpensesMeatAnimalHusbandryPage> {
   int touchedIndex = -1;
   int touchedCostsIndex = -1;
   int touchedExpensesIndex = -1;

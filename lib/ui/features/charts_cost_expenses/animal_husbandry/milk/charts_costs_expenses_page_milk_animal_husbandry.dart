@@ -5,7 +5,7 @@ library;
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/bar_data_ui.dart';
 import 'package:amca/domain/model/pie_data_ui.dart';
-import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_vm.dart';
+import 'package:amca/ui/features/charts_cost_expenses/animal_husbandry/milk/charts_costs_expenses_vm_milk_ah.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/pie_indicator.dart';
@@ -15,34 +15,33 @@ import 'package:amca/ui/utils/extensions/string_extensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 /// Widget for displaying charts for costs and expenses.
-class ChartsCostsExpensesPage extends StatefulWidget {
-  const ChartsCostsExpensesPage._(
-      {super.key, required this.transitoryFarmingId});
+class ChartsCostsExpensesMilkAnimalHusbandryPage extends StatefulWidget {
+  const ChartsCostsExpensesMilkAnimalHusbandryPage._(
+      {super.key, required this.animalHusbandryId});
 
   static ChangeNotifierProvider<ChartsProfileVM> create({
     Key? key,
-    required String transitoryFarmingId,
+    required String animalHusbandryId,
   }) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => ChartsProfileVM()..init(transitoryFarmingId),
-        child: ChartsCostsExpensesPage._(
+        create: (context) => ChartsProfileVM()..init(animalHusbandryId),
+        child: ChartsCostsExpensesMilkAnimalHusbandryPage._(
           key: key,
-          transitoryFarmingId: transitoryFarmingId,
+          animalHusbandryId: animalHusbandryId,
         ),
       );
 
-  final String transitoryFarmingId;
+  final String animalHusbandryId;
 
   @override
-  State<ChartsCostsExpensesPage> createState() =>
-      _ChartsCostsExpensesPageState();
+  State<ChartsCostsExpensesMilkAnimalHusbandryPage> createState() =>
+      _ChartsCostsExpensesMilkAnimalHusbandryPageState();
 }
 
-class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
+class _ChartsCostsExpensesMilkAnimalHusbandryPageState extends State<ChartsCostsExpensesMilkAnimalHusbandryPage> {
   int touchedIndex = -1;
   int touchedCostsIndex = -1;
   int touchedExpensesIndex = -1;
@@ -202,7 +201,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 show: true,
                                 border: Border.symmetric(
                                   horizontal: BorderSide(
-                                    color: Colors.blue.withOpacity(0.2),
+                                    color: Colors.blue.withValues(alpha: (0.2 * 255)),
                                   ),
                                 ),
                               ),
@@ -249,7 +248,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 show: true,
                                 drawVerticalLine: false,
                                 getDrawingHorizontalLine: (value) => FlLine(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withValues(alpha: (0.2 * 255)),
                                   strokeWidth: 1,
                                 ),
                               ),
@@ -380,7 +379,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 show: true,
                                 border: Border.symmetric(
                                   horizontal: BorderSide(
-                                    color: Colors.blue.withOpacity(0.2),
+                                    color: Colors.blue.withValues(alpha: (0.2 * 255)),
                                   ),
                                 ),
                               ),
@@ -427,7 +426,7 @@ class _ChartsCostsExpensesPageState extends State<ChartsCostsExpensesPage> {
                                 show: true,
                                 drawVerticalLine: false,
                                 getDrawingHorizontalLine: (value) => FlLine(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withValues(alpha: (0.2 * 255)),
                                   strokeWidth: 1,
                                 ),
                               ),

@@ -10,7 +10,7 @@ library;
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
-import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_meet_animal_husbandry.dart';
+import 'package:amca/ui/features/charts_cost_expenses/animal_husbandry/meet/charts_costs_expenses_page_meat_a_h.dart';
 import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/costs_expenses_meat_animal_husbandry_list_page.dart';
 import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/create_meat_animal_husbandry_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
@@ -220,12 +220,11 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                                   MaterialPageRoute<bool>(
                                     builder: (BuildContext context) =>
                                         ManageProductionPage.create(
-                                            farmingId:
-                                                vm.currentAnimalHusbandry?.id ??
-                                                    '',
-                                            production: //TODO - Cambiar poss Esto es para modificar
-                                                vm.currentAnimalHusbandry?.production,
-                                            ),
+                                      farmingId:
+                                          vm.currentAnimalHusbandry?.id ?? '',
+                                      production: //TODO - Cambiar poss Esto es para modificar
+                                          vm.currentAnimalHusbandry?.production,
+                                    ),
                                   ),
                                 ).then((value) async {
                                   if (value ?? false) {
@@ -253,7 +252,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
-                                  ChartsCostsExpensesMettAnimalHusbandryPage
+                                  ChartsCostsExpensesMeatAnimalHusbandryPage
                                       .create(
                                 animalHusbandryId:
                                     vm.currentAnimalHusbandry!.id!,

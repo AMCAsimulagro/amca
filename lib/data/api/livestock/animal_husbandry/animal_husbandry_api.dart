@@ -28,7 +28,10 @@ abstract class AnimalHusbandryApi {
 
   Future<void> deleteAnimalHusbandry(String id);
 
-  Future<List<CostAndExpense>> getCostsAndExpensesByAnimalHusbandry(
+  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(
+      String farmingId);
+
+  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(
       String farmingId);
 
   Future<MilkAnimalHusbandry> getMilkById(String farmingId);
@@ -168,9 +171,16 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<List<CostAndExpense>> getCostsAndExpensesByAnimalHusbandry(
+  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(
       String farmingId) async {
     final result = await getMilkById(farmingId);
+    return result.costsAndExpenses ?? [];
+  }
+
+  @override
+  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(
+      String farmingId) async {
+    final result = await getMeatById(farmingId);
     return result.costsAndExpenses ?? [];
   }
 

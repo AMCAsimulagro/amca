@@ -18,7 +18,7 @@ library;
 
 import 'package:amca/data/api/farming_api.dart';
 import 'package:amca/data/api/frequent_question_api.dart';
-import 'package:amca/data/api/livestock/pig_farming/animal_husbandry_api.dart';
+import 'package:amca/data/api/livestock/animal_husbandry/animal_husbandry_api.dart';
 import 'package:amca/data/api/livestock/pig_farming/pig_farming_api.dart';
 import 'package:amca/data/api/login_api.dart';
 import 'package:amca/data/api/users_api.dart';
