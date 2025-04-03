@@ -24,7 +24,9 @@ abstract class AnimalHusbandryApi {
   Future<List<MeatAnimalHusbandry>> getMeatAnimalHusbandryHistoryByUid(
       String? uid);
 
-  Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
+  Future<List<MilkAnimalHusbandry>> getAllMilkHistoryByAdmin();
+
+  Future<List<MeatAnimalHusbandry>> getAllMeatHistoryByAdmin();
 
   Future<void> deleteAnimalHusbandry(String id);
 
@@ -137,14 +139,30 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   }
 
   @override
-  Future<List<MilkAnimalHusbandry>>
-      getAllAnimalHusbandryHistoryByAdmin() async {
+  Future<List<MilkAnimalHusbandry>> getAllMilkHistoryByAdmin() async {
     try {
       final collection = await _firebaseDb
           .collection(FirebaseCollections.milkAnimalHusbandry)
           .get();
       return collection.docs
           .map((doc) => MilkAnimalHusbandry.fromJson(doc.data()))
+          .toList()
+        ..sort((a, b) => a.createDate.compareTo(b.createDate));
+    } on FirebaseAuthException catch (e) {
+      throw AppException(message: e.message, codeError: e.code);
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
+  @override
+  Future<List<MeatAnimalHusbandry>> getAllMeatHistoryByAdmin() async {
+    try {
+      final collection = await _firebaseDb
+          .collection(FirebaseCollections.meatAnimalHusbandry)
+          .get();
+      return collection.docs
+          .map((doc) => MeatAnimalHusbandry.fromJson(doc.data()))
           .toList()
         ..sort((a, b) => a.createDate.compareTo(b.createDate));
     } on FirebaseAuthException catch (e) {
@@ -276,7 +294,7 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
         id: costAndExpenseId,
       );
       int index =
-      costAndExpenseList.indexWhere((obj) => obj.id == costAndExpenseId);
+          costAndExpenseList.indexWhere((obj) => obj.id == costAndExpenseId);
       if (index != -1) {
         costAndExpenseList
             .replaceRange(index, index + 1, [costAndExpenseToUpload]);

@@ -53,6 +53,8 @@ abstract class FarmingRepository {
 
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin();
+
   /// Retrieves all farming history for all users from the Farming API (admin only).
 
   Future<List<CostAndExpense>> getCostsAndExpensesByFarming(String farmingId);
@@ -153,6 +155,11 @@ class FarmingRepositoryAdapter extends FarmingRepository {
   @override
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin() {
     return _api.getAllFarmingHistoryByAdmin();
+  }
+
+  @override
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin() {
+    return _api.getAllFarmingPermanentHistoryByAdmin();
   }
 
   @override

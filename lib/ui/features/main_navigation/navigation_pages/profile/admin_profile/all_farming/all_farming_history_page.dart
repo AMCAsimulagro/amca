@@ -1,5 +1,11 @@
 /// {@category Menu farming info}
 library;
+
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/pig_farming/pig_farming.dart';
+import 'package:amca/domain/model/permanent_farming.dart';
+import 'package:amca/domain/model/transitory_farming.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming/all_farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -33,35 +39,46 @@ class AllFarmingHistoryPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+
+          List<Widget> farmingItems = [];
+
           if (vm.farmingHistory.isNotEmpty) {
+            farmingItems.addAll(
+                _buildFarmingList(vm.farmingHistory, AmcaWords.transitory));
+          }
+
+          if (vm.farmingHistoryPermanent.isNotEmpty) {
+            farmingItems.addAll(_buildFarmingList(
+                vm.farmingHistoryPermanent, AmcaWords.permanent));
+          }
+
+          if (vm.meatAnimalHusbandry.isNotEmpty) {
+            farmingItems.addAll(
+                _buildFarmingList(vm.meatAnimalHusbandry, AmcaWords.meat));
+          }
+
+          if (vm.milkAnimalHusbandry.isNotEmpty) {
+            farmingItems.addAll(
+                _buildFarmingList(vm.milkAnimalHusbandry, AmcaWords.milk));
+          }
+
+          if (vm.pigFarming.isNotEmpty) {
+            farmingItems
+                .addAll(_buildFarmingList(vm.pigFarming, AmcaWords.pigFarming));
+          }
+
+          if (farmingItems.isNotEmpty) {
             return RefreshIndicator(
               onRefresh: () async {
                 await vm.init();
               },
               child: ListView.separated(
-                itemCount: vm.farmingHistory.length,
+                itemCount: farmingItems.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider();
                 },
                 itemBuilder: (BuildContext context, int index) {
-                  final farmingItem = vm.farmingHistory[index];
-                  return ListTile(
-                    title: Text(farmingItem.partName ?? ''),
-                    subtitle: Text(
-                      DateFormat('yyyy-MM-dd').format(farmingItem.createDate),
-                    ),
-                    onTap: () {
-                      /*Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) =>
-                              ManageTransitoryFarming.create(
-                                transitoryFarming: farmingItem,
-                              ),
-                        ),
-                      );*/
-                    },
-                  );
+                  return farmingItems[index];
                 },
               ),
             );
@@ -72,5 +89,73 @@ class AllFarmingHistoryPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  List<Widget> _buildFarmingList(List<dynamic> farmingHistory, String type) {
+    List<Widget> farmingList = [];
+
+    for (var farmingItem in farmingHistory) {
+      final name = switch (farmingItem) {
+        MilkAnimalHusbandry() => farmingItem.farmName,
+        MeatAnimalHusbandry() => farmingItem.farmName,
+        TransitoryFarming() => farmingItem.partName,
+        PermanentFarming() => farmingItem.partName,
+        PigFarming() => farmingItem.farmName,
+        _ => '',
+      };
+
+      farmingList.add(
+        ListTile(
+          title: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      DateFormat('yyyy-MM-dd').format(farmingItem.createDate),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                decoration: BoxDecoration(
+                  color: getLightBrown(type),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  type,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          onTap: () {
+            // TODO descargar reporte pdf o excel
+          },
+        ),
+      );
+    }
+
+    return farmingList;
+  }
+
+  Color getLightBrown(String shade) {
+    return switch (shade) {
+      AmcaWords.transitory => AmcaPalette.transitoryColor,
+      AmcaWords.permanent => AmcaPalette.permanentColor,
+      AmcaWords.meat => AmcaPalette.meat,
+      AmcaWords.milk => AmcaPalette.milk,
+      AmcaWords.pigFarming => AmcaPalette.pigFarmingColor,
+      _ => const Color.fromARGB(255, 210, 180, 140), // Default: Café claro
+    };
   }
 }

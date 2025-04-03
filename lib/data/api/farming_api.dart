@@ -47,6 +47,9 @@ abstract class FarmingApi {
   /// Retrieves the complete history of transitory farming records for an admin.
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
 
+  /// Retrieves the complete history of transitory farming records for an admin.
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin();
+
   /// Deletes a transitory farming record from the database.
   Future<void> deleteTransitoryFarming(String id);
 
@@ -284,6 +287,28 @@ class FarmingApiAdapter extends FarmingApi {
           await _firebaseDb.collection(FirebaseCollections.farming).get();
       final data = collection.docs
           .map((doc) => TransitoryFarming.fromJson(doc.data()))
+          .toList()
+        ..sort((a, b) => a.createDate.compareTo(b.createDate));
+      return data;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+ // Implementation of getAllFarmingHistoryByAdmin
+  @override
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin() async {
+    try {
+      final collection =
+          await _firebaseDb.collection(FirebaseCollections.farmingPermanent).get();
+      final data = collection.docs
+          .map((doc) => PermanentFarming.fromJson(doc.data()))
           .toList()
         ..sort((a, b) => a.createDate.compareTo(b.createDate));
       return data;

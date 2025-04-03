@@ -29,18 +29,19 @@ abstract class AnimalHusbandryRepository {
       String? uid);
 
   /// Retrieves all pig farming records (admin only)
-  Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin();
+  Future<List<MilkAnimalHusbandry>> getAllMilkHistoryByAdmin();
+
+  /// Retrieves all pig farming records (admin only)
+  Future<List<MeatAnimalHusbandry>> getAllMeatHistoryByAdmin();
 
   /// Deletes a pig farming record
   Future<void> deleteAnimalHusbandry(String id);
 
   /// Retrieves costs and expenses for a specific animal farming record
-  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(
-      String farmingId);
+  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(String farmingId);
 
   /// Retrieves costs and expenses for a specific animal farming record
-  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(
-      String farmingId);
+  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(String farmingId);
 
   /// Retrieves a specific pig farming record by ID
   Future<MeatAnimalHusbandry> getMeatById(String farmingId);
@@ -107,8 +108,13 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<List<MilkAnimalHusbandry>> getAllAnimalHusbandryHistoryByAdmin() {
-    return _api.getAllAnimalHusbandryHistoryByAdmin();
+  Future<List<MilkAnimalHusbandry>> getAllMilkHistoryByAdmin() {
+    return _api.getAllMilkHistoryByAdmin();
+  }
+
+  @override
+  Future<List<MeatAnimalHusbandry>> getAllMeatHistoryByAdmin() {
+    return _api.getAllMeatHistoryByAdmin();
   }
 
   @override
@@ -117,14 +123,12 @@ class AnimalHusbandryRepositoryAdapter implements AnimalHusbandryRepository {
   }
 
   @override
-  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(
-      String farmingId) {
+  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(String farmingId) {
     return _api.getCostsAndExpensesByMilk(farmingId);
   }
 
   @override
-  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(
-      String farmingId) {
+  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(String farmingId) {
     return _api.getCostsAndExpensesByMeat(farmingId);
   }
 
