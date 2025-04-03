@@ -28,11 +28,9 @@ abstract class AnimalHusbandryApi {
 
   Future<void> deleteAnimalHusbandry(String id);
 
-  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(
-      String farmingId);
+  Future<List<CostAndExpense>> getCostsAndExpensesByMilk(String farmingId);
 
-  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(
-      String farmingId);
+  Future<List<CostAndExpense>> getCostsAndExpensesByMeat(String farmingId);
 
   Future<MilkAnimalHusbandry> getMilkById(String farmingId);
 
@@ -205,22 +203,35 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
     required MilkAnimalHusbandry farming,
   }) async {
     try {
-      var costExpenseList = farming.costsAndExpenses ?? [];
-      final costExpenseId = costAndExpense.id ?? const Uuid().v4();
-      final costExpenseToUpload = costAndExpense.copyWith(
-        id: costExpenseId,
-        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpense.uidOwner = _firebaseAuth.currentUser?.uid ?? '';
+      final costAndExpenseId = costAndExpense.id ?? const Uuid().v4();
+      final costAndExpenseToUpload = costAndExpense.copyWith(
+        id: costAndExpenseId,
       );
-
-      costExpenseList.add(costExpenseToUpload);
-      final updatedFarming =
-          farming.copyWith(costsAndExpenses: costExpenseList);
-      await createMilkAnimalHusbandry(updatedFarming);
-      return costExpenseToUpload;
+      int index =
+          costAndExpenseList.indexWhere((obj) => obj.id == costAndExpenseId);
+      if (index != -1) {
+        costAndExpenseList
+            .replaceRange(index, index + 1, [costAndExpenseToUpload]);
+      } else {
+        costAndExpenseList.add(costAndExpenseToUpload);
+      }
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createMilkAnimalHusbandry(farmingToUpload);
+      return costAndExpenseToUpload;
     } on FirebaseAuthException catch (e) {
-      throw AppException(message: e.message, codeError: e.code);
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
     } catch (e) {
-      throw AppException(codeError: Constants.generalError);
+      throw AppException(
+        codeError: Constants.generalError,
+      );
     }
   }
 
@@ -230,18 +241,25 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
     required MilkAnimalHusbandry farming,
   }) async {
     try {
-      final costExpenseList = farming.costsAndExpenses
-          ?.where((element) => element.id != costAndExpenseId)
-          .toList();
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpenseList
+          .removeWhere((element) => element.id == costAndExpenseId);
 
-      final updatedFarming =
-          farming.copyWith(costsAndExpenses: costExpenseList);
-      await createMilkAnimalHusbandry(updatedFarming);
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createMilkAnimalHusbandry(farmingToUpload);
       return null;
     } on FirebaseAuthException catch (e) {
-      throw AppException(message: e.message, codeError: e.code);
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
     } catch (e) {
-      throw AppException(codeError: Constants.generalError);
+      throw AppException(
+        codeError: Constants.generalError,
+      );
     }
   }
 
@@ -251,22 +269,35 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
     required MeatAnimalHusbandry farming,
   }) async {
     try {
-      var costExpenseList = farming.costsAndExpenses ?? [];
-      final costExpenseId = costAndExpense.id ?? const Uuid().v4();
-      final costExpenseToUpload = costAndExpense.copyWith(
-        id: costExpenseId,
-        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpense.uidOwner = _firebaseAuth.currentUser?.uid ?? '';
+      final costAndExpenseId = costAndExpense.id ?? const Uuid().v4();
+      final costAndExpenseToUpload = costAndExpense.copyWith(
+        id: costAndExpenseId,
       );
-
-      costExpenseList.add(costExpenseToUpload);
-      final updatedFarming =
-          farming.copyWith(costsAndExpenses: costExpenseList);
-      await createMeatAnimalHusbandry(updatedFarming);
-      return costExpenseToUpload;
+      int index =
+      costAndExpenseList.indexWhere((obj) => obj.id == costAndExpenseId);
+      if (index != -1) {
+        costAndExpenseList
+            .replaceRange(index, index + 1, [costAndExpenseToUpload]);
+      } else {
+        costAndExpenseList.add(costAndExpenseToUpload);
+      }
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createMeatAnimalHusbandry(farmingToUpload);
+      return costAndExpenseToUpload;
     } on FirebaseAuthException catch (e) {
-      throw AppException(message: e.message, codeError: e.code);
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
     } catch (e) {
-      throw AppException(codeError: Constants.generalError);
+      throw AppException(
+        codeError: Constants.generalError,
+      );
     }
   }
 
@@ -276,18 +307,25 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
     required MeatAnimalHusbandry farming,
   }) async {
     try {
-      final costExpenseList = farming.costsAndExpenses
-          ?.where((element) => element.id != costAndExpenseId)
-          .toList();
+      var costAndExpenseList = farming.costsAndExpenses ?? [];
+      costAndExpenseList
+          .removeWhere((element) => element.id == costAndExpenseId);
 
-      final updatedFarming =
-          farming.copyWith(costsAndExpenses: costExpenseList);
-      await createMeatAnimalHusbandry(updatedFarming);
+      final farmingToUpload = farming.copyWith(
+        uidOwner: _firebaseAuth.currentUser?.uid ?? '',
+        costsAndExpenses: costAndExpenseList,
+      );
+      await createMeatAnimalHusbandry(farmingToUpload);
       return null;
     } on FirebaseAuthException catch (e) {
-      throw AppException(message: e.message, codeError: e.code);
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
     } catch (e) {
-      throw AppException(codeError: Constants.generalError);
+      throw AppException(
+        codeError: Constants.generalError,
+      );
     }
   }
 
