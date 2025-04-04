@@ -5,6 +5,7 @@
 ///
 class AmcaWords {
   static const String adminOptions = 'Opciones de administrador';
+  static const String buildingThis = 'Estamos trabajando en esto. Ten paciencia, las mejoras llegarán pronto.';
   static const String addInformation = 'Añadir información';
   static const String addPartProduction = 'Agregar una producción del lote';
   static const String addCostOrExpense = 'Agregar Costo o Gasto';
@@ -160,6 +161,7 @@ class AmcaWords {
   static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
   static const String seeCharts = 'Ver gráficas';
+  static const String downloadReport = 'Descargar reporte';
   static const String seeProduction = 'Ver Producción del lote';
   static const String secondName = 'Segundo nombre';
   static const String secondLastName = 'Segundo Apellido';

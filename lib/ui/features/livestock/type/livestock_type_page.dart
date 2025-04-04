@@ -5,10 +5,10 @@
 library;
 
 import 'package:amca/ui/features/livestock/option/animal_husbandry/option_livestock_animal_husbandry_page.dart';
-import 'package:amca/ui/features/livestock/option/fish_farming/option_livestock_fish_farming_page.dart';
 import 'package:amca/ui/features/livestock/option/poultry/option_livestock_poultry_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +50,8 @@ class LivestockTypePage extends StatelessWidget {
                     child: AmcaContainerButton(
                       text: AmcaWords.pigFarming,
                       onTap: () {
-/*                        NavigationHelper.push(
-                          const OptionLivestockPigFarmingPage(),
-                          context,
-                        );*/
+                        Dialogs.showErrorDialogWithMessage(
+                            context, AmcaWords.buildingThis);
                       },
                     ),
                   ),
@@ -81,11 +79,8 @@ class LivestockTypePage extends StatelessWidget {
                     child: AmcaContainerButton(
                       text: AmcaWords.fishFarming,
                       onTap: () {
-                        // Acción para Piscicultura
-                        NavigationHelper.push(
-                          const OptionLivestockFishFarmingPage(),
-                          context,
-                        );
+                        Dialogs.showErrorDialogWithMessage(
+                            context, AmcaWords.buildingThis);
                       },
                     ),
                   ),

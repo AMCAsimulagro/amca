@@ -8,6 +8,7 @@ library;
 import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
 
@@ -33,10 +34,8 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.eggs,
                   onTap: () {
-/*                    NavigationHelper.push(
-                      const OptionLivestockPoultryEggsPage(),
-                      context,
-                    );*/
+                    Dialogs.showErrorDialogWithMessage(
+                        context, AmcaWords.buildingThis);
                   },
                 ),
               ),
@@ -44,10 +43,8 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.fatten,
                   onTap: () {
-/*                    NavigationHelper.push(
-                      const OptionLivestockPoultryFattenPage(),
-                      context,
-                    );*/
+                    Dialogs.showErrorDialogWithMessage(
+                        context, AmcaWords.buildingThis);
                   },
                 ),
               ),

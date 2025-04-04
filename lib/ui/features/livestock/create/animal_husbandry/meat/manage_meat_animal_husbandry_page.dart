@@ -260,6 +260,17 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                             ),
                           );
                         },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      AmcaButton(
+                        text: AmcaWords.downloadReport,
+                        onPressed: () {
+                          // TODO Pendiente logica para descargar reporte
+                          Dialogs.showErrorDialogWithMessage(
+                              context, AmcaWords.buildingThis);
+                        },
                       )
                     ],
                   )
