@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                 imagePath: Assets.pecuaria,
                 text: AmcaWords.livestock,
                 onTap: (){
-                  NavigationHelper.push(LivestockTypePage(), context);
+                  NavigationHelper.push(const LivestockTypePage(), context);
                 },                
               ),
             ),
