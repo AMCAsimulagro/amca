@@ -161,7 +161,7 @@ contraseña: fRJ00K23L@Y3P</p>
 </dd>
 
           <dt id="animal_husbandry_api">
-  <span class="name"><a href="data_api_livestock_pig_farming_animal_husbandry_api">data\api\livestock\pig_farming\animal_husbandry_api</a></span> 
+  <span class="name"><a href="data_api_livestock_animal_husbandry_animal_husbandry_api">data\api\livestock\animal_husbandry\animal_husbandry_api</a></span> 
 
 </dt>
 <dd>
@@ -532,22 +532,38 @@ create, retrieve, update, and delete pig farming activities. Dependencies includ
 </dd>
 
           <h3>Features ChartCost</h3>
+            <dt id="charts_costs_expenses_page_meat_a_h">
+  <span class="name"><a href="ui_features_charts_cost_expenses_animal_husbandry_meet_charts_costs_expenses_page_meat_a_h">ui\features\charts_cost_expenses\animal_husbandry\meet\charts_costs_expenses_page_meat_a_h</a></span> 
+
+</dt>
+<dd>This file contains the implementation of the <code>ChartsCostsExpensesPage</code> widget, which displays charts for costs and expenses.
+</dd>
+
+            <dt id="charts_costs_expenses_vm_meat_a_h">
+  <span class="name"><a href="ui_features_charts_cost_expenses_animal_husbandry_meet_charts_costs_expenses_vm_meat_a_h">ui\features\charts_cost_expenses\animal_husbandry\meet\charts_costs_expenses_vm_meat_a_h</a></span> 
+
+</dt>
+<dd>This file contains the definition of the <code>ChartsProfileVM</code> class, which serves as a ViewModel
+for managing chart data in a Flutter application.
+</dd>
+
+            <dt id="charts_costs_expenses_page_milk_animal_husbandry">
+  <span class="name"><a href="ui_features_charts_cost_expenses_animal_husbandry_milk_charts_costs_expenses_page_milk_animal_husbandry">ui\features\charts_cost_expenses\animal_husbandry\milk\charts_costs_expenses_page_milk_animal_husbandry</a></span> 
+
+</dt>
+<dd>This file contains the implementation of the <code>ChartsCostsExpensesPage</code> widget, which displays charts for costs and expenses.
+</dd>
+
+            <dt id="charts_costs_expenses_vm_milk_ah">
+  <span class="name"><a href="ui_features_charts_cost_expenses_animal_husbandry_milk_charts_costs_expenses_vm_milk_ah">ui\features\charts_cost_expenses\animal_husbandry\milk\charts_costs_expenses_vm_milk_ah</a></span> 
+
+</dt>
+<dd>This file contains the definition of the <code>ChartsProfileVM</code> class, which serves as a ViewModel
+for managing chart data in a Flutter application.
+</dd>
+
             <dt id="charts_costs_expenses_page">
   <span class="name"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page">ui\features\charts_cost_expenses\charts_costs_expenses_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <code>ChartsCostsExpensesPage</code> widget, which displays charts for costs and expenses.
-</dd>
-
-            <dt id="charts_costs_expenses_page_meet_animal_husbandry">
-  <span class="name"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page_meet_animal_husbandry">ui\features\charts_cost_expenses\charts_costs_expenses_page_meet_animal_husbandry</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <code>ChartsCostsExpensesPage</code> widget, which displays charts for costs and expenses.
-</dd>
-
-            <dt id="charts_costs_expenses_page_pe">
-  <span class="name"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page_pe">ui\features\charts_cost_expenses\charts_costs_expenses_page_pe</a></span> 
 
 </dt>
 <dd>This file contains the implementation of the <code>ChartsCostsExpensesPage</code> widget, which displays charts for costs and expenses.
@@ -841,52 +857,6 @@ ViewModel to handle business logic related to permanent farming. Dependencies in
 <a href="domain_model_livestock_animal_husbandry_milk_milk_animal_husbandry/MilkAnimalHusbandry-class.html">MilkAnimalHusbandry</a> model, and ViewModels such as <a href="ui_features_livestock_create_animal_husbandry_milk_create_milk_animal_husbandry_vm/CreateAnimalHusbandryVM-class.html">CreateAnimalHusbandryVM</a> and <a href="ui_features_main_navigation_navigation_pages_farming_history_farming_history_vm/FarmingHistoryVM-class.html">FarmingHistoryVM</a>.
 </dd>
 
-            <dt id="create_permanent_farming_vm">
-  <span class="name"><a href="ui_features_livestock_create_create_permanent_farming_vm">ui\features\livestock\create\create_permanent_farming_vm</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_livestock_create_create_permanent_farming_vm/CreatePermanentFarmingVM-class.html">CreatePermanentFarmingVM</a> class, which serves as the ViewModel
-for creating and managing permanent farming activities. It interacts with the data layer through the <a href="data_repository_farming_repository/FarmingRepository-class.html">FarmingRepository</a>
-to perform CRUD operations on permanent farming data. The ViewModel provides functionality to initialize data,
-create, retrieve, update, and delete permanent farming activities. Dependencies include the <a href="data_repository_farming_repository/FarmingRepository-class.html">FarmingRepository</a>,
-<a href="domain_model_crop_types/CropTypes-class.html">CropTypes</a>, <a href="domain_model_permanent_farming/PermanentFarming-class.html">PermanentFarming</a>, and Flutter's <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html">ChangeNotifier</a>.
-</dd>
-
-            <dt id="create_transitory_farming_vm">
-  <span class="name"><a href="ui_features_livestock_create_create_transitory_farming_vm">ui\features\livestock\create\create_transitory_farming_vm</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_livestock_create_create_transitory_farming_vm/CreateTransitoryFarmingVM-class.html">CreateTransitoryFarmingVM</a> class, which serves as the ViewModel
-for creating and managing transitory farming activities. It interacts with the data layer through the <a href="data_repository_farming_repository/FarmingRepository-class.html">FarmingRepository</a>
-to perform CRUD operations on transitory farming data. The ViewModel provides functionality to initialize data,
-create, retrieve, update, and delete transitory farming activities. Dependencies include the <a href="data_repository_farming_repository/FarmingRepository-class.html">FarmingRepository</a>,
-<a href="domain_model_crop_types/CropTypes-class.html">CropTypes</a>, <a href="domain_model_transitory_farming/TransitoryFarming-class.html">TransitoryFarming</a>, and Flutter's <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html">ChangeNotifier</a>.
-</dd>
-
-            <dt id="manage_permanent_farming_page">
-  <span class="name"><a href="ui_features_livestock_create_manage_permanent_farming_page">ui\features\livestock\create\manage_permanent_farming_page</a></span> 
-
-</dt>
-<dd>/// This file contains the implementation of the <a href="ui_features_livestock_create_manage_permanent_farming_page/ManagePermanentFarming-class.html">ManagePermanentFarming</a> class, which provides a user interface
-for creating and managing Permanent farming activities. It includes form fields for inputting details such as
-date, part name, crop type, crop, sown area, sown type, format, amount sown, value, and comments. Users can
-create, update, and delete Permanent farming activities. It interacts with the <a href="ui_features_farming_create_create_permanent_farming_vm/CreatePermanentFarmingVM-class.html">CreatePermanentFarmingVM</a>
-ViewModel to handle business logic related to Permanent farming. Dependencies include various UI widgets,
-<a href="domain_model_permanent_farming/PermanentFarming-class.html">PermanentFarming</a> model, and ViewModels such as <a href="ui_features_farming_create_create_permanent_farming_vm/CreatePermanentFarmingVM-class.html">CreatePermanentFarmingVM</a> and <a href="ui_features_main_navigation_navigation_pages_farming_history_farming_history_vm/FarmingHistoryVM-class.html">FarmingHistoryVM</a>.
-</dd>
-
-            <dt id="manage_transitory_farming_page">
-  <span class="name"><a href="ui_features_livestock_create_manage_transitory_farming_page">ui\features\livestock\create\manage_transitory_farming_page</a></span> 
-
-</dt>
-<dd>/// This file contains the implementation of the <a href="ui_features_livestock_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> class, which provides a user interface
-for creating and managing transitory farming activities. It includes form fields for inputting details such as
-date, part name, crop type, crop, sown area, sown type, format, amount sown, value, and comments. Users can
-create, update, and delete transitory farming activities. It interacts with the <a href="ui_features_farming_create_create_transitory_farming_vm/CreateTransitoryFarmingVM-class.html">CreateTransitoryFarmingVM</a>
-ViewModel to handle business logic related to transitory farming. Dependencies include various UI widgets,
-<a href="domain_model_transitory_farming/TransitoryFarming-class.html">TransitoryFarming</a> model, and ViewModels such as <a href="ui_features_farming_create_create_transitory_farming_vm/CreateTransitoryFarmingVM-class.html">CreateTransitoryFarmingVM</a> and <a href="ui_features_main_navigation_navigation_pages_farming_history_farming_history_vm/FarmingHistoryVM-class.html">FarmingHistoryVM</a>.
-</dd>
-
             <dt id="manage_pig_farming_cost_and_expenses_page">
   <span class="name"><a href="ui_features_livestock_create_pig_farming_manage_pig_farming_cost_and_expenses_page">ui\features\livestock\create\pig_farming\manage_pig_farming_cost_and_expenses_page</a></span> 
 
@@ -903,7 +873,7 @@ ViewModel to handle business logic related to permanent farming. Dependencies in
   <span class="name"><a href="ui_features_permanent_farming_create_create_permanent_farming_vm">ui\features\permanent_farming\create\create_permanent_farming_vm</a></span> 
 
 </dt>
-<dd>This file contains the implementation of the <a href="ui_features_livestock_create_create_transitory_farming_vm/CreateTransitoryFarmingVM-class.html">CreateTransitoryFarmingVM</a> class, which serves as the ViewModel
+<dd>This file contains the implementation of the <a href="ui_features_farming_create_create_transitory_farming_vm/CreateTransitoryFarmingVM-class.html">CreateTransitoryFarmingVM</a> class, which serves as the ViewModel
 for creating and managing transitory farming activities. It interacts with the data layer through the <a href="data_repository_farming_repository/FarmingRepository-class.html">FarmingRepository</a>
 to perform CRUD operations on transitory farming data. The ViewModel provides functionality to initialize data,
 create, retrieve, update, and delete transitory farming activities. Dependencies include the <a href="data_repository_farming_repository/FarmingRepository-class.html">FarmingRepository</a>,
@@ -934,60 +904,6 @@ navigate to the <a href="ui_features_farming_create_manage_transitory_farming_pa
 
             <dt id="option_livestock_animal_husbandry_page">
   <span class="name"><a href="ui_features_livestock_option_animal_husbandry_option_livestock_animal_husbandry_page">ui\features\livestock\option\animal_husbandry\option_livestock_animal_husbandry_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
-transitory farming activities. It includes a button to create new transitory farming activities. Users can
-navigate to the <a href="ui_features_farming_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> page to create new transitory farming activities by tapping on the button.
-</dd>
-
-            <dt id="option_livestock_fish_farming_cachama_page">
-  <span class="name"><a href="ui_features_livestock_option_fish_farming_cachama_option_livestock_fish_farming_cachama_page">ui\features\livestock\option\fish_farming\cachama\option_livestock_fish_farming_cachama_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
-transitory farming activities. It includes a button to create new transitory farming activities. Users can
-navigate to the <a href="ui_features_farming_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> page to create new transitory farming activities by tapping on the button.
-</dd>
-
-            <dt id="option_livestock_fish_farming_page">
-  <span class="name"><a href="ui_features_livestock_option_fish_farming_option_livestock_fish_farming_page">ui\features\livestock\option\fish_farming\option_livestock_fish_farming_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
-transitory farming activities. It includes a button to create new transitory farming activities. Users can
-navigate to the <a href="ui_features_farming_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> page to create new transitory farming activities by tapping on the button.
-</dd>
-
-            <dt id="option_livestock_fish_farming_tilapia_page">
-  <span class="name"><a href="ui_features_livestock_option_fish_farming_tilapia_option_livestock_fish_farming_tilapia_page">ui\features\livestock\option\fish_farming\tilapia\option_livestock_fish_farming_tilapia_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
-transitory farming activities. It includes a button to create new transitory farming activities. Users can
-navigate to the <a href="ui_features_farming_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> page to create new transitory farming activities by tapping on the button.
-</dd>
-
-            <dt id="option_livestock_pig_farming_page">
-  <span class="name"><a href="ui_features_livestock_option_pig_farming_option_livestock_pig_farming_page">ui\features\livestock\option\pig_farming\option_livestock_pig_farming_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
-transitory farming activities. It includes a button to create new transitory farming activities. Users can
-navigate to the <a href="ui_features_farming_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> page to create new transitory farming activities by tapping on the button.
-</dd>
-
-            <dt id="option_livestock_poultry_eggs_page">
-  <span class="name"><a href="ui_features_livestock_option_poultry_eggs_option_livestock_poultry_eggs_page">ui\features\livestock\option\poultry\eggs\option_livestock_poultry_eggs_page</a></span> 
-
-</dt>
-<dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
-transitory farming activities. It includes a button to create new transitory farming activities. Users can
-navigate to the <a href="ui_features_farming_create_manage_transitory_farming_page/ManageTransitoryFarming-class.html">ManageTransitoryFarming</a> page to create new transitory farming activities by tapping on the button.
-</dd>
-
-            <dt id="option_livestock_poultry_fatten_page">
-  <span class="name"><a href="ui_features_livestock_option_poultry_fatten_option_livestock_poultry_fatten_page">ui\features\livestock\option\poultry\fatten\option_livestock_poultry_fatten_page</a></span> 
 
 </dt>
 <dd>This file contains the implementation of the <a href="ui_features_farming_option_option_farming_page/OptionFarmingPage-class.html">OptionFarmingPage</a> class, which provides options for managing
@@ -1568,7 +1484,7 @@ which is a custom extension of the <code>TextFormField</code> widget in Flutter.
     <ol>
       <li class="section-title">Libraries</li>
       <li><a href="data_api_firebase_collections">data\api\firebase_collections</a></li>
-      <li><a href="data_api_livestock_pig_farming_animal_husbandry_api">data\api\livestock\pig_farming\animal_husbandry_api</a></li>
+      <li><a href="data_api_livestock_animal_husbandry_animal_husbandry_api">data\api\livestock\animal_husbandry\animal_husbandry_api</a></li>
       <li><a href="data_api_livestock_pig_farming_pig_farming_api">data\api\livestock\pig_farming\pig_farming_api</a></li>
       <li><a href="data_local_storage_shared_preferences_keys">data\local_storage\shared_preferences_keys</a></li>
       <li><a href="ui_features_main_navigation_navigation_pages_profile_profile_page">ui\features\main_navigation\navigation_pages\profile\profile_page</a></li>
@@ -1615,9 +1531,11 @@ which is a custom extension of the <code>TextFormField</code> widget in Flutter.
         <li class="section-subitem"><a href="ui_features_livestock_create_animal_husbandry_meat_create_meat_animal_husbandry_vm">ui\features\livestock\create\animal_husbandry\meat\create_meat_animal_husbandry_vm</a></li>
         <li class="section-subitem"><a href="ui_features_livestock_create_animal_husbandry_milk_create_milk_animal_husbandry_vm">ui\features\livestock\create\animal_husbandry\milk\create_milk_animal_husbandry_vm</a></li>
       <li class="section-subtitle">Features ChartCost</li>
+        <li class="section-subitem"><a href="ui_features_charts_cost_expenses_animal_husbandry_meet_charts_costs_expenses_page_meat_a_h">ui\features\charts_cost_expenses\animal_husbandry\meet\charts_costs_expenses_page_meat_a_h</a></li>
+        <li class="section-subitem"><a href="ui_features_charts_cost_expenses_animal_husbandry_meet_charts_costs_expenses_vm_meat_a_h">ui\features\charts_cost_expenses\animal_husbandry\meet\charts_costs_expenses_vm_meat_a_h</a></li>
+        <li class="section-subitem"><a href="ui_features_charts_cost_expenses_animal_husbandry_milk_charts_costs_expenses_page_milk_animal_husbandry">ui\features\charts_cost_expenses\animal_husbandry\milk\charts_costs_expenses_page_milk_animal_husbandry</a></li>
+        <li class="section-subitem"><a href="ui_features_charts_cost_expenses_animal_husbandry_milk_charts_costs_expenses_vm_milk_ah">ui\features\charts_cost_expenses\animal_husbandry\milk\charts_costs_expenses_vm_milk_ah</a></li>
         <li class="section-subitem"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page">ui\features\charts_cost_expenses\charts_costs_expenses_page</a></li>
-        <li class="section-subitem"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page_meet_animal_husbandry">ui\features\charts_cost_expenses\charts_costs_expenses_page_meet_animal_husbandry</a></li>
-        <li class="section-subitem"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page_pe">ui\features\charts_cost_expenses\charts_costs_expenses_page_pe</a></li>
         <li class="section-subitem"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page_permanent">ui\features\charts_cost_expenses\charts_costs_expenses_page_permanent</a></li>
         <li class="section-subitem"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_page_pig_farming">ui\features\charts_cost_expenses\charts_costs_expenses_page_pig_farming</a></li>
         <li class="section-subitem"><a href="ui_features_charts_cost_expenses_charts_costs_expenses_vm">ui\features\charts_cost_expenses\charts_costs_expenses_vm</a></li>
@@ -1652,22 +1570,12 @@ which is a custom extension of the <code>TextFormField</code> widget in Flutter.
         <li class="section-subitem"><a href="ui_features_farming_create_manage_transitory_farming_page">ui\features\farming\create\manage_transitory_farming_page</a></li>
         <li class="section-subitem"><a href="ui_features_livestock_create_animal_husbandry_meat_manage_meat_animal_husbandry_page">ui\features\livestock\create\animal_husbandry\meat\manage_meat_animal_husbandry_page</a></li>
         <li class="section-subitem"><a href="ui_features_livestock_create_animal_husbandry_milk_manage_milk_animal_husbandry_page">ui\features\livestock\create\animal_husbandry\milk\manage_milk_animal_husbandry_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_create_create_permanent_farming_vm">ui\features\livestock\create\create_permanent_farming_vm</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_create_create_transitory_farming_vm">ui\features\livestock\create\create_transitory_farming_vm</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_create_manage_permanent_farming_page">ui\features\livestock\create\manage_permanent_farming_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_create_manage_transitory_farming_page">ui\features\livestock\create\manage_transitory_farming_page</a></li>
         <li class="section-subitem"><a href="ui_features_livestock_create_pig_farming_manage_pig_farming_cost_and_expenses_page">ui\features\livestock\create\pig_farming\manage_pig_farming_cost_and_expenses_page</a></li>
         <li class="section-subitem"><a href="ui_features_permanent_farming_create_create_permanent_farming_vm">ui\features\permanent_farming\create\create_permanent_farming_vm</a></li>
         <li class="section-subitem"><a href="ui_features_permanent_farming_create_manage_permanent_farming_page">ui\features\permanent_farming\create\manage_permanent_farming_page</a></li>
       <li class="section-subtitle">Features Farming Option</li>
         <li class="section-subitem"><a href="ui_features_farming_option_option_farming_page">ui\features\farming\option\option_farming_page</a></li>
         <li class="section-subitem"><a href="ui_features_livestock_option_animal_husbandry_option_livestock_animal_husbandry_page">ui\features\livestock\option\animal_husbandry\option_livestock_animal_husbandry_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_option_fish_farming_cachama_option_livestock_fish_farming_cachama_page">ui\features\livestock\option\fish_farming\cachama\option_livestock_fish_farming_cachama_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_option_fish_farming_option_livestock_fish_farming_page">ui\features\livestock\option\fish_farming\option_livestock_fish_farming_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_option_fish_farming_tilapia_option_livestock_fish_farming_tilapia_page">ui\features\livestock\option\fish_farming\tilapia\option_livestock_fish_farming_tilapia_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_option_pig_farming_option_livestock_pig_farming_page">ui\features\livestock\option\pig_farming\option_livestock_pig_farming_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_option_poultry_eggs_option_livestock_poultry_eggs_page">ui\features\livestock\option\poultry\eggs\option_livestock_poultry_eggs_page</a></li>
-        <li class="section-subitem"><a href="ui_features_livestock_option_poultry_fatten_option_livestock_poultry_fatten_page">ui\features\livestock\option\poultry\fatten\option_livestock_poultry_fatten_page</a></li>
         <li class="section-subitem"><a href="ui_features_livestock_option_poultry_option_livestock_poultry_page">ui\features\livestock\option\poultry\option_livestock_poultry_page</a></li>
         <li class="section-subitem"><a href="ui_features_permanent_farming_option_option_permanent_farming_page">ui\features\permanent_farming\option\option_permanent_farming_page</a></li>
       <li class="section-subtitle">Features Farming Type</li>

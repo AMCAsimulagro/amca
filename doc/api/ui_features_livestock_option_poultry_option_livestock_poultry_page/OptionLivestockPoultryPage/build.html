@@ -127,10 +127,8 @@ Widget build(BuildContext context) {
               child: AmcaContainerButton(
                 text: AmcaWords.eggs,
                 onTap: () {
-                  NavigationHelper.push(
-                    const OptionLivestockPoultryEggsPage(),
-                    context,
-                  );
+                  Dialogs.showErrorDialogWithMessage(
+                      context, AmcaWords.buildingThis);
                 },
               ),
             ),
@@ -138,10 +136,8 @@ Widget build(BuildContext context) {
               child: AmcaContainerButton(
                 text: AmcaWords.fatten,
                 onTap: () {
-                  NavigationHelper.push(
-                    const OptionLivestockPoultryFattenPage(),
-                    context,
-                  );
+                  Dialogs.showErrorDialogWithMessage(
+                      context, AmcaWords.buildingThis);
                 },
               ),
             ),

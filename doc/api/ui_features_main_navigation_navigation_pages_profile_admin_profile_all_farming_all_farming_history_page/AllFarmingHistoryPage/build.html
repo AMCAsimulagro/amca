@@ -124,35 +124,46 @@ Widget build(BuildContext context) {
             child: CircularProgressIndicator(),
           );
         }
+
+        List&lt;Widget&gt; farmingItems = [];
+
         if (vm.farmingHistory.isNotEmpty) {
+          farmingItems.addAll(
+              _buildFarmingList(vm.farmingHistory, AmcaWords.transitory));
+        }
+
+        if (vm.farmingHistoryPermanent.isNotEmpty) {
+          farmingItems.addAll(_buildFarmingList(
+              vm.farmingHistoryPermanent, AmcaWords.permanent));
+        }
+
+        if (vm.meatAnimalHusbandry.isNotEmpty) {
+          farmingItems.addAll(
+              _buildFarmingList(vm.meatAnimalHusbandry, AmcaWords.meat));
+        }
+
+        if (vm.milkAnimalHusbandry.isNotEmpty) {
+          farmingItems.addAll(
+              _buildFarmingList(vm.milkAnimalHusbandry, AmcaWords.milk));
+        }
+
+        if (vm.pigFarming.isNotEmpty) {
+          farmingItems
+              .addAll(_buildFarmingList(vm.pigFarming, AmcaWords.pigFarming));
+        }
+
+        if (farmingItems.isNotEmpty) {
           return RefreshIndicator(
             onRefresh: () async {
               await vm.init();
             },
             child: ListView.separated(
-              itemCount: vm.farmingHistory.length,
+              itemCount: farmingItems.length,
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider();
               },
               itemBuilder: (BuildContext context, int index) {
-                final farmingItem = vm.farmingHistory[index];
-                return ListTile(
-                  title: Text(farmingItem.partName ?? &#39;&#39;),
-                  subtitle: Text(
-                    DateFormat(&#39;yyyy-MM-dd&#39;).format(farmingItem.createDate),
-                  ),
-                  onTap: () {
-                    &#47;*Navigator.push(
-                      context,
-                      MaterialPageRoute&lt;void&gt;(
-                        builder: (BuildContext context) =&gt;
-                            ManageTransitoryFarming.create(
-                              transitoryFarming: farmingItem,
-                            ),
-                      ),
-                    );*&#47;
-                  },
-                );
+                return farmingItems[index];
               },
             ),
           );

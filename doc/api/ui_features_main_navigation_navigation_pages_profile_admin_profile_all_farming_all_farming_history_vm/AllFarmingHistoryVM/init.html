@@ -73,6 +73,11 @@
   isLoading = true;
   try {
     farmingHistory = await farmingRepository.getAllFarmingHistoryByAdmin();
+    farmingHistoryPermanent =
+        await farmingRepository.getAllFarmingPermanentHistoryByAdmin();
+    milkAnimalHusbandry = await animalHusbandryRepository.getAllMilkHistoryByAdmin();
+    meatAnimalHusbandry = await animalHusbandryRepository.getAllMeatHistoryByAdmin();
+    pigFarming = await pigFarmingRepository.getAllPigFarmingHistoryByAdmin();
   } finally {
     isLoading = false;
     notifyListeners();

@@ -142,10 +142,8 @@ Widget build(BuildContext context) {
                   child: AmcaContainerButton(
                     text: AmcaWords.pigFarming,
                     onTap: () {
-                      NavigationHelper.push(
-                        const OptionLivestockPigFarmingPage(),
-                        context,
-                      );
+                      Dialogs.showErrorDialogWithMessage(
+                          context, AmcaWords.buildingThis);
                     },
                   ),
                 ),
@@ -173,11 +171,8 @@ Widget build(BuildContext context) {
                   child: AmcaContainerButton(
                     text: AmcaWords.fishFarming,
                     onTap: () {
-                      &#47;&#47; Acción para Piscicultura
-                      NavigationHelper.push(
-                        const OptionLivestockFishFarmingPage(),
-                        context,
-                      );
+                      Dialogs.showErrorDialogWithMessage(
+                          context, AmcaWords.buildingThis);
                     },
                   ),
                 ),
