@@ -54,6 +54,10 @@ dependencies:
   fl_chart: ^0.70.2
   jiffy: ^6.2.1
   rxdart: ^0.28.0
+  syncfusion_flutter_xlsio: ^28.2.12
+  pdf: ^3.11.3
+  printing: ^5.14.2
+  permission_handler: ^11.2.0
 
 
 dev_dependencies:
