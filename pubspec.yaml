@@ -58,7 +58,8 @@ dependencies:
   pdf: ^3.11.3
   printing: ^5.14.2
   permission_handler: ^11.2.0
-
+  device_info_plus: ^9.0.3
+  open_filex: ^4.3.0
 
 dev_dependencies:
   flutter_test:

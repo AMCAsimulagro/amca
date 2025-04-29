@@ -1,8 +1,11 @@
 import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:open_filex/open_filex.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
-import 'package:pdf/widgets.dart' as pw;
 
 /// Widget que muestra un botón para descargar datos en Excel o PDF,
 /// utilizando SnackBar para las notificaciones.
@@ -22,8 +25,15 @@ class AmcaDownloadButton extends StatelessWidget {
   /// Solicita permiso de almacenamiento en Android.
   Future<bool> _requestStoragePermission() async {
     if (Platform.isAndroid) {
-      final status = await Permission.storage.request();  // permiso_handler :contentReference[oaicite:0]{index=0}
-      return status.isGranted;
+      final sdkInt = (await DeviceInfoPlugin().androidInfo).version.sdkInt;
+
+      if (sdkInt >= 33) {
+        final status = await Permission.mediaLibrary.request();
+        return status.isGranted;
+      } else {
+        final status = await Permission.storage.request();
+        return status.isGranted;
+      }
     }
     return true;
   }
@@ -37,11 +47,12 @@ class AmcaDownloadButton extends StatelessWidget {
           backgroundColor: Colors.red,
           duration: Duration(seconds: 2),
         ),
-      );  // SnackBar nativo :contentReference[oaicite:1]{index=1}
+      ); // SnackBar nativo :contentReference[oaicite:1]{index=1}
       return;
     }
 
-    final xcel.Workbook workbook = xcel.Workbook();           // XlsIO :contentReference[oaicite:2]{index=2}
+    final xcel.Workbook workbook =
+        xcel.Workbook(); // XlsIO :contentReference[oaicite:2]{index=2}
     final xcel.Worksheet sheet = workbook.worksheets[0];
 
     // Volcar cada celda de excelData en la hoja
@@ -63,7 +74,8 @@ class AmcaDownloadButton extends StatelessWidget {
         backgroundColor: Colors.green,
         duration: const Duration(seconds: 3),
       ),
-    );  // uso de ScaffoldMessenger :contentReference[oaicite:3]{index=3}
+    ); // uso de ScaffoldMessenger :contentReference[oaicite:3]{index=3}
+    await _openFileWithFeedback(context, path);
   }
 
   /// Genera el archivo PDF y lo guarda en Descargas.
@@ -79,7 +91,8 @@ class AmcaDownloadButton extends StatelessWidget {
       return;
     }
 
-    final doc = pdfDocumentBuilder();                          // pdf/widgets :contentReference[oaicite:4]{index=4}
+    final doc =
+        pdfDocumentBuilder(); // pdf/widgets :contentReference[oaicite:4]{index=4}
     final bytes = await doc.save();
 
     final path = '/storage/emulated/0/Download/amca_data.pdf';
@@ -92,6 +105,31 @@ class AmcaDownloadButton extends StatelessWidget {
         duration: const Duration(seconds: 3),
       ),
     );
+    await _openFileWithFeedback(context, path);
+  }
+
+  Future<void> _openFileWithFeedback(
+      BuildContext context, String filePath) async {
+    final result = await OpenFilex.open(filePath);
+
+    if (result.type != ResultType.done) {
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('No se pudo abrir el archivo'),
+          content: Text(
+              'No encontramos una aplicación instalada que pueda abrir este tipo de archivo.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('Aceptar'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      print('Archivo abierto exitosamente.');
+    }
   }
 
   /// Muestra diálogo para elegir formato de descarga.
