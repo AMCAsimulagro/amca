@@ -9,15 +9,20 @@ library;
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
+import 'package:amca/domain/model/livestock/animal_husbandry/meat/production_report_extension.dart';
+import 'package:amca/domain/model/reportable_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'meat_animal_husbandry.freezed.dart';
 
 part 'meat_animal_husbandry.g.dart';
 
 @unfreezed
-class MeatAnimalHusbandry with _$MeatAnimalHusbandry {
+class MeatAnimalHusbandry
+    with _$MeatAnimalHusbandry
+    implements ReportableEntity {
   const MeatAnimalHusbandry._();
 
   factory MeatAnimalHusbandry({
@@ -46,11 +51,11 @@ class MeatAnimalHusbandry with _$MeatAnimalHusbandry {
           0;
     }
     //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
+    print('calculateTotalCostAndExpense -> $totalCostAndExpense');
     return totalCostAndExpense;
   }
 
-  int profitCrop() {
-    //TODO renombrar
+  int profit() {
     int totalCostAndExpense = 0;
     if ((costsAndExpenses ?? []).isNotEmpty) {
       totalCostAndExpense = costsAndExpenses?.map((e) {
@@ -61,6 +66,17 @@ class MeatAnimalHusbandry with _$MeatAnimalHusbandry {
     }
     totalCostAndExpense =
         totalCostAndExpense + int.parse(value.replaceAll(',', ''));
+    print('profit -> $totalCostAndExpense');
     return totalCostAndExpense;
   }
+
+  @override
+  Map<String, dynamic> toReportData() => {
+        'Ganadería de': 'Carne',
+        'Nombre': farmName,
+        'Fecha de creación': DateFormat('yyyy/MM/dd').format(createDate),
+        'Valor invertido en la creación:': value,
+        'Costos y gastos': costsAndExpenses?.map((ce) => ce.toJson()).toList(),
+        'Producción': production?.toReportData()
+      };
 }

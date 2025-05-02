@@ -28,7 +28,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 /// StatefulWidget for creating and managing permanent farming activities.
@@ -225,7 +224,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                                         ManageProductionPage.create(
                                       farmingId:
                                           vm.currentAnimalHusbandry?.id ?? '',
-                                      production: //TODO - Cambiar poss Esto es para modificar
+                                      production:
                                           vm.currentAnimalHusbandry?.production,
                                     ),
                                   ),
@@ -270,63 +269,14 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                       AmcaButton(
                         text: AmcaWords.downloadReport,
                         onPressed: () {
-                          // TODO Pendiente logica para descargar reporte
-                          final excelData = [
-                            [
-                              'Fecha',
-                              'Finca',
-                              'N° Animales',
-                              'Valor',
-                              'Comentarios'
-                            ],
-                            [
-                              createdDate,
-                              _farmNameController.text,
-                              _animalNumbersController.text,
-                              _valueController.text,
-                              _commentController.text,
-                            ],
-                          ];
-
-                          pw.Document buildPdfDocument() {
-                            final pdf = pw.Document();
-                            pdf.addPage(
-                              pw.Page(
-                                build: (pw.Context context) => pw.Column(
-                                  crossAxisAlignment:
-                                      pw.CrossAxisAlignment.start,
-                                  children: [
-                                    pw.Text('Reporte de Ganadería',
-                                        style: pw.TextStyle(fontSize: 24)),
-                                    pw.SizedBox(height: 16),
-                                    pw.Text('Fecha: $createdDate'),
-                                    pw.Text(
-                                        'Finca: ${_farmNameController.text}'),
-                                    pw.Text(
-                                        'Número de Animales: ${_animalNumbersController.text}'),
-                                    pw.Text(
-                                        'Valor: \$${_valueController.text}'),
-                                    pw.Text(
-                                        'Comentarios: ${_commentController.text}'),
-                                  ],
-                                ),
-                              ),
-                            );
-                            return pdf;
-                          }
-
                           showDialog(
                             context: context,
                             builder: (_) => AlertDialog(
                               content: AmcaDownloadButton(
-                                excelData: excelData,
-                                pdfDocumentBuilder: buildPdfDocument,
+                                data: widget.animalHusbandry!.toReportData()
                               ),
                             ),
                           );
-
-                          // Dialogs.showErrorDialogWithMessage(
-                          //     context, AmcaWords.buildingThis);
                         },
                       )
                     ],

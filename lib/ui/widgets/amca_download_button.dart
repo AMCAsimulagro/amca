@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
@@ -10,17 +12,97 @@ import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
 /// Widget que muestra un botón para descargar datos en Excel o PDF,
 /// utilizando SnackBar para las notificaciones.
 class AmcaDownloadButton extends StatelessWidget {
-  /// Cada fila es una lista de celdas que irán en la hoja de cálculo.
-  final List<List<String>> excelData;
-
-  /// Función que construye y retorna el `pw.Document` con tu contenido PDF.
-  final pw.Document Function() pdfDocumentBuilder;
+  /// data contiene los datos a exportar
+  final Map<String, dynamic> data;
 
   const AmcaDownloadButton({
     Key? key,
-    required this.excelData,
-    required this.pdfDocumentBuilder,
+    required this.data,
   }) : super(key: key);
+
+  pw.Document buildReportPdf() {
+    final pdf = pw.Document();
+    final formattedNowDate =
+        DateFormat("d 'de' MMMM 'de' y", 'es_ES').format(DateTime.now());
+    final finca = data['Nombre'];
+
+    // Sección de costos y gastos
+    final costData = data['Costos y gastos'] as List<Map<String, dynamic>>?;
+    final costTable = costData != null && costData.isNotEmpty
+        ? buildTableSection('Costos y Gastos', costData)
+        : null;
+
+    // Sección de producciones
+    final prodData =
+        normalizeToList(data['Producciones'] ?? data['Producción']);
+    final prodTable = prodData.isNotEmpty
+        ? buildTableSection(
+            prodData.length == 1 ? 'Producción' : 'Producciones', prodData)
+        : null;
+
+    data.remove('Nombre');
+    data.remove('Costos y gastos');
+    data.remove('Producción');
+    data.remove('Producciones');
+
+    // Sección encabezado
+    final generalInfo = data.entries
+        .where((e) => e.value is! List)
+        .where((e) => e.value is! Map)
+        .map((e) => pw.Text('${e.key}: ${e.value}'))
+        .toList();
+
+    pdf.addPage(
+      pw.MultiPage(
+        build: (context) {
+          return [
+            pw.Text('Reporte de la finca $finca',
+                style:
+                    pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold),
+                textAlign: pw.TextAlign.left),
+            pw.Text(formattedNowDate,
+                style: const pw.TextStyle(fontSize: 12),
+                textAlign: pw.TextAlign.right),
+            pw.SizedBox(height: 16),
+            ...generalInfo,
+            if (costTable != null) ...[pw.SizedBox(height: 20), costTable],
+            if (prodTable != null) ...[pw.SizedBox(height: 20), prodTable],
+          ];
+        },
+      ),
+    );
+
+    return pdf;
+  }
+
+  List<Map<String, dynamic>> normalizeToList(dynamic data) {
+    if (data == null) return [];
+    if (data is List) return List<Map<String, dynamic>>.from(data);
+    if (data is Map<String, dynamic>) return [data];
+    throw Exception('Formato de producción no válido');
+  }
+
+  pw.Widget buildTableSection(String title, List<Map<String, dynamic>> rows) {
+    final headers = rows.first.keys.toList();
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: [
+        pw.Text(title,
+            style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+        pw.SizedBox(height: 8),
+        pw.TableHelper.fromTextArray(
+          headers: headers,
+          data: rows
+              .map((r) => headers.map((h) => r[h]?.toString() ?? '').toList())
+              .toList(),
+          headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+          border: pw.TableBorder.all(),
+          cellAlignment: pw.Alignment.centerLeft,
+          headerDecoration: const pw.BoxDecoration(color: PdfColors.grey300),
+        ),
+      ],
+    );
+  }
 
   /// Solicita permiso de almacenamiento en Android.
   Future<bool> _requestStoragePermission() async {
@@ -50,22 +132,12 @@ class AmcaDownloadButton extends StatelessWidget {
       ); // SnackBar nativo :contentReference[oaicite:1]{index=1}
       return;
     }
+    final bytes = await exportToExcelWithCharts();
 
-    final xcel.Workbook workbook =
-        xcel.Workbook(); // XlsIO :contentReference[oaicite:2]{index=2}
-    final xcel.Worksheet sheet = workbook.worksheets[0];
-
-    // Volcar cada celda de excelData en la hoja
-    for (var i = 0; i < excelData.length; i++) {
-      for (var j = 0; j < excelData[i].length; j++) {
-        sheet.getRangeByIndex(i + 1, j + 1).setText(excelData[i][j]);
-      }
-    }
-
-    final bytes = workbook.saveAsStream();
-    workbook.dispose();
-
-    final path = '/storage/emulated/0/Download/amca_data.xlsx';
+    final now = DateTime.now();
+    final formattedDate = DateFormat('yyyyMMdd').format(now);
+    final path =
+        '/storage/emulated/0/Download/reporte_${data['Nombre']}_$formattedDate.xlsx';
     await File(path).writeAsBytes(bytes);
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -76,6 +148,60 @@ class AmcaDownloadButton extends StatelessWidget {
       ),
     ); // uso de ScaffoldMessenger :contentReference[oaicite:3]{index=3}
     await _openFileWithFeedback(context, path);
+  }
+
+  Future<List<int>> exportToExcelWithCharts() async {
+    final workbook = xcel.Workbook();
+    final sheet = workbook.worksheets[0];
+    int currentRow = 1;
+
+    // 1. Datos simples
+    for (final entry
+        in data.entries.where((e) => (e.value is! List || e.value is! Map))) {
+      sheet.getRangeByIndex(currentRow, 1).setText(entry.key);
+      sheet.getRangeByIndex(currentRow, 2).setText(entry.value.toString());
+      currentRow++;
+    }
+
+    currentRow += 2;
+
+    // 2. Tablas y gráficos
+    for (final entry
+        in data.entries.where((e) => (e.value is List || e.value is Map))) {
+      final title = entry.key;
+      final rows = normalizeToList(entry.value);
+      if (rows.isEmpty) continue;
+
+      // Título
+      sheet.getRangeByIndex(currentRow, 1).setText(title);
+      sheet
+          .getRangeByIndex(currentRow, 1, currentRow, rows.first.keys.length)
+          .merge();
+      currentRow++;
+
+      // Headers
+      final headers = rows.first.keys.toList();
+      for (int col = 0; col < headers.length; col++) {
+        sheet.getRangeByIndex(currentRow, col + 1).setText(headers[col]);
+      }
+      currentRow++;
+
+      // Datos
+      for (final row in rows) {
+        for (int col = 0; col < headers.length; col++) {
+          sheet
+              .getRangeByIndex(currentRow, col + 1)
+              .setText(row[headers[col]]?.toString() ?? '');
+        }
+        currentRow++;
+      }
+      currentRow += 2;
+    }
+
+    // 4. Guardar
+    final List<int> bytes = workbook.saveAsStream();
+    workbook.dispose();
+    return bytes;
   }
 
   /// Genera el archivo PDF y lo guarda en Descargas.
@@ -91,18 +217,20 @@ class AmcaDownloadButton extends StatelessWidget {
       return;
     }
 
-    final doc =
-        pdfDocumentBuilder(); // pdf/widgets :contentReference[oaicite:4]{index=4}
+    final finca = data['Nombre'];
+    final doc = buildReportPdf();
     final bytes = await doc.save();
-
-    final path = '/storage/emulated/0/Download/amca_data.pdf';
+    final now = DateTime.now();
+    final formattedDate = DateFormat('yyyy_MM_dd').format(now);
+    final path =
+        '/storage/emulated/0/Download/Reporte_${finca}_$formattedDate.pdf';
     await File(path).writeAsBytes(bytes);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('PDF guardado en $path'),
+      const SnackBar(
+        content: Text('PDF guardado en Descargas'),
         backgroundColor: Colors.green,
-        duration: const Duration(seconds: 3),
+        duration: Duration(seconds: 3),
       ),
     );
     await _openFileWithFeedback(context, path);

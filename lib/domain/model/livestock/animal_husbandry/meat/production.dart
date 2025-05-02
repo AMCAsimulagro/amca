@@ -8,6 +8,8 @@
 /// are used to generate toJson() and fromJson() methods for serialization and deserialization.
 library;
 
+import 'package:amca/domain/model/reportable_entity.dart';
+
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,16 +22,17 @@ part 'production.g.dart';
 class Production with _$Production {
   /// Default constructor for Production.
   factory Production({
-    String? uidOwner,// Owner UID of the production.
-    String? farmName,// Part name of the production.
-    required String animalHusbandryId,// Transitory farming ID of the production.
-    required DateTime createDate,// Creation date of the production.
-    required String unitOfMeasurement,// Unit of measurement of the production.
-    required String quantity,// Quantity of the production.
-    required String price,// Price of the production.
+    String? uidOwner, // Owner UID of the production.
+    String? farmName, // Part name of the production.
+    required String
+        animalHusbandryId, // Transitory farming ID of the production.
+    required DateTime createDate, // Creation date of the production.
+    required String unitOfMeasurement, // Unit of measurement of the production.
+    required String quantity, // Quantity of the production.
+    required String price, // Price of the production.
     String? average,
-    String? totalValue,// Total value of the production.
-    String? id,//ID of the production.
+    String? totalValue, // Total value of the production.
+    String? id, //ID of the production.
   }) = _Production;
 
   /// Factory constructor to create Production object from JSON.

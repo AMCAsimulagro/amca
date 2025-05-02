@@ -69,7 +69,7 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
     try {
       /// Calculates the total cost and expense
 
-      final profitCrop = meetAnimalHusbandry?.profitCrop();
+      final profitCrop = meetAnimalHusbandry?.profit();
 
       /// Calculates the total production value
       final totalValueProduction =

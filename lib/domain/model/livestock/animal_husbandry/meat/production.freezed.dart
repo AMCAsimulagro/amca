@@ -21,6 +21,7 @@ Production _$ProductionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Production {
   String? get uidOwner => throw _privateConstructorUsedError;
+
   set uidOwner(String? value) =>
       throw _privateConstructorUsedError; // Owner UID of the production.
   String? get farmName =>
@@ -50,7 +51,9 @@ mixin _$Production {
   String? get average =>
       throw _privateConstructorUsedError; // Price of the production.
   set average(String? value) => throw _privateConstructorUsedError;
+
   String? get totalValue => throw _privateConstructorUsedError;
+
   set totalValue(String? value) =>
       throw _privateConstructorUsedError; // Total value of the production.
   String? get id =>
@@ -72,6 +75,7 @@ abstract class $ProductionCopyWith<$Res> {
   factory $ProductionCopyWith(
           Production value, $Res Function(Production) then) =
       _$ProductionCopyWithImpl<$Res, Production>;
+
   @useResult
   $Res call(
       {String? uidOwner,
@@ -93,6 +97,7 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -163,6 +168,7 @@ abstract class _$$ProductionImplCopyWith<$Res>
   factory _$$ProductionImplCopyWith(
           _$ProductionImpl value, $Res Function(_$ProductionImpl) then) =
       __$$ProductionImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -267,29 +273,37 @@ class _$ProductionImpl implements _Production {
 
   @override
   String? uidOwner;
+
 // Owner UID of the production.
   @override
   String? farmName;
+
 // Part name of the production.
   @override
   String animalHusbandryId;
+
 // Transitory farming ID of the production.
   @override
   DateTime createDate;
+
 // Creation date of the production.
   @override
   String unitOfMeasurement;
+
 // Unit of measurement of the production.
   @override
   String quantity;
+
 // Quantity of the production.
   @override
   String price;
+
 // Price of the production.
   @override
   String? average;
   @override
   String? totalValue;
+
 // Total value of the production.
   @override
   String? id;
@@ -333,6 +347,7 @@ abstract class _Production implements Production {
 
   @override
   String? get uidOwner;
+
   set uidOwner(String? value); // Owner UID of the production.
   @override
   String? get farmName; // Owner UID of the production.
@@ -356,8 +371,10 @@ abstract class _Production implements Production {
   @override
   String? get average; // Price of the production.
   set average(String? value);
+
   @override
   String? get totalValue;
+
   set totalValue(String? value); // Total value of the production.
   @override
   String? get id; // Total value of the production.
