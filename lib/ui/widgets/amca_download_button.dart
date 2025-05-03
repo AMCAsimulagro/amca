@@ -13,6 +13,7 @@ import '../utils/amca_words.dart';
 
 class AmcaDownloadButton extends StatelessWidget {
   final Map<String, dynamic> data;
+  static const downloadPath = '/storage/emulated/0/Download';
 
   const AmcaDownloadButton({
     Key? key,
@@ -44,45 +45,27 @@ class AmcaDownloadButton extends StatelessWidget {
     return permissionGranted;
   }
 
-  Future<void> _generateAndSaveExcel(BuildContext context) async {
+  Future<void> _generateAndSaveReport(
+      BuildContext context, String fileFormat) async {
     if (!await _requestStoragePermission(context)) {
       return;
     }
-    final bytes =
+    var bytes =
         await GenerateExcelReport().exportToExcelWithCharts(context, data);
+    if (fileFormat == 'pdf') {
+      final doc = await GeneratePdfReport().buildReportPdf(context, data);
+      bytes = await doc.save();
+    }
 
     final now = DateTime.now();
-    final formattedDate = DateFormat('yyyyMMdd').format(now);
+    final formattedDate = DateFormat('dd_MM_yyyy').format(now);
     final path =
-        '/storage/emulated/0/Download/reporte_${data['Nombre']}_$formattedDate.xlsx';
-    await File(path).writeAsBytes(bytes);
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Excel guardado en $path'),
-        backgroundColor: Colors.green,
-        duration: const Duration(seconds: 3),
-      ),
-    ); // uso de ScaffoldMessenger :contentReference[oaicite:3]{index=3}
-    await _openFileWithFeedback(context, path);
-  }
-
-  Future<void> _generateAndSavePDF(BuildContext context) async {
-    if (!await _requestStoragePermission(context)) {
-      return;
-    }
-
-    final finca = data['Nombre'];
-    final doc = await GeneratePdfReport().buildReportPdf(context, data);
-    final bytes = await doc.save();
-    final formattedDate = DateFormat('yyyy_MM_dd').format(DateTime.now());
-    final path =
-        '/storage/emulated/0/Download/Reporte_${finca}_$formattedDate.pdf';
+        '$downloadPath/${AmcaWords.farmReport} ${data[AmcaWords.name]}_$formattedDate.$fileFormat';
     await File(path).writeAsBytes(bytes);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('PDF guardado en Descargas'),
+        content: Text(AmcaWords.reportSavedInDownloads),
         backgroundColor: Colors.green,
         duration: Duration(seconds: 3),
       ),
@@ -120,14 +103,14 @@ class AmcaDownloadButton extends StatelessWidget {
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
-              _generateAndSaveExcel(context);
+              _generateAndSaveReport(context, 'xlsx');
             },
             child: const Text('Excel'),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
-              _generateAndSavePDF(context);
+              _generateAndSaveReport(context, 'pdf');
             },
             child: const Text('PDF'),
           ),

@@ -66,7 +66,7 @@ class GeneratePdfReport {
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: [
                 pw.Text(
-                  '${AmcaWords.famrReport} $farmName',
+                  '${AmcaWords.farmReport} $farmName',
                   style: pw.TextStyle(
                       fontSize: 20, fontWeight: pw.FontWeight.bold),
                 ),

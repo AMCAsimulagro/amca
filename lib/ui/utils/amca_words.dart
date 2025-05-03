@@ -257,14 +257,14 @@ class AmcaWords {
   // Words reports
   static const String dateGeneration = 'Fecha de Generación';
   static const String productions = 'Producciones';
-  static const String famrReport = 'Reporte finca';
+  static const String farmReport = 'Reporte finca';
   static const String totalValue = 'Valor Total';
   static const String price = 'Precio';
   static const String noPermission = 'Permiso de almacenamiento denegado';
-  static const String noFileOpen =
-      'No se pudo abrir el archivo';
+  static const String noFileOpen = 'No se pudo abrir el archivo';
   static const String noAppToFileOpen =
       'No se encontró una aplicación instalada que pueda abrir este tipo de archivo.';
+  static const String reportSavedInDownloads = 'Reporte guardado en Descargas';
 
   // Words modulo Livestock(Pecuario)
   static const String livestockType = 'Tipo de Explotación';
