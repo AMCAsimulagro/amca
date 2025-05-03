@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:pdf/pdf.dart';
@@ -56,14 +57,42 @@ class AmcaDownloadButton extends StatelessWidget {
             ))
         .toList();
 
+    final logo = await loadLogoBytes();
+    final image = pw.MemoryImage(logo); // Tu logo como Uint8List
+
+    final myPageTheme = pw.PageTheme(
+      margin: const pw.EdgeInsets.all(30),
+      buildBackground: (context) => pw.FullPage(
+        ignoreMargins: true,
+        child: pw.Center(
+          child: pw.Opacity(
+            opacity: 0.1,
+            child: pw.Image(image, width: 800),
+          ),
+        ),
+      ),
+    );
+
     pdf.addPage(
       pw.MultiPage(
+        pageTheme: myPageTheme,
         build: (context) {
           return [
-            pw.Text('Reporte finca $finca',
-                style:
-                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
-            pw.Text(formattedNowDate, style: const pw.TextStyle(fontSize: 14)),
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              children: [
+                pw.Text(
+                  'Reporte finca $finca',
+                  style: pw.TextStyle(
+                      fontSize: 20, fontWeight: pw.FontWeight.bold),
+                ),
+                pw.Text(
+                  formattedNowDate,
+                  style: pw.TextStyle(
+                      fontSize: 14, fontWeight: pw.FontWeight.bold),
+                ),
+              ],
+            ),
             pw.SizedBox(height: 14),
             ...generalInfo,
             if (costTable != null) ...[pw.SizedBox(height: 18), costTable],
@@ -80,6 +109,11 @@ class AmcaDownloadButton extends StatelessWidget {
     if (data is List) return List<Map<String, dynamic>>.from(data);
     if (data is Map<String, dynamic>) return [data];
     throw Exception('Formato de producción no válido');
+  }
+
+  Future<Uint8List> loadLogoBytes() async {
+    final bytes = await rootBundle.load('assets/images/logo.png');
+    return bytes.buffer.asUint8List();
   }
 
   pw.Widget buildTableSection(String title, List<Map<String, dynamic>> rows) {
@@ -182,7 +216,19 @@ class AmcaDownloadButton extends StatelessWidget {
   Future<List<int>> exportToExcelWithCharts() async {
     final workbook = xcel.Workbook();
     final sheet = workbook.worksheets[0];
-    int currentRow = 1;
+    // Insertar imagen
+    final Uint8List imageBytes =
+        await loadLogoBytes(); // Carga desde assets o red
+    final xcel.Picture picture = sheet.pictures.addStream(1, 1, imageBytes);
+    picture.height = 100;
+    picture.width = 100;
+    sheet
+        .getRangeByIndex(3, 3)
+        .setText('Fecha de Generación');
+    sheet
+        .getRangeByIndex(4, 3)
+        .setText(DateFormat('dd/MM/yyyy').format(DateTime.now()));
+    int currentRow = 6;
 
     // 1. Datos simples
     for (final entry
