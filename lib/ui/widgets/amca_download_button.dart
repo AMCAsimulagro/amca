@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,9 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
+
+import '../utils/pie_chart_cost_expense.dart';
+import 'capture_chart.dart';
 
 /// Widget que muestra un botón para descargar datos en Excel o PDF,
 /// utilizando SnackBar para las notificaciones.
@@ -20,7 +25,7 @@ class AmcaDownloadButton extends StatelessWidget {
     required this.data,
   }) : super(key: key);
 
-  pw.Document buildReportPdf() {
+  Future<pw.Document> buildReportPdf(BuildContext context) async {
     final pdf = pw.Document();
     final formattedNowDate =
         DateFormat("d 'de' MMMM 'de' y", 'es_ES').format(DateTime.now());
@@ -30,6 +35,10 @@ class AmcaDownloadButton extends StatelessWidget {
     final costData = data['Costos y gastos'] as List<Map<String, dynamic>>?;
     final costTable = costData != null && costData.isNotEmpty
         ? buildTableSection('Costos y Gastos', costData)
+        : null;
+
+    final costCharts = costData != null && costData.isNotEmpty
+        ? await buildPieChart(context, costData)
         : null;
 
     // Sección de producciones
@@ -49,29 +58,36 @@ class AmcaDownloadButton extends StatelessWidget {
     final generalInfo = data.entries
         .where((e) => e.value is! List)
         .where((e) => e.value is! Map)
-        .map((e) => pw.Text('${e.key}: ${e.value}'))
+        .map((e) => pw.Text(
+              '${e.key}: ${e.value}',
+              style: const pw.TextStyle(fontSize: 16),
+            ))
         .toList();
 
     pdf.addPage(
       pw.MultiPage(
         build: (context) {
           return [
-            pw.Text('Reporte de la finca $finca',
+            pw.Text('Reporte finca $finca',
                 style:
-                    pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold),
-                textAlign: pw.TextAlign.left),
-            pw.Text(formattedNowDate,
-                style: const pw.TextStyle(fontSize: 12),
-                textAlign: pw.TextAlign.right),
-            pw.SizedBox(height: 16),
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+            pw.Text(formattedNowDate, style: const pw.TextStyle(fontSize: 14)),
+            pw.SizedBox(height: 14),
             ...generalInfo,
-            if (costTable != null) ...[pw.SizedBox(height: 20), costTable],
-            if (prodTable != null) ...[pw.SizedBox(height: 20), prodTable],
+            if (costTable != null) ...[pw.SizedBox(height: 18), costTable],
+            if (costCharts != null) ...[
+              pw.SizedBox(height: 18),
+              pw.Image(
+                pw.MemoryImage(costCharts),
+                fit: pw.BoxFit.contain,
+                height: 500,
+              )
+            ],
+            if (prodTable != null) ...[pw.SizedBox(height: 18), prodTable],
           ];
         },
       ),
     );
-
     return pdf;
   }
 
@@ -83,25 +99,90 @@ class AmcaDownloadButton extends StatelessWidget {
   }
 
   pw.Widget buildTableSection(String title, List<Map<String, dynamic>> rows) {
+    print('rows -> $rows');
     final headers = rows.first.keys.toList();
+
+    // Calcular el valor total
+    double total = 0;
+    for (final row in rows) {
+      final precio = double.tryParse(
+              row['Precio']?.toString().replaceAll(',', '') ?? '0') ??
+          0;
+      final cantidad = double.tryParse(
+              row['Cantidad']?.toString().replaceAll(',', '') ?? '0') ??
+          0;
+      total += precio * cantidad;
+    }
+
+    // Formatear a pesos con comas
+    final valorTotal = NumberFormat('#,###', 'en').format(total);
+
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(title,
-            style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+            style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
         pw.SizedBox(height: 8),
         pw.TableHelper.fromTextArray(
           headers: headers,
           data: rows
               .map((r) => headers.map((h) => r[h]?.toString() ?? '').toList())
               .toList(),
-          headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+          headerStyle:
+              pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
           border: pw.TableBorder.all(),
-          cellAlignment: pw.Alignment.centerLeft,
+          cellStyle: const pw.TextStyle(fontSize: 10),
+          cellAlignment: pw.Alignment.center,
           headerDecoration: const pw.BoxDecoration(color: PdfColors.grey300),
+        ),
+        pw.SizedBox(height: 8),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.end,
+          children: [
+            pw.Text(
+              'Valor Total: $valorTotal',
+              style: pw.TextStyle(fontSize: 14, fontWeight: pw.FontWeight.bold),
+            ),
+          ],
         ),
       ],
     );
+  }
+
+  Future<Uint8List?> buildPieChart(
+      BuildContext context, List<Map<String, dynamic>> costData) async {
+    final costos = costData.where((e) => e['Costo/Gasto'] == 'Costos').toList();
+    final gastos = costData.where((e) => e['Costo/Gasto'] == 'Gasto').toList();
+
+    double totalCosto = costos.fold(
+        0,
+        (sum, item) =>
+            sum +
+            (double.tryParse(item['Precio'].toString()) ?? 0) *
+                (double.tryParse(item['Cantidad'].toString()) ?? 0));
+    double totalGasto = gastos.fold(
+        0,
+        (sum, item) =>
+            sum +
+            (double.tryParse(item['Precio'].toString()) ?? 0) *
+                (double.tryParse(item['Cantidad'].toString()) ?? 0));
+
+    final completer = Completer<Uint8List?>();
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        content: ChartCaptureWidget(
+          chart: PieChartCostVsGasto(costs: totalCosto, expense: totalGasto),
+          onCaptured: (bytes) {
+            completer.complete(bytes); // Se completa el Future
+            Navigator.of(context)
+                .pop(); // cerrar el diálogo cuando ya se capturó
+          },
+        ),
+      ),
+    );
+
+    return completer.future; // Espera hasta que se complete
   }
 
   /// Solicita permiso de almacenamiento en Android.
@@ -218,7 +299,7 @@ class AmcaDownloadButton extends StatelessWidget {
     }
 
     final finca = data['Nombre'];
-    final doc = buildReportPdf();
+    final doc = await buildReportPdf(context);
     final bytes = await doc.save();
     final now = DateTime.now();
     final formattedDate = DateFormat('yyyy_MM_dd').format(now);

@@ -28,7 +28,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:pdf/widgets.dart' as pw;
 
 /// StatefulWidget for creating and managing permanent farming activities.
 class ManageMeetAnimalHusbandry extends StatefulWidget {
@@ -80,6 +79,8 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'size costsAndExpenses -> ${widget.animalHusbandry?.costsAndExpenses?.length}');
     return Consumer<CreateMeetAnimalHusbandryVM>(builder: (context, vm, _) {
       return Scaffold(
         appBar: AppBar(
@@ -273,8 +274,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                             context: context,
                             builder: (_) => AlertDialog(
                               content: AmcaDownloadButton(
-                                data: widget.animalHusbandry!.toReportData()
-                              ),
+                                  data: widget.animalHusbandry!.toReportData()),
                             ),
                           );
                         },
