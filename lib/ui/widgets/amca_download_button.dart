@@ -11,14 +11,13 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
 
-import '../utils/pie_chart_cost_expense.dart';
-import 'capture_chart.dart';
 
 /// Widget que muestra un botón para descargar datos en Excel o PDF,
 /// utilizando SnackBar para las notificaciones.
 class AmcaDownloadButton extends StatelessWidget {
   /// data contiene los datos a exportar
   final Map<String, dynamic> data;
+
 
   const AmcaDownloadButton({
     Key? key,
@@ -35,10 +34,6 @@ class AmcaDownloadButton extends StatelessWidget {
     final costData = data['Costos y gastos'] as List<Map<String, dynamic>>?;
     final costTable = costData != null && costData.isNotEmpty
         ? buildTableSection('Costos y Gastos', costData)
-        : null;
-
-    final costCharts = costData != null && costData.isNotEmpty
-        ? await buildPieChart(context, costData)
         : null;
 
     // Sección de producciones
@@ -75,14 +70,6 @@ class AmcaDownloadButton extends StatelessWidget {
             pw.SizedBox(height: 14),
             ...generalInfo,
             if (costTable != null) ...[pw.SizedBox(height: 18), costTable],
-            if (costCharts != null) ...[
-              pw.SizedBox(height: 18),
-              pw.Image(
-                pw.MemoryImage(costCharts),
-                fit: pw.BoxFit.contain,
-                height: 500,
-              )
-            ],
             if (prodTable != null) ...[pw.SizedBox(height: 18), prodTable],
           ];
         },
@@ -147,42 +134,6 @@ class AmcaDownloadButton extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Future<Uint8List?> buildPieChart(
-      BuildContext context, List<Map<String, dynamic>> costData) async {
-    final costos = costData.where((e) => e['Costo/Gasto'] == 'Costos').toList();
-    final gastos = costData.where((e) => e['Costo/Gasto'] == 'Gasto').toList();
-
-    double totalCosto = costos.fold(
-        0,
-        (sum, item) =>
-            sum +
-            (double.tryParse(item['Precio'].toString()) ?? 0) *
-                (double.tryParse(item['Cantidad'].toString()) ?? 0));
-    double totalGasto = gastos.fold(
-        0,
-        (sum, item) =>
-            sum +
-            (double.tryParse(item['Precio'].toString()) ?? 0) *
-                (double.tryParse(item['Cantidad'].toString()) ?? 0));
-
-    final completer = Completer<Uint8List?>();
-    await showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        content: ChartCaptureWidget(
-          chart: PieChartCostVsGasto(costs: totalCosto, expense: totalGasto),
-          onCaptured: (bytes) {
-            completer.complete(bytes); // Se completa el Future
-            Navigator.of(context)
-                .pop(); // cerrar el diálogo cuando ya se capturó
-          },
-        ),
-      ),
-    );
-
-    return completer.future; // Espera hasta que se complete
   }
 
   /// Solicita permiso de almacenamiento en Android.
