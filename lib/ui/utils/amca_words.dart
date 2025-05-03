@@ -5,7 +5,8 @@
 ///
 class AmcaWords {
   static const String adminOptions = 'Opciones de administrador';
-  static const String buildingThis = 'Estamos trabajando en esto. Ten paciencia, las mejoras llegarán pronto.';
+  static const String buildingThis =
+      'Estamos trabajando en esto. Ten paciencia, las mejoras llegarán pronto.';
   static const String addInformation = 'Añadir información';
   static const String addPartProduction = 'Agregar una producción del lote';
   static const String addCostOrExpense = 'Agregar Costo o Gasto';
@@ -259,6 +260,11 @@ class AmcaWords {
   static const String famrReport = 'Reporte finca';
   static const String totalValue = 'Valor Total';
   static const String price = 'Precio';
+  static const String noPermission = 'Permiso de almacenamiento denegado';
+  static const String noFileOpen =
+      'No se pudo abrir el archivo';
+  static const String noAppToFileOpen =
+      'No se encontró una aplicación instalada que pueda abrir este tipo de archivo.';
 
   // Words modulo Livestock(Pecuario)
   static const String livestockType = 'Tipo de Explotación';
@@ -281,14 +287,15 @@ class AmcaWords {
   static const String type = 'Tipo';
   static const String pleaseSelectType = 'Por favor, seleccione un tipo';
   static const String amount = 'Cantidad';
-  static const String pleaseAddAmount =
-      'Por favor, ingrese la cantidad';
-  static const String pleaseAnimalNumber = 'Por favor, ingrese el número de animales';
+  static const String pleaseAddAmount = 'Por favor, ingrese la cantidad';
+  static const String pleaseAnimalNumber =
+      'Por favor, ingrese el número de animales';
   static const String pleaseSelectDescriptionType =
       'Por favor, seleccione una descripción';
   static const String pleaseSelectProductionType =
       'Por favor, seleccione un tipo de producción';
-  static String yourAnimalHusbandryHasBeenUpdated = 'Tu ... ha sido actualizado';
+  static String yourAnimalHusbandryHasBeenUpdated =
+      'Tu ... ha sido actualizado';
   static String yourAnimalHusbandryHasBeenCreated = 'Tu ... ha sido creado';
   static const String areYouSureToDeleteThisAnimalHusbandry =
       '¿Desea eliminar este ...?';

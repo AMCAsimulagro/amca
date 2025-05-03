@@ -9,10 +9,9 @@ import 'package:intl/intl.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-/// Widget que muestra un botón para descargar datos en Excel o PDF,
-/// utilizando SnackBar para las notificaciones.
+import '../utils/amca_words.dart';
+
 class AmcaDownloadButton extends StatelessWidget {
-  /// data contiene los datos a exportar
   final Map<String, dynamic> data;
 
   const AmcaDownloadButton({
@@ -20,7 +19,6 @@ class AmcaDownloadButton extends StatelessWidget {
     required this.data,
   }) : super(key: key);
 
-  /// Solicita permiso de almacenamiento en Android.
   Future<bool> _requestStoragePermission(BuildContext context) async {
     var permissionGranted = false;
     if (Platform.isAndroid) {
@@ -37,16 +35,15 @@ class AmcaDownloadButton extends StatelessWidget {
     if (!permissionGranted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Permiso de almacenamiento denegado'),
+          content: Text(AmcaWords.noPermission),
           backgroundColor: Colors.red,
           duration: Duration(seconds: 2),
         ),
-      ); // SnackBar nativo :contentReference[oaicite:1]{index=1}
+      );
     }
     return permissionGranted;
   }
 
-  /// Genera el archivo Excel y lo guarda en Descargas.
   Future<void> _generateAndSaveExcel(BuildContext context) async {
     if (!await _requestStoragePermission(context)) {
       return;
@@ -70,7 +67,6 @@ class AmcaDownloadButton extends StatelessWidget {
     await _openFileWithFeedback(context, path);
   }
 
-  /// Genera el archivo PDF y lo guarda en Descargas.
   Future<void> _generateAndSavePDF(BuildContext context) async {
     if (!await _requestStoragePermission(context)) {
       return;
@@ -97,28 +93,23 @@ class AmcaDownloadButton extends StatelessWidget {
   Future<void> _openFileWithFeedback(
       BuildContext context, String filePath) async {
     final result = await OpenFilex.open(filePath);
-
     if (result.type != ResultType.done) {
       await showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('No se pudo abrir el archivo'),
-          content: Text(
-              'No encontramos una aplicación instalada que pueda abrir este tipo de archivo.'),
+          title: const Text(AmcaWords.noFileOpen),
+          content: const Text(AmcaWords.noAppToFileOpen),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Aceptar'),
+              child: const Text(AmcaWords.accept),
             ),
           ],
         ),
       );
-    } else {
-      print('Archivo abierto exitosamente.');
     }
   }
 
-  /// Muestra diálogo para elegir formato de descarga.
   void _showDownloadOptions(BuildContext context) {
     showDialog<void>(
       context: context,
