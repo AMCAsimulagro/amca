@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +10,11 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
 
-
 /// Widget que muestra un botón para descargar datos en Excel o PDF,
 /// utilizando SnackBar para las notificaciones.
 class AmcaDownloadButton extends StatelessWidget {
   /// data contiene los datos a exportar
   final Map<String, dynamic> data;
-
 
   const AmcaDownloadButton({
     Key? key,
@@ -189,7 +186,7 @@ class AmcaDownloadButton extends StatelessWidget {
 
     // 1. Datos simples
     for (final entry
-        in data.entries.where((e) => (e.value is! List || e.value is! Map))) {
+        in data.entries.where((e) => (e.value is! List && e.value is! Map))) {
       sheet.getRangeByIndex(currentRow, 1).setText(entry.key);
       sheet.getRangeByIndex(currentRow, 2).setText(entry.value.toString());
       currentRow++;
