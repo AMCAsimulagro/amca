@@ -8,6 +8,7 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/cost_expense_report_extension.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/meat/production_report_extension.dart';
 import 'package:amca/domain/model/reportable_entity.dart';
@@ -51,7 +52,7 @@ class MeatAnimalHusbandry
           0;
     }
     //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
-    print('calculateTotalCostAndExpense -> $totalCostAndExpense');
+    print('calculateTotalCostAndExpense -> $totalCostAndExpense');// TODO eliminar
     return totalCostAndExpense;
   }
 
@@ -66,7 +67,7 @@ class MeatAnimalHusbandry
     }
     totalCostAndExpense =
         totalCostAndExpense + int.parse(value.replaceAll(',', ''));
-    print('profit -> $totalCostAndExpense');
+    print('profit -> $totalCostAndExpense');// TODO eliminar
     return totalCostAndExpense;
   }
 
@@ -75,8 +76,10 @@ class MeatAnimalHusbandry
         'Ganadería de': 'Carne',
         'Nombre': farmName,
         'Fecha de creación': DateFormat('yyyy/MM/dd').format(createDate),
-        'Valor invertido en la creación:': value,
-        'Costos y gastos': costsAndExpenses?.map((ce) => ce.toJson()).toList(),
+        'Número de animales': numberAnimals,
+        'Valor invertido en la creación': value,
+        'Costos y gastos':
+            costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
         'Producción': production?.toReportData()
       };
 }
