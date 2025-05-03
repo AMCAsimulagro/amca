@@ -252,6 +252,14 @@ class AmcaWords {
       'La cédula ciudadana ya esta actualmente registrada';
 
   static const String productionType = 'Tipo de Producción';
+
+  // Words reports
+  static const String dateGeneration = 'Fecha de Generación';
+  static const String productions = 'Producciones';
+  static const String famrReport = 'Reporte finca';
+  static const String totalValue = 'Valor Total';
+  static const String price = 'Precio';
+
   // Words modulo Livestock(Pecuario)
   static const String livestockType = 'Tipo de Explotación';
   static const String animalHusbandry = 'Ganadería';
