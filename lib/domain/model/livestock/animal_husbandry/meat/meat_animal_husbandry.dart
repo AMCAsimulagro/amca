@@ -75,7 +75,7 @@ class MeatAnimalHusbandry
   Map<String, dynamic> toReportData() => {
         'Ganadería de': 'Carne',
         'Nombre': farmName,
-        'Fecha de creación': DateFormat('yyyy/MM/dd').format(createDate),
+        'Fecha de creación': DateFormat('dd/MM/yyyy').format(createDate),
         'Número de animales': numberAnimals,
         'Valor invertido en la creación': value,
         'Costos y gastos':
