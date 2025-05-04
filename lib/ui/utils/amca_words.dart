@@ -259,10 +259,13 @@ class AmcaWords {
   static const String reportGenerate = 'Generar Reporte';
   static const String basicData = 'Información General';
   static const String dateGeneration = 'Fecha de Generación';
+  static const String creationDate = 'Fecha de creación';
   static const String productions = 'Producciones';
   static const String farmReport = 'Reporte finca';
+  static const String creationValue = 'Valor invertido en la creación';
   static const String totalValue = 'Valor Total';
   static const String price = 'Precio';
+  static const String costOrExpense = 'Costo/Gasto';
   static const String noPermission = 'Permiso de almacenamiento denegado';
   static const String noFileOpen = 'No se pudo abrir el archivo';
   static const String noAppToFileOpen =

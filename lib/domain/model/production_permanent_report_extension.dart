@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 import '../../../../../ui/utils/amca_words.dart';
-import 'production.dart';
+import 'production_permanent.dart';
 
 extension ProductionReportExtension on Production {
   Map<String, dynamic> toReportData() {

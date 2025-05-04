@@ -16,6 +16,8 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../ui/utils/amca_words.dart';
+
 part 'meat_animal_husbandry.freezed.dart';
 
 part 'meat_animal_husbandry.g.dart';
@@ -71,14 +73,14 @@ class MeatAnimalHusbandry
 
   @override
   Map<String, dynamic> toReportData() => {
-        'Ganadería de': 'Carne',
-        'Nombre': farmName,
-        'Fecha de creación': DateFormat('dd/MM/yyyy').format(createDate),
-        'Número de animales': numberAnimals,
-        'Valor invertido en la creación': value,
+        AmcaWords.livestockType: AmcaWords.milk,
+        AmcaWords.name: farmName,
+        AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
+        AmcaWords.animalNumber: numberAnimals,
+        AmcaWords.creationValue: value,
         if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
-          'Costos y gastos':
+          AmcaWords.costsAndExpenses:
               costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
-        if (null != production) 'Producción': production?.toReportData()
+        if (null != production) AmcaWords.production: production?.toReportData()
       };
 }

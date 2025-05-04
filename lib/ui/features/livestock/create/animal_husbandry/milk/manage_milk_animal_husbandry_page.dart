@@ -29,6 +29,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../widgets/amca_download_button.dart';
+
 /// StatefulWidget for creating and managing permanent farming activities.
 class ManageMilkAnimalHusbandry extends StatefulWidget {
   /// Creates a [ManageMilkAnimalHusbandry] instance with an optional [animalHusbandry].
@@ -304,9 +306,11 @@ class _ManageMilkAnimalHusbandryState extends State<ManageMilkAnimalHusbandry> {
                       AmcaButton(
                         text: AmcaWords.downloadReport,
                         onPressed: () {
-                          // TODO Pendiente logica para descargar reporte
-                          Dialogs.showErrorDialogWithMessage(
-                              context, AmcaWords.buildingThis);
+                          showDialog(
+                            context: context,
+                            builder: (_) => AmcaDownloadButton(
+                                data: widget.animalHusbandry!.toReportData()),
+                          );
                         },
                       )
                     ],
