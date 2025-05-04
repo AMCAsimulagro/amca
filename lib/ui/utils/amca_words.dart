@@ -162,7 +162,6 @@ class AmcaWords {
   static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
   static const String seeCharts = 'Ver gráficas';
-  static const String downloadReport = 'Descargar reporte';
   static const String seeProduction = 'Ver Producción del lote';
   static const String secondName = 'Segundo nombre';
   static const String secondLastName = 'Segundo Apellido';
@@ -255,6 +254,10 @@ class AmcaWords {
   static const String productionType = 'Tipo de Producción';
 
   // Words reports
+  static const String downloadReport = 'Descargar reporte';
+  static const String download = 'Descargar';
+  static const String reportGenerate = 'Generar Reporte';
+  static const String basicData = 'Información General';
   static const String dateGeneration = 'Fecha de Generación';
   static const String productions = 'Producciones';
   static const String farmReport = 'Reporte finca';

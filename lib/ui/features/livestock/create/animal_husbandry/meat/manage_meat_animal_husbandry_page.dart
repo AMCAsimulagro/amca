@@ -272,10 +272,8 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder: (_) => AlertDialog(
-                              content: AmcaDownloadButton(
-                                  data: widget.animalHusbandry!.toReportData()),
-                            ),
+                            builder: (_) => AmcaDownloadButton(
+                                data: widget.animalHusbandry!.toReportData()),
                           );
                         },
                       )

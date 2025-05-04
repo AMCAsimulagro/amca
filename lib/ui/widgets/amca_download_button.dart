@@ -11,14 +11,32 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../utils/amca_words.dart';
 
-class AmcaDownloadButton extends StatelessWidget {
+class AmcaDownloadButton extends StatefulWidget {
   final Map<String, dynamic> data;
-  static const downloadPath = '/storage/emulated/0/Download';
 
   const AmcaDownloadButton({
     Key? key,
     required this.data,
   }) : super(key: key);
+
+  @override
+  State<AmcaDownloadButton> createState() => _AmcaDownloadButtonState();
+}
+
+class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
+  static const downloadPath = '/storage/emulated/0/Download';
+  static const excelFileName = 'Excel';
+  static const excelExtension = 'xlsx';
+  static const pdfFileName = 'PDF';
+  static const pdfExtension = 'pdf';
+  static const Map<String, String> _formats = {
+    excelFileName: excelExtension,
+    pdfFileName: pdfExtension,
+  };
+  bool _includeGeneralInfo = true;
+  bool _includeCosts = true;
+  bool _includeProductions = true;
+  String _selectedFormat = _formats.keys.first;
 
   Future<bool> _requestStoragePermission(BuildContext context) async {
     var permissionGranted = false;
@@ -33,7 +51,7 @@ class AmcaDownloadButton extends StatelessWidget {
         permissionGranted = status.isGranted;
       }
     }
-    if (!permissionGranted) {
+    if (!permissionGranted && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(AmcaWords.noPermission),
@@ -45,32 +63,63 @@ class AmcaDownloadButton extends StatelessWidget {
     return permissionGranted;
   }
 
-  Future<void> _generateAndSaveReport(
-      BuildContext context, String fileFormat) async {
+  Future<void> _generateAndSaveReport(BuildContext context) async {
     if (!await _requestStoragePermission(context)) {
       return;
     }
-    var bytes =
-        await GenerateExcelReport().exportToExcelWithCharts(context, data);
-    if (fileFormat == 'pdf') {
-      final doc = await GeneratePdfReport().buildReportPdf(context, data);
-      bytes = await doc.save();
+    final formattedDate = DateFormat('dd_MM_yyyy').format(DateTime.now());
+    final farmName = widget.data[AmcaWords.name];
+    final fileFormat = _formats[_selectedFormat];
+
+    _adjustDataToUserRequirements();
+
+    var bytes = await GenerateExcelReport()
+        .exportToExcelWithCharts(context, widget.data);
+    switch (fileFormat) {
+      case pdfExtension:
+        final doc =
+            await GeneratePdfReport().buildReportPdf(context, widget.data);
+        bytes = await doc.save();
+        break;
+      default:
+        bytes = await GenerateExcelReport()
+            .exportToExcelWithCharts(context, widget.data);
+        break;
     }
 
-    final now = DateTime.now();
-    final formattedDate = DateFormat('dd_MM_yyyy').format(now);
     final path =
-        '$downloadPath/${AmcaWords.farmReport} ${data[AmcaWords.name]}_$formattedDate.$fileFormat';
+        '$downloadPath/${AmcaWords.farmReport} ${farmName}_$formattedDate.$fileFormat';
     await File(path).writeAsBytes(bytes);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(AmcaWords.reportSavedInDownloads),
-        backgroundColor: Colors.green,
-        duration: Duration(seconds: 3),
-      ),
-    );
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(AmcaWords.reportSavedInDownloads),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
     await _openFileWithFeedback(context, path);
+  }
+
+  void _adjustDataToUserRequirements() {
+    if (!_includeGeneralInfo) {
+      List<String> keysToRemove = widget.data.entries
+          .where((e) => e.value is! List)
+          .where((e) => e.value is! Map)
+          .where((e) => e.value == AmcaWords.name)
+          .map((e) => e.key)
+          .toList();
+      widget.data.removeWhere((key, value) => keysToRemove.contains(key));
+    }
+    if (!_includeCosts) {
+      widget.data.remove(AmcaWords.costsAndExpenses);
+    }
+    if (!_includeProductions) {
+      widget.data.remove(AmcaWords.production);
+      widget.data.remove(AmcaWords.productions);
+    }
   }
 
   Future<void> _openFileWithFeedback(
@@ -93,38 +142,81 @@ class AmcaDownloadButton extends StatelessWidget {
     }
   }
 
-  void _showDownloadOptions(BuildContext context) {
-    showDialog<void>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Opciones de descarga'),
-        content: const Text('¿Deseas descargar como Excel o PDF?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              _generateAndSaveReport(context, 'xlsx');
-            },
-            child: const Text('Excel'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              _generateAndSaveReport(context, 'pdf');
-            },
-            child: const Text('PDF'),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.download, color: Colors.white),
-      tooltip: 'Descargar',
-      onPressed: () => _showDownloadOptions(context),
+    print('widget.data -> ${widget.data}');
+    return AlertDialog(
+      title: const Text(AmcaWords.reportGenerate),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CheckboxListTile(
+              title: const Text(AmcaWords.basicData),
+              value: _includeGeneralInfo,
+              onChanged: (value) {
+                setState(() {
+                  _includeGeneralInfo = value!;
+                });
+              },
+            ),
+            if (widget.data.containsKey(AmcaWords.costsAndExpenses))
+              CheckboxListTile(
+                title: const Text(AmcaWords.costsAndExpenses),
+                value: _includeCosts,
+                onChanged: (value) {
+                  setState(() {
+                    _includeCosts = value!;
+                  });
+                },
+              ),
+            if (widget.data.containsKey(AmcaWords.production) ||
+                widget.data.containsKey(AmcaWords.productions))
+              CheckboxListTile(
+                title: const Text(AmcaWords.production),
+                value: _includeProductions,
+                onChanged: (value) {
+                  setState(() {
+                    _includeProductions = value!;
+                  });
+                },
+              ),
+            ListTile(
+              title: const Text(AmcaWords.format),
+              trailing: DropdownButton<String>(
+                value: _selectedFormat,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedFormat = newValue!;
+                  });
+                },
+                items:
+                    _formats.keys.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text(AmcaWords.cancel),
+        ),
+        TextButton(
+          onPressed: () {
+            _generateAndSaveReport(context);
+            Navigator.of(context).pop();
+          },
+          child: const Text(AmcaWords.download),
+        ),
+      ],
     );
   }
 }

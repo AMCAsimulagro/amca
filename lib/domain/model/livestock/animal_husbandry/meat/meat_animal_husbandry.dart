@@ -52,7 +52,8 @@ class MeatAnimalHusbandry
           0;
     }
     //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
-    print('calculateTotalCostAndExpense -> $totalCostAndExpense');// TODO eliminar
+    print(
+        'calculateTotalCostAndExpense -> $totalCostAndExpense'); // TODO eliminar
     return totalCostAndExpense;
   }
 
@@ -67,7 +68,7 @@ class MeatAnimalHusbandry
     }
     totalCostAndExpense =
         totalCostAndExpense + int.parse(value.replaceAll(',', ''));
-    print('profit -> $totalCostAndExpense');// TODO eliminar
+    print('profit -> $totalCostAndExpense'); // TODO eliminar
     return totalCostAndExpense;
   }
 
@@ -78,8 +79,9 @@ class MeatAnimalHusbandry
         'Fecha de creación': DateFormat('dd/MM/yyyy').format(createDate),
         'Número de animales': numberAnimals,
         'Valor invertido en la creación': value,
-        'Costos y gastos':
-            costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
-        'Producción': production?.toReportData()
+        if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
+          'Costos y gastos':
+              costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
+        if (null != production) 'Producción': production?.toReportData()
       };
 }
