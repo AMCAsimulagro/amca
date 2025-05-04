@@ -73,7 +73,7 @@ class MeatAnimalHusbandry
 
   @override
   Map<String, dynamic> toReportData() => {
-        AmcaWords.livestockType: AmcaWords.milk,
+        AmcaWords.livestockType: AmcaWords.meat,
         AmcaWords.name: farmName,
         AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
         AmcaWords.animalNumber: numberAnimals,
