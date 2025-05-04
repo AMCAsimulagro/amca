@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../../widgets/amca_download_button.dart';
+
 class AllFarmingHistoryPage extends StatelessWidget {
   static ChangeNotifierProvider<AllFarmingHistoryVM> create({Key? key}) =>
       ChangeNotifierProvider(
@@ -43,28 +45,28 @@ class AllFarmingHistoryPage extends StatelessWidget {
           List<Widget> farmingItems = [];
 
           if (vm.farmingHistory.isNotEmpty) {
-            farmingItems.addAll(
-                _buildFarmingList(vm.farmingHistory, AmcaWords.transitory));
+            farmingItems.addAll(_buildFarmingList(
+                context, vm.farmingHistory, AmcaWords.transitory));
           }
 
           if (vm.farmingHistoryPermanent.isNotEmpty) {
             farmingItems.addAll(_buildFarmingList(
-                vm.farmingHistoryPermanent, AmcaWords.permanent));
+                context, vm.farmingHistoryPermanent, AmcaWords.permanent));
           }
 
           if (vm.meatAnimalHusbandry.isNotEmpty) {
-            farmingItems.addAll(
-                _buildFarmingList(vm.meatAnimalHusbandry, AmcaWords.meat));
+            farmingItems.addAll(_buildFarmingList(
+                context, vm.meatAnimalHusbandry, AmcaWords.meat));
           }
 
           if (vm.milkAnimalHusbandry.isNotEmpty) {
-            farmingItems.addAll(
-                _buildFarmingList(vm.milkAnimalHusbandry, AmcaWords.milk));
+            farmingItems.addAll(_buildFarmingList(
+                context, vm.milkAnimalHusbandry, AmcaWords.milk));
           }
 
           if (vm.pigFarming.isNotEmpty) {
-            farmingItems
-                .addAll(_buildFarmingList(vm.pigFarming, AmcaWords.pigFarming));
+            farmingItems.addAll(_buildFarmingList(
+                context, vm.pigFarming, AmcaWords.pigFarming));
           }
 
           if (farmingItems.isNotEmpty) {
@@ -91,7 +93,8 @@ class AllFarmingHistoryPage extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildFarmingList(List<dynamic> farmingHistory, String type) {
+  List<Widget> _buildFarmingList(
+      BuildContext context, List<dynamic> farmingHistory, String type) {
     List<Widget> farmingList = [];
 
     for (var farmingItem in farmingHistory) {
@@ -139,7 +142,11 @@ class AllFarmingHistoryPage extends StatelessWidget {
             ],
           ),
           onTap: () {
-            // TODO descargar reporte pdf o excel
+            showDialog(
+              context: context,
+              builder: (_) =>
+                  AmcaDownloadButton(data: farmingItem!.toReportData()),
+            );
           },
         ),
       );
