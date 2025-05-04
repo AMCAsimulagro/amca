@@ -10,6 +10,7 @@ import 'package:open_filex/open_filex.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../utils/amca_words.dart';
+import 'amca_select_form_field.dart';
 
 class AmcaDownloadButton extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -25,6 +26,7 @@ class AmcaDownloadButton extends StatefulWidget {
 
 class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
   static const downloadPath = '/storage/emulated/0/Download';
+  static const optionSelectAll = 'Todos';
   static const excelFileName = 'Excel';
   static const excelExtension = 'xlsx';
   static const pdfFileName = 'PDF';
@@ -35,6 +37,8 @@ class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
   };
   bool _includeGeneralInfo = true;
   bool _includeCosts = true;
+  final _productOrServiceController =
+      TextEditingController(text: optionSelectAll);
   bool _includeProductions = true;
   String _selectedFormat = _formats.keys.first;
 
@@ -116,6 +120,11 @@ class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
     if (!_includeCosts) {
       widget.data.remove(AmcaWords.costsAndExpenses);
     }
+    if (_includeCosts && _productOrServiceController.text != optionSelectAll) {
+      final productOrService = _productOrServiceController.text;
+      final costData = widget.data[AmcaWords.costsAndExpenses] as List<Map<String, dynamic>>;
+      costData.removeWhere((data) => data[AmcaWords.name] != productOrService);
+    }
     if (!_includeProductions) {
       widget.data.remove(AmcaWords.production);
       widget.data.remove(AmcaWords.productions);
@@ -142,9 +151,22 @@ class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
     }
   }
 
+  List<String> _getListsOptionsSelect() {
+    if (widget.data.containsKey(AmcaWords.costsAndExpenses)) {
+      final costData =
+          widget.data[AmcaWords.costsAndExpenses] as List<Map<String, dynamic>>;
+      final existValues =
+          costData.map((data) => data[AmcaWords.name]).cast<String>().toSet();
+      if (existValues.length > 1) {
+        return [optionSelectAll, ...existValues.toList()];
+      }
+    }
+    return [];
+  }
+
   @override
   Widget build(BuildContext context) {
-    print('widget.data -> ${widget.data}');
+    final listOptionsSelect = _getListsOptionsSelect();
     return AlertDialog(
       title: const Text(AmcaWords.reportGenerate),
       content: SingleChildScrollView(
@@ -161,15 +183,31 @@ class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
               },
             ),
             if (widget.data.containsKey(AmcaWords.costsAndExpenses))
-              CheckboxListTile(
-                title: const Text(AmcaWords.costsAndExpenses),
-                value: _includeCosts,
-                onChanged: (value) {
-                  setState(() {
-                    _includeCosts = value!;
-                  });
-                },
-              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                CheckboxListTile(
+                  title: const Text(AmcaWords.costsAndExpenses),
+                  value: _includeCosts,
+                  onChanged: (value) {
+                    setState(() {
+                      _includeCosts = value!;
+                    });
+                  },
+                ),
+                if (_includeCosts && listOptionsSelect.isNotEmpty)
+                  AmcaSelectFormField(
+                    labelText: AmcaWords.productOrService.toUpperCase(),
+                    textEditingController: _productOrServiceController,
+                    enabled: _includeCosts,
+                    options: listOptionsSelect,
+                    validator: (optionSelected) {
+                      if (optionSelected != null && optionSelected.isEmpty) {
+                        return AmcaWords.pleaseSelectProductOrService;
+                      }
+                      return null;
+                    },
+                    optionSelected: (String optionSelected) {},
+                  ),
+              ]),
             if (widget.data.containsKey(AmcaWords.production) ||
                 widget.data.containsKey(AmcaWords.productions))
               CheckboxListTile(
