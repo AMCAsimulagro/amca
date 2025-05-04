@@ -52,8 +52,6 @@ class MeatAnimalHusbandry
           0;
     }
     //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
-    print(
-        'calculateTotalCostAndExpense -> $totalCostAndExpense'); // TODO eliminar
     return totalCostAndExpense;
   }
 
@@ -68,7 +66,6 @@ class MeatAnimalHusbandry
     }
     totalCostAndExpense =
         totalCostAndExpense + int.parse(value.replaceAll(',', ''));
-    print('profit -> $totalCostAndExpense'); // TODO eliminar
     return totalCostAndExpense;
   }
 
