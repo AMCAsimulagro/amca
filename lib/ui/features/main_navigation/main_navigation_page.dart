@@ -29,7 +29,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     ),
     const NavigationDestination(
       icon: Icon(Icons.agriculture_outlined),
-      label: AmcaWords.farming,
+      label: AmcaWords.productions,
     ),
     const NavigationDestination(
       icon: Icon(Icons.manage_accounts_rounded),

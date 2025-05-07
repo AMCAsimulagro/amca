@@ -13,7 +13,7 @@ class AmcaWords {
   static const String addCropType = 'Agregar tipo de cultivo';
   static const String addCrop = 'Agregar cultivo';
   static const String addQuestion = 'Agregar pregunta';
-  static const String allFarms = 'Todos los cultivos';
+  static const String allFarms = 'Todas las producciones';
   static const String allUsers = 'Todos los usuarios';
   static const String allYourCostOrExpenses =
       'Agregue sus costos o gastos para el mes actual';
@@ -79,7 +79,7 @@ class AmcaWords {
   static const String home = 'Inicio';
   static const String identifier = 'Cédula ciudadana';
   static const String kG = 'Kg';
-  static const String myFarming = 'Mis cultivos';
+  static const String myFarming = 'Mis Producciones';
   static const String names = 'Nombres';
   static const String name = 'Nombre';
   static const String livestock = 'Pecuario';
