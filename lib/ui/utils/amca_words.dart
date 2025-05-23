@@ -158,7 +158,7 @@ class AmcaWords {
   static const String service = 'Servicio';
   static const String filterIn = 'Filtrar en:';
   static const String semester = 'Semestre';
-  static const String seeAllFarms = 'Ver todos los cultivos';
+  static const String seeAllFarms = 'Ver todos las producciones';
   static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
   static const String seeCharts = 'Ver gráficas';
