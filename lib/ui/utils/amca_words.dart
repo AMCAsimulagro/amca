@@ -283,7 +283,7 @@ class AmcaWords {
 
   // Words submodulo Ganadería
   static const String yourAnimalHusbandryHasBeenDeleted =
-      'Tu ... ha sido eliminado';
+      'Tu registro ha sido eliminado';
   static const String meat = 'Carne';
   static const String milk = 'Leche';
   static const String animalNumber = 'Número de animales';
@@ -301,20 +301,20 @@ class AmcaWords {
   static const String pleaseSelectProductionType =
       'Por favor, seleccione un tipo de producción';
   static String yourAnimalHusbandryHasBeenUpdated =
-      'Tu ... ha sido actualizado';
-  static String yourAnimalHusbandryHasBeenCreated = 'Tu ... ha sido creado';
+      'Tu registro ha sido actualizado';
+  static String yourAnimalHusbandryHasBeenCreated = 'Tu registro ha sido creado';
   static const String areYouSureToDeleteThisAnimalHusbandry =
-      '¿Desea eliminar este ...?';
+      '¿Desea eliminar este registro?';
 
   // Words submodulo Porcicultura
   static const String farmName = 'Nombre de la Finca';
   static const String pleaseFarmName =
       'Por favor, ingrese el nombre del la Finca';
-  static String yourPigFarmingHasBeenUpdated = 'Tu ... ha sido actualizado';
-  static String yourPigFarmingHasBeenCreated = 'Tu ... ha sido creado';
-  static String yourPigFarmingHasBeenDeleted = 'Tu ... ha sido eliminado';
+  static String yourPigFarmingHasBeenUpdated = 'Tu registro ha sido actualizado';
+  static String yourPigFarmingHasBeenCreated = 'Tu registro ha sido creado';
+  static String yourPigFarmingHasBeenDeleted = 'Tu registro ha sido eliminado';
   static const String areYouSureToDeleteThisPigFarming =
-      '¿Desea eliminar este ...?';
+      '¿Desea eliminar este registro?';
 
   // Words submodulo Avicola
   static const String eggs = 'Huevos';
