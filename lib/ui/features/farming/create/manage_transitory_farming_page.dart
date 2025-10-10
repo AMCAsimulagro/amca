@@ -30,9 +30,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../widgets/amca_download_button.dart';
+
 /// StatefulWidget for creating and managing transitory farming activities.
 class ManageTransitoryFarming extends StatefulWidget {
-
   /// Creates a [ManageTransitoryFarming] instance with an optional [transitoryFarming].
   static ChangeNotifierProvider<CreateTransitoryFarmingVM> create(
           {Key? key, TransitoryFarming? transitoryFarming}) =>
@@ -46,13 +47,13 @@ class ManageTransitoryFarming extends StatefulWidget {
             key: key, transitoryFarming: transitoryFarming),
       );
 
- /// Constructs a [ManageTransitoryFarming] widget.
+  /// Constructs a [ManageTransitoryFarming] widget.
   const ManageTransitoryFarming._({
     super.key,
     this.transitoryFarming,
   });
 
-/// The transitory farming activity.
+  /// The transitory farming activity.
   final TransitoryFarming? transitoryFarming;
 
   @override
@@ -352,6 +353,19 @@ class _ManageTransitoryFarmingState extends State<ManageTransitoryFarming> {
                                 transitoryFarmingId: vm.transitoryFarming!.id!,
                               ),
                             ),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      AmcaButton(
+                        text: AmcaWords.downloadReport,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => AmcaDownloadButton(
+                                data: widget.transitoryFarming!.toReportData()),
                           );
                         },
                       )

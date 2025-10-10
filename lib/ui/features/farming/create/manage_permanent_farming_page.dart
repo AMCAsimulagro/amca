@@ -31,6 +31,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../widgets/amca_download_button.dart';
+
 /// StatefulWidget for creating and managing Permanent farming activities.
 class ManagePermanentFarming extends StatefulWidget {
   /// Creates a [ManagePermanentFarming] instance with an optional [permanentFarming].
@@ -307,8 +309,8 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                           ),
                           Expanded(
                             child: AmcaButton(
-                              text: AmcaWords
-                                  .createProduction, // Delete validation structurue of the production => alway text is `create`
+                              text: AmcaWords.createProduction,
+                              // Delete validation structurue of the production => alway text is `create`
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -316,8 +318,13 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                                     builder: (BuildContext context) =>
                                         ManageProductionPage.create(
                                       farmingId: vm.permanentFarming?.id ?? '',
-                                      production://TODO -  Cambiar la poss
-                                          vm.permanentFarming?.production?.isEmpty == true ? vm.permanentFarming!.production![0] : null,
+                                      production: //TODO -  Cambiar la poss
+                                          vm.permanentFarming?.production
+                                                      ?.isEmpty ==
+                                                  true
+                                              ? vm.permanentFarming!
+                                                  .production![0]
+                                              : null,
                                     ),
                                   ),
                                 ).then((value) async {
@@ -340,7 +347,8 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                         height: 15,
                       ),
                       AmcaButton(
-                        text: AmcaWords.seeProduction, // Delete validation structurue of the production => alway text is `create`
+                        text: AmcaWords.seeProduction,
+                        // Delete validation structurue of the production => alway text is `create`
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -348,7 +356,11 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                               builder: (BuildContext context) =>
                                   ManageProductionPageProfit.create(
                                 farmingId: vm.permanentFarming?.id ?? '',
-                                production: vm.permanentFarming?.production?.isEmpty == true ? vm.permanentFarming!.production![0] : null,//TODO - cambiar Poss
+                                production:
+                                    vm.permanentFarming?.production?.isEmpty ==
+                                            true
+                                        ? vm.permanentFarming!.production![0]
+                                        : null, //TODO - cambiar Poss
                               ),
                             ),
                           ).then((value) async {
@@ -378,6 +390,19 @@ class _ManagePermanentFarmingState extends State<ManagePermanentFarming> {
                                 permanentFarmingId: vm.permanentFarming!.id!,
                               ),
                             ),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      AmcaButton(
+                        text: AmcaWords.downloadReport,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => AmcaDownloadButton(
+                                data: widget.permanentFarming!.toReportData()),
                           );
                         },
                       )

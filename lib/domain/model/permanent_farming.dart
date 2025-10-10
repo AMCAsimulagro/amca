@@ -8,16 +8,22 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/cost_expense_report_extension.dart';
 import 'package:amca/domain/model/production_permanent.dart';
+import 'package:amca/domain/model/production_permanent_report_extension.dart';
+import 'package:amca/domain/model/reportable_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
+
+import '../../ui/utils/amca_words.dart';
 
 part 'permanent_farming.freezed.dart';
 
 part 'permanent_farming.g.dart';
 
 @unfreezed
-class PermanentFarming with _$PermanentFarming {
+class PermanentFarming with _$PermanentFarming implements ReportableEntity {
   const PermanentFarming._();
 
   factory PermanentFarming({
@@ -46,9 +52,9 @@ class PermanentFarming with _$PermanentFarming {
     int totalCostAndExpense = 0;
     if ((costsAndExpenses ?? []).isNotEmpty) {
       totalCostAndExpense = costsAndExpenses?.map((e) {
-            final price = int.parse(e.price.replaceAll(',', ''));
-            return price;
-          }).reduce((value, element) => value + element) ??
+        final price = int.parse(e.price.replaceAll(',', ''));
+        return price;
+      }).reduce((value, element) => value + element) ??
           0;
     }
     return totalCostAndExpense;
@@ -58,9 +64,9 @@ class PermanentFarming with _$PermanentFarming {
     int totalCostAndExpense = 0;
     if ((costsAndExpenses ?? []).isNotEmpty) {
       totalCostAndExpense = costsAndExpenses?.map((e) {
-            final price = int.parse(e.price.replaceAll(',', ''));
-            return price;
-          }).reduce((value, element) => value + element) ??
+        final price = int.parse(e.price.replaceAll(',', ''));
+        return price;
+      }).reduce((value, element) => value + element) ??
           0;
     }
     totalCostAndExpense =
@@ -73,11 +79,31 @@ class PermanentFarming with _$PermanentFarming {
 
     if ((production ?? []).isNotEmpty) {
       total = production?.map((e) {
-            final price = int.parse(e.price.replaceAll(',', ''));
-            return price;
-          }).reduce((value, element) => value + element) ??
+        final price = int.parse(e.price.replaceAll(',', ''));
+        return price;
+      }).reduce((value, element) => value + element) ??
           0;
     }
     return total;
   }
+
+  @override
+  Map<String, dynamic> toReportData() =>
+      {
+        AmcaWords.name: partName,
+        AmcaWords.cropType: cropType,
+        AmcaWords.crop: crop,
+        AmcaWords.sownArea: sownArea,
+        AmcaWords.sownType: sownType,
+        AmcaWords.format: format,
+        AmcaWords.amountSown: amountSown,
+        AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
+        AmcaWords.creationValue: value,
+        if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
+          AmcaWords.costsAndExpenses:
+          costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
+        if (null != production && production!.isNotEmpty)
+          AmcaWords.productions:
+          production?.map((ce) => ce.toReportData()).toList(),
+      };
 }

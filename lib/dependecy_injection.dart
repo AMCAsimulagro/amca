@@ -15,16 +15,20 @@
 /// ```
 /// {@end-tool}
 library;
+
 import 'package:amca/data/api/farming_api.dart';
 import 'package:amca/data/api/frequent_question_api.dart';
+import 'package:amca/data/api/livestock/animal_husbandry/animal_husbandry_api.dart';
+import 'package:amca/data/api/livestock/pig_farming/pig_farming_api.dart';
 import 'package:amca/data/api/login_api.dart';
 import 'package:amca/data/api/users_api.dart';
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/data/repository/frequent_question_repository.dart';
+import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
+import 'package:amca/data/repository/livestock/pig_farming_repository.dart';
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/state_repository.dart';
 import 'package:amca/data/repository/users_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 /// Proporciona una instancia global del servicio de localización de dependencias.
@@ -49,5 +53,13 @@ class DependecyInjection {
         .registerSingleton<FrequentQuestionApi>(FrequentQuestionApiAdapter());
     locator.registerSingleton<FrequentQuestionRepository>(
         FrequentQuestionRepositoryAdapter());
+
+    locator.registerSingleton<PigFarmingApi>(PigFarmingApiAdapter());
+    locator
+        .registerSingleton<PigFarmingRepository>(PigFarmingRepositoryAdapter());
+
+    locator.registerSingleton<AnimalHusbandryApi>(AnimalHusbandryApiAdapter());
+    locator.registerSingleton<AnimalHusbandryRepository>(
+        AnimalHusbandryRepositoryAdapter());
   }
 }

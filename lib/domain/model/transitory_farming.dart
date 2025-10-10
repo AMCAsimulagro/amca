@@ -8,15 +8,21 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/cost_expense_report_extension.dart';
 import 'package:amca/domain/model/production.dart';
+import 'package:amca/domain/model/production_report_extension.dart';
+import 'package:amca/domain/model/reportable_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
+
+import '../../ui/utils/amca_words.dart';
 
 part 'transitory_farming.freezed.dart';
 
 part 'transitory_farming.g.dart';
 
 @unfreezed
-class TransitoryFarming with _$TransitoryFarming {
+class TransitoryFarming with _$TransitoryFarming implements ReportableEntity {
   const TransitoryFarming._();
 
   factory TransitoryFarming({
@@ -61,7 +67,26 @@ class TransitoryFarming with _$TransitoryFarming {
           }).reduce((value, element) => value + element) ??
           0;
     }
-    totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
+    totalCostAndExpense =
+        totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
   }
+
+  @override
+  Map<String, dynamic> toReportData() => {
+        AmcaWords.name: partName,
+        AmcaWords.cropType: cropType,
+        AmcaWords.crop: crop,
+        AmcaWords.sownArea: sownArea,
+        AmcaWords.sownType: sownType,
+        AmcaWords.format: format,
+        AmcaWords.amountSown: amountSown,
+        AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
+        AmcaWords.creationValue: value,
+        if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
+          AmcaWords.costsAndExpenses:
+              costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
+        if (null != production)
+          AmcaWords.production: production?.toReportData(),
+      };
 }

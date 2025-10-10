@@ -4,20 +4,14 @@
 /// of farming activity by tapping on the buttons.
 library;
 
-/// Imports of Bookstores and Resources
-import 'package:amca/ui/features/farming/option/option_farming_page.dart';
 import 'package:amca/ui/features/livestock/option/animal_husbandry/option_livestock_animal_husbandry_page.dart';
-import 'package:amca/ui/features/livestock/option/fish_farming/option_livestock_fish_farming_page.dart';
-import 'package:amca/ui/features/livestock/option/pig_farming/option_livestock_pig_farming_page.dart';
 import 'package:amca/ui/features/livestock/option/poultry/option_livestock_poultry_page.dart';
-import 'package:amca/ui/features/permanent_farming/option/option_permanent_farming_page.dart';
-import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 /// StatelessWidget for presenting options for different types of farming activities.
 class LivestockTypePage extends StatelessWidget {
@@ -56,16 +50,14 @@ class LivestockTypePage extends StatelessWidget {
                     child: AmcaContainerButton(
                       text: AmcaWords.pigFarming,
                       onTap: () {
-                        NavigationHelper.push(
-                          const OptionLivestockPigFarmingPage(),
-                          context,
-                        );
+                        Dialogs.showErrorDialogWithMessage(
+                            context, AmcaWords.buildingThis);
                       },
                     ),
                   ),
                 ],
               ),
-            ),            
+            ),
             SizedBox(
               height: 100,
               child: Row(
@@ -87,11 +79,8 @@ class LivestockTypePage extends StatelessWidget {
                     child: AmcaContainerButton(
                       text: AmcaWords.fishFarming,
                       onTap: () {
-                        // Acción para Piscicultura
-                        NavigationHelper.push(
-                          const OptionLivestockFishFarmingPage(),
-                          context,
-                        );
+                        Dialogs.showErrorDialogWithMessage(
+                            context, AmcaWords.buildingThis);
                       },
                     ),
                   ),

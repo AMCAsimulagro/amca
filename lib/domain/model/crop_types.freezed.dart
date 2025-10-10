@@ -1,6 +1,3 @@
-/// {@category Domain}
-// This file defines the [CropTypes] class with JSON serialization and deserialization functions using manual implementation.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -15,7 +12,7 @@ part of 'crop_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CropTypes _$CropTypesFromJson(Map<String, dynamic> json) {
   return _CropTypes.fromJson(json);
@@ -27,8 +24,12 @@ mixin _$CropTypes {
   String get tipo => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
 
+  /// Serializes this CropTypes to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CropTypes
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CropTypesCopyWith<CropTypes> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +52,8 @@ class _$CropTypesCopyWithImpl<$Res, $Val extends CropTypes>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CropTypes
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,23 +79,26 @@ class _$CropTypesCopyWithImpl<$Res, $Val extends CropTypes>
 }
 
 /// @nodoc
-abstract class _$$_CropTypesCopyWith<$Res> implements $CropTypesCopyWith<$Res> {
-  factory _$$_CropTypesCopyWith(
-          _$_CropTypes value, $Res Function(_$_CropTypes) then) =
-      __$$_CropTypesCopyWithImpl<$Res>;
+abstract class _$$CropTypesImplCopyWith<$Res>
+    implements $CropTypesCopyWith<$Res> {
+  factory _$$CropTypesImplCopyWith(
+          _$CropTypesImpl value, $Res Function(_$CropTypesImpl) then) =
+      __$$CropTypesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<String> cultivo, String tipo, String? id});
 }
 
 /// @nodoc
-class __$$_CropTypesCopyWithImpl<$Res>
-    extends _$CropTypesCopyWithImpl<$Res, _$_CropTypes>
-    implements _$$_CropTypesCopyWith<$Res> {
-  __$$_CropTypesCopyWithImpl(
-      _$_CropTypes _value, $Res Function(_$_CropTypes) _then)
+class __$$CropTypesImplCopyWithImpl<$Res>
+    extends _$CropTypesCopyWithImpl<$Res, _$CropTypesImpl>
+    implements _$$CropTypesImplCopyWith<$Res> {
+  __$$CropTypesImplCopyWithImpl(
+      _$CropTypesImpl _value, $Res Function(_$CropTypesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CropTypes
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,7 +106,7 @@ class __$$_CropTypesCopyWithImpl<$Res>
     Object? tipo = null,
     Object? id = freezed,
   }) {
-    return _then(_$_CropTypes(
+    return _then(_$CropTypesImpl(
       cultivo: null == cultivo
           ? _value._cultivo
           : cultivo // ignore: cast_nullable_to_non_nullable
@@ -119,13 +125,13 @@ class __$$_CropTypesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CropTypes implements _CropTypes {
-  _$_CropTypes(
+class _$CropTypesImpl implements _CropTypes {
+  _$CropTypesImpl(
       {required final List<String> cultivo, required this.tipo, this.id})
       : _cultivo = cultivo;
 
-  factory _$_CropTypes.fromJson(Map<String, dynamic> json) =>
-      _$$_CropTypesFromJson(json);
+  factory _$CropTypesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CropTypesImplFromJson(json);
 
   final List<String> _cultivo;
   @override
@@ -146,29 +152,31 @@ class _$_CropTypes implements _CropTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CropTypes &&
+            other is _$CropTypesImpl &&
             const DeepCollectionEquality().equals(other._cultivo, _cultivo) &&
             (identical(other.tipo, tipo) || other.tipo == tipo) &&
             (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_cultivo), tipo, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CropTypes
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CropTypesCopyWith<_$_CropTypes> get copyWith =>
-      __$$_CropTypesCopyWithImpl<_$_CropTypes>(this, _$identity);
+  _$$CropTypesImplCopyWith<_$CropTypesImpl> get copyWith =>
+      __$$CropTypesImplCopyWithImpl<_$CropTypesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CropTypesToJson(
+    return _$$CropTypesImplToJson(
       this,
     );
   }
@@ -178,10 +186,10 @@ abstract class _CropTypes implements CropTypes {
   factory _CropTypes(
       {required final List<String> cultivo,
       required final String tipo,
-      final String? id}) = _$_CropTypes;
+      final String? id}) = _$CropTypesImpl;
 
   factory _CropTypes.fromJson(Map<String, dynamic> json) =
-      _$_CropTypes.fromJson;
+      _$CropTypesImpl.fromJson;
 
   @override
   List<String> get cultivo;
@@ -189,8 +197,11 @@ abstract class _CropTypes implements CropTypes {
   String get tipo;
   @override
   String? get id;
+
+  /// Create a copy of CropTypes
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_CropTypesCopyWith<_$_CropTypes> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CropTypesImplCopyWith<_$CropTypesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

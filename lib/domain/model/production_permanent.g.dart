@@ -1,8 +1,3 @@
-/// {@category Domain}
-/// This file contains the generated code for JSON serialization and deserialization of the Production class.
-/// It includes functions to convert Production objects to and from JSON maps.
-/// This code is generated automatically by the JsonSerializable package.
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'production_permanent.dart';
@@ -11,9 +6,8 @@ part of 'production_permanent.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-/// Function to convert a JSON map to a Production object.
-_$_Production _$$_ProductionFromJson(Map<String, dynamic> json) =>
-    _$_Production(
+_$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
+    _$ProductionImpl(
       uidOwner: json['uidOwner'] as String?,
       partName: json['partName'] as String?,
       transitoryFarmingId: json['transitoryFarmingId'] as String,
@@ -25,8 +19,7 @@ _$_Production _$$_ProductionFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-/// Function to convert a Production object to a JSON map.
-Map<String, dynamic> _$$_ProductionToJson(_$_Production instance) =>
+Map<String, dynamic> _$$ProductionImplToJson(_$ProductionImpl instance) =>
     <String, dynamic>{
       'uidOwner': instance.uidOwner,
       'partName': instance.partName,

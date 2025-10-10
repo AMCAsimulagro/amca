@@ -1,6 +1,3 @@
-/// {@category Domain}
-// This file defines the [CostAndExpense] class representing both cost and expense items, along with associated JSON serialization.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -12,51 +9,64 @@ part of 'cost_expense.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// This method returns the identity of the provided value.
 T _$identity<T>(T value) => value;
 
-// Error thrown when using the private constructor.
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-// JSON deserialization function for [CostAndExpense] class.
 CostAndExpense _$CostAndExpenseFromJson(Map<String, dynamic> json) {
   return _CostAndExpense.fromJson(json);
 }
 
-/// This mixin contains the abstract getters and setters for [CostAndExpense] class.
-/// 
 /// @nodoc
 mixin _$CostAndExpense {
   String? get uidOwner => throw _privateConstructorUsedError;
-  set uidOwner(String? value) => throw _privateConstructorUsedError;
-  String? get partName => throw _privateConstructorUsedError;
-  set partName(String? value) => throw _privateConstructorUsedError;
-  String get transitoryFarmingId => throw _privateConstructorUsedError;
-  set transitoryFarmingId(String value) => throw _privateConstructorUsedError;
-  DateTime get createDate => throw _privateConstructorUsedError;
-  set createDate(DateTime value) => throw _privateConstructorUsedError;
-  String get productOrService => throw _privateConstructorUsedError;
-  set productOrService(String value) => throw _privateConstructorUsedError;
-  Description get description => throw _privateConstructorUsedError;
-  set description(Description value) => throw _privateConstructorUsedError;
-  String get quantity => throw _privateConstructorUsedError;
-  set quantity(String value) => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
-  set price(String value) => throw _privateConstructorUsedError;
-  String get comment => throw _privateConstructorUsedError;
-  set comment(String value) => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
+  set uidOwner(String? value) =>
+      throw _privateConstructorUsedError; // Owner's UID
+  String? get partName => throw _privateConstructorUsedError; // Owner's UID
+  set partName(String? value) =>
+      throw _privateConstructorUsedError; // Name of the part
+  String get transitoryFarmingId =>
+      throw _privateConstructorUsedError; // Name of the part
+  set transitoryFarmingId(String value) =>
+      throw _privateConstructorUsedError; // ID of the transitory farming
+  DateTime get createDate =>
+      throw _privateConstructorUsedError; // ID of the transitory farming
+  set createDate(DateTime value) =>
+      throw _privateConstructorUsedError; // ID of the transitory farming
+  String get productOrService =>
+      throw _privateConstructorUsedError; // ID of the transitory farming
+  set productOrService(String value) =>
+      throw _privateConstructorUsedError; // Product or service name
+  Description get description =>
+      throw _privateConstructorUsedError; // Product or service name
+  set description(Description value) =>
+      throw _privateConstructorUsedError; // Description object containing cost or expense details
+  String get quantity =>
+      throw _privateConstructorUsedError; // Description object containing cost or expense details
+  set quantity(String value) =>
+      throw _privateConstructorUsedError; // Quantity of the product or service
+  String get price =>
+      throw _privateConstructorUsedError; // Quantity of the product or service
+  set price(String value) =>
+      throw _privateConstructorUsedError; // Price of the product or service
+  String get comment =>
+      throw _privateConstructorUsedError; // Price of the product or service
+  set comment(String value) =>
+      throw _privateConstructorUsedError; // Additional comments
+  String? get id => throw _privateConstructorUsedError; // Additional comments
   set id(String? value) => throw _privateConstructorUsedError;
 
+  /// Serializes this CostAndExpense to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CostAndExpense
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CostAndExpenseCopyWith<CostAndExpense> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-/// This class implements the copyWith method for [CostAndExpense].
-/// 
 /// @nodoc
 abstract class $CostAndExpenseCopyWith<$Res> {
   factory $CostAndExpenseCopyWith(
@@ -78,8 +88,6 @@ abstract class $CostAndExpenseCopyWith<$Res> {
   $DescriptionCopyWith<$Res> get description;
 }
 
-/// This class implements the copyWith method for [CostAndExpense].
-/// 
 /// @nodoc
 class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
     implements $CostAndExpenseCopyWith<$Res> {
@@ -90,6 +98,8 @@ class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CostAndExpense
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,6 +158,8 @@ class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
     ) as $Val);
   }
 
+  /// Create a copy of CostAndExpense
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DescriptionCopyWith<$Res> get description {
@@ -158,11 +170,11 @@ class _$CostAndExpenseCopyWithImpl<$Res, $Val extends CostAndExpense>
 }
 
 /// @nodoc
-abstract class _$$_CostAndExpenseCopyWith<$Res>
+abstract class _$$CostAndExpenseImplCopyWith<$Res>
     implements $CostAndExpenseCopyWith<$Res> {
-  factory _$$_CostAndExpenseCopyWith(
-          _$_CostAndExpense value, $Res Function(_$_CostAndExpense) then) =
-      __$$_CostAndExpenseCopyWithImpl<$Res>;
+  factory _$$CostAndExpenseImplCopyWith(_$CostAndExpenseImpl value,
+          $Res Function(_$CostAndExpenseImpl) then) =
+      __$$CostAndExpenseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -182,13 +194,15 @@ abstract class _$$_CostAndExpenseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CostAndExpenseCopyWithImpl<$Res>
-    extends _$CostAndExpenseCopyWithImpl<$Res, _$_CostAndExpense>
-    implements _$$_CostAndExpenseCopyWith<$Res> {
-  __$$_CostAndExpenseCopyWithImpl(
-      _$_CostAndExpense _value, $Res Function(_$_CostAndExpense) _then)
+class __$$CostAndExpenseImplCopyWithImpl<$Res>
+    extends _$CostAndExpenseCopyWithImpl<$Res, _$CostAndExpenseImpl>
+    implements _$$CostAndExpenseImplCopyWith<$Res> {
+  __$$CostAndExpenseImplCopyWithImpl(
+      _$CostAndExpenseImpl _value, $Res Function(_$CostAndExpenseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CostAndExpense
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -203,7 +217,7 @@ class __$$_CostAndExpenseCopyWithImpl<$Res>
     Object? comment = null,
     Object? id = freezed,
   }) {
-    return _then(_$_CostAndExpense(
+    return _then(_$CostAndExpenseImpl(
       uidOwner: freezed == uidOwner
           ? _value.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
@@ -250,8 +264,8 @@ class __$$_CostAndExpenseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CostAndExpense implements _CostAndExpense {
-  _$_CostAndExpense(
+class _$CostAndExpenseImpl implements _CostAndExpense {
+  _$CostAndExpenseImpl(
       {this.uidOwner,
       this.partName,
       required this.transitoryFarmingId,
@@ -263,27 +277,36 @@ class _$_CostAndExpense implements _CostAndExpense {
       required this.comment,
       this.id});
 
-  factory _$_CostAndExpense.fromJson(Map<String, dynamic> json) =>
-      _$$_CostAndExpenseFromJson(json);
+  factory _$CostAndExpenseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CostAndExpenseImplFromJson(json);
 
   @override
   String? uidOwner;
+// Owner's UID
   @override
   String? partName;
+// Name of the part
   @override
   String transitoryFarmingId;
+// ID of the transitory farming
   @override
   DateTime createDate;
+// ID of the transitory farming
   @override
   String productOrService;
+// Product or service name
   @override
   Description description;
+// Description object containing cost or expense details
   @override
   String quantity;
+// Quantity of the product or service
   @override
   String price;
+// Price of the product or service
   @override
   String comment;
+// Additional comments
   @override
   String? id;
 
@@ -292,15 +315,18 @@ class _$_CostAndExpense implements _CostAndExpense {
     return 'CostAndExpense(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, productOrService: $productOrService, description: $description, quantity: $quantity, price: $price, comment: $comment, id: $id)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CostAndExpense
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CostAndExpenseCopyWith<_$_CostAndExpense> get copyWith =>
-      __$$_CostAndExpenseCopyWithImpl<_$_CostAndExpense>(this, _$identity);
+  _$$CostAndExpenseImplCopyWith<_$CostAndExpenseImpl> get copyWith =>
+      __$$CostAndExpenseImplCopyWithImpl<_$CostAndExpenseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CostAndExpenseToJson(
+    return _$$CostAndExpenseImplToJson(
       this,
     );
   }
@@ -317,43 +343,48 @@ abstract class _CostAndExpense implements CostAndExpense {
       required String quantity,
       required String price,
       required String comment,
-      String? id}) = _$_CostAndExpense;
+      String? id}) = _$CostAndExpenseImpl;
 
   factory _CostAndExpense.fromJson(Map<String, dynamic> json) =
-      _$_CostAndExpense.fromJson;
+      _$CostAndExpenseImpl.fromJson;
 
   @override
   String? get uidOwner;
-  set uidOwner(String? value);
+  set uidOwner(String? value); // Owner's UID
   @override
-  String? get partName;
-  set partName(String? value);
+  String? get partName; // Owner's UID
+  set partName(String? value); // Name of the part
   @override
-  String get transitoryFarmingId;
-  set transitoryFarmingId(String value);
+  String get transitoryFarmingId; // Name of the part
+  set transitoryFarmingId(String value); // ID of the transitory farming
   @override
-  DateTime get createDate;
-  set createDate(DateTime value);
+  DateTime get createDate; // ID of the transitory farming
+  set createDate(DateTime value); // ID of the transitory farming
   @override
-  String get productOrService;
-  set productOrService(String value);
+  String get productOrService; // ID of the transitory farming
+  set productOrService(String value); // Product or service name
   @override
-  Description get description;
-  set description(Description value);
+  Description get description; // Product or service name
+  set description(
+      Description
+          value); // Description object containing cost or expense details
   @override
-  String get quantity;
-  set quantity(String value);
+  String get quantity; // Description object containing cost or expense details
+  set quantity(String value); // Quantity of the product or service
   @override
-  String get price;
-  set price(String value);
+  String get price; // Quantity of the product or service
+  set price(String value); // Price of the product or service
   @override
-  String get comment;
-  set comment(String value);
+  String get comment; // Price of the product or service
+  set comment(String value); // Additional comments
   @override
-  String? get id;
+  String? get id; // Additional comments
   set id(String? value);
+
+  /// Create a copy of CostAndExpense
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_CostAndExpenseCopyWith<_$_CostAndExpense> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CostAndExpenseImplCopyWith<_$CostAndExpenseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

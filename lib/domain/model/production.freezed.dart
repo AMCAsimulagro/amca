@@ -1,11 +1,3 @@
-/// {@category Domain}
-/// This file defines a Production class using Freezed and JsonSerializable annotations.
-/// The Production class represents a production with various attributes such as uidOwner, partName, transitoryFarmingId, etc.
-/// It is designed to be immutable and provides methods for JSON serialization and deserialization.
-/// This file includes both the definition of the Production class and the generated code for JSON serialization/deserialization.
-/// Freezed annotations are used to generate constructors and equality checks for the class, while JsonSerializable annotations
-/// are used to generate toJson() and fromJson() methods for serialization and deserialization.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -20,7 +12,7 @@ part of 'production.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Production _$ProductionFromJson(Map<String, dynamic> json) {
   return _Production.fromJson(json);
@@ -29,26 +21,46 @@ Production _$ProductionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Production {
   String? get uidOwner => throw _privateConstructorUsedError;
-  set uidOwner(String? value) => throw _privateConstructorUsedError;
-  String? get partName => throw _privateConstructorUsedError;
-  set partName(String? value) => throw _privateConstructorUsedError;
-  String get transitoryFarmingId => throw _privateConstructorUsedError;
-  set transitoryFarmingId(String value) => throw _privateConstructorUsedError;
-  DateTime get createDate => throw _privateConstructorUsedError;
-  set createDate(DateTime value) => throw _privateConstructorUsedError;
-  String get unitOfMeasurement => throw _privateConstructorUsedError;
-  set unitOfMeasurement(String value) => throw _privateConstructorUsedError;
-  String get quantity => throw _privateConstructorUsedError;
-  set quantity(String value) => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
-  set price(String value) => throw _privateConstructorUsedError;
-  String? get totalValue => throw _privateConstructorUsedError;
-  set totalValue(String? value) => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
+  set uidOwner(String? value) =>
+      throw _privateConstructorUsedError; // Owner UID of the production.
+  String? get partName =>
+      throw _privateConstructorUsedError; // Owner UID of the production.
+  set partName(String? value) =>
+      throw _privateConstructorUsedError; // Part name of the production.
+  String get transitoryFarmingId =>
+      throw _privateConstructorUsedError; // Part name of the production.
+  set transitoryFarmingId(String value) =>
+      throw _privateConstructorUsedError; // Transitory farming ID of the production.
+  DateTime get createDate =>
+      throw _privateConstructorUsedError; // Transitory farming ID of the production.
+  set createDate(DateTime value) =>
+      throw _privateConstructorUsedError; // Creation date of the production.
+  String get unitOfMeasurement =>
+      throw _privateConstructorUsedError; // Creation date of the production.
+  set unitOfMeasurement(String value) =>
+      throw _privateConstructorUsedError; // Unit of measurement of the production.
+  String get quantity =>
+      throw _privateConstructorUsedError; // Unit of measurement of the production.
+  set quantity(String value) =>
+      throw _privateConstructorUsedError; // Quantity of the production.
+  String get price =>
+      throw _privateConstructorUsedError; // Quantity of the production.
+  set price(String value) =>
+      throw _privateConstructorUsedError; // Price of the production.
+  String? get totalValue =>
+      throw _privateConstructorUsedError; // Price of the production.
+  set totalValue(String? value) =>
+      throw _privateConstructorUsedError; // Total value of the production.
+  String? get id =>
+      throw _privateConstructorUsedError; // Total value of the production.
   set id(String? value) => throw _privateConstructorUsedError;
 
+  /// Serializes this Production to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Production
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductionCopyWith<Production> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -81,6 +93,8 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Production
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,11 +150,11 @@ class _$ProductionCopyWithImpl<$Res, $Val extends Production>
 }
 
 /// @nodoc
-abstract class _$$_ProductionCopyWith<$Res>
+abstract class _$$ProductionImplCopyWith<$Res>
     implements $ProductionCopyWith<$Res> {
-  factory _$$_ProductionCopyWith(
-          _$_Production value, $Res Function(_$_Production) then) =
-      __$$_ProductionCopyWithImpl<$Res>;
+  factory _$$ProductionImplCopyWith(
+          _$ProductionImpl value, $Res Function(_$ProductionImpl) then) =
+      __$$ProductionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -156,13 +170,15 @@ abstract class _$$_ProductionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductionCopyWithImpl<$Res>
-    extends _$ProductionCopyWithImpl<$Res, _$_Production>
-    implements _$$_ProductionCopyWith<$Res> {
-  __$$_ProductionCopyWithImpl(
-      _$_Production _value, $Res Function(_$_Production) _then)
+class __$$ProductionImplCopyWithImpl<$Res>
+    extends _$ProductionCopyWithImpl<$Res, _$ProductionImpl>
+    implements _$$ProductionImplCopyWith<$Res> {
+  __$$ProductionImplCopyWithImpl(
+      _$ProductionImpl _value, $Res Function(_$ProductionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Production
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,7 +192,7 @@ class __$$_ProductionCopyWithImpl<$Res>
     Object? totalValue = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$_Production(
+    return _then(_$ProductionImpl(
       uidOwner: freezed == uidOwner
           ? _value.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
@@ -219,8 +235,8 @@ class __$$_ProductionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Production implements _Production {
-  _$_Production(
+class _$ProductionImpl implements _Production {
+  _$ProductionImpl(
       {this.uidOwner,
       this.partName,
       required this.transitoryFarmingId,
@@ -231,25 +247,33 @@ class _$_Production implements _Production {
       this.totalValue,
       this.id});
 
-  factory _$_Production.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductionFromJson(json);
+  factory _$ProductionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductionImplFromJson(json);
 
   @override
   String? uidOwner;
+// Owner UID of the production.
   @override
   String? partName;
+// Part name of the production.
   @override
   String transitoryFarmingId;
+// Transitory farming ID of the production.
   @override
   DateTime createDate;
+// Creation date of the production.
   @override
   String unitOfMeasurement;
+// Unit of measurement of the production.
   @override
   String quantity;
+// Quantity of the production.
   @override
   String price;
+// Price of the production.
   @override
   String? totalValue;
+// Total value of the production.
   @override
   String? id;
 
@@ -258,15 +282,17 @@ class _$_Production implements _Production {
     return 'Production(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, totalValue: $totalValue, id: $id)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Production
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductionCopyWith<_$_Production> get copyWith =>
-      __$$_ProductionCopyWithImpl<_$_Production>(this, _$identity);
+  _$$ProductionImplCopyWith<_$ProductionImpl> get copyWith =>
+      __$$ProductionImplCopyWithImpl<_$ProductionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductionToJson(
+    return _$$ProductionImplToJson(
       this,
     );
   }
@@ -282,40 +308,44 @@ abstract class _Production implements Production {
       required String quantity,
       required String price,
       String? totalValue,
-      String? id}) = _$_Production;
+      String? id}) = _$ProductionImpl;
 
   factory _Production.fromJson(Map<String, dynamic> json) =
-      _$_Production.fromJson;
+      _$ProductionImpl.fromJson;
 
   @override
   String? get uidOwner;
-  set uidOwner(String? value);
+  set uidOwner(String? value); // Owner UID of the production.
   @override
-  String? get partName;
-  set partName(String? value);
+  String? get partName; // Owner UID of the production.
+  set partName(String? value); // Part name of the production.
   @override
-  String get transitoryFarmingId;
-  set transitoryFarmingId(String value);
+  String get transitoryFarmingId; // Part name of the production.
+  set transitoryFarmingId(
+      String value); // Transitory farming ID of the production.
   @override
-  DateTime get createDate;
-  set createDate(DateTime value);
+  DateTime get createDate; // Transitory farming ID of the production.
+  set createDate(DateTime value); // Creation date of the production.
   @override
-  String get unitOfMeasurement;
-  set unitOfMeasurement(String value);
+  String get unitOfMeasurement; // Creation date of the production.
+  set unitOfMeasurement(String value); // Unit of measurement of the production.
   @override
-  String get quantity;
-  set quantity(String value);
+  String get quantity; // Unit of measurement of the production.
+  set quantity(String value); // Quantity of the production.
   @override
-  String get price;
-  set price(String value);
+  String get price; // Quantity of the production.
+  set price(String value); // Price of the production.
   @override
-  String? get totalValue;
-  set totalValue(String? value);
+  String? get totalValue; // Price of the production.
+  set totalValue(String? value); // Total value of the production.
   @override
-  String? get id;
+  String? get id; // Total value of the production.
   set id(String? value);
+
+  /// Create a copy of Production
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_ProductionCopyWith<_$_Production> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProductionImplCopyWith<_$ProductionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,7 +1,3 @@
-/// {@category Domain}
-/// This file contains the serialization and deserialization methods for the TransitoryFarming class, allowing instances to be converted to and from JSON format.
-/// It is automatically generated using the JsonSerializable package based on the TransitoryFarming class definition.
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'transitory_farming.dart';
@@ -10,8 +6,9 @@ part of 'transitory_farming.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TransitoryFarming _$$_TransitoryFarmingFromJson(Map<String, dynamic> json) =>
-    _$_TransitoryFarming(
+_$TransitoryFarmingImpl _$$TransitoryFarmingImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TransitoryFarmingImpl(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       partName: json['partName'] as String,
@@ -32,8 +29,8 @@ _$_TransitoryFarming _$$_TransitoryFarmingFromJson(Map<String, dynamic> json) =>
           : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_TransitoryFarmingToJson(
-        _$_TransitoryFarming instance) =>
+Map<String, dynamic> _$$TransitoryFarmingImplToJson(
+        _$TransitoryFarmingImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),

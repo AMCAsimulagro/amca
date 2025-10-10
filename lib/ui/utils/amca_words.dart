@@ -5,13 +5,15 @@
 ///
 class AmcaWords {
   static const String adminOptions = 'Opciones de administrador';
+  static const String buildingThis =
+      'Estamos trabajando en esto. Ten paciencia, las mejoras llegarán pronto.';
   static const String addInformation = 'Añadir información';
   static const String addPartProduction = 'Agregar una producción del lote';
   static const String addCostOrExpense = 'Agregar Costo o Gasto';
   static const String addCropType = 'Agregar tipo de cultivo';
   static const String addCrop = 'Agregar cultivo';
   static const String addQuestion = 'Agregar pregunta';
-  static const String allFarms = 'Todos los cultivos';
+  static const String allFarms = 'Todas las producciones';
   static const String allUsers = 'Todos los usuarios';
   static const String allYourCostOrExpenses =
       'Agregue sus costos o gastos para el mes actual';
@@ -77,7 +79,7 @@ class AmcaWords {
   static const String home = 'Inicio';
   static const String identifier = 'Cédula ciudadana';
   static const String kG = 'Kg';
-  static const String myFarming = 'Mis cultivos';
+  static const String myFarming = 'Mis Producciones';
   static const String names = 'Nombres';
   static const String name = 'Nombre';
   static const String livestock = 'Pecuario';
@@ -156,7 +158,7 @@ class AmcaWords {
   static const String service = 'Servicio';
   static const String filterIn = 'Filtrar en:';
   static const String semester = 'Semestre';
-  static const String seeAllFarms = 'Ver todos los cultivos';
+  static const String seeAllFarms = 'Ver todos las producciones';
   static const String seeAllUsers = 'Ver todos los usuarios';
   static const String seeCostsAndExpenses = 'Ver Costos y Gastos';
   static const String seeCharts = 'Ver gráficas';
@@ -249,6 +251,27 @@ class AmcaWords {
   static const String thisIdentificationNumberIsAlreadyInUse =
       'La cédula ciudadana ya esta actualmente registrada';
 
+  static const String productionType = 'Tipo de Producción';
+
+  // Words reports
+  static const String downloadReport = 'Descargar reporte';
+  static const String download = 'Descargar';
+  static const String reportGenerate = 'Generar Reporte';
+  static const String basicData = 'Información General';
+  static const String dateGeneration = 'Fecha de Generación';
+  static const String creationDate = 'Fecha de creación';
+  static const String productions = 'Producciones';
+  static const String farmReport = 'Reporte finca';
+  static const String creationValue = 'Valor invertido en la creación';
+  static const String totalValue = 'Valor Total';
+  static const String price = 'Precio';
+  static const String costOrExpense = 'Costo/Gasto';
+  static const String noPermission = 'Permiso de almacenamiento denegado';
+  static const String noFileOpen = 'No se pudo abrir el archivo';
+  static const String noAppToFileOpen =
+      'No se encontró una aplicación instalada que pueda abrir este tipo de archivo.';
+  static const String reportSavedInDownloads = 'Reporte guardado en Descargas';
+
   // Words modulo Livestock(Pecuario)
   static const String livestockType = 'Tipo de Explotación';
   static const String animalHusbandry = 'Ganadería';
@@ -259,10 +282,39 @@ class AmcaWords {
   static const String addProduction = 'Ingresar Producción';
 
   // Words submodulo Ganadería
+  static const String yourAnimalHusbandryHasBeenDeleted =
+      'Tu registro ha sido eliminado';
   static const String meat = 'Carne';
   static const String milk = 'Leche';
+  static const String animalNumber = 'Número de animales';
+  static const String expensiveType = 'Costo o Gasto';
+  static const String pleaseSelectExpensiveType =
+      'Por favor, seleccione si es un costo o un gasto';
+  static const String type = 'Tipo';
+  static const String pleaseSelectType = 'Por favor, seleccione un tipo';
+  static const String amount = 'Cantidad';
+  static const String pleaseAddAmount = 'Por favor, ingrese la cantidad';
+  static const String pleaseAnimalNumber =
+      'Por favor, ingrese el número de animales';
+  static const String pleaseSelectDescriptionType =
+      'Por favor, seleccione una descripción';
+  static const String pleaseSelectProductionType =
+      'Por favor, seleccione un tipo de producción';
+  static String yourAnimalHusbandryHasBeenUpdated =
+      'Tu registro ha sido actualizado';
+  static String yourAnimalHusbandryHasBeenCreated = 'Tu registro ha sido creado';
+  static const String areYouSureToDeleteThisAnimalHusbandry =
+      '¿Desea eliminar este registro?';
 
   // Words submodulo Porcicultura
+  static const String farmName = 'Nombre de la Finca';
+  static const String pleaseFarmName =
+      'Por favor, ingrese el nombre del la Finca';
+  static String yourPigFarmingHasBeenUpdated = 'Tu registro ha sido actualizado';
+  static String yourPigFarmingHasBeenCreated = 'Tu registro ha sido creado';
+  static String yourPigFarmingHasBeenDeleted = 'Tu registro ha sido eliminado';
+  static const String areYouSureToDeleteThisPigFarming =
+      '¿Desea eliminar este registro?';
 
   // Words submodulo Avicola
   static const String eggs = 'Huevos';
@@ -271,5 +323,4 @@ class AmcaWords {
   // Words submodulo Piscicultura
   static const String tilapia = 'Tilapia';
   static const String cachama = 'Cachama';
-
 }
