@@ -2,6 +2,7 @@
 ///This class represents an application exception, which can be thrown to indicate errors
 ///that occur during the execution of the application. It provides properties to store
 ///information about the exception, such as message, error code, and status.
+library;
 
 
 class AppException implements Exception {

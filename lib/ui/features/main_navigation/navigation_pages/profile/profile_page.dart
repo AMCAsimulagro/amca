@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
         child: const ProfilePage._(),
       );
 
-  const ProfilePage._({super.key});
+  const ProfilePage._();
 
   @override
   Widget build(BuildContext context) {
@@ -188,9 +188,7 @@ class ProfilePage extends StatelessWidget {
 }
 
 class _AdminOptions extends StatelessWidget {
-  const _AdminOptions({
-    super.key,
-  });
+  const _AdminOptions();
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@
 /// create, update, and delete permanent farming activities. It interacts with the [CreatePermanentFarmingVM]
 /// ViewModel to handle business logic related to permanent farming. Dependencies include various UI widgets,
 /// [PermanentFarming] model, and ViewModels such as [CreatePermanentFarmingVM] and [FarmingHistoryVM].
+library;
 
 // ignore_for_file: use_build_context_synchronously
 

@@ -2,6 +2,7 @@
 /// This file contains the implementation of an interface `FarmingRepository` and its adapter `FarmingRepositoryAdapter`
 ///
 /// which provide methods to interact with the Farming API in a Flutter application for managing farming-related data.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/farming_api.dart';
@@ -51,6 +52,8 @@ abstract class FarmingRepository {
   Future<void> deletePermanentFarming(String id);
 
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
+
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin();
 
   /// Retrieves all farming history for all users from the Farming API (admin only).
 
@@ -152,6 +155,11 @@ class FarmingRepositoryAdapter extends FarmingRepository {
   @override
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin() {
     return _api.getAllFarmingHistoryByAdmin();
+  }
+
+  @override
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin() {
+    return _api.getAllFarmingPermanentHistoryByAdmin();
   }
 
   @override

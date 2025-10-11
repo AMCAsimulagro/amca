@@ -2,6 +2,7 @@
 /// This file contains the implementation of an interface `StateRepository` and its adapter `StateRepositoryAdapter`
 /// 
 /// which provide methods to retrieve a list of states from a JSON file in a Flutter application.
+library;
 
 /// Imports of Bookstores and Resources
 import 'dart:convert';

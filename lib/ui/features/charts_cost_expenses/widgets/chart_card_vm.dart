@@ -1,6 +1,7 @@
 /// {@category Features ChartCost Widgets }
 /// This file contains a view model class `ChartCardVM` used for managing date selection and formatting
 /// in a chart card widget.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/utils/amca_words.dart';

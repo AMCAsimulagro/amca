@@ -1,4 +1,5 @@
 /// {@category Login}
+library;
 import 'package:amca/ui/features/login/forgot_password/forgot_password_vm.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/assets.dart';

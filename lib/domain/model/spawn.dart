@@ -3,6 +3,7 @@
 /// The Spawn class represents a spawn with a list of types.
 /// It is designed to be immutable and provides methods for JSON serialization and deserialization.
 /// This file includes both the definition of the Spawn class and the generated code for JSON serialization/deserialization.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';

@@ -2,6 +2,7 @@
 /// This file contains the `AmcaTextFieldStyles` class, which provides
 /// custom styles for text fields in the Amca application.
 ///
+library;
 
 import 'package:flutter/material.dart';
 

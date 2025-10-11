@@ -3,6 +3,7 @@
 /// The FrequentQuestion class represents a frequently asked question with properties for ID, title, content, and creator ID.
 /// It is designed to be immutable and provides methods for JSON serialization and deserialization.
 /// This file includes both the definition of the FrequentQuestion class and the generated code for JSON serialization/deserialization.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';

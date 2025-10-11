@@ -1,5 +1,6 @@
 /// {@category Frequent Questions}
 /// This file contains the implementation of the [ManageFrequentQuestionVM] class, which is responsible for managing frequent questions.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';

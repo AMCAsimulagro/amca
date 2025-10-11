@@ -3,6 +3,7 @@
 /// This file contains the `AmcaPalette` class, which provides a collection of
 /// predefined colors used in the Amca application.
 ///
+library;
 import 'package:flutter/material.dart';
 
 class AmcaPalette {
@@ -19,5 +20,8 @@ class AmcaPalette {
   static const lightGreen = Color(0xFF00C913);
 
   static const permanentColor = Color.fromARGB(255, 76, 175, 79);
-  static const TransitoryColor = Color.fromARGB(255, 0, 180, 169);
+  static const transitoryColor = Color.fromARGB(255, 0, 180, 169);
+  static const meat = Color.fromARGB(255, 210, 180, 140);
+  static const milk = Color.fromARGB(255, 0, 117, 180);
+  static const pigFarmingColor = Color.fromARGB(255, 255, 182, 193);
 }

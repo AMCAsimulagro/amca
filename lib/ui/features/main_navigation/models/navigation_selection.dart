@@ -1,4 +1,5 @@
 /// {@category Menu model}
+library;
 import 'package:flutter/cupertino.dart';
 
 class NavigationOption {

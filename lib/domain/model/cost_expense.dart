@@ -1,5 +1,6 @@
 /// {@category Domain}
 ///This file defines the [CostAndExpense] class representing both cost and expense items, along with associated helper methods and JSON serialization.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/description.dart';

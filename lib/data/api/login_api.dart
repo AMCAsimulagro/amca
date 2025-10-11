@@ -3,6 +3,7 @@
 /// 
 /// which provide methods to interact with Firebase authentication and Firestore database in a Flutter application specifically for user authentication.
 /// These methods are designed for user account creation, login, password recovery, account deletion, and retrieval of the currently logged-in user.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';

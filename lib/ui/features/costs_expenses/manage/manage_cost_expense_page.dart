@@ -2,6 +2,7 @@
 /// This file contains the implementation of a Flutter page for managing agricultural costs and expenses.
 /// It provides fields to input information such as date, product or service, description, quantity, price, and comments.
 /// The page utilizes the Provider pattern to manage the application state and displays dialogs for user interaction.
+library;
 
 /// Imports of Bookstores and Resources
 import 'dart:developer';
@@ -370,7 +371,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
 
 // Widget to display the selected description of the product or service.
 class _DescriptionSelected extends StatelessWidget {
-  const _DescriptionSelected({Key? key}) : super(key: key);
+  const _DescriptionSelected({super.key});
 
   @override
   Widget build(BuildContext context) {

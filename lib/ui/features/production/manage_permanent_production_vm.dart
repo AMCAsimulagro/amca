@@ -19,6 +19,8 @@
 /// * **`init()`:** Initializes the class by loading the current production data.
 /// * **`createProduction(Production production)`:** Creates a new production object and saves it to the database.
 /// * **`deleteProduction()`:** Deletes the current production from the database.
+library;
+
 
 import 'package:amca/data/repository/farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
@@ -78,7 +80,7 @@ class ManageProductionVM extends ChangeNotifier {
       final totalValueProduction =
           int.parse((production.price.replaceAll(',', ''))) + listTotalPrice!;
 
-      final finallyTotalProfit = totalValueProduction! - totalCostAndExpenses!;
+      final finallyTotalProfit = totalValueProduction - totalCostAndExpenses!;
 
       /// Creates a copy of the production with the updated total value, ID (if missing), and owner ID
       final productionToUpdate = production.copyWith(
@@ -87,7 +89,7 @@ class ManageProductionVM extends ChangeNotifier {
         uidOwner: permanentFarming?.uidOwner,
       );
 
-      final List<Production>? updatedProductions =
+      final List<Production> updatedProductions =
           List<Production>.from(permanentFarming?.production ?? []);
       updatedProductions
           ?.add(productionToUpdate); // Using the null-aware operator
@@ -129,7 +131,7 @@ class ManageProductionVM extends ChangeNotifier {
       /// Calculates the total production value
       final totalValueProduction = listTotalPrice!;
 
-      final finallyTotalProfit = totalValueProduction! - totalCostAndExpenses!;
+      final finallyTotalProfit = totalValueProduction - totalCostAndExpenses!;
 
       permanentFarming = permanentFarming?.copyWith(
         production: listProducts!.isEmpty ? null : listProducts,

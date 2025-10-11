@@ -6,6 +6,7 @@
 /// This file includes both the definition of the Production class and the generated code for JSON serialization/deserialization.
 /// Freezed annotations are used to generate constructors and equality checks for the class, while JsonSerializable annotations
 /// are used to generate toJson() and fromJson() methods for serialization and deserialization.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';

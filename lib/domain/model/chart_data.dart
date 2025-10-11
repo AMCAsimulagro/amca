@@ -2,6 +2,7 @@
 // This file defines classes related to chart data representation, including monthly and yearly data.
 
 /// Imports of Bookstores and Resources
+library;
 import 'package:amca/domain/model/cost_expense.dart';
 
 // This class represents data for a specific year in a chart, containing information about

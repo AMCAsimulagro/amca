@@ -1,11 +1,3 @@
-/// {@category Domain}
-/// This file defines a Spawn class using Freezed and JsonSerializable annotations.
-/// The Spawn class represents a spawn with a list of types.
-/// It is designed to be immutable and provides methods for JSON serialization and deserialization.
-/// This file includes both the definition of the Spawn class and the generated code for JSON serialization/deserialization.
-/// Freezed annotations are used to generate constructors and equality checks for the class, while JsonSerializable annotations
-/// are used to generate toJson() and fromJson() methods for serialization and deserialization.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -20,7 +12,7 @@ part of 'spawn.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Spawn _$SpawnFromJson(Map<String, dynamic> json) {
   return _Spawn.fromJson(json);
@@ -30,8 +22,12 @@ Spawn _$SpawnFromJson(Map<String, dynamic> json) {
 mixin _$Spawn {
   List<String> get tipo => throw _privateConstructorUsedError;
 
+  /// Serializes this Spawn to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Spawn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpawnCopyWith<Spawn> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -53,6 +49,8 @@ class _$SpawnCopyWithImpl<$Res, $Val extends Spawn>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Spawn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -68,26 +66,31 @@ class _$SpawnCopyWithImpl<$Res, $Val extends Spawn>
 }
 
 /// @nodoc
-abstract class _$$_SpawnCopyWith<$Res> implements $SpawnCopyWith<$Res> {
-  factory _$$_SpawnCopyWith(_$_Spawn value, $Res Function(_$_Spawn) then) =
-      __$$_SpawnCopyWithImpl<$Res>;
+abstract class _$$SpawnImplCopyWith<$Res> implements $SpawnCopyWith<$Res> {
+  factory _$$SpawnImplCopyWith(
+          _$SpawnImpl value, $Res Function(_$SpawnImpl) then) =
+      __$$SpawnImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<String> tipo});
 }
 
 /// @nodoc
-class __$$_SpawnCopyWithImpl<$Res> extends _$SpawnCopyWithImpl<$Res, _$_Spawn>
-    implements _$$_SpawnCopyWith<$Res> {
-  __$$_SpawnCopyWithImpl(_$_Spawn _value, $Res Function(_$_Spawn) _then)
+class __$$SpawnImplCopyWithImpl<$Res>
+    extends _$SpawnCopyWithImpl<$Res, _$SpawnImpl>
+    implements _$$SpawnImplCopyWith<$Res> {
+  __$$SpawnImplCopyWithImpl(
+      _$SpawnImpl _value, $Res Function(_$SpawnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Spawn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? tipo = null,
   }) {
-    return _then(_$_Spawn(
+    return _then(_$SpawnImpl(
       tipo: null == tipo
           ? _value._tipo
           : tipo // ignore: cast_nullable_to_non_nullable
@@ -98,11 +101,11 @@ class __$$_SpawnCopyWithImpl<$Res> extends _$SpawnCopyWithImpl<$Res, _$_Spawn>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Spawn implements _Spawn {
-  _$_Spawn({required final List<String> tipo}) : _tipo = tipo;
+class _$SpawnImpl implements _Spawn {
+  _$SpawnImpl({required final List<String> tipo}) : _tipo = tipo;
 
-  factory _$_Spawn.fromJson(Map<String, dynamic> json) =>
-      _$$_SpawnFromJson(json);
+  factory _$SpawnImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SpawnImplFromJson(json);
 
   final List<String> _tipo;
   @override
@@ -118,41 +121,46 @@ class _$_Spawn implements _Spawn {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Spawn &&
+            other is _$SpawnImpl &&
             const DeepCollectionEquality().equals(other._tipo, _tipo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_tipo));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Spawn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SpawnCopyWith<_$_Spawn> get copyWith =>
-      __$$_SpawnCopyWithImpl<_$_Spawn>(this, _$identity);
+  _$$SpawnImplCopyWith<_$SpawnImpl> get copyWith =>
+      __$$SpawnImplCopyWithImpl<_$SpawnImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SpawnToJson(
+    return _$$SpawnImplToJson(
       this,
     );
   }
 }
 
 abstract class _Spawn implements Spawn {
-  factory _Spawn({required final List<String> tipo}) = _$_Spawn;
+  factory _Spawn({required final List<String> tipo}) = _$SpawnImpl;
 
-  factory _Spawn.fromJson(Map<String, dynamic> json) = _$_Spawn.fromJson;
+  factory _Spawn.fromJson(Map<String, dynamic> json) = _$SpawnImpl.fromJson;
 
   @override
   List<String> get tipo;
+
+  /// Create a copy of Spawn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_SpawnCopyWith<_$_Spawn> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SpawnImplCopyWith<_$SpawnImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

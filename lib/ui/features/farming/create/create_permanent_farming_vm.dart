@@ -4,6 +4,7 @@
 /// to perform CRUD operations on permanent farming data. The ViewModel provides functionality to initialize data,
 /// create, retrieve, update, and delete permanent farming activities. Dependencies include the [FarmingRepository],
 /// [CropTypes], [PermanentFarming], and Flutter's [ChangeNotifier].
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';
@@ -36,7 +37,6 @@ class CreatePermanentFarmingVM extends ChangeNotifier {
       }
       cropTypes = await farmingRepository.getPermanentCropTypes();
       sownTypes = await farmingRepository.getSown();
-    } catch (e) {
     } finally {
       notifyListeners();
     }

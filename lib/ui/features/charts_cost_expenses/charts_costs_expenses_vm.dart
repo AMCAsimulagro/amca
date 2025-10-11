@@ -1,6 +1,7 @@
 /// {@category Features ChartCost}
 /// This file contains the definition of the `ChartsProfileVM` class, which serves as a ViewModel
 /// for managing chart data in a Flutter application.
+library;
 
 /// Imports of Bookstores and Resources
 import 'dart:async';

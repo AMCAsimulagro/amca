@@ -1,4 +1,5 @@
 /// {@category splash}
+library;
 
 
 import 'package:amca/ui/features/login/options_login_page.dart';

@@ -1,9 +1,3 @@
-/// {@category Domain}
-// This file contains the definition of the TransitoryFarming class, which represents an object related to transitory farming.
-// It includes serialization and deserialization of TransitoryFarming instances to/from JSON, as well as methods for calculating the total cost and expenses.
-// Additionally, it is automatically generated using Freezed and JsonSerializable for immutability and serialization/deserialization of objects.
-// copyWith and toString methods are provided for ease of instance management and debugging.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -18,7 +12,7 @@ part of 'transitory_farming.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TransitoryFarming _$TransitoryFarmingFromJson(Map<String, dynamic> json) {
   return _TransitoryFarming.fromJson(json);
@@ -57,8 +51,12 @@ mixin _$TransitoryFarming {
   Production? get production => throw _privateConstructorUsedError;
   set production(Production? value) => throw _privateConstructorUsedError;
 
+  /// Serializes this TransitoryFarming to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TransitoryFarmingCopyWith<TransitoryFarming> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -98,6 +96,8 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,6 +176,8 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
     ) as $Val);
   }
 
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductionCopyWith<$Res>? get production {
@@ -190,11 +192,11 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
 }
 
 /// @nodoc
-abstract class _$$_TransitoryFarmingCopyWith<$Res>
+abstract class _$$TransitoryFarmingImplCopyWith<$Res>
     implements $TransitoryFarmingCopyWith<$Res> {
-  factory _$$_TransitoryFarmingCopyWith(_$_TransitoryFarming value,
-          $Res Function(_$_TransitoryFarming) then) =
-      __$$_TransitoryFarmingCopyWithImpl<$Res>;
+  factory _$$TransitoryFarmingImplCopyWith(_$TransitoryFarmingImpl value,
+          $Res Function(_$TransitoryFarmingImpl) then) =
+      __$$TransitoryFarmingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -218,13 +220,15 @@ abstract class _$$_TransitoryFarmingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TransitoryFarmingCopyWithImpl<$Res>
-    extends _$TransitoryFarmingCopyWithImpl<$Res, _$_TransitoryFarming>
-    implements _$$_TransitoryFarmingCopyWith<$Res> {
-  __$$_TransitoryFarmingCopyWithImpl(
-      _$_TransitoryFarming _value, $Res Function(_$_TransitoryFarming) _then)
+class __$$TransitoryFarmingImplCopyWithImpl<$Res>
+    extends _$TransitoryFarmingCopyWithImpl<$Res, _$TransitoryFarmingImpl>
+    implements _$$TransitoryFarmingImplCopyWith<$Res> {
+  __$$TransitoryFarmingImplCopyWithImpl(_$TransitoryFarmingImpl _value,
+      $Res Function(_$TransitoryFarmingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -243,7 +247,7 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
-    return _then(_$_TransitoryFarming(
+    return _then(_$TransitoryFarmingImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -306,8 +310,8 @@ class __$$_TransitoryFarmingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TransitoryFarming extends _TransitoryFarming {
-  _$_TransitoryFarming(
+class _$TransitoryFarmingImpl extends _TransitoryFarming {
+  _$TransitoryFarmingImpl(
       {this.id,
       required this.createDate,
       required this.partName,
@@ -324,8 +328,8 @@ class _$_TransitoryFarming extends _TransitoryFarming {
       this.production})
       : super._();
 
-  factory _$_TransitoryFarming.fromJson(Map<String, dynamic> json) =>
-      _$$_TransitoryFarmingFromJson(json);
+  factory _$TransitoryFarmingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TransitoryFarmingImplFromJson(json);
 
   @override
   String? id;
@@ -361,16 +365,18 @@ class _$_TransitoryFarming extends _TransitoryFarming {
     return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TransitoryFarmingCopyWith<_$_TransitoryFarming> get copyWith =>
-      __$$_TransitoryFarmingCopyWithImpl<_$_TransitoryFarming>(
+  _$$TransitoryFarmingImplCopyWith<_$TransitoryFarmingImpl> get copyWith =>
+      __$$TransitoryFarmingImplCopyWithImpl<_$TransitoryFarmingImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransitoryFarmingToJson(
+    return _$$TransitoryFarmingImplToJson(
       this,
     );
   }
@@ -391,11 +397,11 @@ abstract class _TransitoryFarming extends TransitoryFarming {
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      Production? production}) = _$_TransitoryFarming;
+      Production? production}) = _$TransitoryFarmingImpl;
   _TransitoryFarming._() : super._();
 
   factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =
-      _$_TransitoryFarming.fromJson;
+      _$TransitoryFarmingImpl.fromJson;
 
   @override
   String? get id;
@@ -439,8 +445,11 @@ abstract class _TransitoryFarming extends TransitoryFarming {
   @override
   Production? get production;
   set production(Production? value);
+
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_TransitoryFarmingCopyWith<_$_TransitoryFarming> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TransitoryFarmingImplCopyWith<_$TransitoryFarmingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

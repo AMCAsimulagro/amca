@@ -2,6 +2,7 @@
 /// This file contains the definition of a State class representing a state with its properties,
 /// including an id, departamento (department), and a list of ciudades (cities). It also includes
 /// methods for serializing and deserializing JSON data.
+library;
 
 /// This class represents a State with its properties including an id, departamento, and a list of cities.
 class State {

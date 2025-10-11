@@ -1,7 +1,3 @@
-/// {@category Domain}
-/// This file contains the serialization and deserialization methods for the PermanentFarming class, allowing instances to be converted to and from JSON format.
-/// It is automatically generated using the JsonSerializable package based on the PermanentFarming class definition.
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'permanent_farming.dart';
@@ -10,14 +6,15 @@ part of 'permanent_farming.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PermanentFarming _$$_PermanentFarmingFromJson(Map<String, dynamic> json) =>
-    _$_PermanentFarming(
+_$PermanentFarmingImpl _$$PermanentFarmingImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PermanentFarmingImpl(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
+      totalProfit: json['totalProfit'] as String,
       partName: json['partName'] as String,
       cropType: json['cropType'] as String,
       crop: json['crop'] as String,
-      totalProfit: json['totalProfit'] as String,
       sownArea: json['sownArea'] as String,
       sownType: json['sownType'] as String,
       format: json['format'] as String,
@@ -31,19 +28,17 @@ _$_PermanentFarming _$$_PermanentFarmingFromJson(Map<String, dynamic> json) =>
       production: (json['production'] as List<dynamic>?)
           ?.map((e) => Production.fromJson(e as Map<String, dynamic>))
           .toList(),
-      //json['production'] == null
-      // ? null
-      // : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_PermanentFarmingToJson(_$_PermanentFarming instance) =>
+Map<String, dynamic> _$$PermanentFarmingImplToJson(
+        _$PermanentFarmingImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),
+      'totalProfit': instance.totalProfit,
       'partName': instance.partName,
       'cropType': instance.cropType,
       'crop': instance.crop,
-      'totalProfit': instance.totalProfit,
       'sownArea': instance.sownArea,
       'sownType': instance.sownType,
       'format': instance.format,
@@ -53,6 +48,5 @@ Map<String, dynamic> _$$_PermanentFarmingToJson(_$_PermanentFarming instance) =>
       'comment': instance.comment,
       'costsAndExpenses':
           instance.costsAndExpenses?.map((e) => e.toJson()).toList(),
-      'production': 
-          instance.production?.map((e)=> e.toJson()).toList()
+      'production': instance.production?.map((e) => e.toJson()).toList(),
     };

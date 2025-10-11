@@ -1,5 +1,6 @@
 /// {@category Styles}
 /// Color scheme for the app's light theme.
+library;
 import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
@@ -19,12 +20,10 @@ const lightColorScheme = ColorScheme(
   error: Color(0xFFBA1A1A), // Color used to indicate errors.
   errorContainer: Color(0xFFFFDAD6), // Container color over error color.
   onError: Color(0xFFFFFFFF), // Text color over error color.
-  onErrorContainer: Color(0xFF410002), // Color of the text above the error container.
-  background: Color(0xFFFCFDF6), // Application background color.
-  onBackground: Color(0xFF1A1C18), // Text color on the application background.
+  onErrorContainer: Color(0xFF410002), // Text color on the application background.
   surface: Color(0xFFFCFDF6), //Application surface color.
   onSurface: Color(0xFF1A1C18), // Color of the text on the surface of the application.
-  surfaceVariant: Color(0xFFDFE4D8), // Surface color variant.
+  surfaceContainerHighest: Color(0xFFDFE4D8), // Surface color variant.
   onSurfaceVariant: Color(0xFF43483F), // Text color on surface variant.
   outline: Color(0xFF73796E), // Color used for the outlines.
   onInverseSurface: Color(0xFFF1F1EB), // Text color on the inverted surface.

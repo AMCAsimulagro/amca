@@ -3,6 +3,7 @@
 /// 
 /// Initializes Firebase, manages dependency injection,
 /// sets the application language, and defines the main theme.
+library;
 
 
 

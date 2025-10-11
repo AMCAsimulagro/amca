@@ -3,6 +3,7 @@
 /// the list of costs and expenses related to farming activities. It interacts with the data layer through the [FarmingRepository]
 /// to fetch and update farming-related data. The ViewModel provides functionality to initialize data fetching and handles
 /// the loading state of the data. Dependencies include the [FarmingRepository], [CostAndExpense] model, and Flutter's [ChangeNotifier].
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/repository/farming_repository.dart';
@@ -14,22 +15,26 @@ import 'package:flutter/cupertino.dart';
 class CostsExpensesListVM extends ChangeNotifier {
   CostsExpensesListVM({this.farmingId});
 
- /// Instance of [FarmingRepository] for fetching farming-related data.
+  /// Instance of [FarmingRepository] for fetching farming-related data.
   final FarmingRepository farmingRepository = locator<FarmingRepository>();
 
-/// List of costs and expenses.
+  /// List of costs and expenses.
   List<CostAndExpense> costsAndExpenses = [];
 
-  bool isLoading = true;  /// Indicates whether the data is currently being loaded.
-  String? farmingId;/// The ID of the farming activity.
+  bool isLoading = true;
 
-/// Initializes the data fetching process.
+  /// Indicates whether the data is currently being loaded.
+  String? farmingId;
+
+  /// The ID of the farming activity.
+
+  /// Initializes the data fetching process.
   Future<void> init() async {
     isLoading = true;
     try {
-      final permanentFarming = await farmingRepository.getPermanentFarmingById(farmingId!);
+      final permanentFarming =
+          await farmingRepository.getPermanentFarmingById(farmingId!);
       costsAndExpenses = permanentFarming.costsAndExpenses ?? [];
-    } catch (e) {
     } finally {
       notifyListeners();
       isLoading = false;

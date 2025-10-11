@@ -4,6 +4,7 @@
 /// which provides methods to interact with the Firebase database in a Flutter application.
 /// These methods are designed to perform operations related to agriculture,
 /// how to obtain crop types, create and delete transient agriculture records, manage costs and expenses, among others.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';
@@ -45,6 +46,9 @@ abstract class FarmingApi {
 
   /// Retrieves the complete history of transitory farming records for an admin.
   Future<List<TransitoryFarming>> getAllFarmingHistoryByAdmin();
+
+  /// Retrieves the complete history of transitory farming records for an admin.
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin();
 
   /// Deletes a transitory farming record from the database.
   Future<void> deleteTransitoryFarming(String id);
@@ -283,6 +287,28 @@ class FarmingApiAdapter extends FarmingApi {
           await _firebaseDb.collection(FirebaseCollections.farming).get();
       final data = collection.docs
           .map((doc) => TransitoryFarming.fromJson(doc.data()))
+          .toList()
+        ..sort((a, b) => a.createDate.compareTo(b.createDate));
+      return data;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        message: e.message,
+        codeError: e.code,
+      );
+    } catch (e) {
+      throw AppException(
+        codeError: Constants.generalError,
+      );
+    }
+  }
+ // Implementation of getAllFarmingHistoryByAdmin
+  @override
+  Future<List<PermanentFarming>> getAllFarmingPermanentHistoryByAdmin() async {
+    try {
+      final collection =
+          await _firebaseDb.collection(FirebaseCollections.farmingPermanent).get();
+      final data = collection.docs
+          .map((doc) => PermanentFarming.fromJson(doc.data()))
           .toList()
         ..sort((a, b) => a.createDate.compareTo(b.createDate));
       return data;

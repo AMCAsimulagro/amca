@@ -1,5 +1,6 @@
 /// {@category Utils}
 /// Class that contains static methods to display different types of dialogs.
+library;
 
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -250,12 +251,12 @@ class Dialogs {
         if ((value ?? '').isNotEmpty) {
           textController.text = value!;
         }
-        final _formKey = GlobalKey<FormState>();
+        final formKey = GlobalKey<FormState>();
         return _Dialog(
           content: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -296,7 +297,7 @@ class Dialogs {
                       ),
                       InkWell(
                         onTap: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             Navigator.of(context).pop();
                             onTap(textController.text);
                           }
@@ -336,7 +337,6 @@ class Dialogs {
 /// Widget privado que define el aspecto de un diálogo genérico.
 class _Dialog extends StatelessWidget {
   const _Dialog({
-    super.key,
     this.content,
   });
 

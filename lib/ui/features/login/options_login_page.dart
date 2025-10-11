@@ -1,4 +1,5 @@
 /// {@category Login}
+library;
 import 'package:amca/ui/features/login/login_page.dart';
 import 'package:amca/ui/utils/assets.dart';
 import 'package:amca/ui/widgets/amca_button.dart';

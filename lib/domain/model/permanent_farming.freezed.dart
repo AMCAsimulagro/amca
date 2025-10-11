@@ -1,9 +1,3 @@
-/// {@category Domain}
-// This file contains the definition of the PermanentFarming class, which represents an object related to permanent farming.
-// It includes serialization and deserialization of PermanentFarming instances to/from JSON, as well as methods for calculating the total cost and expenses.
-// Additionally, it is automatically generated using Freezed and JsonSerializable for immutability and serialization/deserialization of objects.
-// copyWith and toString methods are provided for ease of instance management and debugging.
-
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -18,7 +12,7 @@ part of 'permanent_farming.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PermanentFarming _$PermanentFarmingFromJson(Map<String, dynamic> json) {
   return _PermanentFarming.fromJson(json);
@@ -30,15 +24,12 @@ mixin _$PermanentFarming {
   set id(String? value) => throw _privateConstructorUsedError;
   DateTime get createDate => throw _privateConstructorUsedError;
   set createDate(DateTime value) => throw _privateConstructorUsedError;
-  String get partName => throw _privateConstructorUsedError;
-  set partName(String value) => throw _privateConstructorUsedError;
-
-  String get cropType => throw _privateConstructorUsedError;
-  set cropType(String value) => throw _privateConstructorUsedError;
-
   String get totalProfit => throw _privateConstructorUsedError;
   set totalProfit(String value) => throw _privateConstructorUsedError;
-
+  String get partName => throw _privateConstructorUsedError;
+  set partName(String value) => throw _privateConstructorUsedError;
+  String get cropType => throw _privateConstructorUsedError;
+  set cropType(String value) => throw _privateConstructorUsedError;
   String get crop => throw _privateConstructorUsedError;
   set crop(String value) => throw _privateConstructorUsedError;
   String get sownArea => throw _privateConstructorUsedError;
@@ -55,17 +46,20 @@ mixin _$PermanentFarming {
   set uidOwner(String? value) => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
   set comment(String? value) => throw _privateConstructorUsedError;
-
   List<CostAndExpense>? get costsAndExpenses =>
       throw _privateConstructorUsedError;
   set costsAndExpenses(List<CostAndExpense>? value) =>
-      throw _privateConstructorUsedError;
-
-  List<Production>? get production => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; //Production? production,
+  List<Production>? get production =>
+      throw _privateConstructorUsedError; //Production? production,
   set production(List<Production>? value) => throw _privateConstructorUsedError;
 
+  /// Serializes this PermanentFarming to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PermanentFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PermanentFarmingCopyWith<PermanentFarming> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,26 +70,22 @@ abstract class $PermanentFarmingCopyWith<$Res> {
           PermanentFarming value, $Res Function(PermanentFarming) then) =
       _$PermanentFarmingCopyWithImpl<$Res, PermanentFarming>;
   @useResult
-  $Res call({
-    String? id,
-    DateTime createDate,
-    String partName,
-    String cropType,
-    String totalProfit,
-    String crop,
-    String sownArea,
-    String sownType,
-    String format,
-    String amountSown,
-    String value,
-    String? uidOwner,
-    String? comment,
-    List<CostAndExpense>? costsAndExpenses,
-    List<Production>? production,
-    //Production? production
-  });
-
-  $ProductionCopyWith<$Res>? get production;
+  $Res call(
+      {String? id,
+      DateTime createDate,
+      String totalProfit,
+      String partName,
+      String cropType,
+      String crop,
+      String sownArea,
+      String sownType,
+      String format,
+      String amountSown,
+      String value,
+      String? uidOwner,
+      String? comment,
+      List<CostAndExpense>? costsAndExpenses,
+      List<Production>? production});
 }
 
 /// @nodoc
@@ -108,15 +98,17 @@ class _$PermanentFarmingCopyWithImpl<$Res, $Val extends PermanentFarming>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PermanentFarming
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? createDate = null,
+    Object? totalProfit = null,
     Object? partName = null,
     Object? cropType = null,
     Object? crop = null,
-    Object? totalProfit = null,
     Object? sownArea = null,
     Object? sownType = null,
     Object? format = null,
@@ -136,6 +128,10 @@ class _$PermanentFarmingCopyWithImpl<$Res, $Val extends PermanentFarming>
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      totalProfit: null == totalProfit
+          ? _value.totalProfit
+          : totalProfit // ignore: cast_nullable_to_non_nullable
+              as String,
       partName: null == partName
           ? _value.partName
           : partName // ignore: cast_nullable_to_non_nullable
@@ -148,8 +144,6 @@ class _$PermanentFarmingCopyWithImpl<$Res, $Val extends PermanentFarming>
           ? _value.crop
           : crop // ignore: cast_nullable_to_non_nullable
               as String,
-      totalProfit:
-          null == totalProfit ? _value.totalProfit : totalProfit as String,
       sownArea: null == sownArea
           ? _value.sownArea
           : sownArea // ignore: cast_nullable_to_non_nullable
@@ -184,71 +178,57 @@ class _$PermanentFarmingCopyWithImpl<$Res, $Val extends PermanentFarming>
               as List<CostAndExpense>?,
       production: freezed == production
           ? _value.production
-          : production as List<Production>?,
+          : production // ignore: cast_nullable_to_non_nullable
+              as List<Production>?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductionCopyWith<$Res>? get production {
-    if (_value.production == null) {
-      return null;
-    }
-
-    // return $ProductionCopyWith<$Res>(_value.production!, (value) {
-    //   return _then(_value.copyWith(production: value) as $Val);
-    // });
-  }
 }
 
 /// @nodoc
-abstract class _$$_PermanentFarmingCopyWith<$Res>
+abstract class _$$PermanentFarmingImplCopyWith<$Res>
     implements $PermanentFarmingCopyWith<$Res> {
-  factory _$$_PermanentFarmingCopyWith(
-          _$_PermanentFarming value, $Res Function(_$_PermanentFarming) then) =
-      __$$_PermanentFarmingCopyWithImpl<$Res>;
+  factory _$$PermanentFarmingImplCopyWith(_$PermanentFarmingImpl value,
+          $Res Function(_$PermanentFarmingImpl) then) =
+      __$$PermanentFarmingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String? id,
-    DateTime createDate,
-    String partName,
-    String cropType,
-    String crop,
-    String totalProfit,
-    String sownArea,
-    String sownType,
-    String format,
-    String amountSown,
-    String value,
-    String? uidOwner,
-    String? comment,
-    List<CostAndExpense>? costsAndExpenses,
-    List<Production>? production,
-    //Production? production
-  });
-
-  @override
-  $ProductionCopyWith<$Res>? get production;
+  $Res call(
+      {String? id,
+      DateTime createDate,
+      String totalProfit,
+      String partName,
+      String cropType,
+      String crop,
+      String sownArea,
+      String sownType,
+      String format,
+      String amountSown,
+      String value,
+      String? uidOwner,
+      String? comment,
+      List<CostAndExpense>? costsAndExpenses,
+      List<Production>? production});
 }
 
 /// @nodoc
-class __$$_PermanentFarmingCopyWithImpl<$Res>
-    extends _$PermanentFarmingCopyWithImpl<$Res, _$_PermanentFarming>
-    implements _$$_PermanentFarmingCopyWith<$Res> {
-  __$$_PermanentFarmingCopyWithImpl(
-      _$_PermanentFarming _value, $Res Function(_$_PermanentFarming) _then)
+class __$$PermanentFarmingImplCopyWithImpl<$Res>
+    extends _$PermanentFarmingCopyWithImpl<$Res, _$PermanentFarmingImpl>
+    implements _$$PermanentFarmingImplCopyWith<$Res> {
+  __$$PermanentFarmingImplCopyWithImpl(_$PermanentFarmingImpl _value,
+      $Res Function(_$PermanentFarmingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PermanentFarming
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? createDate = null,
+    Object? totalProfit = null,
     Object? partName = null,
     Object? cropType = null,
     Object? crop = null,
-    Object? totalProfit = null,
     Object? sownArea = null,
     Object? sownType = null,
     Object? format = null,
@@ -259,7 +239,7 @@ class __$$_PermanentFarmingCopyWithImpl<$Res>
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
-    return _then(_$_PermanentFarming(
+    return _then(_$PermanentFarmingImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -268,6 +248,10 @@ class __$$_PermanentFarmingCopyWithImpl<$Res>
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      totalProfit: null == totalProfit
+          ? _value.totalProfit
+          : totalProfit // ignore: cast_nullable_to_non_nullable
+              as String,
       partName: null == partName
           ? _value.partName
           : partName // ignore: cast_nullable_to_non_nullable
@@ -280,8 +264,6 @@ class __$$_PermanentFarmingCopyWithImpl<$Res>
           ? _value.crop
           : crop // ignore: cast_nullable_to_non_nullable
               as String,
-      totalProfit:
-          null == totalProfit ? _value.totalProfit : totalProfit as String,
       sownArea: null == sownArea
           ? _value.sownArea
           : sownArea // ignore: cast_nullable_to_non_nullable
@@ -314,30 +296,25 @@ class __$$_PermanentFarmingCopyWithImpl<$Res>
           ? _value.costsAndExpenses
           : costsAndExpenses // ignore: cast_nullable_to_non_nullable
               as List<CostAndExpense>?,
-
       production: freezed == production
           ? _value.production
           : production // ignore: cast_nullable_to_non_nullable
               as List<Production>?,
-
-      // production: freezed == production
-      //     ? _value.production
-      //     : production // ignore: cast_nullable_to_non_nullable
-      //         as Production?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_PermanentFarming extends _PermanentFarming {
-  _$_PermanentFarming(
+class _$PermanentFarmingImpl extends _PermanentFarming
+    with DiagnosticableTreeMixin {
+  _$PermanentFarmingImpl(
       {this.id,
       required this.createDate,
+      required this.totalProfit,
       required this.partName,
       required this.cropType,
       required this.crop,
-      required this.totalProfit,
       required this.sownArea,
       required this.sownType,
       required this.format,
@@ -349,21 +326,21 @@ class _$_PermanentFarming extends _PermanentFarming {
       this.production})
       : super._();
 
-  factory _$_PermanentFarming.fromJson(Map<String, dynamic> json) =>
-      _$$_PermanentFarmingFromJson(json);
+  factory _$PermanentFarmingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PermanentFarmingImplFromJson(json);
 
   @override
   String? id;
   @override
   DateTime createDate;
   @override
+  String totalProfit;
+  @override
   String partName;
   @override
   String cropType;
   @override
   String crop;
-  @override
-  String totalProfit;
   @override
   String sownArea;
   @override
@@ -380,52 +357,75 @@ class _$_PermanentFarming extends _PermanentFarming {
   String? comment;
   @override
   List<CostAndExpense>? costsAndExpenses;
+//Production? production,
   @override
   List<Production>? production;
-  //Production? production;
 
   @override
-  String toString() {
-    return 'PermanentFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PermanentFarming(id: $id, createDate: $createDate, totalProfit: $totalProfit, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
-  @JsonKey(ignore: true)
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PermanentFarming'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('createDate', createDate))
+      ..add(DiagnosticsProperty('totalProfit', totalProfit))
+      ..add(DiagnosticsProperty('partName', partName))
+      ..add(DiagnosticsProperty('cropType', cropType))
+      ..add(DiagnosticsProperty('crop', crop))
+      ..add(DiagnosticsProperty('sownArea', sownArea))
+      ..add(DiagnosticsProperty('sownType', sownType))
+      ..add(DiagnosticsProperty('format', format))
+      ..add(DiagnosticsProperty('amountSown', amountSown))
+      ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('uidOwner', uidOwner))
+      ..add(DiagnosticsProperty('comment', comment))
+      ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
+      ..add(DiagnosticsProperty('production', production));
+  }
+
+  /// Create a copy of PermanentFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PermanentFarmingCopyWith<_$_PermanentFarming> get copyWith =>
-      __$$_PermanentFarmingCopyWithImpl<_$_PermanentFarming>(this, _$identity);
+  _$$PermanentFarmingImplCopyWith<_$PermanentFarmingImpl> get copyWith =>
+      __$$PermanentFarmingImplCopyWithImpl<_$PermanentFarmingImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PermanentFarmingToJson(
+    return _$$PermanentFarmingImplToJson(
       this,
     );
   }
 }
 
 abstract class _PermanentFarming extends PermanentFarming {
-  factory _PermanentFarming({
-    String? id,
-    required DateTime createDate,
-    required String partName,
-    required String cropType,
-    required String crop,
-    required String totalProfit,
-    required String sownArea,
-    required String sownType,
-    required String format,
-    required String amountSown,
-    required String value,
-    String? uidOwner,
-    String? comment,
-    List<CostAndExpense>? costsAndExpenses,
-    List<Production>? production,
-    /*Production? production*/
-  }) = _$_PermanentFarming;
+  factory _PermanentFarming(
+      {String? id,
+      required DateTime createDate,
+      required String totalProfit,
+      required String partName,
+      required String cropType,
+      required String crop,
+      required String sownArea,
+      required String sownType,
+      required String format,
+      required String amountSown,
+      required String value,
+      String? uidOwner,
+      String? comment,
+      List<CostAndExpense>? costsAndExpenses,
+      List<Production>? production}) = _$PermanentFarmingImpl;
   _PermanentFarming._() : super._();
 
   factory _PermanentFarming.fromJson(Map<String, dynamic> json) =
-      _$_PermanentFarming.fromJson;
+      _$PermanentFarmingImpl.fromJson;
 
   @override
   String? get id;
@@ -434,19 +434,17 @@ abstract class _PermanentFarming extends PermanentFarming {
   DateTime get createDate;
   set createDate(DateTime value);
   @override
+  String get totalProfit;
+  set totalProfit(String value);
+  @override
   String get partName;
   set partName(String value);
   @override
   String get cropType;
   set cropType(String value);
-
   @override
   String get crop;
   set crop(String value);
-
-  @override
-  String get totalProfit;
-  set totalProfit(String value);
   @override
   String get sownArea;
   set sownArea(String value);
@@ -470,15 +468,15 @@ abstract class _PermanentFarming extends PermanentFarming {
   set comment(String? value);
   @override
   List<CostAndExpense>? get costsAndExpenses;
-  set costsAndExpenses(List<CostAndExpense>? value);
+  set costsAndExpenses(List<CostAndExpense>? value); //Production? production,
   @override
-  //Production? get production;
-  //set production(Production? value);
-  List<Production>? get production;
+  List<Production>? get production; //Production? production,
   set production(List<Production>? value);
 
+  /// Create a copy of PermanentFarming
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_PermanentFarmingCopyWith<_$_PermanentFarming> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PermanentFarmingImplCopyWith<_$PermanentFarmingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

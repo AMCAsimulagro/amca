@@ -2,6 +2,7 @@
 /// This file contains the implementation of an interface `FrequentQuestionRepository` and its adapter `FrequentQuestionRepositoryAdapter`
 /// 
 /// which provide methods to interact with the Frequent Question API in a Flutter application for managing frequent question-related data.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/frequent_question_api.dart';

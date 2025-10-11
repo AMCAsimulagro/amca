@@ -2,6 +2,7 @@
 /// This file defines the [AmcaUser] class which represents a user in the AMCA system.
 /// The [AmcaUser] class is annotated with @freezed and @unfreezed which are used
 /// for code generation to handle immutable data classes with ease.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:cloud_firestore/cloud_firestore.dart';

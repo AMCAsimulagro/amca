@@ -1,5 +1,6 @@
 /// {@category Widgets}
 /// This file contains the `AmcaSelectFormField` widget, which is a custom dropdown
+library;
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 

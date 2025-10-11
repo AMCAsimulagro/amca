@@ -1,6 +1,3 @@
-/// {@category Domain}
-// These functions perform JSON serialization and deserialization for the [CostAndExpense] class.
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'cost_expense.dart';
@@ -9,9 +6,8 @@ part of 'cost_expense.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-/// JSON deserialization function for [CostAndExpense] class.
-_$_CostAndExpense _$$_CostAndExpenseFromJson(Map<String, dynamic> json) =>
-    _$_CostAndExpense(
+_$CostAndExpenseImpl _$$CostAndExpenseImplFromJson(Map<String, dynamic> json) =>
+    _$CostAndExpenseImpl(
       uidOwner: json['uidOwner'] as String?,
       partName: json['partName'] as String?,
       transitoryFarmingId: json['transitoryFarmingId'] as String,
@@ -25,8 +21,8 @@ _$_CostAndExpense _$$_CostAndExpenseFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-/// JSON serialization function for [CostAndExpense] class.
-Map<String, dynamic> _$$_CostAndExpenseToJson(_$_CostAndExpense instance) =>
+Map<String, dynamic> _$$CostAndExpenseImplToJson(
+        _$CostAndExpenseImpl instance) =>
     <String, dynamic>{
       'uidOwner': instance.uidOwner,
       'partName': instance.partName,

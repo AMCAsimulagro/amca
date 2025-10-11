@@ -3,6 +3,7 @@
 /// 
 /// which provide methods to interact with the Firestore database in a Flutter application specifically for managing user data.
 /// These methods are designed for retrieving all users and managing admin users.
+library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/data/api/firebase_collections.dart';

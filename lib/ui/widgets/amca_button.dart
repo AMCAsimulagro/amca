@@ -3,6 +3,7 @@
 /// This file contains the `AmcaButton` widget, which is a custom button
 /// for the Amca application.
 ///
+library;
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:flutter/material.dart';
 
