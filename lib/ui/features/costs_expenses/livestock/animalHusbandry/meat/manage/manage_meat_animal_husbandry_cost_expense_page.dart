@@ -33,7 +33,7 @@ class ManageCostExpensePage extends StatefulWidget {
           required String farmingId}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
+        create: (context) => ManageCostExpenseVM(farmingId)..init(),
 
         // Constructor for the ManageCostExpensePage.
         child: ManageCostExpensePage._(
@@ -379,7 +379,7 @@ class _DescriptionSelected extends StatelessWidget {
               right: 8,
             ),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.4),
+              color: Colors.grey.withValues(alpha: 0.4), // TODO: revisar color
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15),

@@ -14,7 +14,7 @@ part 'frequent_question.g.dart';
 
 /// Represents a frequently asked question.
 @unfreezed
-class FrequentQuestion with _$FrequentQuestion {
+abstract class FrequentQuestion with _$FrequentQuestion {
   /// Default constructor for FrequentQuestion.
   factory FrequentQuestion({
     String? id,// ID of the question.

@@ -4,7 +4,7 @@
 /// button for the Amca application.
 ///
 library;
-import 'package:amca/ui/utils/amca_palette.dart';
+// import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:flutter/material.dart';
 
 class AmcaContainerButton extends StatelessWidget {
@@ -36,7 +36,7 @@ class AmcaContainerButton extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle( // TODO: revisar estilos
               color: Colors.white, // Cambia el color del texto a blanco
               fontSize: 24, // Ajusta el tamaño de la fuente según lo desees
               fontWeight:

@@ -44,3 +44,6 @@ app.*.map.json
 /android/app/.cxx/*
 android/app/.cxx/debug
 android/app/.cxx/Debug/*
+
+# ignore api documentation files
+/doc/*

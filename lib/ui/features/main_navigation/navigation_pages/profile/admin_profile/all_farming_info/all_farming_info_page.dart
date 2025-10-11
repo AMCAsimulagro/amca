@@ -47,7 +47,7 @@ class AllFarmingInfoPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final farmingInfo = vm.farmingInfo[index];
                   return ListTile(
-                    title: Text(farmingInfo.tipo ?? ''),
+                    title: Text(farmingInfo.tipo),
                     onTap: () async {
                       Navigator.push(
                         context,
