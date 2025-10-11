@@ -1,14 +1,14 @@
 /// {@category Menu allUser}
 library;
 
-import 'package:amca/domain/model/amca_user.dart';
+// import 'package:amca/domain/model/amca_user.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_users/all_users_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/user_profile/user_profile_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
-import 'package:amca/ui/utils/calls_with_dialog.dart';
-import 'package:amca/ui/utils/dialogs.dart';
-import 'package:amca/ui/utils/navigation_helper.dart';
+// import 'package:amca/ui/utils/calls_with_dialog.dart';
+// import 'package:amca/ui/utils/dialogs.dart';
+// import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,7 @@ class AllUsersPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final user = vm.amcaUsers[index];
                   return ListTile(
-                    title: Text(user.names ?? ''),
+                    title: Text(user.names),
                     subtitle: Text(
                       (user.isAdmin ?? false)
                           ? 'Es Administrador'

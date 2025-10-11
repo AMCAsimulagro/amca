@@ -34,7 +34,7 @@ class ManageCostExpensePage extends StatefulWidget {
           required String farmingId}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
+        create: (context) => ManageCostExpenseVM(farmingId)..init(),
         
         // Constructor for the ManageCostExpensePage.
         child: ManageCostExpensePage._(
@@ -66,7 +66,7 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
   final _quantityController = TextEditingController();
   final _priceController = TextEditingController();
   final _commentController = TextEditingController();
-  static const _locale = 'en';
+  // static const _locale = 'en';
   String createdDate = '';
 
 // Method called when initializing the state of the widget.

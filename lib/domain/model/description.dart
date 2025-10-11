@@ -14,7 +14,7 @@ part 'description.g.dart';
 
 /// Represents a description object.
 @freezed
-class Description with _$Description {
+abstract class Description with _$Description {
   /// Default constructor for Description.
   factory Description({
     required String description,// Description of the object.

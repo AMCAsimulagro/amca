@@ -33,7 +33,7 @@ class ManageCostExpensePage extends StatefulWidget {
           required String farmingId}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => ManageCostExpenseVM(farmingId ?? '')..init(),
+        create: (context) => ManageCostExpenseVM(farmingId)..init(),
 
         // Constructor for the ManageCostExpensePage.
         child: ManageCostExpensePage._(

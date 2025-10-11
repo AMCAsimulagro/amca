@@ -12,7 +12,7 @@ part 'cost_expense.g.dart';
 
 /// This class represents a cost or expense item.
 @unfreezed
-class CostAndExpense with _$CostAndExpense {
+abstract class CostAndExpense with _$CostAndExpense {
   factory CostAndExpense({
     String? uidOwner,// Owner's UID
     String? partName,// Name of the part

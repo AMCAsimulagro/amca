@@ -10,7 +10,7 @@ part 'crop_types.freezed.dart';
 part 'crop_types.g.dart';
 
 @freezed
-class CropTypes with _$CropTypes {
+abstract class CropTypes with _$CropTypes {
   factory CropTypes({
     required List<String> cultivo,
     required String tipo,

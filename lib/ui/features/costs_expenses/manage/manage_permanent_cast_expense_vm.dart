@@ -43,12 +43,12 @@ class ManageCostExpenseVM extends ChangeNotifier {
       CostAndExpense costAndExpense) async {
     try {
       if (permanentFarming?.production != null) {
-        final totalCostAndExpenses =
-            permanentFarming?.calculateTotalCostAndExpense();
-        final totalValueProduction = int.parse(//TODO - Cambiar poss calcular
-                (permanentFarming?.production?[0].price.replaceAll(',', '')) ??
-                    '0') -
-            totalCostAndExpenses!;
+        // final totalCostAndExpenses =
+        //     permanentFarming?.calculateTotalCostAndExpense();
+        // final totalValueProduction = int.parse(//TODO - Cambiar poss calcular
+        //         (permanentFarming?.production?[0].price.replaceAll(',', '')) ??
+        //             '0') -
+        //     totalCostAndExpenses!;
 
         // permanentFarming = permanentFarming?.copyWith(
         //   production: permanentFarming?.production?.copyWith(

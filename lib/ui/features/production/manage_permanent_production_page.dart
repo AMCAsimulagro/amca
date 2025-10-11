@@ -272,17 +272,17 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     }
   }
 
-  void _preloadData() {
-    if (isEditMode) {
-      final preloadProduction = widget.production;
-      createdDate = DateFormat('yyyy-MM-dd')
-          .format(preloadProduction?.createDate ?? DateTime.now());
-      _unitOfMeasureController.text =
-          preloadProduction?.unitOfMeasurement ?? '';
-      _quantityController.text = preloadProduction?.quantity ?? '';
-      _priceController.text = preloadProduction?.price ?? '';
-    }
-  }
+  // void _preloadData() {
+  //   if (isEditMode) {
+  //     final preloadProduction = widget.production;
+  //     createdDate = DateFormat('yyyy-MM-dd')
+  //         .format(preloadProduction?.createDate ?? DateTime.now());
+  //     _unitOfMeasureController.text =
+  //         preloadProduction?.unitOfMeasurement ?? '';
+  //     _quantityController.text = preloadProduction?.quantity ?? '';
+  //     _priceController.text = preloadProduction?.price ?? '';
+  //   }
+  // }
 
   // Color _getEarningsColors(ManageProductionVM vm) {
   //   final value = int.parse(

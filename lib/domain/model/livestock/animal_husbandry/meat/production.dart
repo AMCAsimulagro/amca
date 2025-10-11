@@ -8,7 +8,7 @@
 /// are used to generate toJson() and fromJson() methods for serialization and deserialization.
 library;
 
-import 'package:amca/domain/model/reportable_entity.dart';
+// import 'package:amca/domain/model/reportable_entity.dart';
 
 /// Imports of Bookstores and Resources
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,7 +19,7 @@ part 'production.g.dart';
 
 /// Represents a production.
 @unfreezed
-class Production with _$Production {
+abstract class Production with _$Production {
   /// Default constructor for Production.
   factory Production({
     String? uidOwner, // Owner UID of the production.

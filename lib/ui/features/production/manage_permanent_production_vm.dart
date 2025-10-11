@@ -92,7 +92,7 @@ class ManageProductionVM extends ChangeNotifier {
       final List<Production> updatedProductions =
           List<Production>.from(permanentFarming?.production ?? []);
       updatedProductions
-          ?.add(productionToUpdate); // Using the null-aware operator
+          .add(productionToUpdate); // Using the null-aware operator
 
       permanentFarming = permanentFarming?.copyWith(
         production: updatedProductions,
@@ -100,8 +100,7 @@ class ManageProductionVM extends ChangeNotifier {
       );
 
       /// Saves the updated information to the database
-      final result =
-          await farmingRepository.createPermanentFarming(permanentFarming!);
+      await farmingRepository.createPermanentFarming(permanentFarming!);
       return permanentFarming;
     } catch (e) {
       return null;

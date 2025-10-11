@@ -196,7 +196,7 @@ class LoginApiAdapter extends LoginApi {
       final identification = prefs.getString(
           SharedPreferencesKey.currentlyUserLoggedIdentification);
       var collectionRef = _firebaseDb.collection(FirebaseCollections.users);
-      final userDb = await collectionRef.doc(identification).delete();
+      await collectionRef.doc(identification).delete();
       return await _firebaseAuth.currentUser?.delete();
     } on FirebaseAuthException catch (e) {
       throw AppException(

@@ -14,7 +14,7 @@ part 'amca_user.g.dart';
 
 /// A class representing a user in the AMCA system.
 @unfreezed
-class AmcaUser with _$AmcaUser {
+abstract class AmcaUser with _$AmcaUser {
   /// Default constructor for [AmcaUser].
   factory AmcaUser({
     required String names,

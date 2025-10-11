@@ -87,8 +87,7 @@ class ManageProductionVM extends ChangeNotifier {
       );
 
       /// Saves the updated information to the database
-      final result =
-          await farmingRepository.createTransitoryFarming(transitoryFarming!);
+      await farmingRepository.createTransitoryFarming(transitoryFarming!);
       return transitoryFarming;
     } catch (e) {
       return null;
