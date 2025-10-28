@@ -293,7 +293,7 @@ class _ManagePigFarmingCostAndExpensesState
                 AmcaButton(
                   text: vm.isEditMode
                       ? AmcaWords.update
-                      : AmcaWords.createFarming,
+                      : AmcaWords.createProduction,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       createPigFarming();
@@ -398,6 +398,7 @@ class _ManagePigFarmingCostAndExpensesState
     if (isEditMode) {
       final preloadPigFarming = widget.pigFarming;
       _farmNameController.text = preloadPigFarming?.farmName ?? '';
+      _numberAnimalsController.text = preloadPigFarming?.numberAnimals ?? '';
       // _productionTypeController.text = preloadPigFarming?.productionType ?? '';
       // _sownAreaController.text = preloadPigFarming?.sownArea ?? '';
       // _sownTypeController.text = preloadPigFarming?.sownType ?? '';
