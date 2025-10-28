@@ -6,8 +6,8 @@ part of 'cost_expense.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CostAndExpenseImpl _$$CostAndExpenseImplFromJson(Map<String, dynamic> json) =>
-    _$CostAndExpenseImpl(
+_CostAndExpense _$CostAndExpenseFromJson(Map<String, dynamic> json) =>
+    _CostAndExpense(
       uidOwner: json['uidOwner'] as String?,
       partName: json['partName'] as String?,
       transitoryFarmingId: json['transitoryFarmingId'] as String,
@@ -21,8 +21,7 @@ _$CostAndExpenseImpl _$$CostAndExpenseImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$CostAndExpenseImplToJson(
-        _$CostAndExpenseImpl instance) =>
+Map<String, dynamic> _$CostAndExpenseToJson(_CostAndExpense instance) =>
     <String, dynamic>{
       'uidOwner': instance.uidOwner,
       'partName': instance.partName,

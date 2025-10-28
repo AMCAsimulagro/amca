@@ -11,7 +11,6 @@ import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
-import 'package:amca/ui/features/livestock/create/pig_farming/create_pig_farming_vm.dart';
 import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart';
 import 'package:flutter/material.dart';
 

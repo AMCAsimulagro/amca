@@ -6,8 +6,7 @@ part of 'amca_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AmcaUserImpl _$$AmcaUserImplFromJson(Map<String, dynamic> json) =>
-    _$AmcaUserImpl(
+_AmcaUser _$AmcaUserFromJson(Map<String, dynamic> json) => _AmcaUser(
       names: json['names'] as String,
       firstLastName: json['firstLastName'] as String,
       secondLastName: json['secondLastName'] as String,
@@ -19,8 +18,7 @@ _$AmcaUserImpl _$$AmcaUserImplFromJson(Map<String, dynamic> json) =>
       isAdmin: json['isAdmin'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$AmcaUserImplToJson(_$AmcaUserImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AmcaUserToJson(_AmcaUser instance) => <String, dynamic>{
       'names': instance.names,
       'firstLastName': instance.firstLastName,
       'secondLastName': instance.secondLastName,

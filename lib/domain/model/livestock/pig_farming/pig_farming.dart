@@ -17,7 +17,7 @@ part 'pig_farming.freezed.dart';
 part 'pig_farming.g.dart';
 
 @unfreezed
-class PigFarming with _$PigFarming {
+abstract class PigFarming with _$PigFarming {
   const PigFarming._();
 
   factory PigFarming({
@@ -25,16 +25,16 @@ class PigFarming with _$PigFarming {
     required DateTime createDate,
     required String totalProfit,
     required String farmName,
-    required String productionType,
-    required String sownArea,
-    required String sownType,
-    required String format,
-    required String amountSown,
+    // required String productionType,
+    // required String sownArea,
+    // required String sownType,
+    // required String format,
+    // required String amountSown,
+    required String numberAnimals,
     required String value,
     String? uidOwner,
     String? comment,
     List<CostAndExpense>? costsAndExpenses,
-    //Production? production,
     List<Production>? production,
   }) = _PigFarming;
 

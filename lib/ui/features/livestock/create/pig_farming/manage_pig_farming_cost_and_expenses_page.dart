@@ -25,7 +25,6 @@ import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_date_picker_field.dart';
-import 'package:amca/ui/widgets/amca_select_form_field.dart';
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,12 +65,13 @@ class _ManagePigFarmingCostAndExpensesState
     extends State<ManagePigFarmingCostAndExpenses> {
   final _formKey = GlobalKey<FormState>();
   final _farmNameController = TextEditingController();
-  final _productionTypeController = TextEditingController();
-  final _cropController = TextEditingController();
-  final _sownAreaController = TextEditingController();
-  final _sownTypeController = TextEditingController();
-  final _formatController = TextEditingController();
-  final _amountSownController = TextEditingController();
+  final _numberAnimalsController = TextEditingController();
+  // final _productionTypeController = TextEditingController();
+  // final _cropController = TextEditingController();
+  // final _sownAreaController = TextEditingController();
+  // final _sownTypeController = TextEditingController();
+  // final _formatController = TextEditingController();
+  // final _amountSownController = TextEditingController();
   final _valueController = TextEditingController();
   final _commentController = TextEditingController();
   static const _locale = 'en';
@@ -135,95 +135,25 @@ class _ManagePigFarmingCostAndExpensesState
                 const SizedBox(
                   height: 12,
                 ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.productionType,
-                  textEditingController: _productionTypeController,
-                  options: vm.productionTypes,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectCropType;
-                    }
-                    return null;
-                  },
-                  optionSelected: (optionSelected) {
-                    _cropController.clear();
-                    vm.onCropType(optionSelected);
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
                 AmcaTextFormField(
-                  textEditingController: _sownAreaController,
+                  textEditingController: _numberAnimalsController,
                   textInputType: TextInputType.number,
-                  labelText: '${AmcaWords.sownArea} (m²)',
+                  labelText: AmcaWords.animalNumber,
                   inputFormatters: [
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
                     if (value != null && value.isEmpty) {
-                      return AmcaWords.pleaseSownArea;
+                      return AmcaWords.pleaseAnimalNumber;
                     }
                     return null;
                   },
                 ),
+  
                 const SizedBox(
                   height: 12,
                 ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.sownType,
-                  textEditingController: _sownTypeController,
-                  options: vm.sownTypes,
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectSownType;
-                    }
-                    return null;
-                  },
-                  optionSelected: (optionSelected) {
-                    //  vm.setState(optionSelected);
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaSelectFormField(
-                  labelText: AmcaWords.format,
-                  textEditingController: _formatController,
-                  options: const [
-                    AmcaWords.units,
-                    AmcaWords.kG,
-                  ],
-                  validator: (farming) {
-                    if (farming != null && farming.isEmpty) {
-                      return AmcaWords.pleaseSelectFormat;
-                    }
-                    return null;
-                  },
-                  optionSelected: (optionSelected) {
-                    //  vm.setState(optionSelected);
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                AmcaTextFormField(
-                  textEditingController: _amountSownController,
-                  textInputType: TextInputType.number,
-                  labelText: AmcaWords.amountSown,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                  ],
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return AmcaWords.pleaseAddAmountSown;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
+                
                 AmcaTextFormField(
                   textEditingController: _valueController,
                   textInputType: TextInputType.number,
@@ -395,12 +325,13 @@ class _ManagePigFarmingCostAndExpensesState
     final pigFarming = PigFarming(
       createDate: date,
       farmName: _farmNameController.text,
-      productionType: _productionTypeController.text,
       totalProfit: "",
-      sownArea: _sownAreaController.text,
-      sownType: _sownTypeController.text,
-      format: _formatController.text,
-      amountSown: _amountSownController.text,
+      numberAnimals: _numberAnimalsController.text,
+      // productionType: _productionTypeController.text,
+      // sownArea: _sownAreaController.text,
+      // sownType: _sownTypeController.text,
+      // format: _formatController.text,
+      // amountSown: _amountSownController.text,
       value: _valueController.text,
       comment: _commentController.text,
       costsAndExpenses: createPermanentVm.currentPigFarming?.costsAndExpenses,
@@ -467,11 +398,11 @@ class _ManagePigFarmingCostAndExpensesState
     if (isEditMode) {
       final preloadPigFarming = widget.pigFarming;
       _farmNameController.text = preloadPigFarming?.farmName ?? '';
-      _productionTypeController.text = preloadPigFarming?.productionType ?? '';
-      _sownAreaController.text = preloadPigFarming?.sownArea ?? '';
-      _sownTypeController.text = preloadPigFarming?.sownType ?? '';
-      _formatController.text = preloadPigFarming?.format ?? '';
-      _amountSownController.text = preloadPigFarming?.amountSown ?? '';
+      // _productionTypeController.text = preloadPigFarming?.productionType ?? '';
+      // _sownAreaController.text = preloadPigFarming?.sownArea ?? '';
+      // _sownTypeController.text = preloadPigFarming?.sownType ?? '';
+      // _formatController.text = preloadPigFarming?.format ?? '';
+      // _amountSownController.text = preloadPigFarming?.amountSown ?? '';
       _valueController.text = preloadPigFarming?.value ?? '';
       _commentController.text = preloadPigFarming?.comment ?? '';
       createdDate = DateFormat('yyyy-MM-dd')

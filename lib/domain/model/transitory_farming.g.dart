@@ -6,9 +6,8 @@ part of 'transitory_farming.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TransitoryFarmingImpl _$$TransitoryFarmingImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TransitoryFarmingImpl(
+_TransitoryFarming _$TransitoryFarmingFromJson(Map<String, dynamic> json) =>
+    _TransitoryFarming(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       partName: json['partName'] as String,
@@ -29,8 +28,7 @@ _$TransitoryFarmingImpl _$$TransitoryFarmingImplFromJson(
           : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TransitoryFarmingImplToJson(
-        _$TransitoryFarmingImpl instance) =>
+Map<String, dynamic> _$TransitoryFarmingToJson(_TransitoryFarming instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),

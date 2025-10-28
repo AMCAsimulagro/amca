@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,161 +10,54 @@ part of 'milk_production.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Production _$ProductionFromJson(Map<String, dynamic> json) {
-  return _Production.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Production {
-  String? get uidOwner => throw _privateConstructorUsedError;
-  set uidOwner(String? value) =>
-      throw _privateConstructorUsedError; // Owner UID of the production.
-  String? get farmName =>
-      throw _privateConstructorUsedError; // Owner UID of the production.
-  set farmName(String? value) =>
-      throw _privateConstructorUsedError; // Part name of the production.
-  String get animalHusbandryId =>
-      throw _privateConstructorUsedError; // Part name of the production.
-  set animalHusbandryId(String value) =>
-      throw _privateConstructorUsedError; // Transitory farming ID of the production.
-  DateTime get createDate =>
-      throw _privateConstructorUsedError; // Transitory farming ID of the production.
-  set createDate(DateTime value) =>
-      throw _privateConstructorUsedError; // Creation date of the production.
-  String get unitOfMeasurement =>
-      throw _privateConstructorUsedError; // Creation date of the production.
-  set unitOfMeasurement(String value) =>
-      throw _privateConstructorUsedError; // Unit of measurement of the production.
-  String get quantity =>
-      throw _privateConstructorUsedError; // Unit of measurement of the production.
-  set quantity(String value) =>
-      throw _privateConstructorUsedError; // Quantity of the production.
-  String get price =>
-      throw _privateConstructorUsedError; // Quantity of the production.
-  set price(String value) =>
-      throw _privateConstructorUsedError; // Price of the production.
-  String? get average =>
-      throw _privateConstructorUsedError; // Price of the production.
-  set average(String? value) => throw _privateConstructorUsedError;
-  String? get totalValue => throw _privateConstructorUsedError;
-  set totalValue(String? value) =>
-      throw _privateConstructorUsedError; // Total value of the production.
-  String? get id =>
-      throw _privateConstructorUsedError; // Total value of the production.
-  set id(String? value) => throw _privateConstructorUsedError;
-
-  /// Serializes this Production to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get uidOwner;
+  set uidOwner(String? value); // Owner UID of the production.
+  String? get farmName; // Owner UID of the production.
+  set farmName(String? value); // Part name of the production.
+  String get animalHusbandryId; // Part name of the production.
+  set animalHusbandryId(
+      String value); // Transitory farming ID of the production.
+  DateTime get createDate; // Transitory farming ID of the production.
+  set createDate(DateTime value); // Creation date of the production.
+  String get unitOfMeasurement; // Creation date of the production.
+  set unitOfMeasurement(String value); // Unit of measurement of the production.
+  String get quantity; // Unit of measurement of the production.
+  set quantity(String value); // Quantity of the production.
+  String get price; // Quantity of the production.
+  set price(String value); // Price of the production.
+  String? get average; // Price of the production.
+  set average(String? value);
+  String? get totalValue;
+  set totalValue(String? value); // Total value of the production.
+  String? get id; // Total value of the production.
+  set id(String? value);
 
   /// Create a copy of Production
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProductionCopyWith<Production> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProductionCopyWith<$Res> {
-  factory $ProductionCopyWith(
-          Production value, $Res Function(Production) then) =
-      _$ProductionCopyWithImpl<$Res, Production>;
-  @useResult
-  $Res call(
-      {String? uidOwner,
-      String? farmName,
-      String animalHusbandryId,
-      DateTime createDate,
-      String unitOfMeasurement,
-      String quantity,
-      String price,
-      String? average,
-      String? totalValue,
-      String? id});
-}
-
-/// @nodoc
-class _$ProductionCopyWithImpl<$Res, $Val extends Production>
-    implements $ProductionCopyWith<$Res> {
-  _$ProductionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Production
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ProductionCopyWith<Production> get copyWith =>
+      _$ProductionCopyWithImpl<Production>(this as Production, _$identity);
+
+  /// Serializes this Production to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? uidOwner = freezed,
-    Object? farmName = freezed,
-    Object? animalHusbandryId = null,
-    Object? createDate = null,
-    Object? unitOfMeasurement = null,
-    Object? quantity = null,
-    Object? price = null,
-    Object? average = freezed,
-    Object? totalValue = freezed,
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      uidOwner: freezed == uidOwner
-          ? _value.uidOwner
-          : uidOwner // ignore: cast_nullable_to_non_nullable
-              as String?,
-      farmName: freezed == farmName
-          ? _value.farmName
-          : farmName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      animalHusbandryId: null == animalHusbandryId
-          ? _value.animalHusbandryId
-          : animalHusbandryId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      unitOfMeasurement: null == unitOfMeasurement
-          ? _value.unitOfMeasurement
-          : unitOfMeasurement // ignore: cast_nullable_to_non_nullable
-              as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as String,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String,
-      average: freezed == average
-          ? _value.average
-          : average // ignore: cast_nullable_to_non_nullable
-              as String?,
-      totalValue: freezed == totalValue
-          ? _value.totalValue
-          : totalValue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString() {
+    return 'Production(uidOwner: $uidOwner, farmName: $farmName, animalHusbandryId: $animalHusbandryId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
   }
 }
 
 /// @nodoc
-abstract class _$$ProductionImplCopyWith<$Res>
-    implements $ProductionCopyWith<$Res> {
-  factory _$$ProductionImplCopyWith(
-          _$ProductionImpl value, $Res Function(_$ProductionImpl) then) =
-      __$$ProductionImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ProductionCopyWith<$Res> {
+  factory $ProductionCopyWith(
+          Production value, $Res Function(Production) _then) =
+      _$ProductionCopyWithImpl;
   @useResult
   $Res call(
       {String? uidOwner,
@@ -179,12 +73,11 @@ abstract class _$$ProductionImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProductionImplCopyWithImpl<$Res>
-    extends _$ProductionCopyWithImpl<$Res, _$ProductionImpl>
-    implements _$$ProductionImplCopyWith<$Res> {
-  __$$ProductionImplCopyWithImpl(
-      _$ProductionImpl _value, $Res Function(_$ProductionImpl) _then)
-      : super(_value, _then);
+class _$ProductionCopyWithImpl<$Res> implements $ProductionCopyWith<$Res> {
+  _$ProductionCopyWithImpl(this._self, this._then);
+
+  final Production _self;
+  final $Res Function(Production) _then;
 
   /// Create a copy of Production
   /// with the given fields replaced by the non-null parameter values.
@@ -202,45 +95,45 @@ class __$$ProductionImplCopyWithImpl<$Res>
     Object? totalValue = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$ProductionImpl(
+    return _then(_self.copyWith(
       uidOwner: freezed == uidOwner
-          ? _value.uidOwner
+          ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
       farmName: freezed == farmName
-          ? _value.farmName
+          ? _self.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String?,
       animalHusbandryId: null == animalHusbandryId
-          ? _value.animalHusbandryId
+          ? _self.animalHusbandryId
           : animalHusbandryId // ignore: cast_nullable_to_non_nullable
               as String,
       createDate: null == createDate
-          ? _value.createDate
+          ? _self.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       unitOfMeasurement: null == unitOfMeasurement
-          ? _value.unitOfMeasurement
+          ? _self.unitOfMeasurement
           : unitOfMeasurement // ignore: cast_nullable_to_non_nullable
               as String,
       quantity: null == quantity
-          ? _value.quantity
+          ? _self.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
-          ? _value.price
+          ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
       average: freezed == average
-          ? _value.average
+          ? _self.average
           : average // ignore: cast_nullable_to_non_nullable
               as String?,
       totalValue: freezed == totalValue
-          ? _value.totalValue
+          ? _self.totalValue
           : totalValue // ignore: cast_nullable_to_non_nullable
               as String?,
       id: freezed == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -249,8 +142,8 @@ class __$$ProductionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductionImpl implements _Production {
-  _$ProductionImpl(
+class _Production implements Production {
+  _Production(
       {this.uidOwner,
       this.farmName,
       required this.animalHusbandryId,
@@ -261,9 +154,8 @@ class _$ProductionImpl implements _Production {
       this.average,
       this.totalValue,
       this.id});
-
-  factory _$ProductionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductionImplFromJson(json);
+  factory _Production.fromJson(Map<String, dynamic> json) =>
+      _$ProductionFromJson(json);
 
   @override
   String? uidOwner;
@@ -294,79 +186,114 @@ class _$ProductionImpl implements _Production {
   @override
   String? id;
 
+  /// Create a copy of Production
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProductionCopyWith<_Production> get copyWith =>
+      __$ProductionCopyWithImpl<_Production>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProductionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Production(uidOwner: $uidOwner, farmName: $farmName, animalHusbandryId: $animalHusbandryId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
   }
+}
+
+/// @nodoc
+abstract mixin class _$ProductionCopyWith<$Res>
+    implements $ProductionCopyWith<$Res> {
+  factory _$ProductionCopyWith(
+          _Production value, $Res Function(_Production) _then) =
+      __$ProductionCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? uidOwner,
+      String? farmName,
+      String animalHusbandryId,
+      DateTime createDate,
+      String unitOfMeasurement,
+      String quantity,
+      String price,
+      String? average,
+      String? totalValue,
+      String? id});
+}
+
+/// @nodoc
+class __$ProductionCopyWithImpl<$Res> implements _$ProductionCopyWith<$Res> {
+  __$ProductionCopyWithImpl(this._self, this._then);
+
+  final _Production _self;
+  final $Res Function(_Production) _then;
 
   /// Create a copy of Production
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductionImplCopyWith<_$ProductionImpl> get copyWith =>
-      __$$ProductionImplCopyWithImpl<_$ProductionImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProductionImplToJson(
-      this,
-    );
+  $Res call({
+    Object? uidOwner = freezed,
+    Object? farmName = freezed,
+    Object? animalHusbandryId = null,
+    Object? createDate = null,
+    Object? unitOfMeasurement = null,
+    Object? quantity = null,
+    Object? price = null,
+    Object? average = freezed,
+    Object? totalValue = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_Production(
+      uidOwner: freezed == uidOwner
+          ? _self.uidOwner
+          : uidOwner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      farmName: freezed == farmName
+          ? _self.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      animalHusbandryId: null == animalHusbandryId
+          ? _self.animalHusbandryId
+          : animalHusbandryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createDate: null == createDate
+          ? _self.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      unitOfMeasurement: null == unitOfMeasurement
+          ? _self.unitOfMeasurement
+          : unitOfMeasurement // ignore: cast_nullable_to_non_nullable
+              as String,
+      quantity: null == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _self.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      average: freezed == average
+          ? _self.average
+          : average // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalValue: freezed == totalValue
+          ? _self.totalValue
+          : totalValue // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
-abstract class _Production implements Production {
-  factory _Production(
-      {String? uidOwner,
-      String? farmName,
-      required String animalHusbandryId,
-      required DateTime createDate,
-      required String unitOfMeasurement,
-      required String quantity,
-      required String price,
-      String? average,
-      String? totalValue,
-      String? id}) = _$ProductionImpl;
-
-  factory _Production.fromJson(Map<String, dynamic> json) =
-      _$ProductionImpl.fromJson;
-
-  @override
-  String? get uidOwner;
-  set uidOwner(String? value); // Owner UID of the production.
-  @override
-  String? get farmName; // Owner UID of the production.
-  set farmName(String? value); // Part name of the production.
-  @override
-  String get animalHusbandryId; // Part name of the production.
-  set animalHusbandryId(
-      String value); // Transitory farming ID of the production.
-  @override
-  DateTime get createDate; // Transitory farming ID of the production.
-  set createDate(DateTime value); // Creation date of the production.
-  @override
-  String get unitOfMeasurement; // Creation date of the production.
-  set unitOfMeasurement(String value); // Unit of measurement of the production.
-  @override
-  String get quantity; // Unit of measurement of the production.
-  set quantity(String value); // Quantity of the production.
-  @override
-  String get price; // Quantity of the production.
-  set price(String value); // Price of the production.
-  @override
-  String? get average; // Price of the production.
-  set average(String? value);
-  @override
-  String? get totalValue;
-  set totalValue(String? value); // Total value of the production.
-  @override
-  String? get id; // Total value of the production.
-  set id(String? value);
-
-  /// Create a copy of Production
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProductionImplCopyWith<_$ProductionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

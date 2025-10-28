@@ -6,8 +6,7 @@ part of 'production.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
-    _$ProductionImpl(
+_Production _$ProductionFromJson(Map<String, dynamic> json) => _Production(
       uidOwner: json['uidOwner'] as String?,
       partName: json['partName'] as String?,
       transitoryFarmingId: json['transitoryFarmingId'] as String,
@@ -20,7 +19,7 @@ _$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$ProductionImplToJson(_$ProductionImpl instance) =>
+Map<String, dynamic> _$ProductionToJson(_Production instance) =>
     <String, dynamic>{
       'uidOwner': instance.uidOwner,
       'partName': instance.partName,

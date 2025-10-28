@@ -13,7 +13,7 @@ part 'spawn.g.dart';
 
 /// Represents a spawn.
 @freezed
-class Spawn with _$Spawn {
+abstract class Spawn with _$Spawn {
   /// Default constructor for Spawn.
   factory Spawn({
     required List<String> tipo,
