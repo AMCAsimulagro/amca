@@ -13,7 +13,7 @@ import 'package:amca/domain/model/livestock/pig_farming/pig_farming.dart';
 
 /// Imports of Bookstores and Resources
 
-import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_page_pig_farming.dart';
+import 'package:amca/ui/features/charts_cost_expenses/pig_farming/charts_costs_expenses_page_pig_farming.dart';
 import 'package:amca/ui/features/costs_expenses/costs_expenses_list_page.dart';
 import 'package:amca/ui/features/livestock/create/pig_farming/create_pig_farming_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
@@ -92,7 +92,7 @@ class _ManagePigFarmingCostAndExpensesState
       return Scaffold(
         appBar: AppBar(
           title: Text(
-              vm.isEditMode ? AmcaWords.editFarming : AmcaWords.pigFarming),
+              vm.isEditMode ? AmcaWords.edit : AmcaWords.pigFarming),
           backgroundColor: AmcaPalette.lightGreen,
         ),
         body: Form(
@@ -254,6 +254,7 @@ class _ManagePigFarmingCostAndExpensesState
                       const SizedBox(
                         height: 15,
                       ),
+                      // TODO: Ver porque VM esta tomando el repositorio de permanent farming
                       AmcaButton(
                         text: AmcaWords.seeCharts,
                         onPressed: () {

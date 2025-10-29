@@ -5,7 +5,7 @@ library;
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/bar_data_ui.dart';
 import 'package:amca/domain/model/pie_data_ui.dart';
-import 'package:amca/ui/features/charts_cost_expenses/charts_costs_expenses_vm_permanent.dart';
+import 'package:amca/ui/features/charts_cost_expenses/pig_farming/charts_costs_expenses_vm_pig_farming.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
 import 'package:amca/ui/features/charts_cost_expenses/widgets/pie_indicator.dart';
