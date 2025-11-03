@@ -254,7 +254,6 @@ class _ManagePigFarmingCostAndExpensesState
                       const SizedBox(
                         height: 15,
                       ),
-                      // TODO: Ver porque VM esta tomando el repositorio de permanent farming
                       AmcaButton(
                         text: AmcaWords.seeCharts,
                         onPressed: () {
