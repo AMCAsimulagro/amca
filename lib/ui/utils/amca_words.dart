@@ -302,7 +302,8 @@ class AmcaWords {
       'Por favor, seleccione un tipo de producción';
   static String yourAnimalHusbandryHasBeenUpdated =
       'Tu registro ha sido actualizado';
-  static String yourAnimalHusbandryHasBeenCreated = 'Tu registro ha sido creado';
+  static String yourAnimalHusbandryHasBeenCreated =
+      'Tu registro ha sido creado';
   static const String areYouSureToDeleteThisAnimalHusbandry =
       '¿Desea eliminar este registro?';
 
@@ -310,7 +311,8 @@ class AmcaWords {
   static const String farmName = 'Nombre de la Finca';
   static const String pleaseFarmName =
       'Por favor, ingrese el nombre del la Finca';
-  static String yourPigFarmingHasBeenUpdated = 'Tu registro ha sido actualizado';
+  static String yourPigFarmingHasBeenUpdated =
+      'Tu registro ha sido actualizado';
   static String yourPigFarmingHasBeenCreated = 'Tu registro ha sido creado';
   static String yourPigFarmingHasBeenDeleted = 'Tu registro ha sido eliminado';
   static const String areYouSureToDeleteThisPigFarming =
