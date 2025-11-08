@@ -186,9 +186,9 @@ class PigFarmingApiAdapter implements PigFarmingApi {
         id: productionId,
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
       );
-
-      productionList.add(productionToUpload);
-      final updatedFarming = farming.copyWith(production: productionList);
+      // TODO: Revisar si es lista o un solo objeto
+      // productionList.add(productionToUpload);
+      final updatedFarming = farming.copyWith(production: production);
       await createPigFarming(updatedFarming);
       return productionToUpload;
     } on FirebaseAuthException catch (e) {
@@ -204,11 +204,12 @@ class PigFarmingApiAdapter implements PigFarmingApi {
     required PigFarming farming,
   }) async {
     try {
-      final productionList = farming.production
-          ?.where((element) => element.id != productionId)
-          .toList();
+      // TODO: Revisar si es lista o un solo objeto
+      // final productionList = farming.production
+      //     ?.where((element) => element.id != productionId)
+      //     .toList();
 
-      final updatedFarming = farming.copyWith(production: productionList);
+      final updatedFarming = farming.copyWith(production: farming.production);
       await createPigFarming(updatedFarming);
       return null;
     } on FirebaseAuthException catch (e) {

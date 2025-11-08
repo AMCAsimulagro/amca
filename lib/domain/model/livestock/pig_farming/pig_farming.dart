@@ -35,7 +35,7 @@ abstract class PigFarming with _$PigFarming {
     String? uidOwner,
     String? comment,
     List<CostAndExpense>? costsAndExpenses,
-    List<Production>? production,
+    Production? production,
   }) = _PigFarming;
 
   factory PigFarming.fromJson(Map<String, Object?> json) =>
@@ -50,10 +50,11 @@ abstract class PigFarming with _$PigFarming {
           }).reduce((value, element) => value + element) ??
           0;
     }
+    //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
   }
 
-  int profitCrop() {
+  int profit() {
     int totalCostAndExpense = 0;
     if ((costsAndExpenses ?? []).isNotEmpty) {
       totalCostAndExpense = costsAndExpenses?.map((e) {
@@ -65,18 +66,5 @@ abstract class PigFarming with _$PigFarming {
     totalCostAndExpense =
         totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
-  }
-
-  int totalPrice() {
-    int total = 0;
-
-    if ((production ?? []).isNotEmpty) {
-      total = production?.map((e) {
-            final price = int.parse(e.price.replaceAll(',', ''));
-            return price;
-          }).reduce((value, element) => value + element) ??
-          0;
-    }
-    return total;
   }
 }

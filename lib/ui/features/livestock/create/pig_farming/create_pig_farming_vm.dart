@@ -113,10 +113,10 @@ class CreatePigFarmingVM extends ChangeNotifier {
   }
 
   /// Cálculo de beneficios
-  int get netProfit {
-    return (_currentPigFarming?.totalPrice() ?? 0) - 
-           (_currentPigFarming?.calculateTotalCostAndExpense() ?? 0);
-  }
+  // int get netProfit {
+  //   return (_currentPigFarming?.totalPrice() ?? 0) - 
+  //          (_currentPigFarming?.calculateTotalCostAndExpense() ?? 0);
+  // }
 
 
 

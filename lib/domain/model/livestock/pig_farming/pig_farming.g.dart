@@ -18,9 +18,9 @@ _PigFarming _$PigFarmingFromJson(Map<String, dynamic> json) => _PigFarming(
       costsAndExpenses: (json['costsAndExpenses'] as List<dynamic>?)
           ?.map((e) => CostAndExpense.fromJson(e as Map<String, dynamic>))
           .toList(),
-      production: (json['production'] as List<dynamic>?)
-          ?.map((e) => Production.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      production: json['production'] == null
+          ? null
+          : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PigFarmingToJson(_PigFarming instance) =>
@@ -35,5 +35,5 @@ Map<String, dynamic> _$PigFarmingToJson(_PigFarming instance) =>
       'comment': instance.comment,
       'costsAndExpenses':
           instance.costsAndExpenses?.map((e) => e.toJson()).toList(),
-      'production': instance.production?.map((e) => e.toJson()).toList(),
+      'production': instance.production?.toJson(),
     };

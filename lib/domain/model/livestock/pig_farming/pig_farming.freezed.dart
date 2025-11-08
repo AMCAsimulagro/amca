@@ -41,8 +41,8 @@ mixin _$PigFarming implements DiagnosticableTreeMixin {
   set comment(String? value);
   List<CostAndExpense>? get costsAndExpenses;
   set costsAndExpenses(List<CostAndExpense>? value);
-  List<Production>? get production;
-  set production(List<Production>? value);
+  Production? get production;
+  set production(Production? value);
 
   /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
@@ -92,7 +92,9 @@ abstract mixin class $PigFarmingCopyWith<$Res> {
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      List<Production>? production});
+      Production? production});
+
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
@@ -158,8 +160,22 @@ class _$PigFarmingCopyWithImpl<$Res> implements $PigFarmingCopyWith<$Res> {
       production: freezed == production
           ? _self.production
           : production // ignore: cast_nullable_to_non_nullable
-              as List<Production>?,
+              as Production?,
     ));
+  }
+
+  /// Create a copy of PigFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_self.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_self.production!, (value) {
+      return _then(_self.copyWith(production: value));
+    });
   }
 }
 
@@ -205,7 +221,7 @@ class _PigFarming extends PigFarming with DiagnosticableTreeMixin {
   @override
   List<CostAndExpense>? costsAndExpenses;
   @override
-  List<Production>? production;
+  Production? production;
 
   /// Create a copy of PigFarming
   /// with the given fields replaced by the non-null parameter values.
@@ -262,7 +278,10 @@ abstract mixin class _$PigFarmingCopyWith<$Res>
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      List<Production>? production});
+      Production? production});
+
+  @override
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
@@ -328,8 +347,22 @@ class __$PigFarmingCopyWithImpl<$Res> implements _$PigFarmingCopyWith<$Res> {
       production: freezed == production
           ? _self.production
           : production // ignore: cast_nullable_to_non_nullable
-              as List<Production>?,
+              as Production?,
     ));
+  }
+
+  /// Create a copy of PigFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_self.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_self.production!, (value) {
+      return _then(_self.copyWith(production: value));
+    });
   }
 }
 
