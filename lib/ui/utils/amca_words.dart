@@ -325,4 +325,6 @@ class AmcaWords {
   // Words submodulo Piscicultura
   static const String tilapia = 'Tilapia';
   static const String cachama = 'Cachama';
+  static const String fish = 'Pescado';
+  static const String fishNumber = 'Número de peces';
 }

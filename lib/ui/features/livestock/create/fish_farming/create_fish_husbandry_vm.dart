@@ -1,88 +1,87 @@
-/// {@category Features AnimalHusbandry Create}
-/// This file contains the implementation of the [CreateMeetAnimalHusbandryVM] class, which serves as the ViewModel
-/// for creating and managing pig farming activities. It interacts with the data layer through the [AnimalHusbandryRepository]
-/// to perform CRUD operations on pig farming data. The ViewModel provides functionality to initialize data,
-/// create, retrieve, update, and delete pig farming activities. Dependencies include the [AnimalHusbandryRepository],
-/// [MeatAnimalHusbandry], and Flutter's [ChangeNotifier].
+/// {@category Features FishHusbandry Create}
+/// ViewModel para crear y manejar registros de piscicultura (FishHusbandry).
+/// Contiene operaciones básicas: inicialización, creación/actualización, obtención y eliminación.
 library;
 
-import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
+import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart';
 import 'package:amca/dependecy_injection.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart';
 import 'package:flutter/cupertino.dart';
 
-/// ViewModel for creating and managing pig farming activities.
-class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
-  /// Instance of [AnimalHusbandryRepository] for performing CRUD operations
-  final AnimalHusbandryRepository _animalHusbandryRepository =
-      locator<AnimalHusbandryRepository>();
+/// ViewModel para crear y administrar actividades de piscicultura.
+class CreateFishHusbandryVM extends ChangeNotifier {
+  /// Repositorio para realizar operaciones CRUD sobre piscicultura.
+  final FishHusbandryRepository _fishHusbandryRepository =
+      locator<FishHusbandryRepository>();
 
-  MeatAnimalHusbandry? _currentAnimalHusbandry;
+  FishHusbandry? _currentFishHusbandry;
 
-  MeatAnimalHusbandry? get currentAnimalHusbandry => _currentAnimalHusbandry;
+  FishHusbandry? get currentFishHusbandry => _currentFishHusbandry;
 
-  bool get isEditMode => _currentAnimalHusbandry != null;
+  bool get isEditMode => _currentFishHusbandry != null;
 
-  /// Initializes the ViewModel with optional pig farming data
-  void init({MeatAnimalHusbandry? animalHusbandry}) async {
+  /// Inicializa el ViewModel con un registro opcional.
+  Future<void> init({FishHusbandry? fishHusbandry}) async {
     try {
-      if (animalHusbandry != null) {
-        _currentAnimalHusbandry = animalHusbandry;
+      if (fishHusbandry != null) {
+        _currentFishHusbandry = fishHusbandry;
       }
     } finally {
       notifyListeners();
     }
   }
 
-  /// Crea o actualiza un registro de ganaderia
-  Future<MeatAnimalHusbandry?> createAnimalHusbandry(
-      MeatAnimalHusbandry animalHusbandry) async {
+  /// Crea o actualiza un registro de piscicultura.
+  Future<FishHusbandry?> createFishHusbandry(
+      FishHusbandry fishHusbandry) async {
     try {
-      _currentAnimalHusbandry = animalHusbandry;
-      final result = await _animalHusbandryRepository
-          .createMeatAnimalHusbandry(animalHusbandry);
-      _currentAnimalHusbandry = result;
+      _currentFishHusbandry = fishHusbandry;
+      final result =
+          await _fishHusbandryRepository.createFishHusbandry(fishHusbandry);
+      _currentFishHusbandry = result;
       notifyListeners();
       return result;
     } catch (e) {
+      // Aquí se podría loggear el error o convertirlo a AppException
       return null;
     }
   }
 
-  /// Obtiene un registro específico de ganaderia
-  Future<MeatAnimalHusbandry?> getAnimalHusbandry() async {
+  /// Obtiene el registro actual desde el repositorio (si existe id).
+  Future<FishHusbandry?> getFishHusbandry() async {
     try {
-      if (_currentAnimalHusbandry?.id != null) {
-        _currentAnimalHusbandry = await _animalHusbandryRepository
-            .getMeatById(_currentAnimalHusbandry!.id!);
+      if (_currentFishHusbandry?.id != null) {
+        _currentFishHusbandry = await _fishHusbandryRepository
+            .getFishById(_currentFishHusbandry!.id!);
         notifyListeners();
       }
-      return _currentAnimalHusbandry;
+      return _currentFishHusbandry;
     } catch (e) {
       return null;
     }
   }
 
-  /// Maneja la selección de categoría porcina
-  void onPigCategorySelected(String category) {
-    //_categories = _pigCategories.firstWhere((element)=> element == category);
+  /// Maneja la selección de categoría (si aplica para piscicultura).
+  void onFishCategorySelected(String category) {
+    // Implementar si existen categorías específicas para piscicultura
   }
 
-  /// Elimina un registro de ganaderia
-  Future<void> deleteAnimalHusbandry() async {
+  /// Elimina el registro actual de piscicultura.
+  Future<void> deleteFishHusbandry() async {
     try {
-      if (_currentAnimalHusbandry?.id != null) {
-        await _animalHusbandryRepository
-            .deleteAnimalHusbandry(_currentAnimalHusbandry!.id!);
-        _currentAnimalHusbandry = null;
+      if (_currentFishHusbandry?.id != null) {
+        await _fishHusbandryRepository
+            .deleteFishHusbandry(_currentFishHusbandry!.id!);
+        _currentFishHusbandry = null;
         notifyListeners();
       }
     } catch (e) {
+      // Manejo de error mínimo: simplemente retornar
       return;
     }
   }
 
-  /// Actualiza los cálculos financieros
+  /// Refresca cálculos financieros o cualquier dato dependiente.
   void refreshFinancialCalculations() {
     notifyListeners();
   }
