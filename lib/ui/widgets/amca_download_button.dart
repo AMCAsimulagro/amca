@@ -122,7 +122,8 @@ class _AmcaDownloadButtonState extends State<AmcaDownloadButton> {
     }
     if (_includeCosts && _productOrServiceController.text != optionSelectAll) {
       final productOrService = _productOrServiceController.text;
-      final costData = widget.data[AmcaWords.costsAndExpenses] as List<Map<String, dynamic>>;
+      final costData =
+          widget.data[AmcaWords.costsAndExpenses] as List<Map<String, dynamic>>;
       costData.removeWhere((data) => data[AmcaWords.name] != productOrService);
     }
     if (!_includeProductions) {

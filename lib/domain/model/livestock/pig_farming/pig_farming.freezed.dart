@@ -30,8 +30,6 @@ mixin _$PigFarming {
   set farmName(String value) => throw _privateConstructorUsedError;
   String get productionType => throw _privateConstructorUsedError;
   set productionType(String value) => throw _privateConstructorUsedError;
-  String get crop => throw _privateConstructorUsedError;
-  set crop(String value) => throw _privateConstructorUsedError;
   String get sownArea => throw _privateConstructorUsedError;
   set sownArea(String value) => throw _privateConstructorUsedError;
   String get sownType => throw _privateConstructorUsedError;
@@ -347,7 +345,7 @@ class _$PigFarmingImpl extends _PigFarming with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PigFarming(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, cropType: $productionType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'PigFarming(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, productionType: $productionType, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override

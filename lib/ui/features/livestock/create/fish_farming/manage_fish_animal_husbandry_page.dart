@@ -1,65 +1,72 @@
 /// {@category Features Farming Create}
-/// /// This file contains the implementation of the [ManageMeetAnimalHusbandry] class, which provides a user interface
+/// /// This file contains the implementation of the [ManageFishHusbandry] class, which provides a user interface
 /// for creating and managing permanent farming activities. It includes form fields for inputting details such as
 /// date, part name, crop type, crop, sown area, sown type, format, amount sown, value, and comments. Users can
-/// create, update, and delete permanent farming activities. It interacts with the [CreateMeetAnimalHusbandryVM]
+/// create, update, and delete permanent farming activities. It interacts with the [CreateFishHusbandryVM]
 /// ViewModel to handle business logic related to permanent farming. Dependencies include various UI widgets,
-/// [MilkAnimalHusbandry] model, and ViewModels such as [CreateMeetAnimalHusbandryVM] and [FarmingHistoryVM].
+/// [FishHusbandry] model, and ViewModels such as [CreateFishHusbandryVM] and [FarmingHistoryVM].
 library;
 
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart'; //
-import 'package:amca/ui/features/charts_cost_expenses/animal_husbandry/meet/charts_costs_expenses_page_meat_a_h.dart'; //
-import 'package:amca/ui/features/costs_expenses/livestock/animalHusbandry/meat/costs_expenses_meat_animal_husbandry_list_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/create_meat_animal_husbandry_vm.dart';
-import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
-import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
-import 'package:amca/ui/features/production/livestock/animal_husbandry/meat/manage_production_meet_animal_husbandry_page.dart';
-import 'package:amca/ui/utils/amca_palette.dart';
-import 'package:amca/ui/utils/amca_words.dart';
-import 'package:amca/ui/utils/calls_with_dialog.dart';
-import 'package:amca/ui/utils/dialogs.dart';
-import 'package:amca/ui/widgets/amca_button.dart';
-import 'package:amca/ui/widgets/amca_date_picker_field.dart';
-import 'package:amca/ui/widgets/amca_download_button.dart';
-import 'package:amca/ui/widgets/amca_text_form_field.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart'; //
+import 'package:amca/ui/features/charts_cost_expenses/fish_husbandry/charts_costs_expenses_page_fish_a_h.dart'; //
+import 'package:amca/ui/features/costs_expenses/livestock/fishHusbandry/costs_expenses_fish_husbandry_list_page.dart'; //
+import 'package:amca/ui/features/livestock/create/fish_farming/create_fish_husbandry_vm.dart'; //
+import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart'; //
+import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart'; //
+import 'package:amca/ui/features/production/livestock/fish_husbandry/manage_production_fish_husbandry_page.dart'; //
+import 'package:amca/ui/utils/amca_palette.dart'; //
+import 'package:amca/ui/utils/amca_words.dart'; //
+import 'package:amca/ui/utils/calls_with_dialog.dart'; //
+import 'package:amca/ui/utils/dialogs.dart'; //
+import 'package:amca/ui/widgets/amca_button.dart'; //
+import 'package:amca/ui/widgets/amca_date_picker_field.dart'; //
+import 'package:amca/ui/widgets/amca_download_button.dart'; //
+import 'package:amca/ui/widgets/amca_text_form_field.dart'; //
+import 'package:flutter/material.dart'; //
+import 'package:flutter/services.dart'; //
+import 'package:intl/intl.dart'; //
+import 'package:provider/provider.dart'; //
 
 /// StatefulWidget for creating and managing permanent farming activities.
-class ManageMeetAnimalHusbandry extends StatefulWidget {
-  /// Creates a [ManageMeetAnimalHusbandry] instance with an optional [animalHusbandry].
-  static ChangeNotifierProvider<CreateMeetAnimalHusbandryVM> create(
-          {Key? key, MeatAnimalHusbandry? animalHusbandry}) =>
+class ManageFishHusbandry extends StatefulWidget {
+  /// Creates a [ManageFishHusbandry] instance with an optional [fishHusbandry] and [fishType].
+  static ChangeNotifierProvider<CreateFishHusbandryVM> create(
+          {Key? key, FishHusbandry? fishHusbandry, String? fishType}) =>
       ChangeNotifierProvider(
         lazy: false,
-        create: (context) => CreateMeetAnimalHusbandryVM()
+        create: (context) => CreateFishHusbandryVM()
           ..init(
-            animalHusbandry: animalHusbandry,
+            fishHusbandry: fishHusbandry,
+            fishType: fishType,
           ),
-        child: ManageMeetAnimalHusbandry._(
-            key: key, animalHusbandry: animalHusbandry),
+        child: ManageFishHusbandry._(
+          key: key,
+          fishHusbandry: fishHusbandry,
+          fishType: fishType,
+        ),
       );
 
-  /// Constructs a [ManageMeetAnimalHusbandry] widget.
-  const ManageMeetAnimalHusbandry._({
+  /// Constructs a [ManageFishHusbandry] widget.
+  const ManageFishHusbandry._({
     super.key,
-    this.animalHusbandry,
+    this.fishHusbandry,
+    this.fishType,
   });
 
   /// The permanent farming activity.
-  final MeatAnimalHusbandry? animalHusbandry;
+  final FishHusbandry? fishHusbandry;
+
+  /// The type of fish (tilapia or cachama)
+  final String? fishType;
 
   @override
-  State<ManageMeetAnimalHusbandry> createState() =>
-      _ManageMeetAnimalHusbandryState();
+  State<ManageFishHusbandry> createState() => _ManageFishHusbandryState();
 }
 
-/// State class associated with [ManageMeetAnimalHusbandry] widget.
-class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
+/// State class associated with [ManageFishHusbandry] widget.
+class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
   final _formKey = GlobalKey<FormState>();
   final _farmNameController = TextEditingController();
   final _animalNumbersController = TextEditingController();
@@ -79,13 +86,10 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'size costsAndExpenses -> ${widget.animalHusbandry?.costsAndExpenses?.length}');
-    return Consumer<CreateMeetAnimalHusbandryVM>(builder: (context, vm, _) {
+    return Consumer<CreateFishHusbandryVM>(builder: (context, vm, _) {
       return Scaffold(
         appBar: AppBar(
-          title:
-              Text(vm.isEditMode ? AmcaWords.edit : AmcaWords.animalHusbandry),
+          title: Text(vm.isEditMode ? AmcaWords.edit : AmcaWords.fishFarming),
           backgroundColor: AmcaPalette.lightGreen,
         ),
         body: Form(
@@ -131,13 +135,13 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                 AmcaTextFormField(
                   textEditingController: _animalNumbersController,
                   textInputType: TextInputType.number,
-                  labelText: AmcaWords.animalNumber,
+                  labelText: AmcaWords.fishNumber,
                   inputFormatters: [
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
                     if (value != null && value.isEmpty) {
-                      return AmcaWords.pleaseAnimalNumber;
+                      return AmcaWords.pleaseFishNumber;
                     }
                     return null;
                   },
@@ -197,12 +201,12 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                                     builder: (BuildContext context) =>
                                         CostsExpensesListPage.create(
                                       farmingId:
-                                          vm.currentAnimalHusbandry?.id ?? '',
+                                          vm.currentFishHusbandry?.id ?? '',
                                     ),
                                   ),
                                 ).then((value) async {
                                   Dialogs.showLoading(context);
-                                  await vm.getAnimalHusbandry();
+                                  await vm.getFishHusbandry();
                                   Dialogs.close(context);
                                 });
                               },
@@ -213,10 +217,9 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                           ),
                           Expanded(
                             child: AmcaButton(
-                              text:
-                                  vm.currentAnimalHusbandry?.production == null
-                                      ? AmcaWords.createProduction
-                                      : AmcaWords.seeProduction,
+                              text: vm.currentFishHusbandry?.production == null
+                                  ? AmcaWords.createProduction
+                                  : AmcaWords.seeProduction,
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -224,9 +227,9 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                                     builder: (BuildContext context) =>
                                         ManageProductionPage.create(
                                       farmingId:
-                                          vm.currentAnimalHusbandry?.id ?? '',
+                                          vm.currentFishHusbandry?.id ?? '',
                                       production:
-                                          vm.currentAnimalHusbandry?.production,
+                                          vm.currentFishHusbandry?.production,
                                     ),
                                   ),
                                 ).then((value) async {
@@ -255,10 +258,8 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
-                                  ChartsCostsExpensesMeatAnimalHusbandryPage
-                                      .create(
-                                animalHusbandryId:
-                                    vm.currentAnimalHusbandry!.id!,
+                                  ChartsCostsExpensesFishHusbandryPage.create(
+                                fishHusbandryId: vm.currentFishHusbandry!.id!,
                               ),
                             ),
                           );
@@ -273,7 +274,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                           showDialog(
                             context: context,
                             builder: (_) => AmcaDownloadButton(
-                                data: widget.animalHusbandry!.toReportData()),
+                                data: widget.fishHusbandry!.toReportData()),
                           );
                         },
                       )
@@ -324,31 +325,30 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
   }
 
   Future<void> createAnimalHusbandry() async {
-    final createMeetAnimalHusbandryMv =
-        Provider.of<CreateMeetAnimalHusbandryVM>(
+    final createFishHusbandryVm = Provider.of<CreateFishHusbandryVM>(
       context,
       listen: false,
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
-    final animalHusbandry = MeatAnimalHusbandry(
+    final fishHusbandry = FishHusbandry(
       createDate: date,
-      farmName: _farmNameController.text,
       totalProfit: "",
+      farmName: _farmNameController.text,
       numberAnimals: _animalNumbersController.text,
       value: _valueController.text,
+      uidOwner: createFishHusbandryVm.currentFishHusbandry?.uidOwner,
       comment: _commentController.text,
+      fishType: widget.fishType ?? createFishHusbandryVm.fishType,
       costsAndExpenses:
-          createMeetAnimalHusbandryMv.currentAnimalHusbandry?.costsAndExpenses,
-      production:
-          createMeetAnimalHusbandryMv.currentAnimalHusbandry?.production,
-      id: createMeetAnimalHusbandryMv.isEditMode
-          ? createMeetAnimalHusbandryMv.currentAnimalHusbandry!.id
+          createFishHusbandryVm.currentFishHusbandry?.costsAndExpenses,
+      production: createFishHusbandryVm.currentFishHusbandry?.production,
+      id: createFishHusbandryVm.isEditMode
+          ? createFishHusbandryVm.currentFishHusbandry!.id
           : null,
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await createMeetAnimalHusbandryMv
-            .createAnimalHusbandry(animalHusbandry);
+        await createFishHusbandryVm.createFishHusbandry(fishHusbandry);
         final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
           context,
           listen: false,
@@ -356,7 +356,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
 
         Dialogs.showSuccessDialogWithMessage(
           context,
-          createMeetAnimalHusbandryMv.isEditMode
+          createFishHusbandryVm.isEditMode
               ? AmcaWords.yourAnimalHusbandryHasBeenUpdated
               : AmcaWords.yourAnimalHusbandryHasBeenCreated,
         ).then((value) {
@@ -373,13 +373,13 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
   }
 
   Future<void> deleteAnimalHusbandry() async {
-    final createPermanentVm = Provider.of<CreateMeetAnimalHusbandryVM>(
+    final createPermanentVm = Provider.of<CreateFishHusbandryVM>(
       context,
       listen: false,
     );
     try {
       await CallsWithDialogs.call(context, () async {
-        await createPermanentVm.deleteAnimalHusbandry();
+        await createPermanentVm.deleteFishHusbandry();
         final farmingHistoryVM = Provider.of<FarmingHistoryVM>(
           context,
           listen: false,
@@ -401,16 +401,15 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
   }
 
   void _preloadData() {
-    bool isEditMode = widget.animalHusbandry != null;
+    bool isEditMode = widget.fishHusbandry != null;
     if (isEditMode) {
-      final preloadAnimalHusbandry = widget.animalHusbandry;
-      _farmNameController.text = preloadAnimalHusbandry?.farmName ?? '';
-      _animalNumbersController.text =
-          preloadAnimalHusbandry?.numberAnimals ?? '';
-      _valueController.text = preloadAnimalHusbandry?.value ?? '';
-      _commentController.text = preloadAnimalHusbandry?.comment ?? '';
+      final preloadFishHusbandry = widget.fishHusbandry;
+      _farmNameController.text = preloadFishHusbandry?.farmName ?? '';
+      _animalNumbersController.text = preloadFishHusbandry?.numberAnimals ?? '';
+      _valueController.text = preloadFishHusbandry?.value ?? '';
+      _commentController.text = preloadFishHusbandry?.comment ?? '';
       createdDate = DateFormat('yyyy-MM-dd')
-          .format(preloadAnimalHusbandry?.createDate ?? DateTime.now());
+          .format(preloadFishHusbandry?.createDate ?? DateTime.now());
     }
   }
 }

@@ -21,62 +21,43 @@ MeatAnimalHusbandry _$MeatAnimalHusbandryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MeatAnimalHusbandry {
   String? get id => throw _privateConstructorUsedError;
-
   set id(String? value) => throw _privateConstructorUsedError;
-
   DateTime get createDate => throw _privateConstructorUsedError;
-
   set createDate(DateTime value) => throw _privateConstructorUsedError;
-
   String get totalProfit => throw _privateConstructorUsedError;
-
   set totalProfit(String value) => throw _privateConstructorUsedError;
-
   String get farmName => throw _privateConstructorUsedError;
-
   set farmName(String value) => throw _privateConstructorUsedError;
-
   String get numberAnimals => throw _privateConstructorUsedError;
-
   set numberAnimals(String value) => throw _privateConstructorUsedError;
-
   String get value => throw _privateConstructorUsedError;
-
   set value(String value) => throw _privateConstructorUsedError;
-
   String? get uidOwner => throw _privateConstructorUsedError;
-
   set uidOwner(String? value) => throw _privateConstructorUsedError;
-
   String? get comment => throw _privateConstructorUsedError;
-
   set comment(String? value) => throw _privateConstructorUsedError;
-
   List<CostAndExpense>? get costsAndExpenses =>
       throw _privateConstructorUsedError;
-
   set costsAndExpenses(List<CostAndExpense>? value) =>
-      throw _privateConstructorUsedError; //Production? production,
-  Production? get production =>
-      throw _privateConstructorUsedError; //Production? production,
+      throw _privateConstructorUsedError;
+  Production? get production => throw _privateConstructorUsedError;
   set production(Production? value) => throw _privateConstructorUsedError;
 
-  /// Serializes this MeetAnimalHusbandry to a JSON map.
+  /// Serializes this MeatAnimalHusbandry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of MeetAnimalHusbandry
+  /// Create a copy of MeatAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AnimalHusbandryCopyWith<MeatAnimalHusbandry> get copyWith =>
+  $MeatAnimalHusbandryCopyWith<MeatAnimalHusbandry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AnimalHusbandryCopyWith<$Res> {
-  factory $AnimalHusbandryCopyWith(
+abstract class $MeatAnimalHusbandryCopyWith<$Res> {
+  factory $MeatAnimalHusbandryCopyWith(
           MeatAnimalHusbandry value, $Res Function(MeatAnimalHusbandry) then) =
-      _$AnimalHusbandryCopyWithImpl<$Res, MeatAnimalHusbandry>;
-
+      _$MeatAnimalHusbandryCopyWithImpl<$Res, MeatAnimalHusbandry>;
   @useResult
   $Res call(
       {String? id,
@@ -89,20 +70,21 @@ abstract class $AnimalHusbandryCopyWith<$Res> {
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
       Production? production});
+
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
-class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MeatAnimalHusbandry>
-    implements $AnimalHusbandryCopyWith<$Res> {
-  _$AnimalHusbandryCopyWithImpl(this._value, this._then);
+class _$MeatAnimalHusbandryCopyWithImpl<$Res, $Val extends MeatAnimalHusbandry>
+    implements $MeatAnimalHusbandryCopyWith<$Res> {
+  _$MeatAnimalHusbandryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeetAnimalHusbandry
+  /// Create a copy of MeatAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -161,15 +143,28 @@ class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MeatAnimalHusbandry>
               as Production?,
     ) as $Val);
   }
+
+  /// Create a copy of MeatAnimalHusbandry
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_value.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_value.production!, (value) {
+      return _then(_value.copyWith(production: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$AnimalHusbandryImplCopyWith<$Res>
-    implements $AnimalHusbandryCopyWith<$Res> {
-  factory _$$AnimalHusbandryImplCopyWith(_$MeetAnimalHusbandryImpl value,
+abstract class _$$MeetAnimalHusbandryImplCopyWith<$Res>
+    implements $MeatAnimalHusbandryCopyWith<$Res> {
+  factory _$$MeetAnimalHusbandryImplCopyWith(_$MeetAnimalHusbandryImpl value,
           $Res Function(_$MeetAnimalHusbandryImpl) then) =
-      __$$AnimalHusbandryImplCopyWithImpl<$Res>;
-
+      __$$MeetAnimalHusbandryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -183,17 +178,20 @@ abstract class _$$AnimalHusbandryImplCopyWith<$Res>
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
       Production? production});
+
+  @override
+  $ProductionCopyWith<$Res>? get production;
 }
 
 /// @nodoc
-class __$$AnimalHusbandryImplCopyWithImpl<$Res>
-    extends _$AnimalHusbandryCopyWithImpl<$Res, _$MeetAnimalHusbandryImpl>
-    implements _$$AnimalHusbandryImplCopyWith<$Res> {
-  __$$AnimalHusbandryImplCopyWithImpl(_$MeetAnimalHusbandryImpl _value,
+class __$$MeetAnimalHusbandryImplCopyWithImpl<$Res>
+    extends _$MeatAnimalHusbandryCopyWithImpl<$Res, _$MeetAnimalHusbandryImpl>
+    implements _$$MeetAnimalHusbandryImplCopyWith<$Res> {
+  __$$MeetAnimalHusbandryImplCopyWithImpl(_$MeetAnimalHusbandryImpl _value,
       $Res Function(_$MeetAnimalHusbandryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeetAnimalHusbandry
+  /// Create a copy of MeatAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -292,20 +290,19 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
   String? comment;
   @override
   List<CostAndExpense>? costsAndExpenses;
-
   @override
   Production? production;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MeetAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'MeatAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'MeetAnimalHusbandry'))
+      ..add(DiagnosticsProperty('type', 'MeatAnimalHusbandry'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('createDate', createDate))
       ..add(DiagnosticsProperty('totalProfit', totalProfit))
@@ -318,13 +315,13 @@ class _$MeetAnimalHusbandryImpl extends _MeetAnimalHusbandry
       ..add(DiagnosticsProperty('production', production));
   }
 
-  /// Create a copy of MeetAnimalHusbandry
+  /// Create a copy of MeatAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AnimalHusbandryImplCopyWith<_$MeetAnimalHusbandryImpl> get copyWith =>
-      __$$AnimalHusbandryImplCopyWithImpl<_$MeetAnimalHusbandryImpl>(
+  _$$MeetAnimalHusbandryImplCopyWith<_$MeetAnimalHusbandryImpl> get copyWith =>
+      __$$MeetAnimalHusbandryImplCopyWithImpl<_$MeetAnimalHusbandryImpl>(
           this, _$identity);
 
   @override
@@ -347,7 +344,6 @@ abstract class _MeetAnimalHusbandry extends MeatAnimalHusbandry {
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
       Production? production}) = _$MeetAnimalHusbandryImpl;
-
   _MeetAnimalHusbandry._() : super._();
 
   factory _MeetAnimalHusbandry.fromJson(Map<String, dynamic> json) =
@@ -355,58 +351,39 @@ abstract class _MeetAnimalHusbandry extends MeatAnimalHusbandry {
 
   @override
   String? get id;
-
   set id(String? value);
-
   @override
   DateTime get createDate;
-
   set createDate(DateTime value);
-
   @override
   String get totalProfit;
-
   set totalProfit(String value);
-
   @override
   String get farmName;
-
   set farmName(String value);
-
   @override
   String get numberAnimals;
-
   set numberAnimals(String value);
-
   @override
   String get value;
-
   set value(String value);
-
   @override
   String? get uidOwner;
-
   set uidOwner(String? value);
-
   @override
   String? get comment;
-
   set comment(String? value);
-
   @override
   List<CostAndExpense>? get costsAndExpenses;
-
   set costsAndExpenses(List<CostAndExpense>? value);
-
   @override
   Production? get production;
-
   set production(Production? value);
 
-  /// Create a copy of MeetAnimalHusbandry
+  /// Create a copy of MeatAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AnimalHusbandryImplCopyWith<_$MeetAnimalHusbandryImpl> get copyWith =>
+  _$$MeetAnimalHusbandryImplCopyWith<_$MeetAnimalHusbandryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

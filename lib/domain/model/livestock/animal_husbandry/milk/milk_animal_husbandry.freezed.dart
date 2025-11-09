@@ -21,62 +21,44 @@ MilkAnimalHusbandry _$MilkAnimalHusbandryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MilkAnimalHusbandry {
   String? get id => throw _privateConstructorUsedError;
-
   set id(String? value) => throw _privateConstructorUsedError;
-
   DateTime get createDate => throw _privateConstructorUsedError;
-
   set createDate(DateTime value) => throw _privateConstructorUsedError;
-
   String get totalProfit => throw _privateConstructorUsedError;
-
   set totalProfit(String value) => throw _privateConstructorUsedError;
-
   String get farmName => throw _privateConstructorUsedError;
-
   set farmName(String value) => throw _privateConstructorUsedError;
-
   String get numberAnimals => throw _privateConstructorUsedError;
-
   set numberAnimals(String value) => throw _privateConstructorUsedError;
-
   String get value => throw _privateConstructorUsedError;
-
   set value(String value) => throw _privateConstructorUsedError;
-
   String? get uidOwner => throw _privateConstructorUsedError;
-
   set uidOwner(String? value) => throw _privateConstructorUsedError;
-
   String? get comment => throw _privateConstructorUsedError;
-
   set comment(String? value) => throw _privateConstructorUsedError;
-
   List<CostAndExpense>? get costsAndExpenses =>
       throw _privateConstructorUsedError;
-
   set costsAndExpenses(List<CostAndExpense>? value) =>
       throw _privateConstructorUsedError; //Production? production,
   List<Production>? get production =>
       throw _privateConstructorUsedError; //Production? production,
   set production(List<Production>? value) => throw _privateConstructorUsedError;
 
-  /// Serializes this AnimalHusbandry to a JSON map.
+  /// Serializes this MilkAnimalHusbandry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AnimalHusbandry
+  /// Create a copy of MilkAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AnimalHusbandryCopyWith<MilkAnimalHusbandry> get copyWith =>
+  $MilkAnimalHusbandryCopyWith<MilkAnimalHusbandry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AnimalHusbandryCopyWith<$Res> {
-  factory $AnimalHusbandryCopyWith(
+abstract class $MilkAnimalHusbandryCopyWith<$Res> {
+  factory $MilkAnimalHusbandryCopyWith(
           MilkAnimalHusbandry value, $Res Function(MilkAnimalHusbandry) then) =
-      _$AnimalHusbandryCopyWithImpl<$Res, MilkAnimalHusbandry>;
-
+      _$MilkAnimalHusbandryCopyWithImpl<$Res, MilkAnimalHusbandry>;
   @useResult
   $Res call(
       {String? id,
@@ -92,17 +74,16 @@ abstract class $AnimalHusbandryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MilkAnimalHusbandry>
-    implements $AnimalHusbandryCopyWith<$Res> {
-  _$AnimalHusbandryCopyWithImpl(this._value, this._then);
+class _$MilkAnimalHusbandryCopyWithImpl<$Res, $Val extends MilkAnimalHusbandry>
+    implements $MilkAnimalHusbandryCopyWith<$Res> {
+  _$MilkAnimalHusbandryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AnimalHusbandry
+  /// Create a copy of MilkAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -165,11 +146,10 @@ class _$AnimalHusbandryCopyWithImpl<$Res, $Val extends MilkAnimalHusbandry>
 
 /// @nodoc
 abstract class _$$AnimalHusbandryImplCopyWith<$Res>
-    implements $AnimalHusbandryCopyWith<$Res> {
+    implements $MilkAnimalHusbandryCopyWith<$Res> {
   factory _$$AnimalHusbandryImplCopyWith(_$AnimalHusbandryImpl value,
           $Res Function(_$AnimalHusbandryImpl) then) =
       __$$AnimalHusbandryImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -187,13 +167,13 @@ abstract class _$$AnimalHusbandryImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AnimalHusbandryImplCopyWithImpl<$Res>
-    extends _$AnimalHusbandryCopyWithImpl<$Res, _$AnimalHusbandryImpl>
+    extends _$MilkAnimalHusbandryCopyWithImpl<$Res, _$AnimalHusbandryImpl>
     implements _$$AnimalHusbandryImplCopyWith<$Res> {
   __$$AnimalHusbandryImplCopyWithImpl(
       _$AnimalHusbandryImpl _value, $Res Function(_$AnimalHusbandryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AnimalHusbandry
+  /// Create a copy of MilkAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -292,21 +272,20 @@ class _$AnimalHusbandryImpl extends _AnimalHusbandry
   String? comment;
   @override
   List<CostAndExpense>? costsAndExpenses;
-
 //Production? production,
   @override
   List<Production>? production;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'MilkAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AnimalHusbandry'))
+      ..add(DiagnosticsProperty('type', 'MilkAnimalHusbandry'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('createDate', createDate))
       ..add(DiagnosticsProperty('totalProfit', totalProfit))
@@ -319,7 +298,7 @@ class _$AnimalHusbandryImpl extends _AnimalHusbandry
       ..add(DiagnosticsProperty('production', production));
   }
 
-  /// Create a copy of AnimalHusbandry
+  /// Create a copy of MilkAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -348,7 +327,6 @@ abstract class _AnimalHusbandry extends MilkAnimalHusbandry {
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
       List<Production>? production}) = _$AnimalHusbandryImpl;
-
   _AnimalHusbandry._() : super._();
 
   factory _AnimalHusbandry.fromJson(Map<String, dynamic> json) =
@@ -356,53 +334,36 @@ abstract class _AnimalHusbandry extends MilkAnimalHusbandry {
 
   @override
   String? get id;
-
   set id(String? value);
-
   @override
   DateTime get createDate;
-
   set createDate(DateTime value);
-
   @override
   String get totalProfit;
-
   set totalProfit(String value);
-
   @override
   String get farmName;
-
   set farmName(String value);
-
   @override
   String get numberAnimals;
-
   set numberAnimals(String value);
-
   @override
   String get value;
-
   set value(String value);
-
   @override
   String? get uidOwner;
-
   set uidOwner(String? value);
-
   @override
   String? get comment;
-
   set comment(String? value);
-
   @override
   List<CostAndExpense>? get costsAndExpenses;
-
   set costsAndExpenses(List<CostAndExpense>? value); //Production? production,
   @override
   List<Production>? get production; //Production? production,
   set production(List<Production>? value);
 
-  /// Create a copy of AnimalHusbandry
+  /// Create a copy of MilkAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

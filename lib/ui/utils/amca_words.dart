@@ -327,4 +327,6 @@ class AmcaWords {
   static const String cachama = 'Cachama';
   static const String fish = 'Pescado';
   static const String fishNumber = 'Número de peces';
+  static const String pleaseFishNumber =
+      'Por favor, ingrese el número de peces';
 }

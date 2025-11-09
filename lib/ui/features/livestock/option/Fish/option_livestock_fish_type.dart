@@ -5,9 +5,7 @@
 library;
 
 /// Imports of Bookstores and Resources
-import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/manage_meat_animal_husbandry_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/fish_farming/manage_fish_animal_husbandry_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
@@ -38,8 +36,8 @@ class OptionLivestockFishType extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            ManageMeetAnimalHusbandry.create(),
+                        builder: (BuildContext fishcontext) =>
+                            ManageFishHusbandry.create(fishType: 'tilapia'),
                       ),
                     );
                   },
@@ -52,8 +50,8 @@ class OptionLivestockFishType extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            ManageMilkAnimalHusbandry.create(),
+                        builder: (BuildContext fishcontext) =>
+                            ManageFishHusbandry.create(fishType: 'cachama'),
                       ),
                     );
                   },

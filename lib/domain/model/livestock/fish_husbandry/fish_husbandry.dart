@@ -35,6 +35,7 @@ class FishHusbandry with _$FishHusbandry implements ReportableEntity {
     required String value,
     String? uidOwner,
     String? comment,
+    String? fishType,
     List<CostAndExpense>? costsAndExpenses,
     Production? production,
   }) = _FishHusbandry;

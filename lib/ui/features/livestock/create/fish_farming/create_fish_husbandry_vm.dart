@@ -3,10 +3,10 @@
 /// Contiene operaciones básicas: inicialización, creación/actualización, obtención y eliminación.
 library;
 
-import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart';
-import 'package:amca/dependecy_injection.dart';
-import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart'; //
+import 'package:amca/dependecy_injection.dart'; //
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart'; //
+import 'package:flutter/cupertino.dart'; //
 
 /// ViewModel para crear y administrar actividades de piscicultura.
 class CreateFishHusbandryVM extends ChangeNotifier {
@@ -20,12 +20,16 @@ class CreateFishHusbandryVM extends ChangeNotifier {
 
   bool get isEditMode => _currentFishHusbandry != null;
 
-  /// Inicializa el ViewModel con un registro opcional.
-  Future<void> init({FishHusbandry? fishHusbandry}) async {
+  String? _fishType;
+  String? get fishType => _fishType;
+
+  /// Inicializa el ViewModel con un registro opcional y tipo de pez.
+  Future<void> init({FishHusbandry? fishHusbandry, String? fishType}) async {
     try {
       if (fishHusbandry != null) {
         _currentFishHusbandry = fishHusbandry;
       }
+      _fishType = fishType;
     } finally {
       notifyListeners();
     }
@@ -76,7 +80,7 @@ class CreateFishHusbandryVM extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      // Manejo de error mínimo: simplemente retornar
+      print("Error deleting FishHusbandry: $e");
       return;
     }
   }

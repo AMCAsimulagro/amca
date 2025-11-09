@@ -3,6 +3,7 @@ library;
 
 import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
 import 'package:amca/domain/model/livestock/animal_husbandry/milk/milk_animal_husbandry.dart';
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart';
 import 'package:amca/domain/model/livestock/pig_farming/pig_farming.dart';
 import 'package:amca/domain/model/permanent_farming.dart';
 import 'package:amca/domain/model/transitory_farming.dart';
@@ -67,6 +68,11 @@ class AllFarmingHistoryPage extends StatelessWidget {
           if (vm.pigFarming.isNotEmpty) {
             farmingItems.addAll(_buildFarmingList(
                 context, vm.pigFarming, AmcaWords.pigFarming));
+          }
+
+          if (vm.fishHusbandry.isNotEmpty) {
+            farmingItems.addAll(_buildFarmingList(
+                context, vm.fishHusbandry, AmcaWords.fishFarming));
           }
 
           if (farmingItems.isNotEmpty) {

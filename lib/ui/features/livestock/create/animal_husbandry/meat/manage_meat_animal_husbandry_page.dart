@@ -79,8 +79,6 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'size costsAndExpenses -> ${widget.animalHusbandry?.costsAndExpenses?.length}');
     return Consumer<CreateMeetAnimalHusbandryVM>(builder: (context, vm, _) {
       return Scaffold(
         appBar: AppBar(
