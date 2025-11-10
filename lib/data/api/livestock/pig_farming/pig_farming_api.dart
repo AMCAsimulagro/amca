@@ -142,8 +142,12 @@ class PigFarmingApiAdapter implements PigFarmingApi {
         id: costExpenseId,
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
       );
-
-      costExpenseList.add(costExpenseToUpload);
+      int index = costExpenseList.indexWhere((element) => element.id == costExpenseId);
+      if (index != -1) {
+        costExpenseList[index] = costExpenseToUpload;
+      } else {
+        costExpenseList.add(costExpenseToUpload);
+      }
       final updatedFarming = farming.copyWith(costsAndExpenses: costExpenseList);
       await createPigFarming(updatedFarming);
       return costExpenseToUpload;

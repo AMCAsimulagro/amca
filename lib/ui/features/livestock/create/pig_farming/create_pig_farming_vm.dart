@@ -14,14 +14,14 @@ import 'package:flutter/cupertino.dart';
 /// ViewModel for creating and managing pig farming activities.
 class CreatePigFarmingVM extends ChangeNotifier {
   /// Instance of [PigFarmingRepository] for performing CRUD operations
-  final PigFarmingRepository _pigFarmingRepository = locator<PigFarmingRepository>();
+  final PigFarmingRepository _pigFarmingRepository =
+      locator<PigFarmingRepository>();
 
   List<String> _pigCategories = []; // Ej: Engorde, Reproducción
   List<String> _productionTypes = []; // Tipos de producción porcina
   List<String> _sownTypes = []; // Tipos de
 
-  PigFarming? _currentPigFarming; 
-
+  PigFarming? _currentPigFarming;
 
   // Getters públicos
   List<String> get pigCategories => _pigCategories;
@@ -62,7 +62,8 @@ class CreatePigFarmingVM extends ChangeNotifier {
   Future<PigFarming?> getPigFarming() async {
     try {
       if (_currentPigFarming?.id != null) {
-        _currentPigFarming = await _pigFarmingRepository.getPigFarmingById(_currentPigFarming!.id!);
+        _currentPigFarming = await _pigFarmingRepository
+            .getPigFarmingById(_currentPigFarming!.id!);
         notifyListeners();
       }
       return _currentPigFarming;
@@ -74,8 +75,6 @@ class CreatePigFarmingVM extends ChangeNotifier {
   /// Maneja la selección de categoría porcina
   void onPigCategorySelected(String category) {
     //_categories = _pigCategories.firstWhere((element)=> element == category);
-     
-    
   }
 
   /// Elimina un registro de porcicultura
@@ -114,11 +113,9 @@ class CreatePigFarmingVM extends ChangeNotifier {
 
   /// Cálculo de beneficios
   // int get netProfit {
-  //   return (_currentPigFarming?.totalPrice() ?? 0) - 
+  //   return (_currentPigFarming?.totalPrice() ?? 0) -
   //          (_currentPigFarming?.calculateTotalCostAndExpense() ?? 0);
   // }
-
-
 
   void onCropType(String optionSelected) {}
 }
