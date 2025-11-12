@@ -30,7 +30,8 @@ class AllAreaProductionsPage extends StatelessWidget {
       ),
       body: Consumer<AllAreaProductionsVm>(
         builder: (context, vm, _) {
-          if (vm.isLoading) {
+          // Full-screen loader only for initial load when there are no metrics yet.
+          if (vm.isLoading && (vm.metrics.isEmpty)) {
             return const Center(child: CircularProgressIndicator());
           }
 
@@ -39,6 +40,9 @@ class AllAreaProductionsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Small progress indicator shown while refreshing metrics (non-blocking)
+                if (vm.isLoading) const LinearProgressIndicator(),
+                const SizedBox(height: 8),
                 Text(
                   'Propietario: $ownerId',
                   style: Theme.of(context).textTheme.titleMedium,
@@ -63,9 +67,9 @@ class AllAreaProductionsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
 
-                // Filtro por tipo de producto
+                // Filtro por tipo de produccion
                 AmcaSelectFormField(
-                  labelText: 'Tipo de producto',
+                  labelText: 'Tipo de producción',
                   textEditingController: vm.productTypeController,
                   options: vm.productTypes,
                   optionSelected: (p) => vm.selectProductType(p),
@@ -74,8 +78,8 @@ class AllAreaProductionsPage extends StatelessWidget {
 
                 // Botón para refrescar métricas
                 AmcaButton(
-                  text: 'Refrescar métricas',
-                  onPressed: () => vm.loadMetrics(),
+                  text: vm.isLoading ? 'Cargando...' : 'Refrescar métricas',
+                  onPressed: vm.isLoading ? null : () => vm.loadMetrics(),
                 ),
 
                 const SizedBox(height: 16),
@@ -100,8 +104,29 @@ class _MetricsArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // If an error was set by the VM, show it with a retry action
+    if (vm.metrics.containsKey('error')) {
+      final msg = vm.metrics['error'] ?? 'Error desconocido';
+      return ListView(
+        children: [
+          Card(
+            color: Theme.of(context).colorScheme.errorContainer,
+            child: ListTile(
+              leading: const Icon(Icons.error_outline),
+              title: const Text('Error al cargar métricas'),
+              subtitle: Text(msg.toString()),
+              trailing: TextButton(
+                onPressed: vm.isLoading ? null : () => vm.loadMetrics(),
+                child: const Text('Reintentar'),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     if (vm.metrics.isEmpty) {
-      return const Center(child: Text('No hay métricas para mostrar')); 
+      return const Center(child: Text('No hay métricas para mostrar'));
     }
 
     final type = vm.selectedProductType ?? '';
@@ -131,6 +156,7 @@ class _MetricsArea extends StatelessWidget {
               subtitle: Text('$num'),
             ),
           ),
+          SizedBox(height: 10),
           Card(
             child: ListTile(
               title: const Text('Área total de producción'),
@@ -152,9 +178,11 @@ class _MetricsArea extends StatelessWidget {
             subtitle: Text('$numAnimales'),
           ),
         ),
+          SizedBox(height: 10),
+
         Card(
           child: ListTile(
-            title: const Text('Área total de producción por municipio'),
+            title: const Text('Área en hectáreas de producción por municipio'),
             subtitle: Text('$areaTotal ha'),
           ),
         ),

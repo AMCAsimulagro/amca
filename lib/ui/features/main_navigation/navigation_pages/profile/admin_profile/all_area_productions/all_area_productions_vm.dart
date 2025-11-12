@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amca/data/api/production_city.dart';
 import 'package:amca/data/repository/state_repository.dart';
 import 'package:amca/domain/model/state.dart' as domain_state;
 
@@ -18,6 +19,7 @@ class AllAreaProductionsVm extends ChangeNotifier {
 
   /// Tipos de producto mostrados en el filtro.
   final List<String> productTypes = [
+    'Selecciona tipo de producción',
     'Agrícola',
     'Ganadería - Leche',
     'Ganadería - Cárnicos',
@@ -50,6 +52,7 @@ class AllAreaProductionsVm extends ChangeNotifier {
   final TextEditingController departmentController = TextEditingController();
 
   final StateRepository stateRepository;
+  final ProductionCityApi _productionCityApi = ProductionCityApi();
 
   AllAreaProductionsVm({required this.ownerId, StateRepository? stateRepository})
     : stateRepository = stateRepository ?? StateRepositoryAdapter();
@@ -137,24 +140,38 @@ class AllAreaProductionsVm extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    await Future.delayed(const Duration(milliseconds: 300));
-
-    // Simulación básica de métricas
-    if (selectedProductType == 'Agrícola') {
-      metrics = {
-        'areaSembrada': 123.4, // hectáreas
-      };
-    } else if (selectedProductType == 'Piscicultura') {
-      metrics = {
-        'numPorMunicipio': 420, // número de estanques/producción
-        'areaTotalProduccion': 30.0, // hectáreas equivalentes
-      };
-    } else {
-      // Ganadería (lechera, porcicola, cárnicos)
-      metrics = {
-        'numAnimales': 850,
-        'areaTotalProduccion': 78.6,
-      };
+    try {
+      if (selectedProductType == 'Agrícola') {
+        final area = await _productionCityApi.getTotalSownAreaHectaresByCity(
+          selectedDepartment ?? '', selectedCity ?? '',
+        );
+        metrics = {'areaSembrada': area};
+      } else if (selectedProductType == 'Piscicultura') {
+        final fish = await _productionCityApi.getFishMetricsByCity(
+          selectedDepartment ?? '', selectedCity ?? '',
+        );
+          metrics = {
+            'numPorMunicipio': fish['numberAnimals'] ?? 0,
+            'areaTotalProduccion': fish['areaHectares'] ?? 0.0,
+            'volumeCubicMeters': fish['volumeCubicMeters'] ?? 0.0,
+          };
+      } else {
+        // Ganadería (lechera, porcicola, cárnicos)
+        Map<String, dynamic> agg;
+        if (selectedProductType!.contains('Porcicola') || selectedProductType!.contains('Porc')) {
+          agg = await _productionCityApi.getPigMetricsByCity(selectedDepartment ?? '', selectedCity ?? '');
+        } else if (selectedProductType!.contains('Leche') || selectedProductType!.contains('Milk')) {
+          agg = await _productionCityApi.getMilkMetricsByCity(selectedDepartment ?? '', selectedCity ?? '');
+        } else {
+          agg = await _productionCityApi.getMeatMetricsByCity(selectedDepartment ?? '', selectedCity ?? '');
+        }
+        metrics = {
+          'numAnimales': agg['numberAnimals'] ?? 0,
+          'areaTotalProduccion': agg['areaHectares'] ?? 0.0,
+        };
+      }
+    } catch (e) {
+      metrics = {'error': 'No se pudo cargar métricas'};
     }
 
     isLoading = false;
