@@ -4,8 +4,9 @@
 ///
 /// `AmcaTextFormField` provides additional functionality and custom styles for text fields
 /// in the Amca application.
-/// 
+///
 library;
+
 import 'package:amca/ui/widgets/amca_text_field_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

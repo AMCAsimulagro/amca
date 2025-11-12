@@ -1,12 +1,13 @@
 /// {@category Menu Farmin}
 library;
 
-
-import 'package:amca/ui/features/farming/create/manage_permanent_farming_page.dart';
-import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/manage_meat_animal_husbandry_page.dart';
-import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart';
-import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart';
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart';
+import 'package:amca/ui/features/farming/create/manage_permanent_farming_page.dart'; //
+import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart'; //
+import 'package:amca/ui/features/livestock/create/animal_husbandry/meat/manage_meat_animal_husbandry_page.dart'; //
+import 'package:amca/ui/features/livestock/create/animal_husbandry/milk/manage_milk_animal_husbandry_page.dart'; //
+import 'package:amca/ui/features/livestock/create/fish_farming/manage_fish_animal_husbandry_page.dart';
+import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart'; //
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -112,6 +113,19 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
           );
         }
 
+        if (vm.fishHusbandry.isNotEmpty) {
+          farmingItems.addAll(
+            _buildFarmingList(
+              vm.fishHusbandry,
+              (farmingItem) => ManageFishHusbandry.create(
+                fishHusbandry: farmingItem,
+              ),
+              AmcaWords
+                  .fishFarming, // Agrega un identificador para esta sección
+            ),
+          );
+        }
+
         if (farmingItems.isNotEmpty) {
           return RefreshIndicator(
             onRefresh: () async {
@@ -144,6 +158,7 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
       final name = switch (farmingItem) {
         MilkAnimalHusbandry() => farmingItem.farmName,
         MeatAnimalHusbandry() => farmingItem.farmName,
+        FishHusbandry() => farmingItem.farmName,
         TransitoryFarming() => farmingItem.partName,
         PermanentFarming() => farmingItem.partName,
         PigFarming() => farmingItem.farmName,
@@ -211,6 +226,7 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
       AmcaWords.meat => AmcaPalette.meat,
       AmcaWords.milk => AmcaPalette.milk,
       AmcaWords.pigFarming => AmcaPalette.pigFarmingColor,
+      AmcaWords.fishFarming => AmcaPalette.fishFarmingColor,
       _ => const Color.fromARGB(255, 210, 180, 140), // Default: Café claro
     };
   }

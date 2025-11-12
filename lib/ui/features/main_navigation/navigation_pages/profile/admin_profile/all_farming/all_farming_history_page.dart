@@ -69,6 +69,11 @@ class AllFarmingHistoryPage extends StatelessWidget {
                 context, vm.pigFarming, AmcaWords.pigFarming));
           }
 
+          if (vm.fishHusbandry.isNotEmpty) {
+            farmingItems.addAll(_buildFarmingList(
+                context, vm.fishHusbandry, AmcaWords.fishFarming));
+          }
+
           if (farmingItems.isNotEmpty) {
             return RefreshIndicator(
               onRefresh: () async {

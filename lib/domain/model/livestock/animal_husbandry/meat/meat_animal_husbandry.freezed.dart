@@ -70,6 +70,20 @@ mixin _$MeatAnimalHusbandry implements DiagnosticableTreeMixin {
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MeatAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
+
+  /// Create a copy of MeatAnimalHusbandry
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_value.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_value.production!, (value) {
+      return _then(_value.copyWith(production: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc

@@ -302,7 +302,8 @@ class AmcaWords {
       'Por favor, seleccione un tipo de producción';
   static String yourAnimalHusbandryHasBeenUpdated =
       'Tu registro ha sido actualizado';
-  static String yourAnimalHusbandryHasBeenCreated = 'Tu registro ha sido creado';
+  static String yourAnimalHusbandryHasBeenCreated =
+      'Tu registro ha sido creado';
   static const String areYouSureToDeleteThisAnimalHusbandry =
       '¿Desea eliminar este registro?';
 
@@ -310,7 +311,8 @@ class AmcaWords {
   static const String farmName = 'Nombre de la Finca';
   static const String pleaseFarmName =
       'Por favor, ingrese el nombre del la Finca';
-  static String yourPigFarmingHasBeenUpdated = 'Tu registro ha sido actualizado';
+  static String yourPigFarmingHasBeenUpdated =
+      'Tu registro ha sido actualizado';
   static String yourPigFarmingHasBeenCreated = 'Tu registro ha sido creado';
   static String yourPigFarmingHasBeenDeleted = 'Tu registro ha sido eliminado';
   static const String areYouSureToDeleteThisPigFarming =
@@ -321,6 +323,15 @@ class AmcaWords {
   static const String fatten = 'Engorde';
 
   // Words submodulo Piscicultura
-  static const String tilapia = 'Tilapia';
-  static const String cachama = 'Cachama';
+  static const String fish = 'Pescado';
+  static const String createpond = 'Crear estanque';
+  static const String fishNumber = 'Cantidad de peces';
+  static const String pleaseFishNumber =
+      'Por favor, ingrese la cantidad de peces';
+  static const String alongThePond = 'Largo del estanque';
+  static const String pondWidth = 'Ancho del estanque';
+  static const String pondDepth = 'Profundidad del estanque';
+  static const String pondArea = 'Área del estanque';
+  static const String fishCM = 'CM²';
+  static const String typeOfFish = 'Tipo de pez';
 }

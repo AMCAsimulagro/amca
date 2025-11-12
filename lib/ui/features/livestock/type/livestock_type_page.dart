@@ -6,6 +6,7 @@ library;
 
 import 'package:amca/ui/features/livestock/option/animal_husbandry/option_livestock_animal_husbandry_page.dart';
 import 'package:amca/ui/features/livestock/option/poultry/option_livestock_poultry_page.dart';
+import 'package:amca/ui/features/livestock/option/Fish/option_livestock_fish_type.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/dialogs.dart';
@@ -87,8 +88,10 @@ class LivestockTypePage extends StatelessWidget {
                     child: AmcaContainerButton(
                       text: AmcaWords.fishFarming,
                       onTap: () {
-                        Dialogs.showErrorDialogWithMessage(
-                            context, AmcaWords.buildingThis);
+                        NavigationHelper.push(
+                          const OptionLivestockFishType(),
+                          context,
+                        );
                       },
                     ),
                   ),
