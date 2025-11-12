@@ -17,11 +17,10 @@ T _$identity<T>(T value) => value;
 mixin _$Production {
   String? get uidOwner;
   set uidOwner(String? value); // Owner UID of the production.
-  String? get partName; // Owner UID of the production.
-  set partName(String? value); // Part name of the production.
-  String get transitoryFarmingId; // Part name of the production.
-  set transitoryFarmingId(
-      String value); // Transitory farming ID of the production.
+  String? get farmName; // Owner UID of the production.
+  set farmName(String? value); // Farm name of the production.
+  String get pigFarmingId; // Farm name of the production.
+  set pigFarmingId(String value); // Transitory farming ID of the production.
   DateTime get createDate; // Transitory farming ID of the production.
   set createDate(DateTime value); // Creation date of the production.
   String get unitOfMeasurement; // Creation date of the production.
@@ -49,7 +48,7 @@ mixin _$Production {
 
   @override
   String toString() {
-    return 'Production(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
+    return 'Production(uidOwner: $uidOwner, farmName: $farmName, pigFarmingId: $pigFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
   }
 }
 
@@ -61,8 +60,8 @@ abstract mixin class $ProductionCopyWith<$Res> {
   @useResult
   $Res call(
       {String? uidOwner,
-      String? partName,
-      String transitoryFarmingId,
+      String? farmName,
+      String pigFarmingId,
       DateTime createDate,
       String unitOfMeasurement,
       String quantity,
@@ -85,8 +84,8 @@ class _$ProductionCopyWithImpl<$Res> implements $ProductionCopyWith<$Res> {
   @override
   $Res call({
     Object? uidOwner = freezed,
-    Object? partName = freezed,
-    Object? transitoryFarmingId = null,
+    Object? farmName = freezed,
+    Object? pigFarmingId = null,
     Object? createDate = null,
     Object? unitOfMeasurement = null,
     Object? quantity = null,
@@ -100,13 +99,13 @@ class _$ProductionCopyWithImpl<$Res> implements $ProductionCopyWith<$Res> {
           ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
-      partName: freezed == partName
-          ? _self.partName
-          : partName // ignore: cast_nullable_to_non_nullable
+      farmName: freezed == farmName
+          ? _self.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
               as String?,
-      transitoryFarmingId: null == transitoryFarmingId
-          ? _self.transitoryFarmingId
-          : transitoryFarmingId // ignore: cast_nullable_to_non_nullable
+      pigFarmingId: null == pigFarmingId
+          ? _self.pigFarmingId
+          : pigFarmingId // ignore: cast_nullable_to_non_nullable
               as String,
       createDate: null == createDate
           ? _self.createDate
@@ -145,8 +144,8 @@ class _$ProductionCopyWithImpl<$Res> implements $ProductionCopyWith<$Res> {
 class _Production implements Production {
   _Production(
       {this.uidOwner,
-      this.partName,
-      required this.transitoryFarmingId,
+      this.farmName,
+      required this.pigFarmingId,
       required this.createDate,
       required this.unitOfMeasurement,
       required this.quantity,
@@ -161,10 +160,10 @@ class _Production implements Production {
   String? uidOwner;
 // Owner UID of the production.
   @override
-  String? partName;
-// Part name of the production.
+  String? farmName;
+// Farm name of the production.
   @override
-  String transitoryFarmingId;
+  String pigFarmingId;
 // Transitory farming ID of the production.
   @override
   DateTime createDate;
@@ -203,7 +202,7 @@ class _Production implements Production {
 
   @override
   String toString() {
-    return 'Production(uidOwner: $uidOwner, partName: $partName, transitoryFarmingId: $transitoryFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
+    return 'Production(uidOwner: $uidOwner, farmName: $farmName, pigFarmingId: $pigFarmingId, createDate: $createDate, unitOfMeasurement: $unitOfMeasurement, quantity: $quantity, price: $price, average: $average, totalValue: $totalValue, id: $id)';
   }
 }
 
@@ -217,8 +216,8 @@ abstract mixin class _$ProductionCopyWith<$Res>
   @useResult
   $Res call(
       {String? uidOwner,
-      String? partName,
-      String transitoryFarmingId,
+      String? farmName,
+      String pigFarmingId,
       DateTime createDate,
       String unitOfMeasurement,
       String quantity,
@@ -241,8 +240,8 @@ class __$ProductionCopyWithImpl<$Res> implements _$ProductionCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? uidOwner = freezed,
-    Object? partName = freezed,
-    Object? transitoryFarmingId = null,
+    Object? farmName = freezed,
+    Object? pigFarmingId = null,
     Object? createDate = null,
     Object? unitOfMeasurement = null,
     Object? quantity = null,
@@ -256,13 +255,13 @@ class __$ProductionCopyWithImpl<$Res> implements _$ProductionCopyWith<$Res> {
           ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
-      partName: freezed == partName
-          ? _self.partName
-          : partName // ignore: cast_nullable_to_non_nullable
+      farmName: freezed == farmName
+          ? _self.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
               as String?,
-      transitoryFarmingId: null == transitoryFarmingId
-          ? _self.transitoryFarmingId
-          : transitoryFarmingId // ignore: cast_nullable_to_non_nullable
+      pigFarmingId: null == pigFarmingId
+          ? _self.pigFarmingId
+          : pigFarmingId // ignore: cast_nullable_to_non_nullable
               as String,
       createDate: null == createDate
           ? _self.createDate

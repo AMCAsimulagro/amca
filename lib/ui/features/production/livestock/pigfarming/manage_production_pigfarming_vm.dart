@@ -19,28 +19,28 @@
 /// * **`deleteProduction()`:** Deletes the current production from the database.
 library;
 
-import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
+import 'package:amca/data/repository/livestock/pig_farming_repository.dart';
 import 'package:amca/dependecy_injection.dart';
 import 'package:amca/domain/model/cost_expense.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meat/meat_animal_husbandry.dart';
-import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
+import 'package:amca/domain/model/livestock/pig_farming/pig_farming.dart';
+import 'package:amca/domain/model/livestock/pig_farming/production.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:uuid/uuid.dart';
 
 /// ## Clase ManageProductionVM
-class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
+class ManageProductionPigfarmingVm extends ChangeNotifier {
   /// ManageProductionVM constructor with optional farmingId
-  ManageProductionMeetMeetAnimalHusbandryVM({this.farmingId});
+  ManageProductionPigfarmingVm({this.farmingId});
 
   /// Farming repository
-  final AnimalHusbandryRepository animalHusbandryRepository =
-      locator<AnimalHusbandryRepository>();
+  final PigFarmingRepository pigFarmingRepository =
+      locator<PigFarmingRepository>();
 
   /// List of CostAndExpense
   List<CostAndExpense> partProductions = [];
 
   /// TransitoryFarming object
-  MeatAnimalHusbandry? meetAnimalHusbandry;
+  PigFarming? pigFarming;
 
   /// Indicates if it is loading data
   bool isLoading = true;
@@ -53,8 +53,8 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
     isLoading = true;
     try {
       /// Loads the current production information
-      meetAnimalHusbandry =
-          await animalHusbandryRepository.getMeatById(farmingId!);
+      pigFarming =
+          await pigFarmingRepository.getPigFarmingById(farmingId!);
     } catch (e) {
       // Handle errors loading data
     } finally {
@@ -64,12 +64,12 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// ## Function to create a new production
-  Future<MeatAnimalHusbandry?> createProduction(Production production) async {
+  Future<PigFarming?> createProduction(Production production) async {
     isLoading = true;
     try {
       /// Calculates the total cost and expense
 
-      final profitCrop = meetAnimalHusbandry?.profit();
+      final profitCrop = pigFarming?.profit();
 
       /// Calculates the total production value
       final totalValueProduction =
@@ -79,18 +79,17 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
       final productionToUpdate = production.copyWith(
         totalValue: totalValueProduction.toString(),
         id: production.id ?? const Uuid().v4(),
-        uidOwner: meetAnimalHusbandry?.uidOwner,
+        uidOwner: pigFarming?.uidOwner,
       );
 
       /// Creates a copy of TransitoryFarming with the updated production
-      meetAnimalHusbandry = meetAnimalHusbandry?.copyWith(
+      pigFarming = pigFarming?.copyWith(
         production: productionToUpdate,
       );
 
       /// Saves the updated information to the database
-      await animalHusbandryRepository
-          .createMeatAnimalHusbandry(meetAnimalHusbandry!);
-      return meetAnimalHusbandry;
+      await pigFarmingRepository.createPigFarming(pigFarming!);
+      return pigFarming;
     } catch (e) {
       return null;
     } finally {
@@ -100,17 +99,16 @@ class ManageProductionMeetMeetAnimalHusbandryVM extends ChangeNotifier {
   }
 
   /// ## Function to delete the current production
-  Future<MeatAnimalHusbandry?> deleteProduction() async {
+  Future<PigFarming?> deleteProduction() async {
     isLoading = true;
     try {
       /// Creates a copy of TransitoryFarming with production set to null
-      meetAnimalHusbandry = meetAnimalHusbandry?.copyWith(
+      pigFarming = pigFarming?.copyWith(
         production: null,
       );
 
       /// Saves the updated information to the database
-      final result = await animalHusbandryRepository
-          .createMeatAnimalHusbandry(meetAnimalHusbandry!);
+      final result = await pigFarmingRepository.createPigFarming(pigFarming!);
       return result;
     } catch (e) {
       return null;

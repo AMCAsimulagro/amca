@@ -5,8 +5,8 @@ library;
 
 import 'dart:developer';
 
-import 'package:amca/domain/model/livestock/animal_husbandry/meat/production.dart';
-import 'package:amca/ui/features/production/livestock/animal_husbandry/meat/manage_production_meet_animal_husbandry_vm.dart';
+import 'package:amca/domain/model/livestock/pig_farming/production.dart';
+import 'package:amca/ui/features/production/livestock/pigfarming/manage_production_pigfarming_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -23,7 +23,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ManageProductionPage extends StatefulWidget {
-  static ChangeNotifierProvider<ManageProductionMeetMeetAnimalHusbandryVM>
+  static ChangeNotifierProvider<ManageProductionPigfarmingVm>
       create({
     Key? key,
     required String farmingId,
@@ -32,7 +32,7 @@ class ManageProductionPage extends StatefulWidget {
           ChangeNotifierProvider(
             lazy: false,
             create: (context) =>
-                ManageProductionMeetMeetAnimalHusbandryVM(farmingId: farmingId)
+                ManageProductionPigfarmingVm(farmingId: farmingId)
                   ..init(),
             child: ManageProductionPage._(
               key: key,
@@ -59,6 +59,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   final _priceController = TextEditingController();
   String createdDate = '';
 
+
   @override
   void initState() {
     isEditMode = widget.production != null;
@@ -74,7 +75,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
             Text(isEditMode ? AmcaWords.editProduction : AmcaWords.production),
         backgroundColor: AmcaPalette.lightGreen,
       ),
-      body: Consumer<ManageProductionMeetMeetAnimalHusbandryVM>(
+      body: Consumer<ManageProductionPigfarmingVm>(
         builder: (context, vm, _) {
           if (vm.isLoading) {
             return const Center(
@@ -94,7 +95,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Finca: ${vm.meetAnimalHusbandry?.farmName ?? ''}',
+                    'Finca: ${vm.pigFarming?.farmName ?? ''}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
@@ -105,11 +106,11 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'Inversion Inicial: \$${vm.meetAnimalHusbandry?.value}',
+                          'Inversion Inicial: \$${vm.pigFarming?.value}',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
-                          'Total Costos y Gastos del cultivo: \$${vm.meetAnimalHusbandry?.calculateTotalCostAndExpense().toString().formatNumberToColombianPesos() ?? ''}',
+                          'Total Costos y Gastos del cultivo: \$${vm.pigFarming?.calculateTotalCostAndExpense().toString().formatNumberToColombianPesos() ?? ''}',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(
@@ -250,7 +251,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   }
 
   bool validateIfEmpty(BuildContext context) {
-    final vm = Provider.of<ManageProductionMeetMeetAnimalHusbandryVM>(
+    final vm = Provider.of<ManageProductionPigfarmingVm>(
       context,
       listen: true,
     );
@@ -258,17 +259,17 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   }
 
   Future<void> createProduction() async {
-    final manageVM = Provider.of<ManageProductionMeetMeetAnimalHusbandryVM>(
+    final manageVM = Provider.of<ManageProductionPigfarmingVm>(
       context,
       listen: false,
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final production = Production(
       createDate: date,
-      farmName: manageVM.meetAnimalHusbandry?.farmName,
+      farmName: manageVM.pigFarming?.farmName,
       price: _priceController.text,
       id: isEditMode ? widget.production!.id : null,
-      animalHusbandryId: manageVM.farmingId ?? '',
+      pigFarmingId: manageVM.farmingId ?? '',
       quantity: _quantityController.text,
       unitOfMeasurement: _unitOfMeasureController.text,
     );
@@ -289,7 +290,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
   }
 
   Future<void> deleteProduction() async {
-    final manageVM = Provider.of<ManageProductionMeetMeetAnimalHusbandryVM>(
+    final manageVM = Provider.of<ManageProductionPigfarmingVm>(
       context,
       listen: false,
     );
@@ -319,7 +320,7 @@ class _ManageProductionPageState extends State<ManageProductionPage> {
     }
   }
 
-  Color _getEarningsColors(ManageProductionMeetMeetAnimalHusbandryVM vm) {
+  Color _getEarningsColors(ManageProductionPigfarmingVm vm) {
     final value = int.parse(
         // vm.animalHusbandry?.production?.totalValue?.replaceAll(',', '') ??
         '0');

@@ -18,7 +18,7 @@ import 'package:amca/ui/features/costs_expenses/livestock/pigfarmig/costs_expens
 import 'package:amca/ui/features/livestock/create/pig_farming/create_pig_farming_vm.dart';
 import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
-import 'package:amca/ui/features/production/manage_permanent_production_page.dart';
+import 'package:amca/ui/features/production/livestock/pigfarming/manage_production_pigfarming_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
@@ -231,8 +231,7 @@ class _ManagePigFarmingCostAndExpensesState
                                     builder: (BuildContext context) =>
                                         ManageProductionPage.create(
                                       farmingId: vm.currentPigFarming?.id ?? '',
-                                      production: //TODO - Cambiar poss Esto es para modificar
-                                          null//vm.currentPigFarming?.production?[0],
+                                      production: vm.currentPigFarming?.production
                                     ),
                                   ),
                                 ).then((value) async {

@@ -22,16 +22,8 @@ mixin _$PigFarming implements DiagnosticableTreeMixin {
   String get totalProfit;
   set totalProfit(String value);
   String get farmName;
-  set farmName(String value); // required String productionType,
-// required String sownArea,
-// required String sownType,
-// required String format,
-// required String amountSown,
-  String get numberAnimals; // required String productionType,
-// required String sownArea,
-// required String sownType,
-// required String format,
-// required String amountSown,
+  set farmName(String value);
+  String get numberAnimals;
   set numberAnimals(String value);
   String get value;
   set value(String value);
@@ -205,11 +197,6 @@ class _PigFarming extends PigFarming with DiagnosticableTreeMixin {
   String totalProfit;
   @override
   String farmName;
-// required String productionType,
-// required String sownArea,
-// required String sownType,
-// required String format,
-// required String amountSown,
   @override
   String numberAnimals;
   @override
