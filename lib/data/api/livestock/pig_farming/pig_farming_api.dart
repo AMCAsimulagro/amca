@@ -184,14 +184,11 @@ class PigFarmingApiAdapter implements PigFarmingApi {
     required PigFarming farming,
   }) async {
     try {
-      final productionList = farming.production ?? [];
       final productionId = production.id ?? const Uuid().v4();
       final productionToUpload = production.copyWith(
         id: productionId,
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
       );
-      // TODO: Revisar si es lista o un solo objeto
-      // productionList.add(productionToUpload);
       final updatedFarming = farming.copyWith(production: production);
       await createPigFarming(updatedFarming);
       return productionToUpload;
