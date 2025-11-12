@@ -35,11 +35,12 @@ abstract class MeatAnimalHusbandry
     required String farmName,
     required String numberAnimals,
     required String value,
+    String? area,
     String? uidOwner,
     String? comment,
     List<CostAndExpense>? costsAndExpenses,
     Production? production,
-  }) = _MeetAnimalHusbandry;
+  }) = _MeatAnimalHusbandry;
 
   factory MeatAnimalHusbandry.fromJson(Map<String, Object?> json) =>
       _$MeatAnimalHusbandryFromJson(json);

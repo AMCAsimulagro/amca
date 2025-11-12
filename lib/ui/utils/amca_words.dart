@@ -280,8 +280,11 @@ class AmcaWords {
   static const String fishFarming = 'Piscicultura';
   static const String addCostAndExpense = 'Ingresar Costos y Gastos';
   static const String addProduction = 'Ingresar Producción';
+  static const String area = 'Área';
+  static const String pleaseAddArea = 'Por favor, ingrese el área';
 
   // Words submodulo Ganadería
+  static const String animalHusbandryCM = 'CM²';
   static const String yourAnimalHusbandryHasBeenDeleted =
       'Tu registro ha sido eliminado';
   static const String meat = 'Carne';
@@ -317,6 +320,7 @@ class AmcaWords {
   static String yourPigFarmingHasBeenDeleted = 'Tu registro ha sido eliminado';
   static const String areYouSureToDeleteThisPigFarming =
       '¿Desea eliminar este registro?';
+  static const String pigCM = 'CM²';
 
   // Words submodulo Avicola
   static const String eggs = 'Huevos';
@@ -331,7 +335,7 @@ class AmcaWords {
   static const String alongThePond = 'Largo del estanque';
   static const String pondWidth = 'Ancho del estanque';
   static const String pondDepth = 'Profundidad del estanque';
-  static const String pondArea = 'Área del estanque';
-  static const String fishCM = 'CM²';
+  static const String pondVolume = 'Volumen del estanque';
+  static const String fishCM = 'CM³';
   static const String typeOfFish = 'Tipo de pez';
 }

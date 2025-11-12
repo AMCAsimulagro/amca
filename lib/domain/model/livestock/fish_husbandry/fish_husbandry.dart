@@ -23,7 +23,7 @@ part 'fish_husbandry.freezed.dart';
 part 'fish_husbandry.g.dart';
 
 @unfreezed
-class FishHusbandry with _$FishHusbandry implements ReportableEntity {
+abstract class FishHusbandry with _$FishHusbandry implements ReportableEntity {
   const FishHusbandry._();
 
   factory FishHusbandry({
@@ -39,6 +39,7 @@ class FishHusbandry with _$FishHusbandry implements ReportableEntity {
     String? pondLength,
     String? pondWidth,
     String? pondDepth,
+    String? pondVolume,
     List<CostAndExpense>? costsAndExpenses,
     Production? production,
   }) = _FishHusbandry;
@@ -92,7 +93,7 @@ class FishHusbandry with _$FishHusbandry implements ReportableEntity {
         if (pondLength != null) AmcaWords.alongThePond: pondLength,
         if (pondWidth != null) AmcaWords.pondWidth: pondWidth,
         if (pondLength != null && pondWidth != null)
-          '${AmcaWords.pondArea} (${AmcaWords.fishCM})': _calculateAreaFromStrings(pondLength, pondWidth),
+          '${AmcaWords.pondVolume} (${AmcaWords.fishCM})': _calculateAreaFromStrings(pondLength, pondWidth),
         if (pondDepth != null) AmcaWords.pondDepth: pondDepth,
         AmcaWords.creationValue: value,
         if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)

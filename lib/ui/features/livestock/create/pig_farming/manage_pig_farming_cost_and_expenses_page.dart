@@ -73,6 +73,7 @@ class _ManagePigFarmingCostAndExpensesState
   // final _sownTypeController = TextEditingController();
   // final _formatController = TextEditingController();
   // final _amountSownController = TextEditingController();
+  final _areaController = TextEditingController();
   final _valueController = TextEditingController();
   final _commentController = TextEditingController();
   static const _locale = 'en';
@@ -137,10 +138,29 @@ class _ManagePigFarmingCostAndExpensesState
                   height: 12,
                 ),
                 AmcaTextFormField(
+                  textEditingController: _areaController,
+                  textInputType: TextInputType.number,
+                  labelText: '${AmcaWords.area} (${AmcaWords.pigCM})',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseAddArea;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
                   textEditingController: _numberAnimalsController,
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.animalNumber,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -161,6 +181,7 @@ class _ManagePigFarmingCostAndExpensesState
                   labelText: AmcaWords.value,
                   prefixText: '\$',
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   onChanged: (value) {
@@ -343,6 +364,7 @@ class _ManagePigFarmingCostAndExpensesState
       farmName: _farmNameController.text,
       totalProfit: "",
       numberAnimals: _numberAnimalsController.text,
+      area: _areaController.text,
       // productionType: _productionTypeController.text,
       // sownArea: _sownAreaController.text,
       // sownType: _sownTypeController.text,
@@ -422,6 +444,7 @@ class _ManagePigFarmingCostAndExpensesState
       // _amountSownController.text = preloadPigFarming?.amountSown ?? '';
       _valueController.text = preloadPigFarming?.value ?? '';
       _commentController.text = preloadPigFarming?.comment ?? '';
+      _areaController.text = preloadPigFarming?.area ?? '';
       createdDate = DateFormat('yyyy-MM-dd')
           .format(preloadPigFarming?.createDate ?? DateTime.now());
     }

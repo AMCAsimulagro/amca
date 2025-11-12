@@ -6,8 +6,8 @@ part of 'fish_husbandry.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FishHusbandryImpl _$$FishHusbandryImplFromJson(Map<String, dynamic> json) =>
-    _$FishHusbandryImpl(
+_FishHusbandry _$FishHusbandryFromJson(Map<String, dynamic> json) =>
+    _FishHusbandry(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       totalProfit: json['totalProfit'] as String,
@@ -20,6 +20,7 @@ _$FishHusbandryImpl _$$FishHusbandryImplFromJson(Map<String, dynamic> json) =>
       pondLength: json['pondLength'] as String?,
       pondWidth: json['pondWidth'] as String?,
       pondDepth: json['pondDepth'] as String?,
+      pondVolume: json['pondVolume'] as String?,
       costsAndExpenses: (json['costsAndExpenses'] as List<dynamic>?)
           ?.map((e) => CostAndExpense.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -28,7 +29,7 @@ _$FishHusbandryImpl _$$FishHusbandryImplFromJson(Map<String, dynamic> json) =>
           : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$FishHusbandryImplToJson(_$FishHusbandryImpl instance) =>
+Map<String, dynamic> _$FishHusbandryToJson(_FishHusbandry instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),
@@ -42,6 +43,7 @@ Map<String, dynamic> _$$FishHusbandryImplToJson(_$FishHusbandryImpl instance) =>
       'pondLength': instance.pondLength,
       'pondWidth': instance.pondWidth,
       'pondDepth': instance.pondDepth,
+      'pondVolume': instance.pondVolume,
       'costsAndExpenses':
           instance.costsAndExpenses?.map((e) => e.toJson()).toList(),
       'production': instance.production?.toJson(),

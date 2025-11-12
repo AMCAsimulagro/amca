@@ -12,9 +12,6 @@ part of 'meat_animal_husbandry.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-MeatAnimalHusbandry _$MeatAnimalHusbandryFromJson(Map<String, dynamic> json) {
-  return _MeetAnimalHusbandry.fromJson(json);
-}
 
 /// @nodoc
 mixin _$MeatAnimalHusbandry implements DiagnosticableTreeMixin {
@@ -30,6 +27,8 @@ mixin _$MeatAnimalHusbandry implements DiagnosticableTreeMixin {
   set numberAnimals(String value);
   String get value;
   set value(String value);
+  String? get area;
+  set area(String? value);
   String? get uidOwner;
   set uidOwner(String? value);
   String? get comment;
@@ -60,6 +59,7 @@ mixin _$MeatAnimalHusbandry implements DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('farmName', farmName))
       ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
       ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('area', area))
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
@@ -68,21 +68,7 @@ mixin _$MeatAnimalHusbandry implements DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MeatAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
-  }
-
-  /// Create a copy of MeatAnimalHusbandry
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductionCopyWith<$Res>? get production {
-    if (_value.production == null) {
-      return null;
-    }
-
-    return $ProductionCopyWith<$Res>(_value.production!, (value) {
-      return _then(_value.copyWith(production: value) as $Val);
-    });
+    return 'MeatAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, area: $area, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 }
 
@@ -99,6 +85,7 @@ abstract mixin class $MeatAnimalHusbandryCopyWith<$Res> {
       String farmName,
       String numberAnimals,
       String value,
+      String? area,
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
@@ -126,6 +113,7 @@ class _$MeatAnimalHusbandryCopyWithImpl<$Res>
     Object? farmName = null,
     Object? numberAnimals = null,
     Object? value = null,
+    Object? area = freezed,
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? costsAndExpenses = freezed,
@@ -156,6 +144,10 @@ class _$MeatAnimalHusbandryCopyWithImpl<$Res>
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      area: freezed == area
+          ? _self.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
       uidOwner: freezed == uidOwner
           ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
@@ -192,22 +184,23 @@ class _$MeatAnimalHusbandryCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _MeetAnimalHusbandry extends MeatAnimalHusbandry
+class _MeatAnimalHusbandry extends MeatAnimalHusbandry
     with DiagnosticableTreeMixin {
-  _MeetAnimalHusbandry(
+  _MeatAnimalHusbandry(
       {this.id,
       required this.createDate,
       required this.totalProfit,
       required this.farmName,
       required this.numberAnimals,
       required this.value,
+      this.area,
       this.uidOwner,
       this.comment,
       this.costsAndExpenses,
       this.production})
       : super._();
-  factory _MeetAnimalHusbandry.fromJson(Map<String, dynamic> json) =>
-      _$MeetAnimalHusbandryFromJson(json);
+  factory _MeatAnimalHusbandry.fromJson(Map<String, dynamic> json) =>
+      _$MeatAnimalHusbandryFromJson(json);
 
   @override
   String? id;
@@ -222,6 +215,8 @@ class _MeetAnimalHusbandry extends MeatAnimalHusbandry
   @override
   String value;
   @override
+  String? area;
+  @override
   String? uidOwner;
   @override
   String? comment;
@@ -235,13 +230,13 @@ class _MeetAnimalHusbandry extends MeatAnimalHusbandry
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$MeetAnimalHusbandryCopyWith<_MeetAnimalHusbandry> get copyWith =>
-      __$MeetAnimalHusbandryCopyWithImpl<_MeetAnimalHusbandry>(
+  _$MeatAnimalHusbandryCopyWith<_MeatAnimalHusbandry> get copyWith =>
+      __$MeatAnimalHusbandryCopyWithImpl<_MeatAnimalHusbandry>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MeetAnimalHusbandryToJson(
+    return _$MeatAnimalHusbandryToJson(
       this,
     );
   }
@@ -256,6 +251,7 @@ class _MeetAnimalHusbandry extends MeatAnimalHusbandry
       ..add(DiagnosticsProperty('farmName', farmName))
       ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
       ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('area', area))
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
@@ -264,16 +260,16 @@ class _MeetAnimalHusbandry extends MeatAnimalHusbandry
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MeatAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'MeatAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, area: $area, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$MeetAnimalHusbandryCopyWith<$Res>
+abstract mixin class _$MeatAnimalHusbandryCopyWith<$Res>
     implements $MeatAnimalHusbandryCopyWith<$Res> {
-  factory _$MeetAnimalHusbandryCopyWith(_MeetAnimalHusbandry value,
-          $Res Function(_MeetAnimalHusbandry) _then) =
-      __$MeetAnimalHusbandryCopyWithImpl;
+  factory _$MeatAnimalHusbandryCopyWith(_MeatAnimalHusbandry value,
+          $Res Function(_MeatAnimalHusbandry) _then) =
+      __$MeatAnimalHusbandryCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -283,6 +279,7 @@ abstract mixin class _$MeetAnimalHusbandryCopyWith<$Res>
       String farmName,
       String numberAnimals,
       String value,
+      String? area,
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
@@ -293,12 +290,12 @@ abstract mixin class _$MeetAnimalHusbandryCopyWith<$Res>
 }
 
 /// @nodoc
-class __$MeetAnimalHusbandryCopyWithImpl<$Res>
-    implements _$MeetAnimalHusbandryCopyWith<$Res> {
-  __$MeetAnimalHusbandryCopyWithImpl(this._self, this._then);
+class __$MeatAnimalHusbandryCopyWithImpl<$Res>
+    implements _$MeatAnimalHusbandryCopyWith<$Res> {
+  __$MeatAnimalHusbandryCopyWithImpl(this._self, this._then);
 
-  final _MeetAnimalHusbandry _self;
-  final $Res Function(_MeetAnimalHusbandry) _then;
+  final _MeatAnimalHusbandry _self;
+  final $Res Function(_MeatAnimalHusbandry) _then;
 
   /// Create a copy of MeatAnimalHusbandry
   /// with the given fields replaced by the non-null parameter values.
@@ -311,12 +308,13 @@ class __$MeetAnimalHusbandryCopyWithImpl<$Res>
     Object? farmName = null,
     Object? numberAnimals = null,
     Object? value = null,
+    Object? area = freezed,
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
-    return _then(_MeetAnimalHusbandry(
+    return _then(_MeatAnimalHusbandry(
       id: freezed == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -341,6 +339,10 @@ class __$MeetAnimalHusbandryCopyWithImpl<$Res>
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      area: freezed == area
+          ? _self.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
       uidOwner: freezed == uidOwner
           ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable

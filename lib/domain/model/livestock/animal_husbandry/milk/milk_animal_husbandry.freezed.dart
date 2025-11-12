@@ -30,6 +30,8 @@ mixin _$MilkAnimalHusbandry implements DiagnosticableTreeMixin {
   set numberAnimals(String value);
   String get value;
   set value(String value);
+  String? get area;
+  set area(String? value);
   String? get uidOwner;
   set uidOwner(String? value);
   String? get comment;
@@ -60,6 +62,7 @@ mixin _$MilkAnimalHusbandry implements DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('farmName', farmName))
       ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
       ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('area', area))
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
@@ -68,7 +71,7 @@ mixin _$MilkAnimalHusbandry implements DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MilkAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'MilkAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, area: $area, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 }
 
@@ -85,6 +88,7 @@ abstract mixin class $MilkAnimalHusbandryCopyWith<$Res> {
       String farmName,
       String numberAnimals,
       String value,
+      String? area,
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
@@ -110,6 +114,7 @@ class _$MilkAnimalHusbandryCopyWithImpl<$Res>
     Object? farmName = null,
     Object? numberAnimals = null,
     Object? value = null,
+    Object? area = freezed,
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? costsAndExpenses = freezed,
@@ -140,6 +145,10 @@ class _$MilkAnimalHusbandryCopyWithImpl<$Res>
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      area: freezed == area
+          ? _self.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
       uidOwner: freezed == uidOwner
           ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
@@ -171,6 +180,7 @@ class _AnimalHusbandry extends MilkAnimalHusbandry
       required this.farmName,
       required this.numberAnimals,
       required this.value,
+      this.area,
       this.uidOwner,
       this.comment,
       this.costsAndExpenses,
@@ -191,6 +201,8 @@ class _AnimalHusbandry extends MilkAnimalHusbandry
   String numberAnimals;
   @override
   String value;
+  @override
+  String? area;
   @override
   String? uidOwner;
   @override
@@ -226,6 +238,7 @@ class _AnimalHusbandry extends MilkAnimalHusbandry
       ..add(DiagnosticsProperty('farmName', farmName))
       ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
       ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('area', area))
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
@@ -234,7 +247,7 @@ class _AnimalHusbandry extends MilkAnimalHusbandry
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MilkAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'MilkAnimalHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, area: $area, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 }
 
@@ -253,6 +266,7 @@ abstract mixin class _$AnimalHusbandryCopyWith<$Res>
       String farmName,
       String numberAnimals,
       String value,
+      String? area,
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
@@ -278,6 +292,7 @@ class __$AnimalHusbandryCopyWithImpl<$Res>
     Object? farmName = null,
     Object? numberAnimals = null,
     Object? value = null,
+    Object? area = freezed,
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? costsAndExpenses = freezed,
@@ -308,6 +323,10 @@ class __$AnimalHusbandryCopyWithImpl<$Res>
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      area: freezed == area
+          ? _self.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
       uidOwner: freezed == uidOwner
           ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
