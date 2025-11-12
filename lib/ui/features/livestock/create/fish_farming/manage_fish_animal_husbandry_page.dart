@@ -232,6 +232,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textEditingController: _pondLengthController,
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.alongThePond,
+                  maxLength: 7,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
@@ -250,6 +251,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textEditingController: _pondWidthController,
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.pondWidth,
+                  maxLength: 7,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
@@ -268,6 +270,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textEditingController: _pondDepthController,
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.pondDepth,
+                  maxLength: 8,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),

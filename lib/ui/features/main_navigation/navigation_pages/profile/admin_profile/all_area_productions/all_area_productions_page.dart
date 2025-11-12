@@ -171,21 +171,21 @@ class _MetricsArea extends StatelessWidget {
 
     if (type == 'Piscicultura') {
   final totalUnits = vm.metrics['numPorMunicipio'] ?? 0;
-  final area = vm.metrics['areaTotalProduccion'] ?? 0.0;
+  final volume = vm.metrics['volumeCubicMeters'] ?? 0.0;
       final Map<String, dynamic>? bySpecies = vm.metrics['bySpecies'] as Map<String, dynamic>?;
       return ListView(
         children: [
           Card(
             child: ListTile(
-              title: const Text('Número (pisciculturas / unidades)'),
+              title: const Text('Número de unidades en el municipio'),
               subtitle: Text('$totalUnits'),
             ),
           ),
           SizedBox(height: 10),
           Card(
             child: ListTile(
-              title: const Text('Área total de producción'),
-              subtitle: Text('$area ha'),
+              title: const Text('Volumen de estanque en producción'),
+              subtitle: Text('${volume.toStringAsFixed(2)} m³'),
             ),
           ),
           const SizedBox(height: 8),
@@ -199,12 +199,11 @@ class _MetricsArea extends StatelessWidget {
               final species = e.key;
               final data = e.value as Map<String, dynamic>;
               final units = data['numberUnits'] ?? 0;
-              final areaH = (data['areaHectares'] is num) ? (data['areaHectares'] as num).toDouble() : double.tryParse(data['areaHectares']?.toString() ?? '0') ?? 0.0;
               final vol = (data['volumeCubicMeters'] is num) ? (data['volumeCubicMeters'] as num).toDouble() : double.tryParse(data['volumeCubicMeters']?.toString() ?? '0') ?? 0.0;
               return Card(
                 child: ListTile(
                   title: Text(species),
-                  subtitle: Text('Unidades: $units · Área: ${areaH.toStringAsFixed(2)} ha · Vol: ${vol.toStringAsFixed(2)} m³'),
+                  subtitle: Text('Unidades: $units · Vol: ${vol.toStringAsFixed(2)} m³'),
                 ),
               );
             }).toList(),
@@ -223,7 +222,7 @@ class _MetricsArea extends StatelessWidget {
       children: [
         Card(
           child: ListTile(
-            title: const Text('Número de animales por municipio'),
+            title: const Text('Número de animales en el municipio'),
             subtitle: Text('$numAnimales'),
           ),
         ),
@@ -231,7 +230,7 @@ class _MetricsArea extends StatelessWidget {
 
         Card(
           child: ListTile(
-            title: const Text('Área en hectáreas de producción por municipio'),
+            title: const Text('Área en hectáreas de producción en el municipio'),
             subtitle: Text('$areaTotal ha'),
           ),
         ),
