@@ -142,10 +142,11 @@ class AllAreaProductionsVm extends ChangeNotifier {
 
     try {
       if (selectedProductType == 'Agrícola') {
-        final area = await _productionCityApi.getTotalSownAreaHectaresByCity(
+        final areaByCrop = await _productionCityApi.getSownAreaByCropByCity(
           selectedDepartment ?? '', selectedCity ?? '',
         );
-        metrics = {'areaSembrada': area};
+        final total = areaByCrop.values.fold<double>(0.0, (p, e) => p + e);
+        metrics = {'areaSembrada': total, 'areaByCrop': areaByCrop};
       } else if (selectedProductType == 'Piscicultura') {
         final fish = await _productionCityApi.getFishMetricsByCity(
           selectedDepartment ?? '', selectedCity ?? '',

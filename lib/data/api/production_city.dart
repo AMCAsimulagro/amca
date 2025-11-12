@@ -113,6 +113,45 @@ class ProductionCityApi {
     }
   }
 
+  /// Devuelve un mapa { cropName: areaHa } para el departamento/ciudad.
+  /// Recorre las colecciones de cultivos transitorios y permanentes y suma
+  /// el campo `sownArea` por cultivo (`crop`).
+  Future<Map<String, double>> getSownAreaByCropByCity(String department, String city) async {
+    try {
+      final uids = await getUserUidsByCity(department, city);
+      if (uids.isEmpty) return {};
+
+      final Map<String, double> areaByCropM2 = {};
+      final collectionsToQuery = [FirebaseCollections.farming, FirebaseCollections.farmingPermanent];
+
+      for (final collectionName in collectionsToQuery) {
+        final chunks = _chunkList<String>(uids, _firestoreInLimit);
+        for (final chunk in chunks) {
+          final querySnapshot = await _db
+              .collection(collectionName)
+              .where('uidOwner', whereIn: chunk)
+              .get();
+          for (final doc in querySnapshot.docs) {
+            final data = doc.data();
+            final cropRaw = (data['crop'] ?? data['cropType'] ?? 'Sin especificar').toString().trim();
+            final crop = cropRaw.isEmpty ? 'Sin especificar' : cropRaw;
+            final sownArea = _parseDoubleSafe(data['sownArea'] ?? data['sown_area'] ?? data['area'] ?? 0);
+            areaByCropM2[crop] = (areaByCropM2[crop] ?? 0.0) + sownArea;
+          }
+        }
+      }
+
+      // convertir m² -> hectáreas y devolver
+      final Map<String, double> areaByCropHa = {};
+      areaByCropM2.forEach((crop, m2) {
+        areaByCropHa[crop] = m2 / 10000.0;
+      });
+      return areaByCropHa;
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
   /// Generic aggregator for livestock collections that produce `numberAnimals` and optional `area`.
   ///
   /// Returns a map: { 'numberAnimals': int, 'areaHectares': double }

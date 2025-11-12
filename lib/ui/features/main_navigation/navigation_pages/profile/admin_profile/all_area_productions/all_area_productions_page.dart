@@ -42,11 +42,7 @@ class AllAreaProductionsPage extends StatelessWidget {
               children: [
                 // Small progress indicator shown while refreshing metrics (non-blocking)
                 if (vm.isLoading) const LinearProgressIndicator(),
-                const SizedBox(height: 8),
-                Text(
-                  'Propietario: $ownerId',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                
                 const SizedBox(height: 12),
 
                 // Departamento (filtro para limitar ciudades)
@@ -133,14 +129,36 @@ class _MetricsArea extends StatelessWidget {
 
     if (type == 'Agrícola') {
       final area = vm.metrics['areaSembrada'] ?? 0.0;
+      final Map<String, dynamic>? byCrop = vm.metrics['areaByCrop'] as Map<String, dynamic>?;
       return ListView(
         children: [
           Card(
             child: ListTile(
-              title: const Text('Área sembrada'),
-              subtitle: Text('$area ha'),
+              title: const Text('Área sembrada total'),
+              subtitle: Text('${area.toStringAsFixed(2)} ha'),
             ),
           ),
+          if (byCrop != null && byCrop.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text('Área por cultivo', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 8),
+            ...byCrop.entries.map((e) {
+              final crop = e.key;
+              final value = (e.value is num) ? (e.value as num).toDouble() : double.tryParse(e.value?.toString() ?? '0') ?? 0.0;
+              return Card(
+                child: ListTile(
+                  title: Text(crop),
+                  subtitle: Text('${value.toStringAsFixed(2)} ha'),
+                ),
+              );
+            }).toList(),
+          ] else ...[
+            const SizedBox(height: 8),
+            const Center(child: Text('No hay datos por cultivo')),
+          ]
         ],
       );
     }
