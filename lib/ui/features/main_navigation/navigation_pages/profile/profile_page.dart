@@ -1,5 +1,6 @@
 import 'package:amca/ui/features/frequent_questions/frequent_questions_page.dart';
 import 'package:amca/ui/features/login/login_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_area_productions/all_area_productions_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming/all_farming_history_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/all_farming_info_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_users/all_users_page.dart';
@@ -247,6 +248,23 @@ class _AdminOptions extends StatelessWidget {
             );
           },
         ),
+        ListTile(
+          leading: const Icon(
+            Icons.analytics,
+            color: Colors.black,
+          ),
+          title: const Text(
+            'Reporte de área de producción por municipio',
+          ),
+          onTap: () async {
+            NavigationHelper.push(
+              AllAreaProductionsPage.create(
+                ownerId: 'admin',
+              ),
+              context,
+            );
+          },
+        )
       ],
     );
   }
