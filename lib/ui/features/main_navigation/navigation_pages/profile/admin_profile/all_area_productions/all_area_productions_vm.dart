@@ -158,14 +158,19 @@ class AllAreaProductionsVm extends ChangeNotifier {
         final total = areaByCrop.values.fold<double>(0.0, (p, e) => p + e);
         metrics = {'areaSembrada': total, 'areaByCrop': areaByCrop};
       } else if (selectedProductType == 'Piscicultura') {
+        // obtener métricas generales y por especie
         final fish = await _productionCityApi.getFishMetricsByCity(
           selectedDepartment ?? '', selectedCity ?? '',
         );
-          metrics = {
-            'numPorMunicipio': fish['numberAnimals'] ?? 0,
-            'areaTotalProduccion': fish['areaHectares'] ?? 0.0,
-            'volumeCubicMeters': fish['volumeCubicMeters'] ?? 0.0,
-          };
+        final bySpecies = await _productionCityApi.getFishMetricsBySpeciesByCity(
+          selectedDepartment ?? '', selectedCity ?? '',
+        );
+        metrics = {
+          'numPorMunicipio': fish['numberAnimals'] ?? 0,
+          'areaTotalProduccion': fish['areaHectares'] ?? 0.0,
+          'volumeCubicMeters': fish['volumeCubicMeters'] ?? 0.0,
+          'bySpecies': bySpecies,
+        };
       } else {
         // Ganadería (lechera, porcicola, cárnicos)
         Map<String, dynamic> agg;

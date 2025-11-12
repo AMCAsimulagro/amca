@@ -75,7 +75,7 @@ class AllAreaProductionsPage extends StatelessWidget {
                 // Botón para refrescar métricas
                 AmcaButton(
                   text: vm.selectedProductType == null
-                      ? 'Seleccione tipo' : (vm.isLoading ? 'Cargando...' : 'Refrescar métricas'),
+                      ? 'Seleccione tipo' : (vm.isLoading ? 'Cargando...' : 'Buscar'),
                   onPressed: (vm.isLoading || vm.selectedProductType == null) ? null : () => vm.loadMetrics(),
                 ),
 
@@ -170,14 +170,15 @@ class _MetricsArea extends StatelessWidget {
     }
 
     if (type == 'Piscicultura') {
-      final num = vm.metrics['numPorMunicipio'] ?? 0;
-      final area = vm.metrics['areaTotalProduccion'] ?? 0.0;
+  final totalUnits = vm.metrics['numPorMunicipio'] ?? 0;
+  final area = vm.metrics['areaTotalProduccion'] ?? 0.0;
+      final Map<String, dynamic>? bySpecies = vm.metrics['bySpecies'] as Map<String, dynamic>?;
       return ListView(
         children: [
           Card(
             child: ListTile(
               title: const Text('Número (pisciculturas / unidades)'),
-              subtitle: Text('$num'),
+              subtitle: Text('$totalUnits'),
             ),
           ),
           SizedBox(height: 10),
@@ -187,6 +188,30 @@ class _MetricsArea extends StatelessWidget {
               subtitle: Text('$area ha'),
             ),
           ),
+          const SizedBox(height: 8),
+          if (bySpecies != null && bySpecies.isNotEmpty) ...[
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text('Métricas por especie', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 8),
+            ...bySpecies.entries.map((e) {
+              final species = e.key;
+              final data = e.value as Map<String, dynamic>;
+              final units = data['numberUnits'] ?? 0;
+              final areaH = (data['areaHectares'] is num) ? (data['areaHectares'] as num).toDouble() : double.tryParse(data['areaHectares']?.toString() ?? '0') ?? 0.0;
+              final vol = (data['volumeCubicMeters'] is num) ? (data['volumeCubicMeters'] as num).toDouble() : double.tryParse(data['volumeCubicMeters']?.toString() ?? '0') ?? 0.0;
+              return Card(
+                child: ListTile(
+                  title: Text(species),
+                  subtitle: Text('Unidades: $units · Área: ${areaH.toStringAsFixed(2)} ha · Vol: ${vol.toStringAsFixed(2)} m³'),
+                ),
+              );
+            }).toList(),
+          ] else ...[
+            const SizedBox(height: 8),
+            const Center(child: Text('No hay datos por especie')),
+          ],
         ],
       );
     }

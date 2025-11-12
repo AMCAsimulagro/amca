@@ -246,6 +246,65 @@ class ProductionCityApi {
     }
   }
 
+  /// Devuelve métricas agregadas por especie/tipo de pez para la ciudad dada.
+  ///
+  /// La estructura devuelta es un mapa:
+  /// {
+  ///   'Especie A': { 'numberUnits': 12, 'areaHectares': 1.2, 'volumeCubicMeters': 34.5 },
+  ///   'Especie B': { ... }
+  /// }
+  Future<Map<String, Map<String, dynamic>>> getFishMetricsBySpeciesByCity(
+      String department, String city) async {
+    try {
+      final uids = await getUserUidsByCity(department, city);
+      if (uids.isEmpty) return {};
+
+      final Map<String, double> areaBySpeciesM2 = {};
+      final Map<String, double> volumeBySpeciesM3 = {};
+      final Map<String, int> unitsBySpecies = {};
+
+      final chunks = _chunkList<String>(uids, _firestoreInLimit);
+      for (final chunk in chunks) {
+        final querySnapshot = await _db
+            .collection(FirebaseCollections.fishFarming)
+            .where('uidOwner', whereIn: chunk)
+            .get();
+        for (final doc in querySnapshot.docs) {
+          final data = doc.data();
+          final rawSpecies = (data['fishType'] ?? data['species'] ?? data['tipoPez'] ?? 'Sin especificar').toString().trim();
+          final species = rawSpecies.isEmpty ? 'Sin especificar' : rawSpecies;
+
+          final units = _parseIntSafe(data['numberAnimals'] ?? data['numberUnits'] ?? data['numPonds']);
+          final areaM2 = _parseDoubleSafe(data['area'] ?? data['areaM2'] ?? data['pondArea'] ?? 0);
+          final volM3 = _computeFishVolumeFromDoc(Map<String, dynamic>.from(data));
+
+          unitsBySpecies[species] = (unitsBySpecies[species] ?? 0) + units;
+          areaBySpeciesM2[species] = (areaBySpeciesM2[species] ?? 0.0) + areaM2;
+          volumeBySpeciesM3[species] = (volumeBySpeciesM3[species] ?? 0.0) + volM3;
+        }
+      }
+
+      // Convertir área a hectáreas y construir el mapa final
+      final Map<String, Map<String, dynamic>> result = {};
+      final allSpecies = <String>{}
+        ..addAll(unitsBySpecies.keys)
+        ..addAll(areaBySpeciesM2.keys)
+        ..addAll(volumeBySpeciesM3.keys);
+
+      for (final s in allSpecies) {
+        result[s] = {
+          'numberUnits': unitsBySpecies[s] ?? 0,
+          'areaHectares': (areaBySpeciesM2[s] ?? 0.0) / 10000.0,
+          'volumeCubicMeters': volumeBySpeciesM3[s] ?? 0.0,
+        };
+      }
+
+      return result;
+    } catch (e) {
+      throw AppException(codeError: Constants.generalError);
+    }
+  }
+
   /// Intenta obtener/estimar el volumen (m³) de un registro de piscicultura.
   /// Prioriza campos explícitos de volumen; si no existen, intenta calcular
   /// a partir de dimensiones comunes: depth, length, width, diameter, radius o area*depth.
