@@ -8,8 +8,13 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/cost_expense_report_extension.dart';
+import 'package:amca/domain/model/livestock/pig_farming/production_report_extension.dart';
+import 'package:amca/domain/model/reportable_entity.dart';
+import 'package:amca/ui/utils/amca_words.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 import 'production.dart';
 
 part 'pig_farming.freezed.dart';
@@ -17,7 +22,9 @@ part 'pig_farming.freezed.dart';
 part 'pig_farming.g.dart';
 
 @unfreezed
-abstract class PigFarming with _$PigFarming {
+abstract class PigFarming 
+with _$PigFarming 
+    implements ReportableEntity {
   const PigFarming._();
 
   factory PigFarming({
@@ -61,5 +68,20 @@ abstract class PigFarming with _$PigFarming {
     totalCostAndExpense =
         totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
+  }
+
+  @override
+  Map<String, dynamic> toReportData() {
+    return {
+      AmcaWords.livestockType: AmcaWords.meat,
+        AmcaWords.name: farmName,
+        AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
+        AmcaWords.animalNumber: numberAnimals,
+        AmcaWords.creationValue: value,
+        if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
+          AmcaWords.costsAndExpenses:
+              costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
+        if (null != production) AmcaWords.production: production?.toReportData()
+    };
   }
 }

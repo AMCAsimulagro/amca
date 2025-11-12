@@ -25,6 +25,7 @@ import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_date_picker_field.dart';
+import 'package:amca/ui/widgets/amca_download_button.dart';
 import 'package:amca/ui/widgets/amca_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -246,7 +247,9 @@ class _ManagePigFarmingCostAndExpensesState
                                   }
                                 });
                               },
+                              
                             ),
+                            
                           ),
                         ],
                       ),
@@ -264,6 +267,20 @@ class _ManagePigFarmingCostAndExpensesState
                                     pigFarmingId: vm.currentPigFarming!.id!,
                               ),
                             ),
+                          );
+                        },
+                      )
+                      ,
+                      const SizedBox(
+                            width: 15,
+                          ),
+                          AmcaButton(
+                        text: AmcaWords.downloadReport,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => AmcaDownloadButton(
+                                data: widget.pigFarming!.toReportData()),
                           );
                         },
                       )
