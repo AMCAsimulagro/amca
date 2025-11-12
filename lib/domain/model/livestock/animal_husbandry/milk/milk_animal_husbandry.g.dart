@@ -14,6 +14,7 @@ _AnimalHusbandry _$AnimalHusbandryFromJson(Map<String, dynamic> json) =>
       farmName: json['farmName'] as String,
       numberAnimals: json['numberAnimals'] as String,
       value: json['value'] as String,
+      area: json['area'] as String?,
       uidOwner: json['uidOwner'] as String?,
       comment: json['comment'] as String?,
       costsAndExpenses: (json['costsAndExpenses'] as List<dynamic>?)
@@ -32,6 +33,7 @@ Map<String, dynamic> _$AnimalHusbandryToJson(_AnimalHusbandry instance) =>
       'farmName': instance.farmName,
       'numberAnimals': instance.numberAnimals,
       'value': instance.value,
+      'area': instance.area,
       'uidOwner': instance.uidOwner,
       'comment': instance.comment,
       'costsAndExpenses':

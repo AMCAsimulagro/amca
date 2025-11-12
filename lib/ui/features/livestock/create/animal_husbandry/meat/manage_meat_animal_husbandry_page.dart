@@ -65,6 +65,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
   final _animalNumbersController = TextEditingController();
   final _valueController = TextEditingController();
   final _commentController = TextEditingController();
+  final _areaController = TextEditingController();
   static const _locale = 'en';
   String createdDate = '';
 
@@ -127,10 +128,31 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
                   height: 12,
                 ),
                 AmcaTextFormField(
+                  textEditingController: _areaController,
+                  textInputType: TextInputType.number,
+                  labelText: '${AmcaWords.area} (${AmcaWords.animalHusbandryCM})',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseAddArea;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+
+
+                AmcaTextFormField(
                   textEditingController: _animalNumbersController,
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.animalNumber,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -329,6 +351,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
     );
     DateTime date = DateFormat('yyyy-MM-dd').parse(createdDate);
     final animalHusbandry = MeatAnimalHusbandry(
+      area: _areaController.text,
       createDate: date,
       farmName: _farmNameController.text,
       totalProfit: "",
@@ -402,6 +425,7 @@ class _ManageMeetAnimalHusbandryState extends State<ManageMeetAnimalHusbandry> {
     bool isEditMode = widget.animalHusbandry != null;
     if (isEditMode) {
       final preloadAnimalHusbandry = widget.animalHusbandry;
+      _areaController.text = preloadAnimalHusbandry?.area ?? '';
       _farmNameController.text = preloadAnimalHusbandry?.farmName ?? '';
       _animalNumbersController.text =
           preloadAnimalHusbandry?.numberAnimals ?? '';

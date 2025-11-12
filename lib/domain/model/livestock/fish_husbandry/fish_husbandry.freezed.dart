@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,63 +10,85 @@ part of 'fish_husbandry.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-FishHusbandry _$FishHusbandryFromJson(Map<String, dynamic> json) {
-  return _FishHusbandry.fromJson(json);
-}
-
 /// @nodoc
-mixin _$FishHusbandry {
-  String? get id => throw _privateConstructorUsedError;
-  set id(String? value) => throw _privateConstructorUsedError;
-  DateTime get createDate => throw _privateConstructorUsedError;
-  set createDate(DateTime value) => throw _privateConstructorUsedError;
-  String get totalProfit => throw _privateConstructorUsedError;
-  set totalProfit(String value) => throw _privateConstructorUsedError;
-  String get farmName => throw _privateConstructorUsedError;
-  set farmName(String value) => throw _privateConstructorUsedError;
-  String get numberAnimals => throw _privateConstructorUsedError;
-  set numberAnimals(String value) => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
-  set value(String value) => throw _privateConstructorUsedError;
-  String? get uidOwner => throw _privateConstructorUsedError;
-  set uidOwner(String? value) => throw _privateConstructorUsedError;
-  String? get comment => throw _privateConstructorUsedError;
-  set comment(String? value) => throw _privateConstructorUsedError;
-  String? get fishType => throw _privateConstructorUsedError;
-  set fishType(String? value) => throw _privateConstructorUsedError;
-  String? get pondLength => throw _privateConstructorUsedError;
-  set pondLength(String? value) => throw _privateConstructorUsedError;
-  String? get pondWidth => throw _privateConstructorUsedError;
-  set pondWidth(String? value) => throw _privateConstructorUsedError;
-  String? get pondDepth => throw _privateConstructorUsedError;
-  set pondDepth(String? value) => throw _privateConstructorUsedError;
-  List<CostAndExpense>? get costsAndExpenses =>
-      throw _privateConstructorUsedError;
-  set costsAndExpenses(List<CostAndExpense>? value) =>
-      throw _privateConstructorUsedError;
-  Production? get production => throw _privateConstructorUsedError;
-  set production(Production? value) => throw _privateConstructorUsedError;
-
-  /// Serializes this FishHusbandry to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+mixin _$FishHusbandry implements DiagnosticableTreeMixin {
+  String? get id;
+  set id(String? value);
+  DateTime get createDate;
+  set createDate(DateTime value);
+  String get totalProfit;
+  set totalProfit(String value);
+  String get farmName;
+  set farmName(String value);
+  String get numberAnimals;
+  set numberAnimals(String value);
+  String get value;
+  set value(String value);
+  String? get uidOwner;
+  set uidOwner(String? value);
+  String? get comment;
+  set comment(String? value);
+  String? get fishType;
+  set fishType(String? value);
+  String? get pondLength;
+  set pondLength(String? value);
+  String? get pondWidth;
+  set pondWidth(String? value);
+  String? get pondDepth;
+  set pondDepth(String? value);
+  String? get pondVolume;
+  set pondVolume(String? value);
+  List<CostAndExpense>? get costsAndExpenses;
+  set costsAndExpenses(List<CostAndExpense>? value);
+  Production? get production;
+  set production(Production? value);
 
   /// Create a copy of FishHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $FishHusbandryCopyWith<FishHusbandry> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$FishHusbandryCopyWithImpl<FishHusbandry>(
+          this as FishHusbandry, _$identity);
+
+  /// Serializes this FishHusbandry to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'FishHusbandry'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('createDate', createDate))
+      ..add(DiagnosticsProperty('totalProfit', totalProfit))
+      ..add(DiagnosticsProperty('farmName', farmName))
+      ..add(DiagnosticsProperty('numberAnimals', numberAnimals))
+      ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('uidOwner', uidOwner))
+      ..add(DiagnosticsProperty('comment', comment))
+      ..add(DiagnosticsProperty('fishType', fishType))
+      ..add(DiagnosticsProperty('pondLength', pondLength))
+      ..add(DiagnosticsProperty('pondWidth', pondWidth))
+      ..add(DiagnosticsProperty('pondDepth', pondDepth))
+      ..add(DiagnosticsProperty('pondVolume', pondVolume))
+      ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
+      ..add(DiagnosticsProperty('production', production));
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FishHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, fishType: $fishType, pondLength: $pondLength, pondWidth: $pondWidth, pondDepth: $pondDepth, pondVolume: $pondVolume, costsAndExpenses: $costsAndExpenses, production: $production)';
+  }
 }
 
 /// @nodoc
-abstract class $FishHusbandryCopyWith<$Res> {
+abstract mixin class $FishHusbandryCopyWith<$Res> {
   factory $FishHusbandryCopyWith(
-          FishHusbandry value, $Res Function(FishHusbandry) then) =
-      _$FishHusbandryCopyWithImpl<$Res, FishHusbandry>;
+          FishHusbandry value, $Res Function(FishHusbandry) _then) =
+      _$FishHusbandryCopyWithImpl;
   @useResult
   $Res call(
       {String? id,
@@ -80,6 +103,7 @@ abstract class $FishHusbandryCopyWith<$Res> {
       String? pondLength,
       String? pondWidth,
       String? pondDepth,
+      String? pondVolume,
       List<CostAndExpense>? costsAndExpenses,
       Production? production});
 
@@ -87,14 +111,12 @@ abstract class $FishHusbandryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FishHusbandryCopyWithImpl<$Res, $Val extends FishHusbandry>
+class _$FishHusbandryCopyWithImpl<$Res>
     implements $FishHusbandryCopyWith<$Res> {
-  _$FishHusbandryCopyWithImpl(this._value, this._then);
+  _$FishHusbandryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final FishHusbandry _self;
+  final $Res Function(FishHusbandry) _then;
 
   /// Create a copy of FishHusbandry
   /// with the given fields replaced by the non-null parameter values.
@@ -113,67 +135,72 @@ class _$FishHusbandryCopyWithImpl<$Res, $Val extends FishHusbandry>
     Object? pondLength = freezed,
     Object? pondWidth = freezed,
     Object? pondDepth = freezed,
+    Object? pondVolume = freezed,
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: freezed == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
       createDate: null == createDate
-          ? _value.createDate
+          ? _self.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       totalProfit: null == totalProfit
-          ? _value.totalProfit
+          ? _self.totalProfit
           : totalProfit // ignore: cast_nullable_to_non_nullable
               as String,
       farmName: null == farmName
-          ? _value.farmName
+          ? _self.farmName
           : farmName // ignore: cast_nullable_to_non_nullable
               as String,
       numberAnimals: null == numberAnimals
-          ? _value.numberAnimals
+          ? _self.numberAnimals
           : numberAnimals // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
       uidOwner: freezed == uidOwner
-          ? _value.uidOwner
+          ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
       comment: freezed == comment
-          ? _value.comment
+          ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       fishType: freezed == fishType
-          ? _value.fishType
+          ? _self.fishType
           : fishType // ignore: cast_nullable_to_non_nullable
               as String?,
       pondLength: freezed == pondLength
-          ? _value.pondLength
+          ? _self.pondLength
           : pondLength // ignore: cast_nullable_to_non_nullable
               as String?,
       pondWidth: freezed == pondWidth
-          ? _value.pondWidth
+          ? _self.pondWidth
           : pondWidth // ignore: cast_nullable_to_non_nullable
               as String?,
       pondDepth: freezed == pondDepth
-          ? _value.pondDepth
+          ? _self.pondDepth
           : pondDepth // ignore: cast_nullable_to_non_nullable
               as String?,
+      pondVolume: freezed == pondVolume
+          ? _self.pondVolume
+          : pondVolume // ignore: cast_nullable_to_non_nullable
+              as String?,
       costsAndExpenses: freezed == costsAndExpenses
-          ? _value.costsAndExpenses
+          ? _self.costsAndExpenses
           : costsAndExpenses // ignore: cast_nullable_to_non_nullable
               as List<CostAndExpense>?,
       production: freezed == production
-          ? _value.production
+          ? _self.production
           : production // ignore: cast_nullable_to_non_nullable
               as Production?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of FishHusbandry
@@ -181,137 +208,20 @@ class _$FishHusbandryCopyWithImpl<$Res, $Val extends FishHusbandry>
   @override
   @pragma('vm:prefer-inline')
   $ProductionCopyWith<$Res>? get production {
-    if (_value.production == null) {
+    if (_self.production == null) {
       return null;
     }
 
-    return $ProductionCopyWith<$Res>(_value.production!, (value) {
-      return _then(_value.copyWith(production: value) as $Val);
+    return $ProductionCopyWith<$Res>(_self.production!, (value) {
+      return _then(_self.copyWith(production: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$FishHusbandryImplCopyWith<$Res>
-    implements $FishHusbandryCopyWith<$Res> {
-  factory _$$FishHusbandryImplCopyWith(
-          _$FishHusbandryImpl value, $Res Function(_$FishHusbandryImpl) then) =
-      __$$FishHusbandryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? id,
-      DateTime createDate,
-      String totalProfit,
-      String farmName,
-      String numberAnimals,
-      String value,
-      String? uidOwner,
-      String? comment,
-      String? fishType,
-      String? pondLength,
-      String? pondWidth,
-      String? pondDepth,
-      List<CostAndExpense>? costsAndExpenses,
-      Production? production});
-
-  @override
-  $ProductionCopyWith<$Res>? get production;
-}
-
-/// @nodoc
-class __$$FishHusbandryImplCopyWithImpl<$Res>
-    extends _$FishHusbandryCopyWithImpl<$Res, _$FishHusbandryImpl>
-    implements _$$FishHusbandryImplCopyWith<$Res> {
-  __$$FishHusbandryImplCopyWithImpl(
-      _$FishHusbandryImpl _value, $Res Function(_$FishHusbandryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of FishHusbandry
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? createDate = null,
-    Object? totalProfit = null,
-    Object? farmName = null,
-    Object? numberAnimals = null,
-    Object? value = null,
-    Object? uidOwner = freezed,
-    Object? comment = freezed,
-    Object? fishType = freezed,
-    Object? pondLength = freezed,
-    Object? pondWidth = freezed,
-    Object? pondDepth = freezed,
-    Object? costsAndExpenses = freezed,
-    Object? production = freezed,
-  }) {
-    return _then(_$FishHusbandryImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      totalProfit: null == totalProfit
-          ? _value.totalProfit
-          : totalProfit // ignore: cast_nullable_to_non_nullable
-              as String,
-      farmName: null == farmName
-          ? _value.farmName
-          : farmName // ignore: cast_nullable_to_non_nullable
-              as String,
-      numberAnimals: null == numberAnimals
-          ? _value.numberAnimals
-          : numberAnimals // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      uidOwner: freezed == uidOwner
-          ? _value.uidOwner
-          : uidOwner // ignore: cast_nullable_to_non_nullable
-              as String?,
-      comment: freezed == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fishType: freezed == fishType
-          ? _value.fishType
-          : fishType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pondLength: freezed == pondLength
-          ? _value.pondLength
-          : pondLength // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pondWidth: freezed == pondWidth
-          ? _value.pondWidth
-          : pondWidth // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pondDepth: freezed == pondDepth
-          ? _value.pondDepth
-          : pondDepth // ignore: cast_nullable_to_non_nullable
-              as String?,
-      costsAndExpenses: freezed == costsAndExpenses
-          ? _value.costsAndExpenses
-          : costsAndExpenses // ignore: cast_nullable_to_non_nullable
-              as List<CostAndExpense>?,
-      production: freezed == production
-          ? _value.production
-          : production // ignore: cast_nullable_to_non_nullable
-              as Production?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
-  _$FishHusbandryImpl(
+class _FishHusbandry extends FishHusbandry with DiagnosticableTreeMixin {
+  _FishHusbandry(
       {this.id,
       required this.createDate,
       required this.totalProfit,
@@ -324,12 +234,12 @@ class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
       this.pondLength,
       this.pondWidth,
       this.pondDepth,
+      this.pondVolume,
       this.costsAndExpenses,
       this.production})
       : super._();
-
-  factory _$FishHusbandryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FishHusbandryImplFromJson(json);
+  factory _FishHusbandry.fromJson(Map<String, dynamic> json) =>
+      _$FishHusbandryFromJson(json);
 
   @override
   String? id;
@@ -356,18 +266,29 @@ class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
   @override
   String? pondDepth;
   @override
+  String? pondVolume;
+  @override
   List<CostAndExpense>? costsAndExpenses;
   @override
   Production? production;
 
+  /// Create a copy of FishHusbandry
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FishHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, fishType: $fishType, pondLength: $pondLength, pondWidth: $pondWidth, pondDepth: $pondDepth, costsAndExpenses: $costsAndExpenses, production: $production)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FishHusbandryCopyWith<_FishHusbandry> get copyWith =>
+      __$FishHusbandryCopyWithImpl<_FishHusbandry>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FishHusbandryToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'FishHusbandry'))
       ..add(DiagnosticsProperty('id', id))
@@ -382,94 +303,152 @@ class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('pondLength', pondLength))
       ..add(DiagnosticsProperty('pondWidth', pondWidth))
       ..add(DiagnosticsProperty('pondDepth', pondDepth))
+      ..add(DiagnosticsProperty('pondVolume', pondVolume))
       ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
       ..add(DiagnosticsProperty('production', production));
   }
 
-  /// Create a copy of FishHusbandry
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$FishHusbandryImplCopyWith<_$FishHusbandryImpl> get copyWith =>
-      __$$FishHusbandryImplCopyWithImpl<_$FishHusbandryImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FishHusbandryImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FishHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, fishType: $fishType, pondLength: $pondLength, pondWidth: $pondWidth, pondDepth: $pondDepth, pondVolume: $pondVolume, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 }
 
-abstract class _FishHusbandry extends FishHusbandry {
-  factory _FishHusbandry(
+/// @nodoc
+abstract mixin class _$FishHusbandryCopyWith<$Res>
+    implements $FishHusbandryCopyWith<$Res> {
+  factory _$FishHusbandryCopyWith(
+          _FishHusbandry value, $Res Function(_FishHusbandry) _then) =
+      __$FishHusbandryCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
       {String? id,
-      required DateTime createDate,
-      required String totalProfit,
-      required String farmName,
-      required String numberAnimals,
-      required String value,
+      DateTime createDate,
+      String totalProfit,
+      String farmName,
+      String numberAnimals,
+      String value,
       String? uidOwner,
       String? comment,
       String? fishType,
       String? pondLength,
       String? pondWidth,
       String? pondDepth,
+      String? pondVolume,
       List<CostAndExpense>? costsAndExpenses,
-      Production? production}) = _$FishHusbandryImpl;
-  _FishHusbandry._() : super._();
-
-  factory _FishHusbandry.fromJson(Map<String, dynamic> json) =
-      _$FishHusbandryImpl.fromJson;
+      Production? production});
 
   @override
-  String? get id;
-  set id(String? value);
-  @override
-  DateTime get createDate;
-  set createDate(DateTime value);
-  @override
-  String get totalProfit;
-  set totalProfit(String value);
-  @override
-  String get farmName;
-  set farmName(String value);
-  @override
-  String get numberAnimals;
-  set numberAnimals(String value);
-  @override
-  String get value;
-  set value(String value);
-  @override
-  String? get uidOwner;
-  set uidOwner(String? value);
-  @override
-  String? get comment;
-  set comment(String? value);
-  @override
-  String? get fishType;
-  set fishType(String? value);
-  @override
-  String? get pondLength;
-  set pondLength(String? value);
-  @override
-  String? get pondWidth;
-  set pondWidth(String? value);
-  @override
-  String? get pondDepth;
-  set pondDepth(String? value);
-  @override
-  List<CostAndExpense>? get costsAndExpenses;
-  set costsAndExpenses(List<CostAndExpense>? value);
-  @override
-  Production? get production;
-  set production(Production? value);
+  $ProductionCopyWith<$Res>? get production;
+}
+
+/// @nodoc
+class __$FishHusbandryCopyWithImpl<$Res>
+    implements _$FishHusbandryCopyWith<$Res> {
+  __$FishHusbandryCopyWithImpl(this._self, this._then);
+
+  final _FishHusbandry _self;
+  final $Res Function(_FishHusbandry) _then;
 
   /// Create a copy of FishHusbandry
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FishHusbandryImplCopyWith<_$FishHusbandryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? createDate = null,
+    Object? totalProfit = null,
+    Object? farmName = null,
+    Object? numberAnimals = null,
+    Object? value = null,
+    Object? uidOwner = freezed,
+    Object? comment = freezed,
+    Object? fishType = freezed,
+    Object? pondLength = freezed,
+    Object? pondWidth = freezed,
+    Object? pondDepth = freezed,
+    Object? pondVolume = freezed,
+    Object? costsAndExpenses = freezed,
+    Object? production = freezed,
+  }) {
+    return _then(_FishHusbandry(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createDate: null == createDate
+          ? _self.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      totalProfit: null == totalProfit
+          ? _self.totalProfit
+          : totalProfit // ignore: cast_nullable_to_non_nullable
+              as String,
+      farmName: null == farmName
+          ? _self.farmName
+          : farmName // ignore: cast_nullable_to_non_nullable
+              as String,
+      numberAnimals: null == numberAnimals
+          ? _self.numberAnimals
+          : numberAnimals // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      uidOwner: freezed == uidOwner
+          ? _self.uidOwner
+          : uidOwner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: freezed == comment
+          ? _self.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fishType: freezed == fishType
+          ? _self.fishType
+          : fishType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondLength: freezed == pondLength
+          ? _self.pondLength
+          : pondLength // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondWidth: freezed == pondWidth
+          ? _self.pondWidth
+          : pondWidth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondDepth: freezed == pondDepth
+          ? _self.pondDepth
+          : pondDepth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondVolume: freezed == pondVolume
+          ? _self.pondVolume
+          : pondVolume // ignore: cast_nullable_to_non_nullable
+              as String?,
+      costsAndExpenses: freezed == costsAndExpenses
+          ? _self.costsAndExpenses
+          : costsAndExpenses // ignore: cast_nullable_to_non_nullable
+              as List<CostAndExpense>?,
+      production: freezed == production
+          ? _self.production
+          : production // ignore: cast_nullable_to_non_nullable
+              as Production?,
+    ));
+  }
+
+  /// Create a copy of FishHusbandry
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_self.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_self.production!, (value) {
+      return _then(_self.copyWith(production: value));
+    });
+  }
 }
+
+// dart format on

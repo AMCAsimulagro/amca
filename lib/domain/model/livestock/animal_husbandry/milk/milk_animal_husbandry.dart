@@ -34,6 +34,7 @@ abstract class MilkAnimalHusbandry
     required String farmName,
     required String numberAnimals,
     required String value,
+    String? area,
     String? uidOwner,
     String? comment,
     List<CostAndExpense>? costsAndExpenses,

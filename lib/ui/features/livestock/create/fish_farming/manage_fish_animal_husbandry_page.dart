@@ -74,7 +74,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
   final _pondLengthController = TextEditingController();
   final _pondWidthController = TextEditingController();
   final _pondDepthController = TextEditingController();
-  final _pondAreaController = TextEditingController();
+  final _pondVolumeController = TextEditingController();
   final _valueController = TextEditingController();
   final _commentController = TextEditingController();
   static const _locale = 'en';
@@ -101,12 +101,13 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
   void _calculatePondArea() {
     final length = double.tryParse(_pondLengthController.text) ?? 0;
     final width = double.tryParse(_pondWidthController.text) ?? 0;
-    final area = length * width;
+    final depth = double.tryParse(_pondDepthController.text) ?? 0;
+    final area = length * width * depth;
 
     if (area > 0) {
-      _pondAreaController.text = area.toStringAsFixed(2);
+      _pondVolumeController.text = area.toStringAsFixed(2);
     } else {
-      _pondAreaController.text = '';
+      _pondVolumeController.text = '';
     }
   }
 
@@ -115,6 +116,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
     _preloadData();
     // Agregar listeners para recalcular área cuando cambien largo o ancho
     _pondLengthController.addListener(_calculatePondArea);
+    _pondDepthController.addListener(_calculatePondArea);
     _pondWidthController.addListener(_calculatePondArea);
     // Si el widget recibió un tipo de pez por navegación, usarlo por defecto
     final incoming = widget.fishType;
@@ -132,7 +134,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
     _pondLengthController.dispose();
     _pondWidthController.dispose();
     _pondDepthController.dispose();
-    _pondAreaController.dispose();
+    _pondVolumeController.dispose();
     _fishTypeController.dispose();
     _valueController.dispose();
     _commentController.dispose();
@@ -213,6 +215,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.fishNumber,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -230,6 +233,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.alongThePond,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -247,6 +251,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.pondWidth,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -264,6 +269,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   textInputType: TextInputType.number,
                   labelText: AmcaWords.pondDepth,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -277,11 +283,13 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   height: 12,
                 ),
                 AmcaTextFormField(
-                  textEditingController: _pondAreaController,
+                  textEditingController: _pondVolumeController,
                   textInputType: TextInputType.number,
-                  labelText: '${AmcaWords.pondArea} (${AmcaWords.fishCM})',
+                  labelText: '${AmcaWords.pondVolume} (${AmcaWords.fishCM})',
                   readOnly: true,
+                  enabled: false,
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   validator: (value) {
@@ -297,6 +305,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                   labelText: AmcaWords.value,
                   prefixText: '\$',
                   inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     FilteringTextInputFormatter.deny(RegExp(r'\s')),
                   ],
                   onChanged: (value) {
@@ -486,6 +495,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
       pondLength: _pondLengthController.text,
       pondWidth: _pondWidthController.text,
       pondDepth: _pondDepthController.text,
+      pondVolume: _pondVolumeController.text,
       costsAndExpenses:
           createFishHusbandryVm.currentFishHusbandry?.costsAndExpenses,
       production: createFishHusbandryVm.currentFishHusbandry?.production,
@@ -551,6 +561,8 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
     bool isEditMode = widget.fishHusbandry != null;
     if (isEditMode) {
       final preloadFishHusbandry = widget.fishHusbandry;
+      _pondVolumeController.text =
+          preloadFishHusbandry?.pondVolume ?? '';
       _farmNameController.text = preloadFishHusbandry?.farmName ?? '';
       _animalNumbersController.text = preloadFishHusbandry?.numberAnimals ?? '';
       _valueController.text = preloadFishHusbandry?.value ?? '';

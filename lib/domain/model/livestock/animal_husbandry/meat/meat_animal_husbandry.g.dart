@@ -6,14 +6,15 @@ part of 'meat_animal_husbandry.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_MeetAnimalHusbandry _$MeetAnimalHusbandryFromJson(Map<String, dynamic> json) =>
-    _MeetAnimalHusbandry(
+_MeatAnimalHusbandry _$MeatAnimalHusbandryFromJson(Map<String, dynamic> json) =>
+    _MeatAnimalHusbandry(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       totalProfit: json['totalProfit'] as String,
       farmName: json['farmName'] as String,
       numberAnimals: json['numberAnimals'] as String,
       value: json['value'] as String,
+      area: json['area'] as String?,
       uidOwner: json['uidOwner'] as String?,
       comment: json['comment'] as String?,
       costsAndExpenses: (json['costsAndExpenses'] as List<dynamic>?)
@@ -24,8 +25,8 @@ _MeetAnimalHusbandry _$MeetAnimalHusbandryFromJson(Map<String, dynamic> json) =>
           : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MeetAnimalHusbandryToJson(
-        _MeetAnimalHusbandry instance) =>
+Map<String, dynamic> _$MeatAnimalHusbandryToJson(
+        _MeatAnimalHusbandry instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),
@@ -33,6 +34,7 @@ Map<String, dynamic> _$MeetAnimalHusbandryToJson(
       'farmName': instance.farmName,
       'numberAnimals': instance.numberAnimals,
       'value': instance.value,
+      'area': instance.area,
       'uidOwner': instance.uidOwner,
       'comment': instance.comment,
       'costsAndExpenses':

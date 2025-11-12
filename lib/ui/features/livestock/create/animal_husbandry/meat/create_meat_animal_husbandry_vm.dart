@@ -63,10 +63,6 @@ class CreateMeetAnimalHusbandryVM extends ChangeNotifier {
     }
   }
 
-  /// Maneja la selección de categoría porcina
-  void onPigCategorySelected(String category) {
-    //_categories = _pigCategories.firstWhere((element)=> element == category);
-  }
 
   /// Elimina un registro de ganaderia
   Future<void> deleteAnimalHusbandry() async {
