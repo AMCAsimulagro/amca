@@ -22,7 +22,7 @@ part 'transitory_farming.freezed.dart';
 part 'transitory_farming.g.dart';
 
 @unfreezed
-class TransitoryFarming with _$TransitoryFarming implements ReportableEntity {
+abstract class TransitoryFarming with _$TransitoryFarming implements ReportableEntity {
   const TransitoryFarming._();
 
   factory TransitoryFarming({

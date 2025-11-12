@@ -23,7 +23,7 @@ part 'meat_animal_husbandry.freezed.dart';
 part 'meat_animal_husbandry.g.dart';
 
 @unfreezed
-class MeatAnimalHusbandry
+abstract class MeatAnimalHusbandry
     with _$MeatAnimalHusbandry
     implements ReportableEntity {
   const MeatAnimalHusbandry._();

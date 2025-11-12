@@ -8,8 +8,13 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/cost_expense_report_extension.dart';
+import 'package:amca/domain/model/livestock/pig_farming/production_report_extension.dart';
+import 'package:amca/domain/model/reportable_entity.dart';
+import 'package:amca/ui/utils/amca_words.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 import 'production.dart';
 
 part 'pig_farming.freezed.dart';
@@ -17,7 +22,9 @@ part 'pig_farming.freezed.dart';
 part 'pig_farming.g.dart';
 
 @unfreezed
-class PigFarming with _$PigFarming {
+abstract class PigFarming 
+with _$PigFarming 
+    implements ReportableEntity {
   const PigFarming._();
 
   factory PigFarming({
@@ -25,17 +32,12 @@ class PigFarming with _$PigFarming {
     required DateTime createDate,
     required String totalProfit,
     required String farmName,
-    required String productionType,
-    required String sownArea,
-    required String sownType,
-    required String format,
-    required String amountSown,
+    required String numberAnimals,
     required String value,
     String? uidOwner,
     String? comment,
     List<CostAndExpense>? costsAndExpenses,
-    //Production? production,
-    List<Production>? production,
+    Production? production,
   }) = _PigFarming;
 
   factory PigFarming.fromJson(Map<String, Object?> json) =>
@@ -50,10 +52,11 @@ class PigFarming with _$PigFarming {
           }).reduce((value, element) => value + element) ??
           0;
     }
+    //totalCostAndExpense = totalCostAndExpense + int.parse(value.replaceAll(',', ''));
     return totalCostAndExpense;
   }
 
-  int profitCrop() {
+  int profit() {
     int totalCostAndExpense = 0;
     if ((costsAndExpenses ?? []).isNotEmpty) {
       totalCostAndExpense = costsAndExpenses?.map((e) {
@@ -67,16 +70,18 @@ class PigFarming with _$PigFarming {
     return totalCostAndExpense;
   }
 
-  int totalPrice() {
-    int total = 0;
-
-    if ((production ?? []).isNotEmpty) {
-      total = production?.map((e) {
-            final price = int.parse(e.price.replaceAll(',', ''));
-            return price;
-          }).reduce((value, element) => value + element) ??
-          0;
-    }
-    return total;
+  @override
+  Map<String, dynamic> toReportData() {
+    return {
+      AmcaWords.livestockType: AmcaWords.meat,
+        AmcaWords.name: farmName,
+        AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
+        AmcaWords.animalNumber: numberAnimals,
+        AmcaWords.creationValue: value,
+        if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
+          AmcaWords.costsAndExpenses:
+              costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
+        if (null != production) AmcaWords.production: production?.toReportData()
+    };
   }
 }

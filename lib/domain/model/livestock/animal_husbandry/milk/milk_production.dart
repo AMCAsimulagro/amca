@@ -17,7 +17,7 @@ part 'milk_production.g.dart';
 
 /// Represents a production.
 @unfreezed
-class Production with _$Production {
+abstract class Production with _$Production {
   /// Default constructor for Production.
   factory Production({
     String? uidOwner,// Owner UID of the production.

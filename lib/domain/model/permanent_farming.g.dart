@@ -6,9 +6,8 @@ part of 'permanent_farming.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PermanentFarmingImpl _$$PermanentFarmingImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PermanentFarmingImpl(
+_PermanentFarming _$PermanentFarmingFromJson(Map<String, dynamic> json) =>
+    _PermanentFarming(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       totalProfit: json['totalProfit'] as String,
@@ -30,8 +29,7 @@ _$PermanentFarmingImpl _$$PermanentFarmingImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$PermanentFarmingImplToJson(
-        _$PermanentFarmingImpl instance) =>
+Map<String, dynamic> _$PermanentFarmingToJson(_PermanentFarming instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),

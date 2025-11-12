@@ -6,9 +6,8 @@ part of 'meat_animal_husbandry.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MeetAnimalHusbandryImpl _$$MeetAnimalHusbandryImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MeetAnimalHusbandryImpl(
+_MeetAnimalHusbandry _$MeetAnimalHusbandryFromJson(Map<String, dynamic> json) =>
+    _MeetAnimalHusbandry(
       id: json['id'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
       totalProfit: json['totalProfit'] as String,
@@ -25,8 +24,8 @@ _$MeetAnimalHusbandryImpl _$$MeetAnimalHusbandryImplFromJson(
           : Production.fromJson(json['production'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$MeetAnimalHusbandryImplToJson(
-        _$MeetAnimalHusbandryImpl instance) =>
+Map<String, dynamic> _$MeetAnimalHusbandryToJson(
+        _MeetAnimalHusbandry instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createDate': instance.createDate.toIso8601String(),

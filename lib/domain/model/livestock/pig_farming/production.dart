@@ -17,12 +17,12 @@ part 'production.g.dart';
 
 /// Represents a production.
 @unfreezed
-class Production with _$Production {
+abstract class Production with _$Production {
   /// Default constructor for Production.
   factory Production({
     String? uidOwner,// Owner UID of the production.
-    String? partName,// Part name of the production.
-    required String transitoryFarmingId,// Transitory farming ID of the production.
+    String? farmName,// Farm name of the production.
+    required String pigFarmingId,// Transitory farming ID of the production.
     required DateTime createDate,// Creation date of the production.
     required String unitOfMeasurement,// Unit of measurement of the production.
     required String quantity,// Quantity of the production.
