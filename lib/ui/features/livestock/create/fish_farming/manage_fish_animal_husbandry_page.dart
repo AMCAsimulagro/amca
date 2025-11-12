@@ -9,25 +9,26 @@ library;
 
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart'; //
-import 'package:amca/ui/features/charts_cost_expenses/fish_husbandry/charts_costs_expenses_page_fish_a_h.dart'; //
-import 'package:amca/ui/features/costs_expenses/livestock/fishHusbandry/costs_expenses_fish_husbandry_list_page.dart'; //
-import 'package:amca/ui/features/livestock/create/fish_farming/create_fish_husbandry_vm.dart'; //
-import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart'; //
-import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart'; //
-import 'package:amca/ui/features/production/livestock/fish_husbandry/manage_production_fish_husbandry_page.dart'; //
-import 'package:amca/ui/utils/amca_palette.dart'; //
-import 'package:amca/ui/utils/amca_words.dart'; //
-import 'package:amca/ui/utils/calls_with_dialog.dart'; //
-import 'package:amca/ui/utils/dialogs.dart'; //
-import 'package:amca/ui/widgets/amca_button.dart'; //
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart';
+import 'package:amca/ui/features/charts_cost_expenses/fish_husbandry/charts_costs_expenses_page_fish_a_h.dart';
+import 'package:amca/ui/features/costs_expenses/livestock/fishHusbandry/costs_expenses_fish_husbandry_list_page.dart';
+import 'package:amca/ui/features/livestock/create/fish_farming/create_fish_husbandry_vm.dart';
+import 'package:amca/ui/features/main_navigation/main_navigation_vm.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/farming_history/farming_history_vm.dart';
+import 'package:amca/ui/features/production/livestock/fish_husbandry/manage_production_fish_husbandry_page.dart';
+import 'package:amca/ui/utils/amca_palette.dart';
+import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/calls_with_dialog.dart';
+import 'package:amca/ui/utils/dialogs.dart';
+import 'package:amca/ui/widgets/amca_button.dart';
 import 'package:amca/ui/widgets/amca_date_picker_field.dart'; //
-import 'package:amca/ui/widgets/amca_download_button.dart'; //
-import 'package:amca/ui/widgets/amca_text_form_field.dart'; //
-import 'package:flutter/material.dart'; //
-import 'package:flutter/services.dart'; //
-import 'package:intl/intl.dart'; //
-import 'package:provider/provider.dart'; //
+import 'package:amca/ui/widgets/amca_download_button.dart';
+import 'package:amca/ui/widgets/amca_text_form_field.dart';
+import 'package:amca/ui/widgets/amca_select_form_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 /// StatefulWidget for creating and managing permanent farming activities.
 class ManageFishHusbandry extends StatefulWidget {
@@ -70,18 +71,72 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
   final _formKey = GlobalKey<FormState>();
   final _farmNameController = TextEditingController();
   final _animalNumbersController = TextEditingController();
+  final _pondLengthController = TextEditingController();
+  final _pondWidthController = TextEditingController();
+  final _pondDepthController = TextEditingController();
+  final _pondAreaController = TextEditingController();
   final _valueController = TextEditingController();
   final _commentController = TextEditingController();
   static const _locale = 'en';
   String createdDate = '';
+  String? _selectedFishType;
+  final TextEditingController _fishTypeController = TextEditingController();
+  static const List<String> _fishTypesList = [
+    'Bocachico',
+    'Bagre',
+    'Capaz',
+    'Nicuro',
+    'Yamu',
+    'Cachama',
+    'Tambaqui',
+    'Tilapia',
+    'Trucha',
+    'Mojarra',
+  ];
 
   String _formatNumber(String s) =>
       NumberFormat.decimalPattern(_locale).format(int.parse(s));
 
+  /// Calcula el área del estanque (Largo × Ancho)
+  void _calculatePondArea() {
+    final length = double.tryParse(_pondLengthController.text) ?? 0;
+    final width = double.tryParse(_pondWidthController.text) ?? 0;
+    final area = length * width;
+
+    if (area > 0) {
+      _pondAreaController.text = area.toStringAsFixed(2);
+    } else {
+      _pondAreaController.text = '';
+    }
+  }
+
   @override
   void initState() {
     _preloadData();
+    // Agregar listeners para recalcular área cuando cambien largo o ancho
+    _pondLengthController.addListener(_calculatePondArea);
+    _pondWidthController.addListener(_calculatePondArea);
+    // Si el widget recibió un tipo de pez por navegación, usarlo por defecto
+    final incoming = widget.fishType;
+    if (incoming != null && _fishTypesList.contains(incoming)) {
+      _selectedFishType = incoming;
+      _fishTypeController.text = incoming;
+    }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _farmNameController.dispose();
+    _animalNumbersController.dispose();
+    _pondLengthController.dispose();
+    _pondWidthController.dispose();
+    _pondDepthController.dispose();
+    _pondAreaController.dispose();
+    _fishTypeController.dispose();
+    _valueController.dispose();
+    _commentController.dispose();
+    super.dispose();
   }
 
   @override
@@ -132,6 +187,27 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                 const SizedBox(
                   height: 12,
                 ),
+                // Selector para tipo de pez (estilo 'Unidad de medida')
+                AmcaSelectFormField(
+                  labelText: AmcaWords.typeOfFish,
+                  textEditingController: _fishTypeController,
+                  options: _fishTypesList,
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return 'Por favor seleccione un tipo de pez';
+                    }
+                    return null;
+                  },
+                  optionSelected: (option) {
+                    setState(() {
+                      _selectedFishType = option;
+                      _fishTypeController.text = option;
+                    });
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
                 AmcaTextFormField(
                   textEditingController: _animalNumbersController,
                   textInputType: TextInputType.number,
@@ -143,6 +219,72 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
                     if (value != null && value.isEmpty) {
                       return AmcaWords.pleaseFishNumber;
                     }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _pondLengthController,
+                  textInputType: TextInputType.number,
+                  labelText: AmcaWords.alongThePond,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseFishNumber;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _pondWidthController,
+                  textInputType: TextInputType.number,
+                  labelText: AmcaWords.pondWidth,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseFishNumber;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _pondDepthController,
+                  textInputType: TextInputType.number,
+                  labelText: AmcaWords.pondDepth,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return AmcaWords.pleaseFishNumber;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                AmcaTextFormField(
+                  textEditingController: _pondAreaController,
+                  textInputType: TextInputType.number,
+                  labelText: '${AmcaWords.pondArea} (${AmcaWords.fishCM})',
+                  readOnly: true,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
+                  validator: (value) {
                     return null;
                   },
                 ),
@@ -338,7 +480,12 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
       value: _valueController.text,
       uidOwner: createFishHusbandryVm.currentFishHusbandry?.uidOwner,
       comment: _commentController.text,
-      fishType: widget.fishType ?? createFishHusbandryVm.fishType,
+      fishType: _selectedFishType ??
+          widget.fishType ??
+          createFishHusbandryVm.fishType,
+      pondLength: _pondLengthController.text,
+      pondWidth: _pondWidthController.text,
+      pondDepth: _pondDepthController.text,
       costsAndExpenses:
           createFishHusbandryVm.currentFishHusbandry?.costsAndExpenses,
       production: createFishHusbandryVm.currentFishHusbandry?.production,
@@ -408,8 +555,18 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
       _animalNumbersController.text = preloadFishHusbandry?.numberAnimals ?? '';
       _valueController.text = preloadFishHusbandry?.value ?? '';
       _commentController.text = preloadFishHusbandry?.comment ?? '';
+      _pondLengthController.text = preloadFishHusbandry?.pondLength ?? '';
+      _pondWidthController.text = preloadFishHusbandry?.pondWidth ?? '';
+      _pondDepthController.text = preloadFishHusbandry?.pondDepth ?? '';
+      _selectedFishType = preloadFishHusbandry?.fishType ?? _selectedFishType;
+      if (preloadFishHusbandry?.fishType != null &&
+          _fishTypesList.contains(preloadFishHusbandry?.fishType)) {
+        _fishTypeController.text = preloadFishHusbandry?.fishType ?? '';
+      }
       createdDate = DateFormat('yyyy-MM-dd')
           .format(preloadFishHusbandry?.createDate ?? DateTime.now());
+      // Calcular área después de cargar los datos
+      Future.delayed(const Duration(milliseconds: 100), _calculatePondArea);
     }
   }
 }

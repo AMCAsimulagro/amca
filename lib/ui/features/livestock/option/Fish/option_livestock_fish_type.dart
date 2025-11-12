@@ -31,27 +31,14 @@ class OptionLivestockFishType extends StatelessWidget {
             children: [
               Expanded(
                 child: AmcaContainerButton(
-                  text: AmcaWords.tilapia,
+                  text: AmcaWords.createpond,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext fishcontext) =>
-                            ManageFishHusbandry.create(fishType: 'tilapia'),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Expanded(
-                child: AmcaContainerButton(
-                  text: AmcaWords.cachama,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext fishcontext) =>
-                            ManageFishHusbandry.create(fishType: 'cachama'),
+                            ManageFishHusbandry.create(
+                                fishType: AmcaWords.fish),
                       ),
                     );
                   },

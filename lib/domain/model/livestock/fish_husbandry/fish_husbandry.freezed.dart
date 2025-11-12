@@ -38,6 +38,12 @@ mixin _$FishHusbandry {
   set comment(String? value) => throw _privateConstructorUsedError;
   String? get fishType => throw _privateConstructorUsedError;
   set fishType(String? value) => throw _privateConstructorUsedError;
+  String? get pondLength => throw _privateConstructorUsedError;
+  set pondLength(String? value) => throw _privateConstructorUsedError;
+  String? get pondWidth => throw _privateConstructorUsedError;
+  set pondWidth(String? value) => throw _privateConstructorUsedError;
+  String? get pondDepth => throw _privateConstructorUsedError;
+  set pondDepth(String? value) => throw _privateConstructorUsedError;
   List<CostAndExpense>? get costsAndExpenses =>
       throw _privateConstructorUsedError;
   set costsAndExpenses(List<CostAndExpense>? value) =>
@@ -71,6 +77,9 @@ abstract class $FishHusbandryCopyWith<$Res> {
       String? uidOwner,
       String? comment,
       String? fishType,
+      String? pondLength,
+      String? pondWidth,
+      String? pondDepth,
       List<CostAndExpense>? costsAndExpenses,
       Production? production});
 
@@ -101,6 +110,9 @@ class _$FishHusbandryCopyWithImpl<$Res, $Val extends FishHusbandry>
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? fishType = freezed,
+    Object? pondLength = freezed,
+    Object? pondWidth = freezed,
+    Object? pondDepth = freezed,
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
@@ -140,6 +152,18 @@ class _$FishHusbandryCopyWithImpl<$Res, $Val extends FishHusbandry>
       fishType: freezed == fishType
           ? _value.fishType
           : fishType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondLength: freezed == pondLength
+          ? _value.pondLength
+          : pondLength // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondWidth: freezed == pondWidth
+          ? _value.pondWidth
+          : pondWidth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondDepth: freezed == pondDepth
+          ? _value.pondDepth
+          : pondDepth // ignore: cast_nullable_to_non_nullable
               as String?,
       costsAndExpenses: freezed == costsAndExpenses
           ? _value.costsAndExpenses
@@ -185,6 +209,9 @@ abstract class _$$FishHusbandryImplCopyWith<$Res>
       String? uidOwner,
       String? comment,
       String? fishType,
+      String? pondLength,
+      String? pondWidth,
+      String? pondDepth,
       List<CostAndExpense>? costsAndExpenses,
       Production? production});
 
@@ -214,6 +241,9 @@ class __$$FishHusbandryImplCopyWithImpl<$Res>
     Object? uidOwner = freezed,
     Object? comment = freezed,
     Object? fishType = freezed,
+    Object? pondLength = freezed,
+    Object? pondWidth = freezed,
+    Object? pondDepth = freezed,
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
@@ -254,6 +284,18 @@ class __$$FishHusbandryImplCopyWithImpl<$Res>
           ? _value.fishType
           : fishType // ignore: cast_nullable_to_non_nullable
               as String?,
+      pondLength: freezed == pondLength
+          ? _value.pondLength
+          : pondLength // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondWidth: freezed == pondWidth
+          ? _value.pondWidth
+          : pondWidth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pondDepth: freezed == pondDepth
+          ? _value.pondDepth
+          : pondDepth // ignore: cast_nullable_to_non_nullable
+              as String?,
       costsAndExpenses: freezed == costsAndExpenses
           ? _value.costsAndExpenses
           : costsAndExpenses // ignore: cast_nullable_to_non_nullable
@@ -279,6 +321,9 @@ class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
       this.uidOwner,
       this.comment,
       this.fishType,
+      this.pondLength,
+      this.pondWidth,
+      this.pondDepth,
       this.costsAndExpenses,
       this.production})
       : super._();
@@ -305,13 +350,19 @@ class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
   @override
   String? fishType;
   @override
+  String? pondLength;
+  @override
+  String? pondWidth;
+  @override
+  String? pondDepth;
+  @override
   List<CostAndExpense>? costsAndExpenses;
   @override
   Production? production;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FishHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, fishType: $fishType, costsAndExpenses: $costsAndExpenses, production: $production)';
+    return 'FishHusbandry(id: $id, createDate: $createDate, totalProfit: $totalProfit, farmName: $farmName, numberAnimals: $numberAnimals, value: $value, uidOwner: $uidOwner, comment: $comment, fishType: $fishType, pondLength: $pondLength, pondWidth: $pondWidth, pondDepth: $pondDepth, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
 
   @override
@@ -328,6 +379,9 @@ class _$FishHusbandryImpl extends _FishHusbandry with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('uidOwner', uidOwner))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('fishType', fishType))
+      ..add(DiagnosticsProperty('pondLength', pondLength))
+      ..add(DiagnosticsProperty('pondWidth', pondWidth))
+      ..add(DiagnosticsProperty('pondDepth', pondDepth))
       ..add(DiagnosticsProperty('costsAndExpenses', costsAndExpenses))
       ..add(DiagnosticsProperty('production', production));
   }
@@ -359,6 +413,9 @@ abstract class _FishHusbandry extends FishHusbandry {
       String? uidOwner,
       String? comment,
       String? fishType,
+      String? pondLength,
+      String? pondWidth,
+      String? pondDepth,
       List<CostAndExpense>? costsAndExpenses,
       Production? production}) = _$FishHusbandryImpl;
   _FishHusbandry._() : super._();
@@ -393,6 +450,15 @@ abstract class _FishHusbandry extends FishHusbandry {
   @override
   String? get fishType;
   set fishType(String? value);
+  @override
+  String? get pondLength;
+  set pondLength(String? value);
+  @override
+  String? get pondWidth;
+  set pondWidth(String? value);
+  @override
+  String? get pondDepth;
+  set pondDepth(String? value);
   @override
   List<CostAndExpense>? get costsAndExpenses;
   set costsAndExpenses(List<CostAndExpense>? value);

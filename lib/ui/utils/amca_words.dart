@@ -323,10 +323,15 @@ class AmcaWords {
   static const String fatten = 'Engorde';
 
   // Words submodulo Piscicultura
-  static const String tilapia = 'Tilapia';
-  static const String cachama = 'Cachama';
   static const String fish = 'Pescado';
-  static const String fishNumber = 'Número de peces';
+  static const String createpond = 'Crear estanque';
+  static const String fishNumber = 'Cantidad de peces';
   static const String pleaseFishNumber =
-      'Por favor, ingrese el número de peces';
+      'Por favor, ingrese la cantidad de peces';
+  static const String alongThePond = 'Largo del estanque';
+  static const String pondWidth = 'Ancho del estanque';
+  static const String pondDepth = 'Profundidad del estanque';
+  static const String pondArea = 'Área del estanque';
+  static const String fishCM = 'CM²';
+  static const String typeOfFish = 'Tipo de pez';
 }

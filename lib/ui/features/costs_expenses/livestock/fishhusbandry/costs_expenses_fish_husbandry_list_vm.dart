@@ -6,10 +6,10 @@
 library;
 
 /// Imports of Bookstores and Resources
-import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart'; //
-import 'package:amca/dependecy_injection.dart'; //
-import 'package:amca/domain/model/cost_expense.dart'; //
-import 'package:flutter/cupertino.dart'; //
+import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart';
+import 'package:amca/dependecy_injection.dart';
+import 'package:amca/domain/model/cost_expense.dart';
+import 'package:flutter/cupertino.dart';
 
 /// ViewModel for managing the list of costs and expenses related to farming activities.
 class CostsExpensesListVM extends ChangeNotifier {

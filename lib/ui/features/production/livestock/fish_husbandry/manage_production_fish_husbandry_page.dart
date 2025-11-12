@@ -5,22 +5,22 @@ library;
 
 import 'dart:developer';
 
-import 'package:amca/domain/model/livestock/fish_husbandry/production.dart'; //
-import 'package:amca/ui/features/production/livestock/fish_husbandry/manage_production_fish_husbandry_vm.dart'; //
-import 'package:amca/ui/utils/amca_palette.dart'; //
-import 'package:amca/ui/utils/amca_words.dart'; //
-import 'package:amca/ui/utils/calls_with_dialog.dart'; //
-import 'package:amca/ui/utils/constants.dart'; //
-import 'package:amca/ui/utils/dialogs.dart'; //
-import 'package:amca/ui/utils/extensions/string_extensions.dart'; //
-import 'package:amca/ui/widgets/amca_button.dart'; //
-import 'package:amca/ui/widgets/amca_date_picker_field.dart'; //
-import 'package:amca/ui/widgets/amca_select_form_field.dart'; //
-import 'package:amca/ui/widgets/amca_text_form_field.dart'; //
-import 'package:flutter/material.dart'; //
-import 'package:flutter/services.dart'; //
-import 'package:intl/intl.dart'; //
-import 'package:provider/provider.dart'; //
+import 'package:amca/domain/model/livestock/fish_husbandry/production.dart';
+import 'package:amca/ui/features/production/livestock/fish_husbandry/manage_production_fish_husbandry_vm.dart';
+import 'package:amca/ui/utils/amca_palette.dart';
+import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/calls_with_dialog.dart';
+import 'package:amca/ui/utils/constants.dart';
+import 'package:amca/ui/utils/dialogs.dart';
+import 'package:amca/ui/utils/extensions/string_extensions.dart';
+import 'package:amca/ui/widgets/amca_button.dart';
+import 'package:amca/ui/widgets/amca_date_picker_field.dart';
+import 'package:amca/ui/widgets/amca_select_form_field.dart';
+import 'package:amca/ui/widgets/amca_text_form_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ManageProductionPage extends StatefulWidget {
   static ChangeNotifierProvider<ManageProductionFishHusbandryVM> create({

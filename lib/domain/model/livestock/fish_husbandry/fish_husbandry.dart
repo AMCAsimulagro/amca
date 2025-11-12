@@ -36,6 +36,9 @@ class FishHusbandry with _$FishHusbandry implements ReportableEntity {
     String? uidOwner,
     String? comment,
     String? fishType,
+    String? pondLength,
+    String? pondWidth,
+    String? pondDepth,
     List<CostAndExpense>? costsAndExpenses,
     Production? production,
   }) = _FishHusbandry;
@@ -70,12 +73,27 @@ class FishHusbandry with _$FishHusbandry implements ReportableEntity {
     return totalCostAndExpense;
   }
 
+  /// Calcula el área a partir de dos valores de string (largo y ancho)
+  String _calculateAreaFromStrings(String? length, String? width) {
+    if (length == null || width == null) return '';
+    final lengthDouble = double.tryParse(length) ?? 0;
+    final widthDouble = double.tryParse(width) ?? 0;
+    final area = lengthDouble * widthDouble;
+    return area > 0 ? area.toStringAsFixed(2) : '';
+  }
+
   @override
   Map<String, dynamic> toReportData() => {
-        AmcaWords.livestockType: AmcaWords.fish, // Cambiado de meat → fish
+        AmcaWords.livestockType: AmcaWords.fish,
         AmcaWords.name: farmName,
         AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
         AmcaWords.fishNumber: numberAnimals,
+        if (fishType != null) 'Tipo de pez': fishType,
+        if (pondLength != null) AmcaWords.alongThePond: pondLength,
+        if (pondWidth != null) AmcaWords.pondWidth: pondWidth,
+        if (pondLength != null && pondWidth != null)
+          '${AmcaWords.pondArea} (${AmcaWords.fishCM})': _calculateAreaFromStrings(pondLength, pondWidth),
+        if (pondDepth != null) AmcaWords.pondDepth: pondDepth,
         AmcaWords.creationValue: value,
         if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
           AmcaWords.costsAndExpenses:

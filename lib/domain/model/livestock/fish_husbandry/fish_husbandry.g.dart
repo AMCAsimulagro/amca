@@ -17,6 +17,9 @@ _$FishHusbandryImpl _$$FishHusbandryImplFromJson(Map<String, dynamic> json) =>
       uidOwner: json['uidOwner'] as String?,
       comment: json['comment'] as String?,
       fishType: json['fishType'] as String?,
+      pondLength: json['pondLength'] as String?,
+      pondWidth: json['pondWidth'] as String?,
+      pondDepth: json['pondDepth'] as String?,
       costsAndExpenses: (json['costsAndExpenses'] as List<dynamic>?)
           ?.map((e) => CostAndExpense.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -36,6 +39,9 @@ Map<String, dynamic> _$$FishHusbandryImplToJson(_$FishHusbandryImpl instance) =>
       'uidOwner': instance.uidOwner,
       'comment': instance.comment,
       'fishType': instance.fishType,
+      'pondLength': instance.pondLength,
+      'pondWidth': instance.pondWidth,
+      'pondDepth': instance.pondDepth,
       'costsAndExpenses':
           instance.costsAndExpenses?.map((e) => e.toJson()).toList(),
       'production': instance.production?.toJson(),

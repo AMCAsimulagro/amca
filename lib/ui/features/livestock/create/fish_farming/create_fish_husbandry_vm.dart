@@ -3,10 +3,10 @@
 /// Contiene operaciones básicas: inicialización, creación/actualización, obtención y eliminación.
 library;
 
-import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart'; //
-import 'package:amca/dependecy_injection.dart'; //
-import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart'; //
-import 'package:flutter/cupertino.dart'; //
+import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart';
+import 'package:amca/dependecy_injection.dart';
+import 'package:amca/domain/model/livestock/fish_husbandry/fish_husbandry.dart';
+import 'package:flutter/cupertino.dart';
 
 /// ViewModel para crear y administrar actividades de piscicultura.
 class CreateFishHusbandryVM extends ChangeNotifier {

@@ -4,6 +4,7 @@
 /// predefined colors used in the Amca application.
 ///
 library;
+
 import 'package:flutter/material.dart';
 
 class AmcaPalette {
@@ -24,4 +25,5 @@ class AmcaPalette {
   static const meat = Color.fromARGB(255, 210, 180, 140);
   static const milk = Color.fromARGB(255, 0, 117, 180);
   static const pigFarmingColor = Color.fromARGB(255, 255, 182, 193);
+  static const fishFarmingColor = Color.fromARGB(202, 79, 162, 192);
 }

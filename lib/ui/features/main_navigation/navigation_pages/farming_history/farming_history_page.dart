@@ -226,6 +226,7 @@ class _FarmingHistoryPageState extends State<FarmingHistoryPage> {
       AmcaWords.meat => AmcaPalette.meat,
       AmcaWords.milk => AmcaPalette.milk,
       AmcaWords.pigFarming => AmcaPalette.pigFarmingColor,
+      AmcaWords.fishFarming => AmcaPalette.fishFarmingColor,
       _ => const Color.fromARGB(255, 210, 180, 140), // Default: Café claro
     };
   }

@@ -3,18 +3,18 @@
 /// gráficos de costos y gastos para el módulo de piscicultura.
 library;
 
-import 'package:amca/domain/model/bar_data_ui.dart'; //
-import 'package:amca/domain/model/pie_data_ui.dart'; //
-import 'package:amca/ui/features/charts_cost_expenses/fish_husbandry/charts_costs_expenses_vm_fish_a_h.dart'; //
-import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card.dart'; //
-import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart'; //
-import 'package:amca/ui/features/charts_cost_expenses/widgets/pie_indicator.dart'; //
-import 'package:amca/ui/utils/amca_palette.dart'; //
-import 'package:amca/ui/utils/amca_words.dart'; //
-import 'package:amca/ui/utils/extensions/string_extensions.dart'; //
-import 'package:fl_chart/fl_chart.dart'; //
-import 'package:flutter/material.dart'; //
-import 'package:provider/provider.dart'; //
+import 'package:amca/domain/model/bar_data_ui.dart';
+import 'package:amca/domain/model/pie_data_ui.dart';
+import 'package:amca/ui/features/charts_cost_expenses/fish_husbandry/charts_costs_expenses_vm_fish_a_h.dart';
+import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card.dart';
+import 'package:amca/ui/features/charts_cost_expenses/widgets/chart_card_vm.dart';
+import 'package:amca/ui/features/charts_cost_expenses/widgets/pie_indicator.dart';
+import 'package:amca/ui/utils/amca_palette.dart';
+import 'package:amca/ui/utils/amca_words.dart';
+import 'package:amca/ui/utils/extensions/string_extensions.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Widget para mostrar gráficos de costos y gastos de piscicultura.
 class ChartsCostsExpensesFishHusbandryPage extends StatefulWidget {

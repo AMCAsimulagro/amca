@@ -5,16 +5,16 @@ library;
 
 import 'dart:async';
 
-import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart'; //
-import 'package:amca/dependecy_injection.dart'; //
-import 'package:amca/domain/model/bar_data_ui.dart'; //
-import 'package:amca/domain/model/chart_data.dart'; //
-import 'package:amca/domain/model/cost_expense.dart'; //
-import 'package:amca/domain/model/pie_data_ui.dart'; //
-import 'package:amca/ui/utils/extensions/jiffy_extensions.dart'; //
-import 'package:flutter/cupertino.dart'; //
-import 'package:jiffy/jiffy.dart'; //
-import 'package:rxdart/rxdart.dart'; //
+import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart';
+import 'package:amca/dependecy_injection.dart';
+import 'package:amca/domain/model/bar_data_ui.dart';
+import 'package:amca/domain/model/chart_data.dart';
+import 'package:amca/domain/model/cost_expense.dart';
+import 'package:amca/domain/model/pie_data_ui.dart';
+import 'package:amca/ui/utils/extensions/jiffy_extensions.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// Tipo de datos para el gráfico
 enum ChartTypeData {
