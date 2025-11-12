@@ -23,7 +23,7 @@ part 'permanent_farming.freezed.dart';
 part 'permanent_farming.g.dart';
 
 @unfreezed
-class PermanentFarming with _$PermanentFarming implements ReportableEntity {
+abstract class PermanentFarming with _$PermanentFarming implements ReportableEntity {
   const PermanentFarming._();
 
   factory PermanentFarming({

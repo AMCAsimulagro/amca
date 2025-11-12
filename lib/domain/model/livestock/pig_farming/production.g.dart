@@ -6,11 +6,10 @@ part of 'production.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
-    _$ProductionImpl(
+_Production _$ProductionFromJson(Map<String, dynamic> json) => _Production(
       uidOwner: json['uidOwner'] as String?,
-      partName: json['partName'] as String?,
-      transitoryFarmingId: json['transitoryFarmingId'] as String,
+      farmName: json['farmName'] as String?,
+      pigFarmingId: json['pigFarmingId'] as String,
       createDate: DateTime.parse(json['createDate'] as String),
       unitOfMeasurement: json['unitOfMeasurement'] as String,
       quantity: json['quantity'] as String,
@@ -20,11 +19,11 @@ _$ProductionImpl _$$ProductionImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$ProductionImplToJson(_$ProductionImpl instance) =>
+Map<String, dynamic> _$ProductionToJson(_Production instance) =>
     <String, dynamic>{
       'uidOwner': instance.uidOwner,
-      'partName': instance.partName,
-      'transitoryFarmingId': instance.transitoryFarmingId,
+      'farmName': instance.farmName,
+      'pigFarmingId': instance.pigFarmingId,
       'createDate': instance.createDate.toIso8601String(),
       'unitOfMeasurement': instance.unitOfMeasurement,
       'quantity': instance.quantity,

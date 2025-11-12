@@ -11,6 +11,7 @@ import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/dialogs.dart';
 import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
+import 'package:amca/ui/features/livestock/create/pig_farming/manage_pig_farming_cost_and_expenses_page.dart';
 import 'package:flutter/material.dart';
 
 /// StatelessWidget for presenting options for different types of farming activities.
@@ -50,8 +51,15 @@ class LivestockTypePage extends StatelessWidget {
                     child: AmcaContainerButton(
                       text: AmcaWords.pigFarming,
                       onTap: () {
-                        Dialogs.showErrorDialogWithMessage(
-                            context, AmcaWords.buildingThis);
+                        // Dialogs.showErrorDialogWithMessage(
+                        //     context, AmcaWords.buildingThis);
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            ManagePigFarmingCostAndExpenses.create(),
+                      ),
+                    );
                       },
                     ),
                   ),

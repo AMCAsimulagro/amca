@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,135 +10,49 @@ part of 'amca_user.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AmcaUser _$AmcaUserFromJson(Map<String, dynamic> json) {
-  return _AmcaUser.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AmcaUser {
-  String get names => throw _privateConstructorUsedError;
-  set names(String value) => throw _privateConstructorUsedError;
-  String get firstLastName => throw _privateConstructorUsedError;
-  set firstLastName(String value) => throw _privateConstructorUsedError;
-  String get secondLastName => throw _privateConstructorUsedError;
-  set secondLastName(String value) => throw _privateConstructorUsedError;
-  String get identification => throw _privateConstructorUsedError;
-  String get state => throw _privateConstructorUsedError;
-  set state(String value) => throw _privateConstructorUsedError;
-  String get town => throw _privateConstructorUsedError;
-  set town(String value) => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  set email(String value) => throw _privateConstructorUsedError;
-  String? get uid => throw _privateConstructorUsedError;
-  set uid(String? value) => throw _privateConstructorUsedError;
-  bool? get isAdmin => throw _privateConstructorUsedError;
-  set isAdmin(bool? value) => throw _privateConstructorUsedError;
-
-  /// Serializes this AmcaUser to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get names;
+  set names(String value);
+  String get firstLastName;
+  set firstLastName(String value);
+  String get secondLastName;
+  set secondLastName(String value);
+  String get identification;
+  String get state;
+  set state(String value);
+  String get town;
+  set town(String value);
+  String get email;
+  set email(String value);
+  String? get uid;
+  set uid(String? value);
+  bool? get isAdmin;
+  set isAdmin(bool? value);
 
   /// Create a copy of AmcaUser
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AmcaUserCopyWith<AmcaUser> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AmcaUserCopyWith<$Res> {
-  factory $AmcaUserCopyWith(AmcaUser value, $Res Function(AmcaUser) then) =
-      _$AmcaUserCopyWithImpl<$Res, AmcaUser>;
-  @useResult
-  $Res call(
-      {String names,
-      String firstLastName,
-      String secondLastName,
-      String identification,
-      String state,
-      String town,
-      String email,
-      String? uid,
-      bool? isAdmin});
-}
-
-/// @nodoc
-class _$AmcaUserCopyWithImpl<$Res, $Val extends AmcaUser>
-    implements $AmcaUserCopyWith<$Res> {
-  _$AmcaUserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AmcaUser
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $AmcaUserCopyWith<AmcaUser> get copyWith =>
+      _$AmcaUserCopyWithImpl<AmcaUser>(this as AmcaUser, _$identity);
+
+  /// Serializes this AmcaUser to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? names = null,
-    Object? firstLastName = null,
-    Object? secondLastName = null,
-    Object? identification = null,
-    Object? state = null,
-    Object? town = null,
-    Object? email = null,
-    Object? uid = freezed,
-    Object? isAdmin = freezed,
-  }) {
-    return _then(_value.copyWith(
-      names: null == names
-          ? _value.names
-          : names // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstLastName: null == firstLastName
-          ? _value.firstLastName
-          : firstLastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondLastName: null == secondLastName
-          ? _value.secondLastName
-          : secondLastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      identification: null == identification
-          ? _value.identification
-          : identification // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
-      town: null == town
-          ? _value.town
-          : town // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      uid: freezed == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAdmin: freezed == isAdmin
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+  String toString() {
+    return 'AmcaUser(names: $names, firstLastName: $firstLastName, secondLastName: $secondLastName, identification: $identification, state: $state, town: $town, email: $email, uid: $uid, isAdmin: $isAdmin)';
   }
 }
 
 /// @nodoc
-abstract class _$$AmcaUserImplCopyWith<$Res>
-    implements $AmcaUserCopyWith<$Res> {
-  factory _$$AmcaUserImplCopyWith(
-          _$AmcaUserImpl value, $Res Function(_$AmcaUserImpl) then) =
-      __$$AmcaUserImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $AmcaUserCopyWith<$Res> {
+  factory $AmcaUserCopyWith(AmcaUser value, $Res Function(AmcaUser) _then) =
+      _$AmcaUserCopyWithImpl;
   @useResult
   $Res call(
       {String names,
@@ -152,12 +67,11 @@ abstract class _$$AmcaUserImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AmcaUserImplCopyWithImpl<$Res>
-    extends _$AmcaUserCopyWithImpl<$Res, _$AmcaUserImpl>
-    implements _$$AmcaUserImplCopyWith<$Res> {
-  __$$AmcaUserImplCopyWithImpl(
-      _$AmcaUserImpl _value, $Res Function(_$AmcaUserImpl) _then)
-      : super(_value, _then);
+class _$AmcaUserCopyWithImpl<$Res> implements $AmcaUserCopyWith<$Res> {
+  _$AmcaUserCopyWithImpl(this._self, this._then);
+
+  final AmcaUser _self;
+  final $Res Function(AmcaUser) _then;
 
   /// Create a copy of AmcaUser
   /// with the given fields replaced by the non-null parameter values.
@@ -174,41 +88,41 @@ class __$$AmcaUserImplCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? isAdmin = freezed,
   }) {
-    return _then(_$AmcaUserImpl(
+    return _then(_self.copyWith(
       names: null == names
-          ? _value.names
+          ? _self.names
           : names // ignore: cast_nullable_to_non_nullable
               as String,
       firstLastName: null == firstLastName
-          ? _value.firstLastName
+          ? _self.firstLastName
           : firstLastName // ignore: cast_nullable_to_non_nullable
               as String,
       secondLastName: null == secondLastName
-          ? _value.secondLastName
+          ? _self.secondLastName
           : secondLastName // ignore: cast_nullable_to_non_nullable
               as String,
       identification: null == identification
-          ? _value.identification
+          ? _self.identification
           : identification // ignore: cast_nullable_to_non_nullable
               as String,
       state: null == state
-          ? _value.state
+          ? _self.state
           : state // ignore: cast_nullable_to_non_nullable
               as String,
       town: null == town
-          ? _value.town
+          ? _self.town
           : town // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
-          ? _value.email
+          ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
       uid: freezed == uid
-          ? _value.uid
+          ? _self.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       isAdmin: freezed == isAdmin
-          ? _value.isAdmin
+          ? _self.isAdmin
           : isAdmin // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -217,8 +131,8 @@ class __$$AmcaUserImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AmcaUserImpl implements _AmcaUser {
-  _$AmcaUserImpl(
+class _AmcaUser implements AmcaUser {
+  _AmcaUser(
       {required this.names,
       required this.firstLastName,
       required this.secondLastName,
@@ -228,9 +142,8 @@ class _$AmcaUserImpl implements _AmcaUser {
       required this.email,
       this.uid,
       this.isAdmin = false});
-
-  factory _$AmcaUserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AmcaUserImplFromJson(json);
+  factory _AmcaUser.fromJson(Map<String, dynamic> json) =>
+      _$AmcaUserFromJson(json);
 
   @override
   String names;
@@ -252,73 +165,107 @@ class _$AmcaUserImpl implements _AmcaUser {
   @JsonKey()
   bool? isAdmin;
 
+  /// Create a copy of AmcaUser
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AmcaUserCopyWith<_AmcaUser> get copyWith =>
+      __$AmcaUserCopyWithImpl<_AmcaUser>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AmcaUserToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'AmcaUser(names: $names, firstLastName: $firstLastName, secondLastName: $secondLastName, identification: $identification, state: $state, town: $town, email: $email, uid: $uid, isAdmin: $isAdmin)';
   }
+}
+
+/// @nodoc
+abstract mixin class _$AmcaUserCopyWith<$Res>
+    implements $AmcaUserCopyWith<$Res> {
+  factory _$AmcaUserCopyWith(_AmcaUser value, $Res Function(_AmcaUser) _then) =
+      __$AmcaUserCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String names,
+      String firstLastName,
+      String secondLastName,
+      String identification,
+      String state,
+      String town,
+      String email,
+      String? uid,
+      bool? isAdmin});
+}
+
+/// @nodoc
+class __$AmcaUserCopyWithImpl<$Res> implements _$AmcaUserCopyWith<$Res> {
+  __$AmcaUserCopyWithImpl(this._self, this._then);
+
+  final _AmcaUser _self;
+  final $Res Function(_AmcaUser) _then;
 
   /// Create a copy of AmcaUser
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AmcaUserImplCopyWith<_$AmcaUserImpl> get copyWith =>
-      __$$AmcaUserImplCopyWithImpl<_$AmcaUserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AmcaUserImplToJson(
-      this,
-    );
+  $Res call({
+    Object? names = null,
+    Object? firstLastName = null,
+    Object? secondLastName = null,
+    Object? identification = null,
+    Object? state = null,
+    Object? town = null,
+    Object? email = null,
+    Object? uid = freezed,
+    Object? isAdmin = freezed,
+  }) {
+    return _then(_AmcaUser(
+      names: null == names
+          ? _self.names
+          : names // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstLastName: null == firstLastName
+          ? _self.firstLastName
+          : firstLastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      secondLastName: null == secondLastName
+          ? _self.secondLastName
+          : secondLastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      identification: null == identification
+          ? _self.identification
+          : identification // ignore: cast_nullable_to_non_nullable
+              as String,
+      state: null == state
+          ? _self.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String,
+      town: null == town
+          ? _self.town
+          : town // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: freezed == uid
+          ? _self.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAdmin: freezed == isAdmin
+          ? _self.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
   }
 }
 
-abstract class _AmcaUser implements AmcaUser {
-  factory _AmcaUser(
-      {required String names,
-      required String firstLastName,
-      required String secondLastName,
-      required final String identification,
-      required String state,
-      required String town,
-      required String email,
-      String? uid,
-      bool? isAdmin}) = _$AmcaUserImpl;
-
-  factory _AmcaUser.fromJson(Map<String, dynamic> json) =
-      _$AmcaUserImpl.fromJson;
-
-  @override
-  String get names;
-  set names(String value);
-  @override
-  String get firstLastName;
-  set firstLastName(String value);
-  @override
-  String get secondLastName;
-  set secondLastName(String value);
-  @override
-  String get identification;
-  @override
-  String get state;
-  set state(String value);
-  @override
-  String get town;
-  set town(String value);
-  @override
-  String get email;
-  set email(String value);
-  @override
-  String? get uid;
-  set uid(String? value);
-  @override
-  bool? get isAdmin;
-  set isAdmin(bool? value);
-
-  /// Create a copy of AmcaUser
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AmcaUserImplCopyWith<_$AmcaUserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

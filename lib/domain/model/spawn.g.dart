@@ -6,11 +6,10 @@ part of 'spawn.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SpawnImpl _$$SpawnImplFromJson(Map<String, dynamic> json) => _$SpawnImpl(
+_Spawn _$SpawnFromJson(Map<String, dynamic> json) => _Spawn(
       tipo: (json['tipo'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$SpawnImplToJson(_$SpawnImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SpawnToJson(_Spawn instance) => <String, dynamic>{
       'tipo': instance.tipo,
     };

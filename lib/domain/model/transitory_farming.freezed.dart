@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,63 +10,62 @@ part of 'transitory_farming.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TransitoryFarming _$TransitoryFarmingFromJson(Map<String, dynamic> json) {
-  return _TransitoryFarming.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TransitoryFarming {
-  String? get id => throw _privateConstructorUsedError;
-  set id(String? value) => throw _privateConstructorUsedError;
-  DateTime get createDate => throw _privateConstructorUsedError;
-  set createDate(DateTime value) => throw _privateConstructorUsedError;
-  String get partName => throw _privateConstructorUsedError;
-  set partName(String value) => throw _privateConstructorUsedError;
-  String get cropType => throw _privateConstructorUsedError;
-  set cropType(String value) => throw _privateConstructorUsedError;
-  String get crop => throw _privateConstructorUsedError;
-  set crop(String value) => throw _privateConstructorUsedError;
-  String get sownArea => throw _privateConstructorUsedError;
-  set sownArea(String value) => throw _privateConstructorUsedError;
-  String get sownType => throw _privateConstructorUsedError;
-  set sownType(String value) => throw _privateConstructorUsedError;
-  String get format => throw _privateConstructorUsedError;
-  set format(String value) => throw _privateConstructorUsedError;
-  String get amountSown => throw _privateConstructorUsedError;
-  set amountSown(String value) => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
-  set value(String value) => throw _privateConstructorUsedError;
-  String? get uidOwner => throw _privateConstructorUsedError;
-  set uidOwner(String? value) => throw _privateConstructorUsedError;
-  String? get comment => throw _privateConstructorUsedError;
-  set comment(String? value) => throw _privateConstructorUsedError;
-  List<CostAndExpense>? get costsAndExpenses =>
-      throw _privateConstructorUsedError;
-  set costsAndExpenses(List<CostAndExpense>? value) =>
-      throw _privateConstructorUsedError;
-  Production? get production => throw _privateConstructorUsedError;
-  set production(Production? value) => throw _privateConstructorUsedError;
-
-  /// Serializes this TransitoryFarming to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get id;
+  set id(String? value);
+  DateTime get createDate;
+  set createDate(DateTime value);
+  String get partName;
+  set partName(String value);
+  String get cropType;
+  set cropType(String value);
+  String get crop;
+  set crop(String value);
+  String get sownArea;
+  set sownArea(String value);
+  String get sownType;
+  set sownType(String value);
+  String get format;
+  set format(String value);
+  String get amountSown;
+  set amountSown(String value);
+  String get value;
+  set value(String value);
+  String? get uidOwner;
+  set uidOwner(String? value);
+  String? get comment;
+  set comment(String? value);
+  List<CostAndExpense>? get costsAndExpenses;
+  set costsAndExpenses(List<CostAndExpense>? value);
+  Production? get production;
+  set production(Production? value);
 
   /// Create a copy of TransitoryFarming
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TransitoryFarmingCopyWith<TransitoryFarming> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$TransitoryFarmingCopyWithImpl<TransitoryFarming>(
+          this as TransitoryFarming, _$identity);
+
+  /// Serializes this TransitoryFarming to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
+  }
 }
 
 /// @nodoc
-abstract class $TransitoryFarmingCopyWith<$Res> {
+abstract mixin class $TransitoryFarmingCopyWith<$Res> {
   factory $TransitoryFarmingCopyWith(
-          TransitoryFarming value, $Res Function(TransitoryFarming) then) =
-      _$TransitoryFarmingCopyWithImpl<$Res, TransitoryFarming>;
+          TransitoryFarming value, $Res Function(TransitoryFarming) _then) =
+      _$TransitoryFarmingCopyWithImpl;
   @useResult
   $Res call(
       {String? id,
@@ -87,14 +87,12 @@ abstract class $TransitoryFarmingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
+class _$TransitoryFarmingCopyWithImpl<$Res>
     implements $TransitoryFarmingCopyWith<$Res> {
-  _$TransitoryFarmingCopyWithImpl(this._value, this._then);
+  _$TransitoryFarmingCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TransitoryFarming _self;
+  final $Res Function(TransitoryFarming) _then;
 
   /// Create a copy of TransitoryFarming
   /// with the given fields replaced by the non-null parameter values.
@@ -116,64 +114,64 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
     Object? costsAndExpenses = freezed,
     Object? production = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: freezed == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
       createDate: null == createDate
-          ? _value.createDate
+          ? _self.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       partName: null == partName
-          ? _value.partName
+          ? _self.partName
           : partName // ignore: cast_nullable_to_non_nullable
               as String,
       cropType: null == cropType
-          ? _value.cropType
+          ? _self.cropType
           : cropType // ignore: cast_nullable_to_non_nullable
               as String,
       crop: null == crop
-          ? _value.crop
+          ? _self.crop
           : crop // ignore: cast_nullable_to_non_nullable
               as String,
       sownArea: null == sownArea
-          ? _value.sownArea
+          ? _self.sownArea
           : sownArea // ignore: cast_nullable_to_non_nullable
               as String,
       sownType: null == sownType
-          ? _value.sownType
+          ? _self.sownType
           : sownType // ignore: cast_nullable_to_non_nullable
               as String,
       format: null == format
-          ? _value.format
+          ? _self.format
           : format // ignore: cast_nullable_to_non_nullable
               as String,
       amountSown: null == amountSown
-          ? _value.amountSown
+          ? _self.amountSown
           : amountSown // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
       uidOwner: freezed == uidOwner
-          ? _value.uidOwner
+          ? _self.uidOwner
           : uidOwner // ignore: cast_nullable_to_non_nullable
               as String?,
       comment: freezed == comment
-          ? _value.comment
+          ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       costsAndExpenses: freezed == costsAndExpenses
-          ? _value.costsAndExpenses
+          ? _self.costsAndExpenses
           : costsAndExpenses // ignore: cast_nullable_to_non_nullable
               as List<CostAndExpense>?,
       production: freezed == production
-          ? _value.production
+          ? _self.production
           : production // ignore: cast_nullable_to_non_nullable
               as Production?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of TransitoryFarming
@@ -181,137 +179,20 @@ class _$TransitoryFarmingCopyWithImpl<$Res, $Val extends TransitoryFarming>
   @override
   @pragma('vm:prefer-inline')
   $ProductionCopyWith<$Res>? get production {
-    if (_value.production == null) {
+    if (_self.production == null) {
       return null;
     }
 
-    return $ProductionCopyWith<$Res>(_value.production!, (value) {
-      return _then(_value.copyWith(production: value) as $Val);
+    return $ProductionCopyWith<$Res>(_self.production!, (value) {
+      return _then(_self.copyWith(production: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$TransitoryFarmingImplCopyWith<$Res>
-    implements $TransitoryFarmingCopyWith<$Res> {
-  factory _$$TransitoryFarmingImplCopyWith(_$TransitoryFarmingImpl value,
-          $Res Function(_$TransitoryFarmingImpl) then) =
-      __$$TransitoryFarmingImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? id,
-      DateTime createDate,
-      String partName,
-      String cropType,
-      String crop,
-      String sownArea,
-      String sownType,
-      String format,
-      String amountSown,
-      String value,
-      String? uidOwner,
-      String? comment,
-      List<CostAndExpense>? costsAndExpenses,
-      Production? production});
-
-  @override
-  $ProductionCopyWith<$Res>? get production;
-}
-
-/// @nodoc
-class __$$TransitoryFarmingImplCopyWithImpl<$Res>
-    extends _$TransitoryFarmingCopyWithImpl<$Res, _$TransitoryFarmingImpl>
-    implements _$$TransitoryFarmingImplCopyWith<$Res> {
-  __$$TransitoryFarmingImplCopyWithImpl(_$TransitoryFarmingImpl _value,
-      $Res Function(_$TransitoryFarmingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TransitoryFarming
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? createDate = null,
-    Object? partName = null,
-    Object? cropType = null,
-    Object? crop = null,
-    Object? sownArea = null,
-    Object? sownType = null,
-    Object? format = null,
-    Object? amountSown = null,
-    Object? value = null,
-    Object? uidOwner = freezed,
-    Object? comment = freezed,
-    Object? costsAndExpenses = freezed,
-    Object? production = freezed,
-  }) {
-    return _then(_$TransitoryFarmingImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      partName: null == partName
-          ? _value.partName
-          : partName // ignore: cast_nullable_to_non_nullable
-              as String,
-      cropType: null == cropType
-          ? _value.cropType
-          : cropType // ignore: cast_nullable_to_non_nullable
-              as String,
-      crop: null == crop
-          ? _value.crop
-          : crop // ignore: cast_nullable_to_non_nullable
-              as String,
-      sownArea: null == sownArea
-          ? _value.sownArea
-          : sownArea // ignore: cast_nullable_to_non_nullable
-              as String,
-      sownType: null == sownType
-          ? _value.sownType
-          : sownType // ignore: cast_nullable_to_non_nullable
-              as String,
-      format: null == format
-          ? _value.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as String,
-      amountSown: null == amountSown
-          ? _value.amountSown
-          : amountSown // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      uidOwner: freezed == uidOwner
-          ? _value.uidOwner
-          : uidOwner // ignore: cast_nullable_to_non_nullable
-              as String?,
-      comment: freezed == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
-      costsAndExpenses: freezed == costsAndExpenses
-          ? _value.costsAndExpenses
-          : costsAndExpenses // ignore: cast_nullable_to_non_nullable
-              as List<CostAndExpense>?,
-      production: freezed == production
-          ? _value.production
-          : production // ignore: cast_nullable_to_non_nullable
-              as Production?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$TransitoryFarmingImpl extends _TransitoryFarming {
-  _$TransitoryFarmingImpl(
+class _TransitoryFarming extends TransitoryFarming {
+  _TransitoryFarming(
       {this.id,
       required this.createDate,
       required this.partName,
@@ -327,9 +208,8 @@ class _$TransitoryFarmingImpl extends _TransitoryFarming {
       this.costsAndExpenses,
       this.production})
       : super._();
-
-  factory _$TransitoryFarmingImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TransitoryFarmingImplFromJson(json);
+  factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =>
+      _$TransitoryFarmingFromJson(json);
 
   @override
   String? id;
@@ -360,96 +240,156 @@ class _$TransitoryFarmingImpl extends _TransitoryFarming {
   @override
   Production? production;
 
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TransitoryFarmingCopyWith<_TransitoryFarming> get copyWith =>
+      __$TransitoryFarmingCopyWithImpl<_TransitoryFarming>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TransitoryFarmingToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'TransitoryFarming(id: $id, createDate: $createDate, partName: $partName, cropType: $cropType, crop: $crop, sownArea: $sownArea, sownType: $sownType, format: $format, amountSown: $amountSown, value: $value, uidOwner: $uidOwner, comment: $comment, costsAndExpenses: $costsAndExpenses, production: $production)';
   }
-
-  /// Create a copy of TransitoryFarming
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TransitoryFarmingImplCopyWith<_$TransitoryFarmingImpl> get copyWith =>
-      __$$TransitoryFarmingImplCopyWithImpl<_$TransitoryFarmingImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TransitoryFarmingImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _TransitoryFarming extends TransitoryFarming {
-  factory _TransitoryFarming(
+/// @nodoc
+abstract mixin class _$TransitoryFarmingCopyWith<$Res>
+    implements $TransitoryFarmingCopyWith<$Res> {
+  factory _$TransitoryFarmingCopyWith(
+          _TransitoryFarming value, $Res Function(_TransitoryFarming) _then) =
+      __$TransitoryFarmingCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
       {String? id,
-      required DateTime createDate,
-      required String partName,
-      required String cropType,
-      required String crop,
-      required String sownArea,
-      required String sownType,
-      required String format,
-      required String amountSown,
-      required String value,
+      DateTime createDate,
+      String partName,
+      String cropType,
+      String crop,
+      String sownArea,
+      String sownType,
+      String format,
+      String amountSown,
+      String value,
       String? uidOwner,
       String? comment,
       List<CostAndExpense>? costsAndExpenses,
-      Production? production}) = _$TransitoryFarmingImpl;
-  _TransitoryFarming._() : super._();
-
-  factory _TransitoryFarming.fromJson(Map<String, dynamic> json) =
-      _$TransitoryFarmingImpl.fromJson;
+      Production? production});
 
   @override
-  String? get id;
-  set id(String? value);
-  @override
-  DateTime get createDate;
-  set createDate(DateTime value);
-  @override
-  String get partName;
-  set partName(String value);
-  @override
-  String get cropType;
-  set cropType(String value);
-  @override
-  String get crop;
-  set crop(String value);
-  @override
-  String get sownArea;
-  set sownArea(String value);
-  @override
-  String get sownType;
-  set sownType(String value);
-  @override
-  String get format;
-  set format(String value);
-  @override
-  String get amountSown;
-  set amountSown(String value);
-  @override
-  String get value;
-  set value(String value);
-  @override
-  String? get uidOwner;
-  set uidOwner(String? value);
-  @override
-  String? get comment;
-  set comment(String? value);
-  @override
-  List<CostAndExpense>? get costsAndExpenses;
-  set costsAndExpenses(List<CostAndExpense>? value);
-  @override
-  Production? get production;
-  set production(Production? value);
+  $ProductionCopyWith<$Res>? get production;
+}
+
+/// @nodoc
+class __$TransitoryFarmingCopyWithImpl<$Res>
+    implements _$TransitoryFarmingCopyWith<$Res> {
+  __$TransitoryFarmingCopyWithImpl(this._self, this._then);
+
+  final _TransitoryFarming _self;
+  final $Res Function(_TransitoryFarming) _then;
 
   /// Create a copy of TransitoryFarming
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransitoryFarmingImplCopyWith<_$TransitoryFarmingImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? createDate = null,
+    Object? partName = null,
+    Object? cropType = null,
+    Object? crop = null,
+    Object? sownArea = null,
+    Object? sownType = null,
+    Object? format = null,
+    Object? amountSown = null,
+    Object? value = null,
+    Object? uidOwner = freezed,
+    Object? comment = freezed,
+    Object? costsAndExpenses = freezed,
+    Object? production = freezed,
+  }) {
+    return _then(_TransitoryFarming(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createDate: null == createDate
+          ? _self.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      partName: null == partName
+          ? _self.partName
+          : partName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cropType: null == cropType
+          ? _self.cropType
+          : cropType // ignore: cast_nullable_to_non_nullable
+              as String,
+      crop: null == crop
+          ? _self.crop
+          : crop // ignore: cast_nullable_to_non_nullable
+              as String,
+      sownArea: null == sownArea
+          ? _self.sownArea
+          : sownArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      sownType: null == sownType
+          ? _self.sownType
+          : sownType // ignore: cast_nullable_to_non_nullable
+              as String,
+      format: null == format
+          ? _self.format
+          : format // ignore: cast_nullable_to_non_nullable
+              as String,
+      amountSown: null == amountSown
+          ? _self.amountSown
+          : amountSown // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      uidOwner: freezed == uidOwner
+          ? _self.uidOwner
+          : uidOwner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: freezed == comment
+          ? _self.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+      costsAndExpenses: freezed == costsAndExpenses
+          ? _self.costsAndExpenses
+          : costsAndExpenses // ignore: cast_nullable_to_non_nullable
+              as List<CostAndExpense>?,
+      production: freezed == production
+          ? _self.production
+          : production // ignore: cast_nullable_to_non_nullable
+              as Production?,
+    ));
+  }
+
+  /// Create a copy of TransitoryFarming
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCopyWith<$Res>? get production {
+    if (_self.production == null) {
+      return null;
+    }
+
+    return $ProductionCopyWith<$Res>(_self.production!, (value) {
+      return _then(_self.copyWith(production: value));
+    });
+  }
 }
+
+// dart format on

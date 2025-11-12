@@ -142,8 +142,12 @@ class PigFarmingApiAdapter implements PigFarmingApi {
         id: costExpenseId,
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
       );
-
-      costExpenseList.add(costExpenseToUpload);
+      int index = costExpenseList.indexWhere((element) => element.id == costExpenseId);
+      if (index != -1) {
+        costExpenseList[index] = costExpenseToUpload;
+      } else {
+        costExpenseList.add(costExpenseToUpload);
+      }
       final updatedFarming = farming.copyWith(costsAndExpenses: costExpenseList);
       await createPigFarming(updatedFarming);
       return costExpenseToUpload;
@@ -180,15 +184,12 @@ class PigFarmingApiAdapter implements PigFarmingApi {
     required PigFarming farming,
   }) async {
     try {
-      final productionList = farming.production ?? [];
       final productionId = production.id ?? const Uuid().v4();
       final productionToUpload = production.copyWith(
         id: productionId,
         uidOwner: _firebaseAuth.currentUser?.uid ?? '',
       );
-
-      productionList.add(productionToUpload);
-      final updatedFarming = farming.copyWith(production: productionList);
+      final updatedFarming = farming.copyWith(production: production);
       await createPigFarming(updatedFarming);
       return productionToUpload;
     } on FirebaseAuthException catch (e) {
@@ -204,11 +205,12 @@ class PigFarmingApiAdapter implements PigFarmingApi {
     required PigFarming farming,
   }) async {
     try {
-      final productionList = farming.production
-          ?.where((element) => element.id != productionId)
-          .toList();
+      // TODO: Revisar si es lista o un solo objeto
+      // final productionList = farming.production
+      //     ?.where((element) => element.id != productionId)
+      //     .toList();
 
-      final updatedFarming = farming.copyWith(production: productionList);
+      final updatedFarming = farming.copyWith(production: farming.production);
       await createPigFarming(updatedFarming);
       return null;
     } on FirebaseAuthException catch (e) {

@@ -6,15 +6,14 @@ part of 'crop_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CropTypesImpl _$$CropTypesImplFromJson(Map<String, dynamic> json) =>
-    _$CropTypesImpl(
+_CropTypes _$CropTypesFromJson(Map<String, dynamic> json) => _CropTypes(
       cultivo:
           (json['cultivo'] as List<dynamic>).map((e) => e as String).toList(),
       tipo: json['tipo'] as String,
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$CropTypesImplToJson(_$CropTypesImpl instance) =>
+Map<String, dynamic> _$CropTypesToJson(_CropTypes instance) =>
     <String, dynamic>{
       'cultivo': instance.cultivo,
       'tipo': instance.tipo,

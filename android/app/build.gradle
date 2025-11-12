@@ -67,8 +67,8 @@ android {
 
     defaultConfig {
         applicationId "com.simlagro.amca"
-        minSdkVersion 23
-        targetSdkVersion 34
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
