@@ -88,8 +88,9 @@ class AllAreaProductionsVm extends ChangeNotifier {
     selectedCity = cities.isNotEmpty ? cities.first : null;
     cityController.text = selectedCity ?? '';
 
-    selectedProductType = productTypes.first;
-    productTypeController.text = selectedProductType!;
+  // No product selected by default (placeholder shown in options).
+  selectedProductType = null;
+  productTypeController.text = '';
 
     // cargar métricas iniciales (vacías)
     metrics = {};
@@ -107,6 +108,15 @@ class AllAreaProductionsVm extends ChangeNotifier {
   }
 
   void selectProductType(String type) {
+    // If user selects placeholder, clear selection and metrics and do not load.
+    if (type == productTypes.first) {
+      selectedProductType = null;
+      productTypeController.text = '';
+      metrics = {};
+      notifyListeners();
+      return;
+    }
+
     selectedProductType = type;
     productTypeController.text = type;
     notifyListeners();

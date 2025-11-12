@@ -74,8 +74,9 @@ class AllAreaProductionsPage extends StatelessWidget {
 
                 // Botón para refrescar métricas
                 AmcaButton(
-                  text: vm.isLoading ? 'Cargando...' : 'Refrescar métricas',
-                  onPressed: vm.isLoading ? null : () => vm.loadMetrics(),
+                  text: vm.selectedProductType == null
+                      ? 'Seleccione tipo' : (vm.isLoading ? 'Cargando...' : 'Refrescar métricas'),
+                  onPressed: (vm.isLoading || vm.selectedProductType == null) ? null : () => vm.loadMetrics(),
                 ),
 
                 const SizedBox(height: 16),
@@ -119,6 +120,11 @@ class _MetricsArea extends StatelessWidget {
           ),
         ],
       );
+    }
+
+    // If no production type selected, render nothing below the filters.
+    if (vm.selectedProductType == null) {
+      return const SizedBox.shrink();
     }
 
     if (vm.metrics.isEmpty) {
