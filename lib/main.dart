@@ -35,6 +35,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FlutterNativeSplash.remove();
+  // TODO: validate
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   DependecyInjection.registerInjections();
   await Jiffy.setLocale('es');
   runApp(const MyApp());
