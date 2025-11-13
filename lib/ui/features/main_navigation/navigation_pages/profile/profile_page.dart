@@ -4,6 +4,7 @@ import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming/all_farming_history_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_farming_info/all_farming_info_page.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/all_users/all_users_page.dart';
+import 'package:amca/ui/features/main_navigation/navigation_pages/profile/admin_profile/fishes_admin/fishes_admin.dart';
 import 'package:amca/ui/features/main_navigation/navigation_pages/profile/profile_vm.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
@@ -248,6 +249,22 @@ class _AdminOptions extends StatelessWidget {
             );
           },
         ),
+        ListTile(
+          leading: const Icon(
+            Icons.area_chart,
+            color: Colors.black,
+          ),
+          title: const Text(
+            "Tipos de pez",
+          ),
+          onTap: () async {
+            NavigationHelper.push(
+              FishesAdminPage.create(),
+              context,
+            );
+          },
+        )
+        ,
         ListTile(
           leading: const Icon(
             Icons.analytics,

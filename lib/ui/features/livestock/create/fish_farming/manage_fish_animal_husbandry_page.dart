@@ -29,6 +29,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:amca/dependecy_injection.dart';
+import 'package:amca/data/repository/fish_types_repository.dart';
 
 /// StatefulWidget for creating and managing permanent farming activities.
 class ManageFishHusbandry extends StatefulWidget {
@@ -81,18 +83,37 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
   String createdDate = '';
   String? _selectedFishType;
   final TextEditingController _fishTypeController = TextEditingController();
-  static const List<String> _fishTypesList = [
-    'Bocachico',
-    'Bagre',
-    'Capaz',
-    'Nicuro',
-    'Yamu',
-    'Cachama',
-    'Tambaqui',
-    'Tilapia',
-    'Trucha',
-    'Mojarra',
-  ];
+  List<String> _fishTypesList = [];
+
+  Future<void> _loadFishTypes() async {
+    try {
+      final repo = locator<FishTypesRepository>();
+      final list = await repo.getFishTypes();
+      _fishTypesList = list.map((e) => e.name).toList();
+      // if editing an existing husbandry, ensure its fish type is present and selected
+      final existing = widget.fishHusbandry?.fishType;
+      if (existing != null && !_fishTypesList.contains(existing)) {
+        // this value comes from the record being edited, keep it so the UI can show it
+        _fishTypesList.add(existing);
+        _selectedFishType = existing;
+        _fishTypeController.text = existing;
+      } else if (existing != null) {
+        // already present in the list
+        _selectedFishType ??= existing;
+        _fishTypeController.text = existing;
+      }
+
+      // If navigation provided a default fishType (e.g. from the options page), only
+      // pre-select it if it actually exists in the repository list. Do NOT add it
+      // to the list automatically (avoids showing 'Pescado' when it's not in DB).
+      if (widget.fishType != null && _fishTypesList.contains(widget.fishType)) {
+        _selectedFishType ??= widget.fishType;
+        _fishTypeController.text = widget.fishType!;
+      }
+
+      setState(() {});
+    } catch (_) {}
+  }
 
   String _formatNumber(String s) =>
       NumberFormat.decimalPattern(_locale).format(int.parse(s));
@@ -114,6 +135,7 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
   @override
   void initState() {
     _preloadData();
+    _loadFishTypes();
     // Agregar listeners para recalcular área cuando cambien largo o ancho
     _pondLengthController.addListener(_calculatePondArea);
     _pondDepthController.addListener(_calculatePondArea);
@@ -573,10 +595,15 @@ class _ManageFishHusbandryState extends State<ManageFishHusbandry> {
       _pondLengthController.text = preloadFishHusbandry?.pondLength ?? '';
       _pondWidthController.text = preloadFishHusbandry?.pondWidth ?? '';
       _pondDepthController.text = preloadFishHusbandry?.pondDepth ?? '';
+      // set selected fish type even if the list hasn't been loaded yet. The
+      // loading routine will ensure the list contains this value later.
       _selectedFishType = preloadFishHusbandry?.fishType ?? _selectedFishType;
-      if (preloadFishHusbandry?.fishType != null &&
-          _fishTypesList.contains(preloadFishHusbandry?.fishType)) {
-        _fishTypeController.text = preloadFishHusbandry?.fishType ?? '';
+      if (preloadFishHusbandry?.fishType != null) {
+        final value = preloadFishHusbandry!.fishType!;
+        if (!_fishTypesList.contains(value)) {
+          _fishTypesList.add(value);
+        }
+        _fishTypeController.text = value;
       }
       createdDate = DateFormat('yyyy-MM-dd')
           .format(preloadFishHusbandry?.createDate ?? DateTime.now());
