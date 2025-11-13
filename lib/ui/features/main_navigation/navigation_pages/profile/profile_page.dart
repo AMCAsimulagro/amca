@@ -251,11 +251,11 @@ class _AdminOptions extends StatelessWidget {
         ),
         ListTile(
           leading: const Icon(
-            Icons.area_chart,
+            Icons.pets_sharp,
             color: Colors.black,
           ),
           title: const Text(
-            "Tipos de pez",
+            "Tipos de peces",
           ),
           onTap: () async {
             NavigationHelper.push(
