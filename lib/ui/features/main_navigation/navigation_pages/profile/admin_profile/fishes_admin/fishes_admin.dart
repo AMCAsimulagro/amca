@@ -25,7 +25,7 @@ class FishesAdminPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Administrar especies de pez'),
+        title: const Text('Administrar especies piscicolas'),
         backgroundColor: AmcaPalette.lightGreen,
       ),
       body: Consumer<FishesAdminVM>(builder: (context, vm, _) {
