@@ -53,17 +53,20 @@ class LoginPage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => RegisterPage.create()));
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  AmcaWords.doNotHaveAnAccount,
-                  style: TextStyle(
-                    color: Colors.white,
+            child: SafeArea(
+              bottom: true,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => RegisterPage.create()));
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    AmcaWords.doNotHaveAnAccount,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

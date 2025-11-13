@@ -69,7 +69,7 @@ android {
         applicationId "com.simlagro.amca"
         // minSdkVersion flutter.minSdkVersion
         minSdkVersion flutter.minSdkVersion
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
