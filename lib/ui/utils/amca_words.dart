@@ -309,6 +309,7 @@ class AmcaWords {
       'Tu registro ha sido creado';
   static const String areYouSureToDeleteThisAnimalHusbandry =
       '¿Desea eliminar este registro?';
+  static const String meatCM = 'M²';
 
   // Words submodulo Porcicultura
   static const String farmName = 'Nombre de la Finca';

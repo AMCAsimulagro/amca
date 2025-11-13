@@ -74,12 +74,13 @@ abstract class FishHusbandry with _$FishHusbandry implements ReportableEntity {
     return totalCostAndExpense;
   }
 
-  /// Calcula el área a partir de dos valores de string (largo y ancho)
-  String _calculateAreaFromStrings(String? length, String? width) {
+  /// Calcula el volumen a partir de tres valores de string (largo y ancho)
+  String _calculateAreaFromStrings(String? length, String? width, String? depth) {
     if (length == null || width == null) return '';
     final lengthDouble = double.tryParse(length) ?? 0;
     final widthDouble = double.tryParse(width) ?? 0;
-    final area = lengthDouble * widthDouble;
+    final depthDouble = double.tryParse(depth!) ?? 0;
+    final area = lengthDouble * widthDouble * depthDouble;
     return area > 0 ? area.toStringAsFixed(2) : '';
   }
 
@@ -92,8 +93,8 @@ abstract class FishHusbandry with _$FishHusbandry implements ReportableEntity {
         if (fishType != null) 'Tipo de pez': fishType,
         if (pondLength != null) AmcaWords.alongThePond: pondLength,
         if (pondWidth != null) AmcaWords.pondWidth: pondWidth,
-        if (pondLength != null && pondWidth != null)
-          '${AmcaWords.pondVolume} (${AmcaWords.fishCM})': _calculateAreaFromStrings(pondLength, pondWidth),
+        if (pondLength != null && pondWidth != null && pondDepth != null)
+          '${AmcaWords.pondVolume} (${AmcaWords.fishCM})': _calculateAreaFromStrings(pondLength, pondWidth, pondDepth),
         if (pondDepth != null) AmcaWords.pondDepth: pondDepth,
         AmcaWords.creationValue: value,
         if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)

@@ -175,10 +175,25 @@ class AnimalHusbandryApiAdapter implements AnimalHusbandryApi {
   @override
   Future<void> deleteAnimalHusbandry(String id) async {
     try {
-      return await _firebaseDb
-          .collection(FirebaseCollections.milkAnimalHusbandry)
-          .doc(id)
-          .delete();
+      // Try to delete from meat collection first. If not exists there,
+      // try to delete from milk collection. This covers both types of
+      // animal husbandry stored in different collections.
+      final meatDocRef = _firebaseDb.collection(FirebaseCollections.meatAnimalHusbandry).doc(id);
+      final meatSnapshot = await meatDocRef.get();
+      if (meatSnapshot.exists) {
+        await meatDocRef.delete();
+        return;
+      }
+
+      final milkDocRef = _firebaseDb.collection(FirebaseCollections.milkAnimalHusbandry).doc(id);
+      final milkSnapshot = await milkDocRef.get();
+      if (milkSnapshot.exists) {
+        await milkDocRef.delete();
+        return;
+      }
+
+      // If neither exist, throw a not-found style exception so caller can handle it.
+      throw AppException(codeError: Constants.generalError);
     } on FirebaseAuthException catch (e) {
       throw AppException(message: e.message, codeError: e.code);
     } catch (e) {

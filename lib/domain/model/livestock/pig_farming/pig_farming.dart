@@ -79,6 +79,7 @@ with _$PigFarming
         AmcaWords.creationDate: DateFormat('dd/MM/yyyy').format(createDate),
         AmcaWords.animalNumber: numberAnimals,
         AmcaWords.creationValue: value,
+        if (null != area) AmcaWords.area:  "$area ${AmcaWords.pigCM}",
         if (null != costsAndExpenses && costsAndExpenses!.isNotEmpty)
           AmcaWords.costsAndExpenses:
               costsAndExpenses?.map((ce) => ce.toReportData()).toList(),
