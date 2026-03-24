@@ -5,10 +5,11 @@
 library;
 
 /// Imports of Bookstores and Resources
-import 'package:amca/ui/features/farming/create/manage_transitory_farming_page.dart';
+import 'package:amca/ui/features/livestock/option/poultry/fattening/poultry_fattening_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/dialogs.dart';
+import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:amca/ui/widgets/amca_container_button.dart';
 import 'package:flutter/material.dart';
 
@@ -43,8 +44,10 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.fatten,
                   onTap: () {
-                    Dialogs.showErrorDialogWithMessage(
-                        context, AmcaWords.buildingThis);
+                    NavigationHelper.push(
+                      const PoultryFatteningPage(),
+                      context,
+                    );
                   },
                 ),
               ),

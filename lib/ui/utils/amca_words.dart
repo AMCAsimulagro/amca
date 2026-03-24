@@ -339,4 +339,23 @@ class AmcaWords {
   static const String pondVolume = 'Volumen del estanque';
   static const String fishCM = 'M³';
   static const String typeOfFish = 'Tipo de pez';
+
+  // Words submodulo Avicola - Engorde
+  static const String poultryFattening = 'Pollo de Engorde';
+  static const String batchName = 'Nombre del Lote/Galpón';
+  static const String initialQuantity = 'Cantidad Inicial';
+  static const String breed = 'Raza';
+  static const String startDate = 'Fecha de Inicio';
+  static const String currentQuantity = 'Aves actuales';
+  static const String mortality = 'Mortalidad';
+  static const String averageWeight = 'Peso Promedio';
+  static const String feedConsumed = 'Alimento Consumido';
+  static const String ica = 'ICA';
+  static const String weeklyRecord = 'Registro Semanal';
+  static const String addWeeklyRecord = 'Agregar Registro';
+  static const String tracking = 'Seguimiento';
+  static const String batchDetail = 'Detalle del Lote';
+  static const String noBatches = 'No hay lotes registrados';
+  static const String createBatch = 'Crear Lote';
+  static const String week = 'Semana';
 }
