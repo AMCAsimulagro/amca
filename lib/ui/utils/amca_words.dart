@@ -345,17 +345,30 @@ class AmcaWords {
   static const String batchName = 'Nombre del Lote/Galpón';
   static const String initialQuantity = 'Cantidad Inicial';
   static const String breed = 'Raza';
+  static const String productionStage = 'Etapa de Producción';
   static const String startDate = 'Fecha de Inicio';
   static const String currentQuantity = 'Aves actuales';
   static const String mortality = 'Mortalidad';
   static const String averageWeight = 'Peso Promedio';
+  static const String pleaseAddAverageWeight =
+      'Por favor, ingrese el peso promedio';
   static const String feedConsumed = 'Alimento Consumido';
   static const String ica = 'ICA';
   static const String weeklyRecord = 'Registro Semanal';
   static const String addWeeklyRecord = 'Agregar Registro';
+  static const String recordType = 'Tipo de Registro';
+  static const String trackingRecord = 'Seguimiento';
+  static const String finishingRecord = 'Finalización';
+  static const String finalAverageWeight = 'Peso Promedio Final';
+  static const String pleaseSelectRecordType =
+      'Por favor, seleccione el tipo de registro';
+  static const String pleaseAddFinalAverageWeight =
+      'Por favor, ingrese el peso promedio final';
   static const String tracking = 'Seguimiento';
   static const String batchDetail = 'Detalle del Lote';
   static const String noBatches = 'No hay lotes registrados';
   static const String createBatch = 'Crear Lote';
+  static const String pleaseSelectProductionStage =
+      'Por favor, seleccione la etapa de producción';
   static const String week = 'Semana';
 }

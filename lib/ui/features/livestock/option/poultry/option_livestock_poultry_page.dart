@@ -45,7 +45,7 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                   text: AmcaWords.fatten,
                   onTap: () {
                     NavigationHelper.push(
-                      const PoultryFatteningPage(),
+                      PoultryFatteningPage.create(),
                       context,
                     );
                   },

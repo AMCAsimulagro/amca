@@ -21,6 +21,7 @@ import 'package:amca/data/api/frequent_question_api.dart';
 import 'package:amca/data/api/livestock/animal_husbandry/animal_husbandry_api.dart';
 import 'package:amca/data/api/livestock/fish_husbandry/fish_husbandry_api.dart';
 import 'package:amca/data/api/livestock/pig_farming/pig_farming_api.dart';
+import 'package:amca/data/api/livestock/poultry_fattening/poultry_fattening_api.dart';
 import 'package:amca/data/api/fish_types_api.dart';
 import 'package:amca/data/api/login_api.dart';
 import 'package:amca/data/api/users_api.dart';
@@ -29,6 +30,7 @@ import 'package:amca/data/repository/frequent_question_repository.dart';
 import 'package:amca/data/repository/livestock/animal_husbandry_repository.dart';
 import 'package:amca/data/repository/livestock/fish_husbandry_repository.dart';
 import 'package:amca/data/repository/livestock/pig_farming_repository.dart';
+import 'package:amca/data/repository/livestock/poultry_fattening_repository.dart';
 import 'package:amca/data/repository/fish_types_repository.dart';
 import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/state_repository.dart';
@@ -61,6 +63,11 @@ class DependecyInjection {
     locator.registerSingleton<PigFarmingApi>(PigFarmingApiAdapter());
     locator
         .registerSingleton<PigFarmingRepository>(PigFarmingRepositoryAdapter());
+
+    locator
+        .registerSingleton<PoultryFatteningApi>(PoultryFatteningApiAdapter());
+    locator.registerSingleton<PoultryFatteningRepository>(
+        PoultryFatteningRepositoryAdapter());
 
     locator.registerSingleton<AnimalHusbandryApi>(AnimalHusbandryApiAdapter());
     locator.registerSingleton<AnimalHusbandryRepository>(

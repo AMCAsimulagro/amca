@@ -20,4 +20,5 @@ class FirebaseCollections {
   static const milkAnimalHusbandry = 'milkAnimalHusbandry';
   static const meatAnimalHusbandry = 'meatAnimalHusbandry';
   static const poultry = 'poultry';
+  static const poultryFatteningBatches = 'poultry_fattening_batches';
 }
