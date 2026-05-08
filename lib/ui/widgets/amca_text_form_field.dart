@@ -89,18 +89,26 @@ class AmcaTextFormField extends StatefulWidget {
 
 /// Status of the `AmcaTextFormField` widget.
 class _AmcaTextFormFieldState extends State<AmcaTextFormField> {
-  late TextEditingController _textEditingController;
+  late final TextEditingController _textEditingController;
+  late final bool _shouldDisposeController;
 
   @override
   void initState() {
-    _textEditingController =
-        widget.textEditingController ?? TextEditingController();
+    if (widget.textEditingController == null) {
+      _textEditingController = TextEditingController();
+      _shouldDisposeController = true;
+    } else {
+      _textEditingController = widget.textEditingController!;
+      _shouldDisposeController = false;
+    }
     super.initState();
   }
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    if (_shouldDisposeController) {
+      _textEditingController.dispose();
+    }
     super.dispose();
   }
 

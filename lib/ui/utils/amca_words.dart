@@ -326,6 +326,28 @@ class AmcaWords {
   // Words submodulo Avicola
   static const String eggs = 'Huevos';
   static const String fatten = 'Engorde';
+  static const String layingGalpons = 'Galpones Ponedoras';
+  static const String layingGalpon = 'Galpón';
+  static const String editGalpon = 'Editar galpón';
+  static const String populationInitial = 'Población inicial';
+  static const String saveGalpon = 'Guardar galpón';
+  static const String galponStateActive = 'Activo';
+  static const String galponStateFinalized = 'Finalizado';
+  static const String layingDailyRecord = 'Registro diario';
+  static const String layingProductionBlock = 'Producción';
+  static const String layingQualityBlock = 'Calidad';
+  static const String layingCostsBlock = 'Costos y bajas';
+  static const String layingBrokenEggs = 'Huevos rotos';
+  static const String layingDirtyEggs = 'Huevos sucios';
+  static const String layingFoodConsumed = 'Alimento consumido (Kg)';
+  static const String layingDailyMortality = 'Mortalidad diaria';
+  static const String layingRecordSave = 'Guardar registro';
+  static const String layingRecordEdit = 'Editar';
+  static const String recordSavedSuccess = 'Registro guardado correctamente';
+  static const String finalizeGalpon = 'Finalizar galpón';
+  static const String galponFinalizedSuccess = 'Galpón finalizado correctamente';
+  static const String reactivateGalpon = 'Reactivar galpón';
+  static const String galponReactivatedSuccess = 'Galpón reactivado correctamente';
 
   // Words submodulo Piscicultura
   static const String fish = 'Pescado';
@@ -371,4 +393,8 @@ class AmcaWords {
   static const String pleaseSelectProductionStage =
       'Por favor, seleccione la etapa de producción';
   static const String week = 'Semana';
+  static const String yourPoultryFatteningHasBeenCreated =
+      'Tu galpón de engorde ha sido creado';
+  static const String yourPoultryFatteningHasBeenUpdated =
+      'Tu galpón de engorde ha sido actualizado';
 }

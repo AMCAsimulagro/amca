@@ -6,6 +6,7 @@ library;
 
 /// Imports of Bookstores and Resources
 import 'package:amca/ui/features/livestock/option/poultry/fattening/poultry_fattening_page.dart';
+import 'package:amca/ui/features/livestock/option/poultry/laying/laying_galpon_list_page.dart';
 import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/dialogs.dart';
@@ -35,8 +36,10 @@ class OptionLivestockPoultryPage extends StatelessWidget {
                 child: AmcaContainerButton(
                   text: AmcaWords.eggs,
                   onTap: () {
-                    Dialogs.showErrorDialogWithMessage(
-                        context, AmcaWords.buildingThis);
+                    NavigationHelper.push(
+                      LayingGalponListPage.create(),
+                      context,
+                    );
                   },
                 ),
               ),

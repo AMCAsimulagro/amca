@@ -274,8 +274,8 @@ class _CreatePoultryFatteningPageState
       await Dialogs.showSuccessDialogWithMessage(
         context,
         _isEditMode
-            ? AmcaWords.yourCostOrExpenseHaveBeenUpdated
-            : AmcaWords.yourCostOrExpenseHaveBeenCreated,
+            ? AmcaWords.yourPoultryFatteningHasBeenUpdated
+            : AmcaWords.yourPoultryFatteningHasBeenCreated,
       );
       if (!mounted) return;
       Navigator.pop(context, true);

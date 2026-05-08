@@ -175,10 +175,9 @@ class _ManageCostExpensePageState extends State<ManageCostExpensePage> {
                     },
                   ),
                   const _DescriptionSelected(),
-                  if (vm.descriptionSelected == null)
-                    const SizedBox(
-                      height: 12,
-                    ),
+                  const SizedBox(
+                    height: 12,
+                  ),
                   AmcaTextFormField(
                     textEditingController: _quantityController,
                     textInputType: TextInputType.number,

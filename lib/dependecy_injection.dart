@@ -36,6 +36,9 @@ import 'package:amca/data/repository/login_repository.dart';
 import 'package:amca/data/repository/state_repository.dart';
 import 'package:amca/data/repository/users_repository.dart';
 import 'package:get_it/get_it.dart';
+import 'package:amca/data/repository/livestock/poultry_laying_repository.dart';
+
+
 
 /// Proporciona una instancia global del servicio de localización de dependencias.
 final GetIt locator = GetIt.instance;
@@ -80,5 +83,8 @@ class DependecyInjection {
     locator.registerSingleton<FishTypesApi>(FishTypesApiAdapter());
     locator.registerSingleton<FishTypesRepository>(
         FishTypesRepositoryAdapter());
+
+    locator.registerSingleton<PoultryLayingRepository>(
+        PoultryLayingRepositoryAdapter());
   }
 }
