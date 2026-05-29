@@ -386,6 +386,12 @@ class AmcaWords {
       'Por favor, seleccione el tipo de registro';
   static const String pleaseAddFinalAverageWeight =
       'Por favor, ingrese el peso promedio final';
+  static const String finalizationChartDataPending =
+      'Los datos de esta gráfica se mostrarán cuando se agregue un registro de finalización';
+  static const String finalizationRecordAlreadyExists =
+      'Ya existe un registro de finalización para este galpón';
+  static const String finishingDate = 'Fecha de finalización';
+  static const String finalQuantity = 'Cantidad final';
   static const String tracking = 'Seguimiento';
   static const String batchDetail = 'Detalle del Lote';
   static const String noBatches = 'No hay lotes registrados';

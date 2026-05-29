@@ -72,6 +72,7 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
           if (vm.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
+          final recordTypes = _availableRecordTypes(vm);
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
             child: Form(
@@ -92,11 +93,11 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    value: _selectedRecordType,
+                    initialValue: _selectedRecordType,
                     decoration: const InputDecoration(
                       labelText: AmcaWords.recordType,
                     ),
-                    items: _recordTypes
+                    items: recordTypes
                         .map(
                           (type) => DropdownMenuItem<String>(
                             value: type,
@@ -122,6 +123,7 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
                   if (_selectedRecordType == AmcaWords.finishingRecord) ...[
                     const SizedBox(height: 16),
                     AmcaTextFormField(
+                      key: const ValueKey('finalAverageWeightField'),
                       textEditingController: _finalAverageWeightController,
                       labelText:
                           '${AmcaWords.finalAverageWeight} (${AmcaWords.kG})',
@@ -142,6 +144,7 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
                   ],
                   const SizedBox(height: 16),
                   AmcaTextFormField(
+                    key: const ValueKey('feedConsumedField'),
                     textEditingController: _feedController,
                     labelText: '${AmcaWords.feedConsumed} (${AmcaWords.kG})',
                     textInputType:
@@ -155,6 +158,7 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
                   ),
                   const SizedBox(height: 16),
                   AmcaTextFormField(
+                    key: const ValueKey('mortalityField'),
                     textEditingController: _mortalityController,
                     labelText: AmcaWords.mortality,
                     textInputType: TextInputType.number,
@@ -192,6 +196,15 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
           )
         : null;
 
+    if (_selectedRecordType == AmcaWords.finishingRecord &&
+        _hasFinishingRecord(vm)) {
+      await Dialogs.showSuccessDialogWithMessage(
+        context,
+        AmcaWords.finalizationRecordAlreadyExists,
+      );
+      return;
+    }
+
     final tracking = PoultryFatteningTracking(
       recordDate: recordDate,
       weekNumber: (vm.batch?.tracking.length ?? 0) + 1,
@@ -211,5 +224,19 @@ class _AddPoultryTrackingPageState extends State<AddPoultryTrackingPage> {
       if (!mounted) return;
       Navigator.pop(context, true);
     });
+  }
+
+  List<String> _availableRecordTypes(AddPoultryTrackingVM vm) {
+    if (_hasFinishingRecord(vm)) {
+      return const [AmcaWords.trackingRecord];
+    }
+    return _recordTypes;
+  }
+
+  bool _hasFinishingRecord(AddPoultryTrackingVM vm) {
+    return vm.batch?.tracking.any(
+          (item) => item.recordType == AmcaWords.finishingRecord,
+        ) ??
+        false;
   }
 }

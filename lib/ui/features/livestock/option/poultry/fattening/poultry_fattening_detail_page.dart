@@ -8,7 +8,6 @@ import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
-import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -132,7 +131,7 @@ class PoultryFatteningDetailPage extends StatelessWidget {
           child: tracking.isEmpty
               ? const Center(child: Text(AmcaWords.buildingThis))
               : ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 96),
                   itemCount: tracking.length,
                   separatorBuilder: (_, __) => const Divider(),
                   itemBuilder: (context, index) {
@@ -286,6 +285,10 @@ class PoultryFatteningDetailPage extends StatelessWidget {
 
   Widget _buildCharts(PoultryFatteningDetailVM vm) {
     final tracking = vm.batch?.tracking ?? [];
+    final weightSpots = _weightSpots(
+      vm.batch?.averageWeight ?? 0,
+      tracking,
+    );
     if (tracking.isEmpty) {
       return const Center(
         child: Text(AmcaWords.buildingThis),
@@ -296,31 +299,34 @@ class PoultryFatteningDetailPage extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 24),
       children: [
         ChartCard(
-          title: '${AmcaWords.averageWeight} ${AmcaWords.pieChart}',
+          title: AmcaWords.averageWeight,
           dateSelected: (_) {},
-          child: LineChart(
-            LineChartData(
-              minX: 1,
-              maxX: tracking.length.toDouble(),
-              lineBarsData: [
-                LineChartBarData(
-                  spots: _weightSpots(tracking),
-                  isCurved: true,
-                  color: AmcaPalette.lightGreen,
-                  barWidth: 3,
-                  dotData: FlDotData(show: true),
+          child: weightSpots.length < 2
+              ? const Center(child: Text(AmcaWords.finalizationChartDataPending))
+              : LineChart(
+                  LineChartData(
+                    minX: 0,
+                    maxX: _maxSpotX(weightSpots),
+                    minY: 0,
+                    lineBarsData: [
+                      LineChartBarData(
+                        spots: weightSpots,
+                        isCurved: true,
+                        color: AmcaPalette.lightGreen,
+                        barWidth: 3,
+                        dotData: FlDotData(show: true),
+                      ),
+                    ],
+                    gridData: const FlGridData(show: true),
+                    titlesData: const FlTitlesData(
+                      topTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false)),
+                      rightTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false)),
+                    ),
+                    borderData: FlBorderData(show: true),
+                  ),
                 ),
-              ],
-              gridData: const FlGridData(show: false),
-              titlesData: const FlTitlesData(
-                topTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false)),
-                rightTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false)),
-              ),
-              borderData: FlBorderData(show: false),
-            ),
-          ),
         ),
         ChartCard(
           title: AmcaWords.feedConsumed,
@@ -362,16 +368,35 @@ class PoultryFatteningDetailPage extends StatelessWidget {
     );
   }
 
-  List<FlSpot> _weightSpots(List<PoultryFatteningTracking> tracking) {
-    return tracking
-        .where((item) => item.finalAverageWeight != null)
-        .map(
-          (item) => FlSpot(
-            item.weekNumber.toDouble(),
-            (item.finalAverageWeight ?? 0).toDouble(),
+  List<FlSpot> _weightSpots(
+    double initialAverageWeight,
+    List<PoultryFatteningTracking> tracking,
+  ) {
+    final spots = <FlSpot>[];
+    if (initialAverageWeight > 0) {
+      spots.add(FlSpot(0, initialAverageWeight));
+    }
+    spots.addAll(
+      tracking
+          .where((item) => item.finalAverageWeight != null)
+          .map(
+            (item) => FlSpot(
+              item.weekNumber.toDouble(),
+              (item.finalAverageWeight ?? 0).toDouble(),
+            ),
           ),
-        )
-        .toList();
+    );
+    return spots..sort((a, b) => a.x.compareTo(b.x));
+  }
+
+  double _maxSpotX(List<FlSpot> spots) {
+    var maxX = 0.0;
+    for (final spot in spots) {
+      if (spot.x > maxX) {
+        maxX = spot.x;
+      }
+    }
+    return maxX == 0 ? 1 : maxX;
   }
 
   List<BarChartGroupData> _feedBarGroups(

@@ -1,4 +1,5 @@
 import 'package:amca/domain/model/livestock/poultry_fattening/poultry_fattening_batch.dart';
+import 'package:amca/domain/model/livestock/poultry_fattening/poultry_fattening_tracking.dart';
 import 'package:amca/ui/features/livestock/option/poultry/fattening/create_poultry_fattening_page.dart';
 import 'package:amca/ui/features/livestock/option/poultry/fattening/poultry_fattening_detail_page.dart';
 import 'package:amca/ui/features/livestock/option/poultry/fattening/poultry_fattening_list_vm.dart';
@@ -6,7 +7,6 @@ import 'package:amca/ui/utils/amca_palette.dart';
 import 'package:amca/ui/utils/amca_words.dart';
 import 'package:amca/ui/utils/calls_with_dialog.dart';
 import 'package:amca/ui/utils/dialogs.dart';
-import 'package:amca/ui/utils/navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -84,6 +84,7 @@ class PoultryFatteningPage extends StatelessWidget {
     PoultryFatteningListVM vm,
     PoultryFatteningBatch batch,
   ) {
+    final finishingRecord = _finishingRecord(batch);
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(bottom: 12.0),
@@ -102,6 +103,14 @@ class PoultryFatteningPage extends StatelessWidget {
               '${AmcaWords.startDate}: ${DateFormat('dd/MM/yyyy').format(batch.startDate)}',
             ),
             Text('${AmcaWords.initialQuantity}: ${batch.initialQuantity}'),
+            if (finishingRecord != null) ...[
+              Text(
+                '${AmcaWords.finishingDate}: ${DateFormat('dd/MM/yyyy').format(finishingRecord.recordDate)}',
+              ),
+              Text(
+                '${AmcaWords.finalQuantity}: ${_finalQuantity(batch)}',
+              ),
+            ],
           ],
         ),
         trailing: Row(
@@ -146,13 +155,31 @@ class PoultryFatteningPage extends StatelessWidget {
               builder: (context) =>
                   PoultryFatteningDetailPage.create(batchId: batch.id ?? ''),
             ),
-          ).then((value) async {
-            if (value != null && value is bool && value) {
-              await vm.init();
-            }
+          ).then((_) async {
+            await vm.init();
           });
         },
       ),
     );
+  }
+
+  PoultryFatteningTracking? _finishingRecord(PoultryFatteningBatch batch) {
+    final finishingRecords = batch.tracking
+        .where((item) => item.recordType == AmcaWords.finishingRecord)
+        .toList()
+      ..sort((a, b) => b.recordDate.compareTo(a.recordDate));
+    if (finishingRecords.isEmpty) {
+      return null;
+    }
+    return finishingRecords.first;
+  }
+
+  int _finalQuantity(PoultryFatteningBatch batch) {
+    final totalMortality = batch.tracking.fold<int>(
+      0,
+      (total, item) => total + item.mortality,
+    );
+    final finalQuantity = batch.initialQuantity - totalMortality;
+    return finalQuantity < 0 ? 0 : finalQuantity;
   }
 }
